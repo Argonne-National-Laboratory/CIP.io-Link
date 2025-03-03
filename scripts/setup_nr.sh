@@ -6,6 +6,7 @@ fi
 
 echo "Updating ownership of $folder_path..."
 sudo docker stop node-red >/dev/null 2>&1
+sleep 5
 sudo chown -R ${USER}:${USER} $folder_path
 
 cp ./build/nr/settings.js $folder_path
