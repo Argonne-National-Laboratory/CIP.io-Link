@@ -132,7 +132,9 @@ update_env_if_not_exists_with_default() {
 length=$((RANDOM % 14 + 12)) # Random length between 8 and 20
 
 # Generate password
-password=$(tr -dc 'A-Za-z0-9!@#$%^&*()_+' </dev/urandom | head -c "$length")
+# password=$(tr -dc 'A-Za-z0-9!@#$%^&*()_+' </dev/urandom | head -c "$length")
+
+password=$(tr -dc 'A-Za-z0-9!@#$%^&*_+' </dev/urandom | head -c "$length")
 
 # Main script logic
 # display_env_settings # Optional: Show current settings
