@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 # Default .env file path (make this configurable if needed)
-ENV_FILE=".env.x"
+ENV_FILE=".env"
 
 # Color text escape codes
 RED='\033[0;31m'
@@ -50,6 +50,9 @@ update_or_add_env_variable() {
 update_valkey_conf() {
 
   conf_file="./valkey/config/valkey.conf"
+
+  mkdir -p ./valkey/config
+  cp -f ./build/valkey/valkey.conf $conf_file
   new_password=$(egrep "CIPIO_VALKEY_PASSWORD?=" "$ENV_FILE" | cut -d "=" -f 2-)
 
   # the following line will allow for symbols in passwords
