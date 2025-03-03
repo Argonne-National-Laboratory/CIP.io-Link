@@ -21,9 +21,9 @@ function install_docker2() {
 
   # Add the repository to Apt sources:
   echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-  $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" |
+    sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
   sudo apt-get update
 
   sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
@@ -48,8 +48,8 @@ if ! command -v docker &>/dev/null; then
   echo "We need to first install Docker on your system. Hit <ENTER> to continue:"
   read
 
-  install_docker2 
-  
+  install_docker2
+
   if hash docker 2>/dev/null; then
     echo "Docker now installed."
     sudo addgroup docker
@@ -58,8 +58,6 @@ if ! command -v docker &>/dev/null; then
     error "Installation of Docker has failed. Exiting setup"
     exit 1
   fi
-fi
-
 else
   echo "Docker is already installed"
 fi
