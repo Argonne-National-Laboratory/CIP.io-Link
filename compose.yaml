@@ -20,7 +20,7 @@ services:
       CIPIO_MQTT_PW: ${CIPIO_PW}
       CIPIO_CSMS_PORT: ${CIPIO_CSMS_PORT-8884}
       CIPIO_CSMS_PATH: ${CIPIO_CSMS_PATH:-/ocpp}
-      CIPIO_INFLUX_TOKEN: ${CIPIO_INFLUX_TOKEN}
+      CIPIO_INFLUX_TOKEN: ${CIPIO_INFLUX_TOKEN-TOKENNOTINITIALIZED}
       CIPIO_VALKEY_OPTIONS: >
         {
           "port": 6379,
@@ -44,7 +44,7 @@ services:
   portainer:
     container_name: portainer
     image: portainer/portainer-ce
-    restart: always
+    restart: unless-stopped
     profiles:
       - not_now
     volumes:
