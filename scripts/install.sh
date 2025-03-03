@@ -79,7 +79,7 @@ fi
 # git clone git@github.com:bnystrom/cipiotest.git
 git clone https://github.com/bnystrom/cipiotest.git
 cd cipiotest
-./build/setup_env.sh
-./build/setup_mqtt.sh
-./build/setup_influx.sh
+./scripts/setup_env.sh
+./scriptsbuild/setup_mqtt.sh
+./scriptsbuild/setup_influx.sh
 docker compose up -d
