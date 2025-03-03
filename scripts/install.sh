@@ -93,4 +93,5 @@ cd cipiotest
 ./scripts/setup_env.sh
 ./scripts/setup_mqtt.sh
 ./scripts/setup_influx.sh
+./scripts/setup_nr.sh
 docker compose up -d
