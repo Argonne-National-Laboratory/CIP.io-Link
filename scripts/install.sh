@@ -76,6 +76,10 @@ else
   echo "Docker is already installed"
 fi
 
-git clone git@github.com:bnystrom/cipiotest.git
+# git clone git@github.com:bnystrom/cipiotest.git
+git clone https://github.com/bnystrom/cipiotest.git
 cd cipiotest
-ls -la
+./build/setup_env.sh
+./build/setup_mqtt.sh
+./build/setup_influx.sh
+docker compose up -d
