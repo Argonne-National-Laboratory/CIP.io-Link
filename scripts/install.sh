@@ -34,32 +34,43 @@ function install_docker2() {
 }
 
 ## Check for curl installation
+echo "## Checking for curl"
+
 if ! command -v curl &>/dev/null; then
-  echo "curl is required to download the installer"
+  echo "## curl Install #######################################################"
   sudo apt-get install curl
 else
   echo "curl is installed"
 fi
 
 ## Check for git installation
+echo "## Checking for git"
+
 if ! command -v git &>/dev/null; then
-  echo "git is required"
+  echo "## git Install #######################################################"
   sudo apt-get install git
 else
   echo "git is installed"
 fi
 
 ## Check for jq installation
+echo "## Checking for jq"
+
 if ! command -v jq &>/dev/null; then
-  echo "jq is required"
+  echo "## jq Install #######################################################"
   sudo apt-get install jq
 else
   echo "jq is installed"
 fi
 
 ## Check for Docker installation
+echo "## Checking for Docker"
+
 if ! command -v docker &>/dev/null; then
-  echo "We need to first install Docker on your system. Hit <ENTER> to continue:"
+  clear
+  echo "## Docker Install #######################################################"
+  echo -e "\n"
+  echo "First we need to install Docker on your system. Hit <ENTER> to continue:"
   read
 
   install_docker2
@@ -80,6 +91,6 @@ fi
 git clone https://github.com/bnystrom/cipiotest.git
 cd cipiotest
 ./scripts/setup_env.sh
-./scriptsbuild/setup_mqtt.sh
-./scriptsbuild/setup_influx.sh
+./scripts/setup_mqtt.sh
+./scripts/setup_influx.sh
 docker compose up -d
