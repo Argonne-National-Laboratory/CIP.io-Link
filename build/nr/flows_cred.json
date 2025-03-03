@@ -1,0 +1,9 @@
+{
+    "7cb40fcee206391e": {
+        "token": "${CIPIO_INFLUX_TOKEN}"
+    },
+    "213076b7a395d1a9": {
+        "user": "${CIPIO_USER}",
+        "password": "${CIPIO_PW}"
+    }
+}

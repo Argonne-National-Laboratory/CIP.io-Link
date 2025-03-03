@@ -390,20 +390,12 @@
         ]
     },
     {
-        "id": "a6ebf8381e0c4375",
-        "type": "redis-config",
-        "name": "Local",
-        "options": "{\"port\":6379,\"host\":\"valkey\",\"username\":\"default\",\"password\":\"cORNdOGSwITHmUSTARD\"}",
-        "cluster": false,
-        "optionsType": "json"
-    },
-    {
         "id": "0430675ed6c7cd83",
         "type": "redis-config",
         "name": "cipio redis",
-        "options": "{\"port\":6379,\"host\":\"valkey\",\"username\":\"default\",\"password\":\"cORNdOGSwITHmUSTARD\"}",
+        "options": "CIPIO_VALKEY_OPTIONS",
         "cluster": false,
-        "optionsType": "json"
+        "optionsType": "env"
     },
     {
         "id": "46fa89673b9bfc15",
