@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt update
+//sudo apt update
 
 function install_docker() {
   curl -fsSL https://get.docker.com -o get-docker.sh
@@ -11,6 +11,9 @@ function install_docker() {
   sudo systemctl status docker
 }
 
+##############################
+## Install Docker on Ubuntu ##
+##############################
 function install_docker2() {
   # Add Docker's official GPG key:
   sudo apt-get update
@@ -30,6 +33,7 @@ function install_docker2() {
 
 }
 
+## Check for curl installation
 if ! command -v curl &>/dev/null; then
   echo "curl is required to download the installer"
   sudo apt-get install curl
@@ -37,6 +41,7 @@ else
   echo "curl is installed"
 fi
 
+## Check for git installation
 if ! command -v git &>/dev/null; then
   echo "git is required"
   sudo apt-get install git
@@ -44,6 +49,15 @@ else
   echo "git is installed"
 fi
 
+## Check for jq installation
+if ! command -v jq &>/dev/null; then
+  echo "jq is required"
+  sudo apt-get install jq
+else
+  echo "jq is installed"
+fi
+
+## Check for Docker installation
 if ! command -v docker &>/dev/null; then
   echo "We need to first install Docker on your system. Hit <ENTER> to continue:"
   read
@@ -62,9 +76,6 @@ else
   echo "Docker is already installed"
 fi
 
-if ! command -v jq &>/dev/null; then
-  echo "jq is required"
-  sudo apt-get install jq
-else
-  echo "jq is installed"
-fi
+git clone git@github.com:bnystrom/cipiotest.git
+cd cipiotest
+ls -la
