@@ -22,7 +22,7 @@ export INFLUX_DESC=cipio$(date +'%y%m%d%H%M')
 export INFLUX_ORG=cipio
 
 # Start up the influx container
-docker compose up influx -d
+docker compose up influx2 -d
 
 # Loop until the app is ready
 while ! check_app_ready; do
