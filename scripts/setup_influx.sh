@@ -1,7 +1,13 @@
 #! /bin/bash
 check_app_ready() {
-  response=$(curl -s http://localhost:8086/api/v2/setup)
-  echo "$response" | grep -q '"allowed": true'
+  response=$(curl -s http://localhost:8086/health)
+  echo "$resonse" | grep -q '"status::"pass"'
+  # response=$(curl -s http://localhost:8086/api/v2/setup)
+  # echo "$response" | grep -q '"allowed": true'
+  # until curl -s http://localhost:8086/health | grep -q '"status":"pass"'; do
+  #   echo -n "."
+  #   sleep 2
+done
 }
 
 # Function to check if jq is installed
