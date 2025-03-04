@@ -94,4 +94,4 @@ cd cipiotest
 ./scripts/setup_mqtt.sh
 ./scripts/setup_influx.sh
 ./scripts/setup_nr.sh
-docker compose --profiles grafana up -d
+docker compose --profile grafana up -d
