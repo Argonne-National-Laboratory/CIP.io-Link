@@ -18,6 +18,6 @@ cp ./build/nr/settings.js $folder_path
 cp ./build/nr/flow* $folder_path
 cp ./build/nr/assets/* ${folder_path}/assets
 
-echo "Restarting node-red container..."
+# echo "Restarting node-red container..."
 
-sudo docker restart node-red
+sudo docker restart node-red >/dev/null 2>&1
