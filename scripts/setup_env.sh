@@ -55,6 +55,8 @@ update_valkey_conf() {
   cp -f ./build/valkey/valkey.conf $conf_file
   new_password=$(egrep "CIPIO_VALKEY_PASSWORD?=" "$ENV_FILE" | cut -d "=" -f 2-)
 
+  new_password=${new_password//\'/}
+
   # the following line will allow for symbols in passwords
   escaped_password=$(printf '%s\n' "$new_password" | sed 's/[\/&]/\\&/g')
   echo -e "\n"
