@@ -1264,7 +1264,7 @@
         ],
         "order": 9,
         "className": "",
-        "visible": "true",
+        "visible": false,
         "disabled": "false"
     },
     {
@@ -4944,6 +4944,7 @@
         "id": "67c26650958b4c02",
         "type": "ui-text",
         "z": "92d055a5ecbac90c",
+        "d": true,
         "group": "530fe8d240942ac0",
         "order": 7,
         "width": "2",
@@ -5075,7 +5076,7 @@
                 "vt": "str"
             }
         ],
-        "repeat": "",
+        "repeat": "5",
         "crontab": "",
         "once": true,
         "onceDelay": 0.1,
@@ -5104,7 +5105,7 @@
                 "vt": "str"
             }
         ],
-        "repeat": "",
+        "repeat": "5",
         "crontab": "",
         "once": true,
         "onceDelay": 0.1,
@@ -5133,14 +5134,14 @@
                 "vt": "str"
             }
         ],
-        "repeat": "",
+        "repeat": "5",
         "crontab": "",
         "once": true,
         "onceDelay": 0.1,
         "topic": "",
         "payload": "SITE:LoadLimit",
         "payloadType": "global",
-        "x": 240,
+        "x": 250,
         "y": 760,
         "wires": [
             [
@@ -10955,7 +10956,7 @@
         "type": "function",
         "z": "c4f677cd277b409d",
         "name": "str2num",
-        "func": "if (msg?.payload){\n    msg.payload = Number(msg.payload)\n    return msg;\n}\n",
+        "func": "if (msg?.payload){\n    msg.payload = Number(msg.payload)\n}\nelse {\n    msg.payload = 120\n}\n\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -10995,7 +10996,7 @@
         "type": "function",
         "z": "c4f677cd277b409d",
         "name": "str2num",
-        "func": "if (msg?.payload){\n    msg.payload = Number(msg.payload)\n    return msg;\n}\n",
+        "func": "if (msg?.payload){\n    msg.payload = Number(msg.payload)\n}\nelse {\n    msg.payload = 100\n}\n\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -11367,7 +11368,7 @@
         "type": "function",
         "z": "c4f677cd277b409d",
         "name": "str2num",
-        "func": "if (msg?.payload){\n    msg.payload = Number(msg.payload)\n    return msg;\n}\n",
+        "func": "if (msg?.payload){\n    msg.payload = Number(msg.payload)\n}\nelse {\n    msg.payload = 60\n}\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
