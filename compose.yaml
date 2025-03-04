@@ -46,7 +46,7 @@ services:
     image: portainer/portainer-ce
     restart: unless-stopped
     profiles:
-      - not_now
+      - portainer
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
@@ -71,7 +71,7 @@ services:
     image: grafana/grafana
     restart: unless-stopped
     profiles:
-      - not_now
+      - grafana
     ports:
       - 3000:3000
     volumes:
