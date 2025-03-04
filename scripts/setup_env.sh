@@ -123,7 +123,8 @@ update_env_if_not_exists_with_default() {
       new_value="$default_value" # Use the default if user enters nothing
     fi
 
-    echo "${variable_name}=$new_value" >>"$ENV_FILE"
+    # We are wrapping this in single quotes to handle the special chars
+    echo "${variable_name}='$new_value'" >>"$ENV_FILE"
     # echo "$variable_name added."
   fi
 }
