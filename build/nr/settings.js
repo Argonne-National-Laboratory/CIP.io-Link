@@ -244,9 +244,9 @@ module.exports = {
   //    {path: '/home/nol/videos/',  root: "/vid/", options: {maxAge: '1d'}}
   //],
 
-  //httpStatic: [
-  //  { path: "/data/assets", root: "assets" }
-  //],
+  httpStatic: [
+    { path: "/data/assets", root: "assets" }
+  ],
   /**
    * All static routes will be appended to httpStaticRoot
    * e.g. if httpStatic = "/home/nol/docs" and  httpStaticRoot = "/static/"
