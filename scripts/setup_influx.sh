@@ -1,13 +1,13 @@
 #! /bin/bash
 check_app_ready() {
-  response=$(curl -s http://localhost:8086/health)
-  echo "$resonse" | grep -q '"status::"pass"'
+  # response=$(curl -s http://localhost:8086/health)
+  # echo "$resonse" | grep -q '"status":"pass"'
   # response=$(curl -s http://localhost:8086/api/v2/setup)
   # echo "$response" | grep -q '"allowed": true'
   # until curl -s http://localhost:8086/health | grep -q '"status":"pass"'; do
   #   echo -n "."
   #   sleep 2
-done
+  # done
 }
 
 # Function to check if jq is installed
@@ -36,8 +36,8 @@ docker compose up influx2 -d
 #   sleep 5
 # done
 until curl -s http://localhost:8086/health | grep -q '"status":"pass"'; do
-    echo -n "."
-    sleep 2
+  echo -n "."
+  sleep 2
 done
 # setup an initial user, org, and bucket
 docker exec influx2 influx setup --username cipio --password cipio.lnk --org cipio --bucket ocpp_log --force
