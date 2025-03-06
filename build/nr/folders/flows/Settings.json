@@ -1,0 +1,804 @@
+[
+  {
+    "id": "c4f677cd277b409d",
+    "type": "tab",
+    "label": "Settings",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "7738416e1b659cd6",
+    "type": "junction",
+    "z": "c4f677cd277b409d",
+    "x": 100,
+    "y": 300,
+    "wires": [
+      [
+        "a7fd3a800d49469d",
+        "754e5e01d72b3fbd",
+        "9a553400c62662a4",
+        "6bdcde6369d7a4b4",
+        "039d0809d7c54de3",
+        "75b51ecec0628924"
+      ]
+    ]
+  },
+  {
+    "id": "898f5d33416b458c",
+    "type": "ui-number-input",
+    "z": "c4f677cd277b409d",
+    "group": "ace44af4012c4fc1",
+    "name": "Heartbeat",
+    "label": "Heartbeat Rate (seconds)",
+    "order": 1,
+    "width": 0,
+    "height": 0,
+    "topic": "heartbeat",
+    "topicType": "msg",
+    "min": 0,
+    "max": "86400",
+    "step": 1,
+    "tooltip": "",
+    "passthru": true,
+    "sendOnBlur": true,
+    "sendOnEnter": true,
+    "className": "",
+    "clearable": false,
+    "icon": "mdi-heart-pulse",
+    "iconPosition": "left",
+    "iconInnerPosition": "inside",
+    "spinner": "default",
+    "x": 620,
+    "y": 160,
+    "wires": [
+      [
+        "ac08ee5853b84129"
+      ]
+    ]
+  },
+  {
+    "id": "242a9e9f7655ccdb",
+    "type": "redis-command",
+    "z": "c4f677cd277b409d",
+    "server": "0430675ed6c7cd83",
+    "command": "SET",
+    "name": "set heartbeat rate",
+    "topic": "settings:evse:heartbeat_rate",
+    "params": "[]",
+    "paramsType": "json",
+    "payloadType": "json",
+    "block": false,
+    "x": 1270,
+    "y": 160,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "ac08ee5853b84129",
+    "type": "function",
+    "z": "c4f677cd277b409d",
+    "name": "num2str",
+    "func": "global.set(\"CSMS:HeartbeatInterval\", msg.payload)\nmsg.payload = `${msg.payload}`\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 800,
+    "y": 160,
+    "wires": [
+      [
+        "242a9e9f7655ccdb"
+      ]
+    ]
+  },
+  {
+    "id": "7000f9956b23dcde",
+    "type": "ui-number-input",
+    "z": "c4f677cd277b409d",
+    "group": "c48e064d37e64bbf",
+    "name": "Site LoadLimit",
+    "label": "Max Load Limit (Amps)",
+    "order": 3,
+    "width": 0,
+    "height": 0,
+    "topic": "heartbeat",
+    "topicType": "msg",
+    "min": 0,
+    "max": "86400",
+    "step": 1,
+    "tooltip": "Set the maximum amperage limit to maintain for your all your EVSEs (adjusted for 20% under rating if necessary)",
+    "passthru": true,
+    "sendOnBlur": true,
+    "sendOnEnter": true,
+    "className": "",
+    "clearable": false,
+    "icon": "mdi-meter-electric-outline",
+    "iconPosition": "left",
+    "iconInnerPosition": "inside",
+    "spinner": "default",
+    "x": 640,
+    "y": 220,
+    "wires": [
+      [
+        "20dc0388748792d5"
+      ]
+    ]
+  },
+  {
+    "id": "1e9fb8f4a3750ee5",
+    "type": "redis-command",
+    "z": "c4f677cd277b409d",
+    "server": "0430675ed6c7cd83",
+    "command": "SET",
+    "name": "set site load limit",
+    "topic": "settings:site:load_limit",
+    "params": "[]",
+    "paramsType": "json",
+    "payloadType": "json",
+    "block": false,
+    "x": 1260,
+    "y": 220,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "20dc0388748792d5",
+    "type": "function",
+    "z": "c4f677cd277b409d",
+    "name": "num2str",
+    "func": "global.set(\"SITE:LoadLimit\", msg.payload)\nmsg.payload = `${msg.payload}`\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 800,
+    "y": 220,
+    "wires": [
+      [
+        "1e9fb8f4a3750ee5"
+      ]
+    ]
+  },
+  {
+    "id": "d59fede572569ae8",
+    "type": "ui-switch",
+    "z": "c4f677cd277b409d",
+    "name": "FreeVend",
+    "label": "FreeVend Mode",
+    "group": "ace44af4012c4fc1",
+    "order": 3,
+    "width": 0,
+    "height": 0,
+    "passthru": true,
+    "decouple": false,
+    "topic": "topic",
+    "topicType": "msg",
+    "style": "",
+    "className": "",
+    "layout": "row-left-swapped",
+    "clickableArea": "line",
+    "onvalue": "true",
+    "onvalueType": "bool",
+    "onicon": "",
+    "oncolor": "",
+    "offvalue": "false",
+    "offvalueType": "bool",
+    "officon": "",
+    "offcolor": "",
+    "x": 620,
+    "y": 280,
+    "wires": [
+      [
+        "22b6392a92b7af5a"
+      ]
+    ]
+  },
+  {
+    "id": "22b6392a92b7af5a",
+    "type": "change",
+    "z": "c4f677cd277b409d",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "CSMS:FreeVend",
+        "pt": "global",
+        "to": "payload",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 840,
+    "y": 280,
+    "wires": [
+      [
+        "119bc57be0dace1a"
+      ]
+    ]
+  },
+  {
+    "id": "d7539d9175e7a289",
+    "type": "redis-command",
+    "z": "c4f677cd277b409d",
+    "server": "0430675ed6c7cd83",
+    "command": "SET",
+    "name": "set FreeVend",
+    "topic": "settings:site:free_vend",
+    "params": "[]",
+    "paramsType": "json",
+    "payloadType": "json",
+    "block": false,
+    "x": 1250,
+    "y": 280,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "119bc57be0dace1a",
+    "type": "function",
+    "z": "c4f677cd277b409d",
+    "name": "bool2str",
+    "func": "msg.payload = `${msg.payload}`\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1080,
+    "y": 280,
+    "wires": [
+      [
+        "d7539d9175e7a289"
+      ]
+    ]
+  },
+  {
+    "id": "754e5e01d72b3fbd",
+    "type": "redis-command",
+    "z": "c4f677cd277b409d",
+    "server": "0430675ed6c7cd83",
+    "command": "GET",
+    "name": "get heartbeat rate",
+    "topic": "settings:evse:heartbeat_rate",
+    "params": "[]",
+    "paramsType": "json",
+    "payloadType": "json",
+    "block": false,
+    "x": 290,
+    "y": 160,
+    "wires": [
+      [
+        "73913870b6bbee44"
+      ]
+    ]
+  },
+  {
+    "id": "73913870b6bbee44",
+    "type": "function",
+    "z": "c4f677cd277b409d",
+    "name": "str2num",
+    "func": "if (msg?.payload){\n    msg.payload = Number(msg.payload)\n}\nelse {\n    msg.payload = 120\n}\n\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 460,
+    "y": 160,
+    "wires": [
+      [
+        "898f5d33416b458c"
+      ]
+    ]
+  },
+  {
+    "id": "a7fd3a800d49469d",
+    "type": "redis-command",
+    "z": "c4f677cd277b409d",
+    "server": "0430675ed6c7cd83",
+    "command": "GET",
+    "name": "set site load limit",
+    "topic": "settings:site:load_limit",
+    "params": "[]",
+    "paramsType": "json",
+    "payloadType": "json",
+    "block": false,
+    "x": 280,
+    "y": 220,
+    "wires": [
+      [
+        "d6ed3f773625f10c"
+      ]
+    ]
+  },
+  {
+    "id": "d6ed3f773625f10c",
+    "type": "function",
+    "z": "c4f677cd277b409d",
+    "name": "str2num",
+    "func": "if (msg?.payload){\n    msg.payload = Number(msg.payload)\n}\nelse {\n    msg.payload = 100\n}\n\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 460,
+    "y": 220,
+    "wires": [
+      [
+        "7000f9956b23dcde"
+      ]
+    ]
+  },
+  {
+    "id": "9a553400c62662a4",
+    "type": "redis-command",
+    "z": "c4f677cd277b409d",
+    "server": "0430675ed6c7cd83",
+    "command": "GET",
+    "name": "get FreeVend",
+    "topic": "settings:site:free_vend",
+    "params": "[]",
+    "paramsType": "json",
+    "payloadType": "json",
+    "block": false,
+    "x": 280,
+    "y": 280,
+    "wires": [
+      [
+        "2b07e761244ab2ed"
+      ]
+    ]
+  },
+  {
+    "id": "2b07e761244ab2ed",
+    "type": "function",
+    "z": "c4f677cd277b409d",
+    "name": "str2bool",
+    "func": "if (msg?.payload){\n    msg.payload = msg.payload == \"true\"\n    return msg;\n}",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 460,
+    "y": 280,
+    "wires": [
+      [
+        "d59fede572569ae8"
+      ]
+    ]
+  },
+  {
+    "id": "47c4718f596acff4",
+    "type": "inject",
+    "z": "c4f677cd277b409d",
+    "name": "Prime",
+    "props": [
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": true,
+    "onceDelay": 0.1,
+    "topic": "",
+    "x": 250,
+    "y": 100,
+    "wires": [
+      [
+        "9460a6cb7347f787"
+      ]
+    ]
+  },
+  {
+    "id": "fcba4c1e92563751",
+    "type": "link in",
+    "z": "c4f677cd277b409d",
+    "name": "link in 1",
+    "links": [
+      "9460a6cb7347f787"
+    ],
+    "x": 65,
+    "y": 300,
+    "wires": [
+      [
+        "7738416e1b659cd6"
+      ]
+    ]
+  },
+  {
+    "id": "9460a6cb7347f787",
+    "type": "link out",
+    "z": "c4f677cd277b409d",
+    "name": "link out 20",
+    "mode": "link",
+    "links": [
+      "fcba4c1e92563751"
+    ],
+    "x": 345,
+    "y": 100,
+    "wires": []
+  },
+  {
+    "id": "6bdcde6369d7a4b4",
+    "type": "redis-command",
+    "z": "c4f677cd277b409d",
+    "server": "0430675ed6c7cd83",
+    "command": "GET",
+    "name": "get ShowBanner",
+    "topic": "settings:site:show_banner",
+    "params": "[]",
+    "paramsType": "json",
+    "payloadType": "json",
+    "block": false,
+    "x": 290,
+    "y": 340,
+    "wires": [
+      [
+        "d9da991ba26f4cb9"
+      ]
+    ]
+  },
+  {
+    "id": "d9da991ba26f4cb9",
+    "type": "function",
+    "z": "c4f677cd277b409d",
+    "name": "str2bool",
+    "func": "msg.payload = (msg?.payload?.toLowerCase() === 'true');\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 460,
+    "y": 340,
+    "wires": [
+      [
+        "e5c9c7caaa758ba6"
+      ]
+    ]
+  },
+  {
+    "id": "e5c9c7caaa758ba6",
+    "type": "ui-switch",
+    "z": "c4f677cd277b409d",
+    "name": "ShowBanner",
+    "label": "Show Banner",
+    "group": "c48e064d37e64bbf",
+    "order": 1,
+    "width": 0,
+    "height": 0,
+    "passthru": true,
+    "decouple": false,
+    "topic": "topic",
+    "topicType": "msg",
+    "style": "",
+    "className": "",
+    "layout": "row-left-swapped",
+    "clickableArea": "line",
+    "onvalue": "true",
+    "onvalueType": "bool",
+    "onicon": "",
+    "oncolor": "",
+    "offvalue": "false",
+    "offvalueType": "bool",
+    "officon": "",
+    "offcolor": "",
+    "x": 630,
+    "y": 340,
+    "wires": [
+      [
+        "9b3d26af73349aa3"
+      ]
+    ]
+  },
+  {
+    "id": "9b3d26af73349aa3",
+    "type": "change",
+    "z": "c4f677cd277b409d",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "CSMS:ShowBanner",
+        "pt": "global",
+        "to": "payload",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 850,
+    "y": 340,
+    "wires": [
+      [
+        "2f5b237b308259e4",
+        "4f2eb882456520c0"
+      ]
+    ]
+  },
+  {
+    "id": "2f5b237b308259e4",
+    "type": "function",
+    "z": "c4f677cd277b409d",
+    "name": "bool2str",
+    "func": "msg.payload = `${msg.payload}`\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1080,
+    "y": 340,
+    "wires": [
+      [
+        "cdc21d885376925c"
+      ]
+    ]
+  },
+  {
+    "id": "cdc21d885376925c",
+    "type": "redis-command",
+    "z": "c4f677cd277b409d",
+    "server": "0430675ed6c7cd83",
+    "command": "SET",
+    "name": "set ShowBanner",
+    "topic": "settings:site:show_banner",
+    "params": "[]",
+    "paramsType": "json",
+    "payloadType": "json",
+    "block": false,
+    "x": 1260,
+    "y": 340,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "2865264d3a083b92",
+    "type": "ui-text-input",
+    "z": "c4f677cd277b409d",
+    "group": "c48e064d37e64bbf",
+    "name": "",
+    "label": "Banner URL:",
+    "order": 2,
+    "width": 0,
+    "height": 0,
+    "topic": "topic",
+    "topicType": "msg",
+    "mode": "text",
+    "tooltip": "",
+    "delay": 300,
+    "passthru": true,
+    "sendOnDelay": false,
+    "sendOnBlur": true,
+    "sendOnEnter": true,
+    "className": "",
+    "clearable": false,
+    "sendOnClear": false,
+    "icon": "",
+    "iconPosition": "left",
+    "iconInnerPosition": "inside",
+    "x": 630,
+    "y": 400,
+    "wires": [
+      [
+        "effb1e3caf4af0f1"
+      ]
+    ]
+  },
+  {
+    "id": "039d0809d7c54de3",
+    "type": "redis-command",
+    "z": "c4f677cd277b409d",
+    "server": "0430675ed6c7cd83",
+    "command": "GET",
+    "name": "get BannerURL",
+    "topic": "settings:site:banner_url",
+    "params": "[]",
+    "paramsType": "json",
+    "payloadType": "json",
+    "block": false,
+    "x": 280,
+    "y": 400,
+    "wires": [
+      [
+        "2865264d3a083b92"
+      ]
+    ]
+  },
+  {
+    "id": "effb1e3caf4af0f1",
+    "type": "change",
+    "z": "c4f677cd277b409d",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "CSMS:BannerURL",
+        "pt": "global",
+        "to": "payload",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 840,
+    "y": 400,
+    "wires": [
+      [
+        "032974aac4851b85",
+        "4f2eb882456520c0"
+      ]
+    ]
+  },
+  {
+    "id": "032974aac4851b85",
+    "type": "redis-command",
+    "z": "c4f677cd277b409d",
+    "server": "0430675ed6c7cd83",
+    "command": "SET",
+    "name": "set BannerURL",
+    "topic": "settings:site:banner_url",
+    "params": "[]",
+    "paramsType": "json",
+    "payloadType": "json",
+    "block": false,
+    "x": 1260,
+    "y": 400,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "75b51ecec0628924",
+    "type": "redis-command",
+    "z": "c4f677cd277b409d",
+    "server": "0430675ed6c7cd83",
+    "command": "GET",
+    "name": "get MVSampleRate",
+    "topic": "settings:evse:mvsampleinterval",
+    "params": "[]",
+    "paramsType": "json",
+    "payloadType": "json",
+    "block": false,
+    "x": 290,
+    "y": 460,
+    "wires": [
+      [
+        "be79b6ceff0f3e99"
+      ]
+    ]
+  },
+  {
+    "id": "be79b6ceff0f3e99",
+    "type": "function",
+    "z": "c4f677cd277b409d",
+    "name": "str2num",
+    "func": "if (msg?.payload){\n    msg.payload = Number(msg.payload)\n}\nelse {\n    msg.payload = 60\n}\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 460,
+    "y": 460,
+    "wires": [
+      [
+        "10d82e3acebc28c9"
+      ]
+    ]
+  },
+  {
+    "id": "10d82e3acebc28c9",
+    "type": "ui-number-input",
+    "z": "c4f677cd277b409d",
+    "group": "ace44af4012c4fc1",
+    "name": "MV Interval",
+    "label": "Meter Value Sample Interval (seconds)",
+    "order": 2,
+    "width": 0,
+    "height": 0,
+    "topic": "heartbeat",
+    "topicType": "msg",
+    "min": 0,
+    "max": "86400",
+    "step": 1,
+    "tooltip": "",
+    "passthru": true,
+    "sendOnBlur": true,
+    "sendOnEnter": true,
+    "className": "",
+    "clearable": false,
+    "icon": "mdi-view-week",
+    "iconPosition": "left",
+    "iconInnerPosition": "inside",
+    "spinner": "default",
+    "x": 630,
+    "y": 460,
+    "wires": [
+      [
+        "1749deab15469733"
+      ]
+    ]
+  },
+  {
+    "id": "1749deab15469733",
+    "type": "function",
+    "z": "c4f677cd277b409d",
+    "name": "num2str",
+    "func": "global.set(\"CSMS:MVSampleInterval\", msg.payload)\nmsg.payload = `${msg.payload}`\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 800,
+    "y": 460,
+    "wires": [
+      [
+        "fb57c8aef67fde6a"
+      ]
+    ]
+  },
+  {
+    "id": "fb57c8aef67fde6a",
+    "type": "redis-command",
+    "z": "c4f677cd277b409d",
+    "server": "0430675ed6c7cd83",
+    "command": "SET",
+    "name": "set MVSampleRate",
+    "topic": "settings:evse:mvsampleinterval",
+    "params": "[]",
+    "paramsType": "json",
+    "payloadType": "json",
+    "block": false,
+    "x": 1270,
+    "y": 460,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "4f2eb882456520c0",
+    "type": "link out",
+    "z": "c4f677cd277b409d",
+    "name": "link out 50",
+    "mode": "link",
+    "links": [
+      "f4cb836a36b77b75"
+    ],
+    "x": 1075,
+    "y": 380,
+    "wires": []
+  }
+]

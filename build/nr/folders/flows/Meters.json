@@ -1,0 +1,590 @@
+[
+  {
+    "id": "bc469b88bbf8641e",
+    "type": "tab",
+    "label": "Meters",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "e50b7a84160e1d66",
+    "type": "mqtt in",
+    "z": "bc469b88bbf8641e",
+    "d": true,
+    "name": "",
+    "topic": "CIPio/location/Meter/LVION0987/Power/Active/PowerPTotal",
+    "qos": "2",
+    "datatype": "auto-detect",
+    "broker": "213076b7a395d1a9",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 270,
+    "y": 120,
+    "wires": [
+      [
+        "30a87203640f65e9"
+      ]
+    ]
+  },
+  {
+    "id": "30a87203640f65e9",
+    "type": "change",
+    "z": "bc469b88bbf8641e",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "ui_update.label",
+        "pt": "msg",
+        "to": "Power",
+        "tot": "str"
+      },
+      {
+        "t": "set",
+        "p": "ui_update.units",
+        "pt": "msg",
+        "to": "payload.unit",
+        "tot": "msg"
+      },
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "payload.value",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 660,
+    "y": 120,
+    "wires": [
+      [
+        "052b63807c6f06f5",
+        "ebe2dabbd7922b2f"
+      ]
+    ]
+  },
+  {
+    "id": "052b63807c6f06f5",
+    "type": "ui-gauge",
+    "z": "bc469b88bbf8641e",
+    "name": "Power",
+    "group": "6e1897c297826e17",
+    "order": 3,
+    "width": "2",
+    "height": "2",
+    "gtype": "gauge-half",
+    "gstyle": "needle",
+    "title": "gauge",
+    "units": "units",
+    "icon": "",
+    "prefix": "",
+    "suffix": "",
+    "segments": [
+      {
+        "from": "0",
+        "color": "#5cd65c"
+      },
+      {
+        "from": "40",
+        "color": "#ffc800"
+      },
+      {
+        "from": "70",
+        "color": "#ea5353"
+      }
+    ],
+    "min": 0,
+    "max": "100",
+    "sizeThickness": 16,
+    "sizeGap": 4,
+    "sizeKeyThickness": 8,
+    "styleRounded": true,
+    "styleGlow": false,
+    "className": "",
+    "x": 850,
+    "y": 120,
+    "wires": []
+  },
+  {
+    "id": "c043109f793a35ac",
+    "type": "mqtt in",
+    "z": "bc469b88bbf8641e",
+    "d": true,
+    "name": "",
+    "topic": "CIPio/location/Meter/LVION0987/Current/CurrentAvg",
+    "qos": "2",
+    "datatype": "auto-detect",
+    "broker": "213076b7a395d1a9",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 250,
+    "y": 180,
+    "wires": [
+      [
+        "a23af9c49881279b"
+      ]
+    ]
+  },
+  {
+    "id": "f6ba639e190e28f5",
+    "type": "mqtt in",
+    "z": "bc469b88bbf8641e",
+    "d": true,
+    "name": "",
+    "topic": "CIPio/location/Meter/LVION0987/Energy/Active/EnergyPTotal",
+    "qos": "2",
+    "datatype": "auto-detect",
+    "broker": "213076b7a395d1a9",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 280,
+    "y": 320,
+    "wires": [
+      [
+        "6b4469eeb0dfb68f"
+      ]
+    ]
+  },
+  {
+    "id": "37493c1c1e1e41a2",
+    "type": "mqtt in",
+    "z": "bc469b88bbf8641e",
+    "d": true,
+    "name": "",
+    "topic": "CIPio/location/Meter/LVION0987/Voltage/VoltageLLAvg",
+    "qos": "2",
+    "datatype": "auto-detect",
+    "broker": "213076b7a395d1a9",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 260,
+    "y": 240,
+    "wires": [
+      [
+        "b73ef1d774d2eacb"
+      ]
+    ]
+  },
+  {
+    "id": "a23af9c49881279b",
+    "type": "change",
+    "z": "bc469b88bbf8641e",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "ui_update.label",
+        "pt": "msg",
+        "to": "Current Avg",
+        "tot": "str"
+      },
+      {
+        "t": "set",
+        "p": "ui_update.units",
+        "pt": "msg",
+        "to": "payload.unit",
+        "tot": "msg"
+      },
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "payload.value",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 660,
+    "y": 180,
+    "wires": [
+      [
+        "5e0ec18b139b701f",
+        "8bd9e69af9df8320"
+      ]
+    ]
+  },
+  {
+    "id": "5e0ec18b139b701f",
+    "type": "ui-gauge",
+    "z": "bc469b88bbf8641e",
+    "name": "Current",
+    "group": "6e1897c297826e17",
+    "order": 2,
+    "width": "2",
+    "height": "2",
+    "gtype": "gauge-half",
+    "gstyle": "needle",
+    "title": "gauge",
+    "units": "units",
+    "icon": "",
+    "prefix": "",
+    "suffix": "",
+    "segments": [
+      {
+        "from": "0",
+        "color": "#5cd65c"
+      },
+      {
+        "from": "40",
+        "color": "#ffc800"
+      },
+      {
+        "from": "70",
+        "color": "#ea5353"
+      }
+    ],
+    "min": 0,
+    "max": "100",
+    "sizeThickness": 16,
+    "sizeGap": 4,
+    "sizeKeyThickness": 8,
+    "styleRounded": true,
+    "styleGlow": false,
+    "className": "",
+    "x": 860,
+    "y": 200,
+    "wires": []
+  },
+  {
+    "id": "6b4469eeb0dfb68f",
+    "type": "change",
+    "z": "bc469b88bbf8641e",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "ui_update.label",
+        "pt": "msg",
+        "to": "Energy",
+        "tot": "str"
+      },
+      {
+        "t": "set",
+        "p": "ui_update.units",
+        "pt": "msg",
+        "to": "payload.unit",
+        "tot": "msg"
+      },
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "payload.value",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 660,
+    "y": 320,
+    "wires": [
+      [
+        "28c268ce8dcb9f74"
+      ]
+    ]
+  },
+  {
+    "id": "b73ef1d774d2eacb",
+    "type": "change",
+    "z": "bc469b88bbf8641e",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "ui_update.label",
+        "pt": "msg",
+        "to": "Voltage",
+        "tot": "str"
+      },
+      {
+        "t": "set",
+        "p": "ui_update.units",
+        "pt": "msg",
+        "to": "payload.unit",
+        "tot": "msg"
+      },
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "payload.value",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 660,
+    "y": 240,
+    "wires": [
+      [
+        "ec562e26d7d3039f"
+      ]
+    ]
+  },
+  {
+    "id": "ec562e26d7d3039f",
+    "type": "ui-gauge",
+    "z": "bc469b88bbf8641e",
+    "name": "Voltage",
+    "group": "6e1897c297826e17",
+    "order": 1,
+    "width": "2",
+    "height": "2",
+    "gtype": "gauge-half",
+    "gstyle": "needle",
+    "title": "gauge",
+    "units": "units",
+    "icon": "",
+    "prefix": "",
+    "suffix": "",
+    "segments": [
+      {
+        "from": "0",
+        "color": "#5cd65c"
+      },
+      {
+        "from": "120",
+        "color": "#ffae00"
+      },
+      {
+        "from": "240",
+        "color": "#09a8ec"
+      },
+      {
+        "from": "1000",
+        "color": "#eb04fb"
+      }
+    ],
+    "min": 0,
+    "max": "1000",
+    "sizeThickness": 16,
+    "sizeGap": 4,
+    "sizeKeyThickness": 8,
+    "styleRounded": true,
+    "styleGlow": false,
+    "className": "",
+    "x": 860,
+    "y": 240,
+    "wires": []
+  },
+  {
+    "id": "28c268ce8dcb9f74",
+    "type": "ui-chart",
+    "z": "bc469b88bbf8641e",
+    "group": "6e1897c297826e17",
+    "name": "Energy",
+    "label": "chart",
+    "order": 4,
+    "chartType": "line",
+    "category": "topic",
+    "categoryType": "msg",
+    "xAxisLabel": "",
+    "xAxisProperty": "",
+    "xAxisPropertyType": "timestamp",
+    "xAxisType": "time",
+    "xAxisFormat": "",
+    "xAxisFormatType": "auto",
+    "xmin": "",
+    "xmax": "",
+    "yAxisLabel": "kWh",
+    "yAxisProperty": "payload",
+    "yAxisPropertyType": "msg",
+    "ymin": "",
+    "ymax": "",
+    "bins": 10,
+    "action": "append",
+    "stackSeries": false,
+    "pointShape": "circle",
+    "pointRadius": 4,
+    "showLegend": true,
+    "removeOlder": 1,
+    "removeOlderUnit": "3600",
+    "removeOlderPoints": "",
+    "colors": [
+      "#0095ff",
+      "#ff0000",
+      "#ff7f0e",
+      "#2ca02c",
+      "#a347e1",
+      "#d62728",
+      "#ff9896",
+      "#9467bd",
+      "#c5b0d5"
+    ],
+    "textColor": [
+      "#666666"
+    ],
+    "textColorDefault": true,
+    "gridColor": [
+      "#e5e5e5"
+    ],
+    "gridColorDefault": true,
+    "width": "2",
+    "height": "6",
+    "className": "",
+    "interpolation": "linear",
+    "x": 860,
+    "y": 320,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "ebe2dabbd7922b2f",
+    "type": "ui-chart",
+    "z": "bc469b88bbf8641e",
+    "group": "6e1897c297826e17",
+    "name": "Power",
+    "label": "chart",
+    "order": 6,
+    "chartType": "line",
+    "category": "topic",
+    "categoryType": "msg",
+    "xAxisLabel": "",
+    "xAxisProperty": "",
+    "xAxisPropertyType": "timestamp",
+    "xAxisType": "time",
+    "xAxisFormat": "",
+    "xAxisFormatType": "auto",
+    "xmin": "",
+    "xmax": "",
+    "yAxisLabel": "kWh",
+    "yAxisProperty": "payload",
+    "yAxisPropertyType": "msg",
+    "ymin": "",
+    "ymax": "",
+    "bins": 10,
+    "action": "append",
+    "stackSeries": false,
+    "pointShape": "circle",
+    "pointRadius": 4,
+    "showLegend": true,
+    "removeOlder": 1,
+    "removeOlderUnit": "3600",
+    "removeOlderPoints": "",
+    "colors": [
+      "#0095ff",
+      "#ff0000",
+      "#ff7f0e",
+      "#2ca02c",
+      "#a347e1",
+      "#d62728",
+      "#ff9896",
+      "#9467bd",
+      "#c5b0d5"
+    ],
+    "textColor": [
+      "#666666"
+    ],
+    "textColorDefault": true,
+    "gridColor": [
+      "#e5e5e5"
+    ],
+    "gridColorDefault": true,
+    "width": "2",
+    "height": "6",
+    "className": "",
+    "interpolation": "linear",
+    "x": 850,
+    "y": 80,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "8bd9e69af9df8320",
+    "type": "ui-chart",
+    "z": "bc469b88bbf8641e",
+    "group": "6e1897c297826e17",
+    "name": "Current",
+    "label": "chart",
+    "order": 5,
+    "chartType": "line",
+    "category": "topic",
+    "categoryType": "msg",
+    "xAxisLabel": "",
+    "xAxisProperty": "",
+    "xAxisPropertyType": "timestamp",
+    "xAxisType": "time",
+    "xAxisFormat": "",
+    "xAxisFormatType": "auto",
+    "xmin": "",
+    "xmax": "",
+    "yAxisLabel": "kWh",
+    "yAxisProperty": "payload",
+    "yAxisPropertyType": "msg",
+    "ymin": "",
+    "ymax": "",
+    "bins": 10,
+    "action": "append",
+    "stackSeries": false,
+    "pointShape": "circle",
+    "pointRadius": 4,
+    "showLegend": true,
+    "removeOlder": 1,
+    "removeOlderUnit": "3600",
+    "removeOlderPoints": "",
+    "colors": [
+      "#0095ff",
+      "#ff0000",
+      "#ff7f0e",
+      "#2ca02c",
+      "#a347e1",
+      "#d62728",
+      "#ff9896",
+      "#9467bd",
+      "#c5b0d5"
+    ],
+    "textColor": [
+      "#666666"
+    ],
+    "textColorDefault": true,
+    "gridColor": [
+      "#e5e5e5"
+    ],
+    "gridColorDefault": true,
+    "width": "2",
+    "height": "6",
+    "className": "",
+    "interpolation": "linear",
+    "x": 860,
+    "y": 160,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "93a107ec6406b8d5",
+    "type": "comment",
+    "z": "bc469b88bbf8641e",
+    "name": "Setup Example: Dbl click me",
+    "info": "# This is just an example\n\nThe disabled nodes on this flow are MQTT subscriptions.\nYou will need to double click on the mqtt nodes and change\nthe topics you publish your meter values to. You will also\nneed to click the enable/disable button at the bottom of the\ndialog to re-enable them.",
+    "x": 180,
+    "y": 60,
+    "wires": []
+  }
+]

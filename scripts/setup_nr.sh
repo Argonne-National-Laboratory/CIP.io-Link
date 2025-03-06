@@ -14,10 +14,12 @@ sudo docker stop node-red >/dev/null 2>&1
 sleep 5
 sudo chown -R ${USER}:${USER} $folder_path
 
+cp -r ./build/nr/folders/* $folder_path
 cp ./build/nr/settings.js $folder_path
-cp ./build/nr/flow* $folder_path
-cp ./build/nr/assets/* ${folder_path}/assets
+# cp ./build/nr/flow* $folder_path
+# cp ./build/nr/assets/* ${folder_path}/assets
 
 # echo "Restarting node-red container..."
 
+sudo chown -R ${USER}:${USER} $folder_path
 sudo docker restart node-red >/dev/null 2>&1

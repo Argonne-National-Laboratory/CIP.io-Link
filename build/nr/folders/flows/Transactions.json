@@ -1,0 +1,1466 @@
+[
+  {
+    "id": "daf7a59ca2ce18df",
+    "type": "tab",
+    "label": "Transactions",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "b790fef9f4f7de2c",
+    "type": "junction",
+    "z": "daf7a59ca2ce18df",
+    "x": 1340,
+    "y": 240,
+    "wires": [
+      [
+        "bc6bb2f523b00fa9",
+        "a39145869b71df51",
+        "2ef7f596c72004a1",
+        "11ee4d2550f2e6b1",
+        "bae6fc11c3f77385"
+      ]
+    ]
+  },
+  {
+    "id": "4cc7f71877e27f96",
+    "type": "junction",
+    "z": "daf7a59ca2ce18df",
+    "x": 740,
+    "y": 920,
+    "wires": [
+      [
+        "2a2eb5a77e70df62",
+        "b2ad490ff03c2c97",
+        "9214f5879d50fbe0",
+        "e5e3bc3824864970",
+        "4a191fd359629475",
+        "a6948cd72ae1a796"
+      ]
+    ]
+  },
+  {
+    "id": "e3912322d07af67d",
+    "type": "ui-template",
+    "z": "daf7a59ca2ce18df",
+    "group": "17fb40c0e949759b",
+    "page": "",
+    "ui": "",
+    "name": "Tx List",
+    "order": 1,
+    "width": "0",
+    "height": "0",
+    "head": "",
+    "format": "<template>\n    <v-text-field\n        v-model=\"search\"\n        label=\"Search\"\n        prepend-inner-icon=\"mdi-magnify\"\n        variant=\"outlined\"\n        hide-details\n        single-line\n      ></v-text-field>\n\n    <v-data-table  \n            v-model:search=\"search\" \n            :headers=\"headers\"\n            :items=\"msg?.payload\"\n            :filter-keys='[\"transactionId\",\"cbId\",\"_value\"]'\n            >\n      <template v-slot:item.meter=\"{ item }\">\n        <div>\n          <v-text>{{ item.meterStart }}{{item.meterStop}}</v-text>\n      </template>\n        <template v-slot:item._ztime=\"{ item }\">\n            <div>{{ getLocalTimeString(item._time) }}</div>\n        </template>\n      <template v-slot:item.actions=\"{ item }\">\n        <v-icon\n          class=\"me-2\"\n          size=\"small\"\n          @click=\"send({payload: { txId: item.transactionId}})\"\n        >\n          mdi-eye\n        </v-icon>\n      </template>\n            \n    </v-data-table>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                search: '',\n                headers: [\n                    { value: \"_time\", title: \"Time\"},\n                    { value: \"command\", title: \"Command\"},\n                    { value: \"transactionId\", title: \"TxId\"},\n                    { value: \"cbId\", title: \"EVSE\"},\n                    { value: \"connectorId\", title: \"Conn\"},\n                    //{ value: \"meterStart\", title: \"Start\"},\n                    //{ value: \"meterStop\", title: \"Stop\"},\n                    { key: \"meter\", title: \"Meter\"},\n                    { key: \"actions\", title: \"View\", sortable: false},\n                ]\n            }\n        },\n        watch: {\n            // watch for any changes of \"count\"\n\n        },\n        computed: {\n\n        },\n        methods: {\n            // expose a method to our <template> and Vue Application\n            getLocalTimeString: function (isoTime){\n                const date = new Date(isoTime)\n                const options = { \n                    year: '2-digit', \n                    month: '2-digit', \n                    day: '2-digit', \n                    hour: '2-digit', \n                    minute: '2-digit', \n                    second: '2-digit', \n                    millisecond: '3-digit',\n                    hour12: false \n                    }\n                return date.toLocaleString('en-US', options)\n            },\n        },\n        mounted() {\n            // code here when the component is first loaded\n        },\n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: red;\n    }\n    .headers {\n        font-weight: bold;\n    }\n    .ocppMsgReq {\n        color: blue;\n        font-weight: bold;\n    }\n    .ocppMsgRes {\n        color: blue;\n    }\n    .ocppMsgErr {\n        color: red;\n    }\n</style>",
+    "storeOutMessages": true,
+    "passthru": false,
+    "resendOnRefresh": true,
+    "templateScope": "local",
+    "className": "",
+    "x": 1190,
+    "y": 520,
+    "wires": [
+      [
+        "c4b73cd2d6f1efbb",
+        "c006c2c3567e7ee6",
+        "2807de6096eb9e1f"
+      ]
+    ]
+  },
+  {
+    "id": "0380a90af6da220b",
+    "type": "influxdb in",
+    "z": "daf7a59ca2ce18df",
+    "influxdb": "7cb40fcee206391e",
+    "name": "",
+    "query": "",
+    "rawOutput": false,
+    "precision": "",
+    "retentionPolicy": "",
+    "org": "argonne",
+    "x": 540,
+    "y": 120,
+    "wires": [
+      [
+        "879a60905f018737"
+      ]
+    ]
+  },
+  {
+    "id": "72d6a88d845b6b48",
+    "type": "function",
+    "z": "daf7a59ca2ce18df",
+    "name": "function 16",
+    "func": "// clear out any incoming message for now.\nmsg = {}\n\nmsg.query = \n    'from(bucket: \"OCPP\") \\\n      |> range(start: -1d) \\\n      |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\") \\\n      //|> filter(fn: (r) => r[\"_field\"] == \"ocppMsg\") \\\n      //|> group() \\\n      //|> sort(columns: [\"_time\"]) \\\n      |> drop(columns: [\"table\",\"Result\",\"_measurement\",\"_stop\",\"_start\",\"_field\"]) \\\n      //|> keep(columns: [\"_time\",\"cbId\",\"command\",\"msgFrom\",\"_value\"]) \\\n      |> limit(n: 500)'\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 370,
+    "y": 120,
+    "wires": [
+      [
+        "0380a90af6da220b"
+      ]
+    ]
+  },
+  {
+    "id": "879a60905f018737",
+    "type": "debug",
+    "z": "daf7a59ca2ce18df",
+    "name": "debug 48",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 700,
+    "y": 120,
+    "wires": []
+  },
+  {
+    "id": "6f06af534fd6202b",
+    "type": "inject",
+    "z": "daf7a59ca2ce18df",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 200,
+    "y": 120,
+    "wires": [
+      [
+        "72d6a88d845b6b48"
+      ]
+    ]
+  },
+  {
+    "id": "c4b73cd2d6f1efbb",
+    "type": "function",
+    "z": "daf7a59ca2ce18df",
+    "name": "FLUX Get raw MV OCPP",
+    "func": "// clear out any incoming message for now.\nlet filter_by_tx = \"\";\nlet topic = \"00000000\"\nif (msg.payload.txId) {\n  filter_by_tx = `|> filter(fn: (r) => r[\"transactionId\"] == \"${msg.payload.txId}\")`\n  topic = msg.payload.txId\n}\n\nmsg = {}\n\nmsg.topic = topic\n\nmsg.query = `from(bucket: \"OCPP\") \\\n  |> range(start: -365d) \\\n  |> filter(fn: (r) => r[\"_measurement\"] == \"MeterValues\") \\\n  ${filter_by_tx} \\\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\") \\\n  |> drop(columns: [\"_start\",\"_stop\",\"_measurement\",\"cbId\",\"connectorId\",\"transactionId\"]) \\\n  |> sort(columns: [\"_time\"])`\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 610,
+    "y": 460,
+    "wires": [
+      [
+        "7d7516052c9c7a0a",
+        "02ea19c5e98fd683"
+      ]
+    ]
+  },
+  {
+    "id": "47ec7b659bf636da",
+    "type": "function",
+    "z": "daf7a59ca2ce18df",
+    "name": "FLUX Get raw Tx OCPP",
+    "func": "// clear out any incoming message for now.\nmsg = {}\n\nmsg.query = `from(bucket: \"OCPP\")\n  |> range( start: -20d)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> drop(columns: [\"_start\",\"_stop\",\"_measurement\"])\n  |> group(columns: [\"transactionId\"])\n  |> sort(columns: [\"_time\"])`\n\n\nmsg.query = `\nfrom(bucket: \"OCPP\")\n  |> range(start: -2d)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r[\"_field\"] == \"meterStart\" or r[\"_field\"] == \"meterStop\" or r[\"_field\"] == \"transactionId\" or r[\"_field\"] == \"timestamp\" or r[\"_field\"] == \"idTag\" or r[\"_field\"] == \"connectorId\" )\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> filter(fn: (r) => r.transactionId != 0)\n  |> drop(columns: [\"_start\",\"_stop\",\"_measurement\",\"msgFrom\"])\n  |> group()\n  |> sort(columns: [\"_time\"])\n`\n\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 610,
+    "y": 520,
+    "wires": [
+      [
+        "3b309fbf5a5e9349"
+      ]
+    ]
+  },
+  {
+    "id": "32233b212a66cfcb",
+    "type": "debug",
+    "z": "daf7a59ca2ce18df",
+    "name": "",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1355,
+    "y": 500,
+    "wires": [],
+    "l": false
+  },
+  {
+    "id": "3b309fbf5a5e9349",
+    "type": "influxdb in",
+    "z": "daf7a59ca2ce18df",
+    "influxdb": "7cb40fcee206391e",
+    "name": "",
+    "query": "",
+    "rawOutput": false,
+    "precision": "",
+    "retentionPolicy": "",
+    "org": "cipio",
+    "x": 820,
+    "y": 520,
+    "wires": [
+      [
+        "c5cd7189e5cb3f54"
+      ]
+    ]
+  },
+  {
+    "id": "1380888fab8c8636",
+    "type": "inject",
+    "z": "daf7a59ca2ce18df",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": true,
+    "onceDelay": "1",
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 305,
+    "y": 580,
+    "wires": [
+      [
+        "47ec7b659bf636da"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "c5cd7189e5cb3f54",
+    "type": "function",
+    "z": "daf7a59ca2ce18df",
+    "name": "FLUX remove extras",
+    "func": "msg.payload.forEach(function(ocppMsg) {\n    delete ocppMsg.result;\n    delete ocppMsg.table;\n});\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1020,
+    "y": 520,
+    "wires": [
+      [
+        "e3912322d07af67d",
+        "aef68b6786e5c5a7"
+      ]
+    ]
+  },
+  {
+    "id": "aa18045a070128d9",
+    "type": "link in",
+    "z": "daf7a59ca2ce18df",
+    "name": "MV Refresh",
+    "links": [
+      "b30433a611efd29c"
+    ],
+    "x": 145,
+    "y": 460,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "22993ff229d6db8d",
+    "type": "link in",
+    "z": "daf7a59ca2ce18df",
+    "name": "Transaction Refreh",
+    "links": [
+      "7a8e05f5d5a2e926"
+    ],
+    "x": 145,
+    "y": 520,
+    "wires": [
+      [
+        "47ec7b659bf636da"
+      ]
+    ]
+  },
+  {
+    "id": "70f90fb397f12726",
+    "type": "ui-template",
+    "z": "daf7a59ca2ce18df",
+    "group": "750f030497b122aa",
+    "page": "",
+    "ui": "",
+    "name": "MV by TxId",
+    "order": 9,
+    "width": 0,
+    "height": 0,
+    "head": "",
+    "format": "<template>\n    <v-text-field\n        v-model=\"search\"\n        label=\"Search\"\n        prepend-inner-icon=\"mdi-magnify\"\n        variant=\"outlined\"\n        hide-details\n        single-line\n      ></v-text-field>\n\n    <v-data-table  \n            v-model:search=\"search\" \n            :items=\"msg?.payload\"\n            :filter-keys='[\"command\",\"msgFrom\",\"cbId\",\"_value\"]'\n            >\n        <template v-slot:header._time>\n            <div class=\"headers\">Time</div>\n        </template>\n        <template v-slot:header.cbId>\n            <div class=\"headers\">EVSE</div>\n        </template>\n        <template v-slot:header.msgFrom>\n            <div class=\"headers\">Origin</div>\n        </template>\n        <template v-slot:header.command>\n            <div class=\"text-center headers\">CMD</div>\n        </template>\n        <template v-slot:header._value>\n            <div class=\"text-center headers\">OCPP Message</div>\n        </template>\n        <template v-slot:item._time=\"{ item }\">\n            <div>{{ getLocalTimeString(item._time) }}</div>\n        </template>\n    </v-data-table>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                search: ''\n            }\n        },\n        watch: {\n            // watch for any changes of \"count\"\n\n        },\n        computed: {\n\n        },\n        methods: {\n            // expose a method to our <template> and Vue Application\n            getLocalTimeString: function (isoTime){\n                const date = new Date(isoTime)\n                const options = { \n                    year: '2-digit', \n                    month: '2-digit', \n                    day: '2-digit', \n                    hour: '2-digit', \n                    minute: '2-digit', \n                    second: '2-digit', \n                    millisecond: '3-digit',\n                    hour12: false \n                    }\n                return date.toLocaleString('en-US', options)\n            },\n        },\n        mounted() {\n            // code here when the component is first loaded\n        },\n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: red;\n    }\n    .headers {\n        font-weight: bold;\n    }\n    .ocppMsgReq {\n        color: blue;\n        font-weight: bold;\n    }\n    .ocppMsgRes {\n        color: blue;\n    }\n    .ocppMsgErr {\n        color: red;\n    }\n</style>",
+    "storeOutMessages": true,
+    "passthru": false,
+    "resendOnRefresh": true,
+    "templateScope": "local",
+    "className": "",
+    "x": 1410,
+    "y": 460,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "7d7516052c9c7a0a",
+    "type": "influxdb in",
+    "z": "daf7a59ca2ce18df",
+    "influxdb": "7cb40fcee206391e",
+    "name": "",
+    "query": "",
+    "rawOutput": false,
+    "precision": "",
+    "retentionPolicy": "",
+    "org": "cipio",
+    "x": 900,
+    "y": 460,
+    "wires": [
+      [
+        "20adfc41cd29af1b"
+      ]
+    ]
+  },
+  {
+    "id": "20adfc41cd29af1b",
+    "type": "function",
+    "z": "daf7a59ca2ce18df",
+    "name": "FLUX remove extras",
+    "func": "msg.payload.forEach(function(ocppMsg) {\n    delete ocppMsg.result;\n    delete ocppMsg.table;\n});\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1100,
+    "y": 460,
+    "wires": [
+      [
+        "70f90fb397f12726",
+        "32233b212a66cfcb",
+        "bb739222584f69de"
+      ]
+    ]
+  },
+  {
+    "id": "74e8ab5325f7b4d5",
+    "type": "inject",
+    "z": "daf7a59ca2ce18df",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"txId\":\"1736225603483323\"}",
+    "payloadType": "json",
+    "x": 380,
+    "y": 360,
+    "wires": [
+      [
+        "c4b73cd2d6f1efbb"
+      ]
+    ]
+  },
+  {
+    "id": "e4a883d2e16e1a3f",
+    "type": "inject",
+    "z": "daf7a59ca2ce18df",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"txId\": \"1736225122964380\"}",
+    "payloadType": "json",
+    "x": 380,
+    "y": 404,
+    "wires": [
+      [
+        "c4b73cd2d6f1efbb"
+      ]
+    ]
+  },
+  {
+    "id": "afc97f6be14c06af",
+    "type": "debug",
+    "z": "daf7a59ca2ce18df",
+    "name": "debug 60",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1080,
+    "y": 280,
+    "wires": []
+  },
+  {
+    "id": "e721721ffe065303",
+    "type": "debug",
+    "z": "daf7a59ca2ce18df",
+    "name": "debug 61",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 740,
+    "y": 700,
+    "wires": []
+  },
+  {
+    "id": "e5cf1fe4522628ee",
+    "type": "ui-control",
+    "z": "daf7a59ca2ce18df",
+    "name": "",
+    "ui": "8cdc313c9611f13f",
+    "events": "all",
+    "x": 600,
+    "y": 700,
+    "wires": [
+      [
+        "e721721ffe065303"
+      ]
+    ]
+  },
+  {
+    "id": "add76386e6a46f5d",
+    "type": "function",
+    "z": "daf7a59ca2ce18df",
+    "name": "Show TX",
+    "func": "msg.payload = {\n    \"groups\": {\n        \"show\": [\n            \"Transactions:Transactions\"\n        ],\n        \"hide\": [\n            \"Transactions:Meter Values\"\n        ]\n    }\n}\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 420,
+    "y": 660,
+    "wires": [
+      [
+        "e5cf1fe4522628ee",
+        "47ec7b659bf636da"
+      ]
+    ]
+  },
+  {
+    "id": "c006c2c3567e7ee6",
+    "type": "function",
+    "z": "daf7a59ca2ce18df",
+    "name": "Show MV",
+    "func": "msg.payload = {\n    \"groups\": {\n        \"hide\": [\n            \"Transactions:Transactions\"\n        ],\n        \"show\": [\n            \"Transactions:Meter Values\"\n        ]\n    }\n}\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 420,
+    "y": 700,
+    "wires": [
+      [
+        "e5cf1fe4522628ee"
+      ]
+    ]
+  },
+  {
+    "id": "5df3e99944651698",
+    "type": "inject",
+    "z": "daf7a59ca2ce18df",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": true,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 265,
+    "y": 660,
+    "wires": [
+      [
+        "add76386e6a46f5d"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "7ad34b56292f573d",
+    "type": "inject",
+    "z": "daf7a59ca2ce18df",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 265,
+    "y": 700,
+    "wires": [
+      [
+        "c006c2c3567e7ee6"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "c3993a72f3c63028",
+    "type": "ui-button",
+    "z": "daf7a59ca2ce18df",
+    "group": "750f030497b122aa",
+    "name": "",
+    "label": "Return to Transaction List",
+    "order": 1,
+    "width": "0",
+    "height": "0",
+    "emulateClick": false,
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "block",
+    "icon": "mdi-keyboard-return",
+    "iconPosition": "left",
+    "payload": "{\"target\":\"Transactions\"}",
+    "payloadType": "json",
+    "topic": "topic",
+    "topicType": "msg",
+    "buttonColor": "",
+    "textColor": "",
+    "iconColor": "yellow",
+    "enableClick": true,
+    "enablePointerdown": false,
+    "pointerdownPayload": "",
+    "pointerdownPayloadType": "str",
+    "enablePointerup": false,
+    "pointerupPayload": "",
+    "pointerupPayloadType": "str",
+    "x": 150,
+    "y": 620,
+    "wires": [
+      [
+        "add76386e6a46f5d"
+      ]
+    ]
+  },
+  {
+    "id": "bc6bb2f523b00fa9",
+    "type": "ui-chart",
+    "z": "daf7a59ca2ce18df",
+    "group": "750f030497b122aa",
+    "name": "Energy",
+    "label": "Energy",
+    "order": 13,
+    "chartType": "line",
+    "category": "",
+    "categoryType": "none",
+    "xAxisLabel": "",
+    "xAxisProperty": "payload._time",
+    "xAxisPropertyType": "msg",
+    "xAxisType": "time",
+    "xAxisFormat": "",
+    "xAxisFormatType": "auto",
+    "xmin": "",
+    "xmax": "",
+    "yAxisLabel": "kWh",
+    "yAxisProperty": "payload.EnergykWh",
+    "yAxisPropertyType": "msg",
+    "ymin": "",
+    "ymax": "",
+    "bins": 10,
+    "action": "append",
+    "stackSeries": false,
+    "pointShape": "circle",
+    "pointRadius": 4,
+    "showLegend": true,
+    "removeOlder": 1,
+    "removeOlderUnit": "3600",
+    "removeOlderPoints": "",
+    "colors": [
+      "#ffa200",
+      "#ff0000",
+      "#ff7f0e",
+      "#2ca02c",
+      "#a347e1",
+      "#d62728",
+      "#ff9896",
+      "#9467bd",
+      "#c5b0d5"
+    ],
+    "textColor": [
+      "#666666"
+    ],
+    "textColorDefault": true,
+    "gridColor": [
+      "#e5e5e5"
+    ],
+    "gridColorDefault": true,
+    "width": "3",
+    "height": "8",
+    "className": "",
+    "interpolation": "linear",
+    "x": 1480,
+    "y": 240,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "a39145869b71df51",
+    "type": "ui-chart",
+    "z": "daf7a59ca2ce18df",
+    "group": "750f030497b122aa",
+    "name": "Power",
+    "label": "Power",
+    "order": 12,
+    "chartType": "line",
+    "category": "",
+    "categoryType": "none",
+    "xAxisLabel": "",
+    "xAxisProperty": "payload._time",
+    "xAxisPropertyType": "msg",
+    "xAxisType": "time",
+    "xAxisFormat": "",
+    "xAxisFormatType": "auto",
+    "xmin": "",
+    "xmax": "",
+    "yAxisLabel": "kW",
+    "yAxisProperty": "payload.PowerkW",
+    "yAxisPropertyType": "msg",
+    "ymin": "",
+    "ymax": "",
+    "bins": 10,
+    "action": "append",
+    "stackSeries": false,
+    "pointShape": "circle",
+    "pointRadius": 4,
+    "showLegend": true,
+    "removeOlder": 1,
+    "removeOlderUnit": "3600",
+    "removeOlderPoints": "",
+    "colors": [
+      "#96e407",
+      "#ff0000",
+      "#ff7f0e",
+      "#2ca02c",
+      "#a347e1",
+      "#d62728",
+      "#ff9896",
+      "#9467bd",
+      "#c5b0d5"
+    ],
+    "textColor": [
+      "#666666"
+    ],
+    "textColorDefault": true,
+    "gridColor": [
+      "#e5e5e5"
+    ],
+    "gridColorDefault": true,
+    "width": "3",
+    "height": "8",
+    "className": "",
+    "interpolation": "linear",
+    "x": 1470,
+    "y": 280,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "2ef7f596c72004a1",
+    "type": "ui-chart",
+    "z": "daf7a59ca2ce18df",
+    "group": "750f030497b122aa",
+    "name": "SOC",
+    "label": "SOC",
+    "order": 14,
+    "chartType": "line",
+    "category": "",
+    "categoryType": "none",
+    "xAxisLabel": "",
+    "xAxisProperty": "payload._time",
+    "xAxisPropertyType": "msg",
+    "xAxisType": "time",
+    "xAxisFormat": "",
+    "xAxisFormatType": "auto",
+    "xmin": "",
+    "xmax": "",
+    "yAxisLabel": "%",
+    "yAxisProperty": "payload.SoC",
+    "yAxisPropertyType": "msg",
+    "ymin": "",
+    "ymax": "",
+    "bins": 10,
+    "action": "append",
+    "stackSeries": false,
+    "pointShape": "circle",
+    "pointRadius": 4,
+    "showLegend": true,
+    "removeOlder": 1,
+    "removeOlderUnit": "3600",
+    "removeOlderPoints": "",
+    "colors": [
+      "#ae00ff",
+      "#ff0000",
+      "#ff7f0e",
+      "#2ca02c",
+      "#a347e1",
+      "#d62728",
+      "#ff9896",
+      "#9467bd",
+      "#c5b0d5"
+    ],
+    "textColor": [
+      "#666666"
+    ],
+    "textColorDefault": true,
+    "gridColor": [
+      "#e5e5e5"
+    ],
+    "gridColorDefault": true,
+    "width": "3",
+    "height": "8",
+    "className": "",
+    "interpolation": "linear",
+    "x": 1470,
+    "y": 320,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "bb739222584f69de",
+    "type": "function",
+    "z": "daf7a59ca2ce18df",
+    "name": "function 18",
+    "func": "// Start off by clearing all the charts\nnode.send({payload: []})\n\n//Take the array and send as individual payloads to the \n// charts\n \nmsg.payload.forEach(function(mv) {\n    let msg2 = {}\n    msg2.payload = mv\n    //msg2.payload.timestamp = new Date(mv._time).getTime()\n    node.send(msg2)\n});\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1250,
+    "y": 240,
+    "wires": [
+      [
+        "b790fef9f4f7de2c"
+      ]
+    ]
+  },
+  {
+    "id": "6c36ced9caa73c04",
+    "type": "debug",
+    "z": "daf7a59ca2ce18df",
+    "name": "",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1385,
+    "y": 380,
+    "wires": [],
+    "l": false
+  },
+  {
+    "id": "11ee4d2550f2e6b1",
+    "type": "ui-chart",
+    "z": "daf7a59ca2ce18df",
+    "group": "750f030497b122aa",
+    "name": "Current",
+    "label": "Current",
+    "order": 11,
+    "chartType": "line",
+    "category": "",
+    "categoryType": "none",
+    "xAxisLabel": "",
+    "xAxisProperty": "payload._time",
+    "xAxisPropertyType": "msg",
+    "xAxisType": "time",
+    "xAxisFormat": "",
+    "xAxisFormatType": "auto",
+    "xmin": "",
+    "xmax": "",
+    "yAxisLabel": "Amps",
+    "yAxisProperty": "payload.CurrentA",
+    "yAxisPropertyType": "msg",
+    "ymin": "",
+    "ymax": "",
+    "bins": 10,
+    "action": "append",
+    "stackSeries": false,
+    "pointShape": "circle",
+    "pointRadius": 4,
+    "showLegend": true,
+    "removeOlder": 1,
+    "removeOlderUnit": "3600",
+    "removeOlderPoints": "",
+    "colors": [
+      "#6600ff",
+      "#ff0000",
+      "#ff7f0e",
+      "#2ca02c",
+      "#a347e1",
+      "#d62728",
+      "#ff9896",
+      "#9467bd",
+      "#c5b0d5"
+    ],
+    "textColor": [
+      "#666666"
+    ],
+    "textColorDefault": true,
+    "gridColor": [
+      "#e5e5e5"
+    ],
+    "gridColorDefault": true,
+    "width": "3",
+    "height": "8",
+    "className": "",
+    "interpolation": "linear",
+    "x": 1481,
+    "y": 200,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "bae6fc11c3f77385",
+    "type": "ui-chart",
+    "z": "daf7a59ca2ce18df",
+    "group": "750f030497b122aa",
+    "name": "Voltage",
+    "label": "Voltage",
+    "order": 10,
+    "chartType": "line",
+    "category": "",
+    "categoryType": "none",
+    "xAxisLabel": "",
+    "xAxisProperty": "payload._time",
+    "xAxisPropertyType": "msg",
+    "xAxisType": "time",
+    "xAxisFormat": "",
+    "xAxisFormatType": "auto",
+    "xmin": "",
+    "xmax": "",
+    "yAxisLabel": "Volts",
+    "yAxisProperty": "payload.VoltageV",
+    "yAxisPropertyType": "msg",
+    "ymin": "",
+    "ymax": "",
+    "bins": 10,
+    "action": "append",
+    "stackSeries": false,
+    "pointShape": "circle",
+    "pointRadius": 4,
+    "showLegend": true,
+    "removeOlder": 1,
+    "removeOlderUnit": "3600",
+    "removeOlderPoints": "",
+    "colors": [
+      "#05ff71",
+      "#ff0000",
+      "#ff7f0e",
+      "#2ca02c",
+      "#a347e1",
+      "#d62728",
+      "#ff9896",
+      "#9467bd",
+      "#c5b0d5"
+    ],
+    "textColor": [
+      "#666666"
+    ],
+    "textColorDefault": true,
+    "gridColor": [
+      "#e5e5e5"
+    ],
+    "gridColorDefault": true,
+    "width": "3",
+    "height": 8,
+    "className": "",
+    "interpolation": "linear",
+    "x": 1480,
+    "y": 160,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "83b842273e7bfae5",
+    "type": "ui-text",
+    "z": "daf7a59ca2ce18df",
+    "group": "750f030497b122aa",
+    "order": 2,
+    "width": 0,
+    "height": 0,
+    "name": "",
+    "label": "Transaction ID: ",
+    "format": "{{msg.payload}}",
+    "layout": "row-center",
+    "style": true,
+    "font": "",
+    "fontSize": "30",
+    "color": "#500ced",
+    "wrapText": false,
+    "className": "",
+    "x": 1120,
+    "y": 400,
+    "wires": []
+  },
+  {
+    "id": "02ea19c5e98fd683",
+    "type": "change",
+    "z": "daf7a59ca2ce18df",
+    "name": "",
+    "rules": [
+      {
+        "t": "delete",
+        "p": "query",
+        "pt": "msg"
+      },
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "topic",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 900,
+    "y": 360,
+    "wires": [
+      [
+        "83b842273e7bfae5",
+        "6c36ced9caa73c04",
+        "9cec406f120e7d5d"
+      ]
+    ]
+  },
+  {
+    "id": "2807de6096eb9e1f",
+    "type": "function",
+    "z": "daf7a59ca2ce18df",
+    "name": "FLUX Get raw None-MV OCPP",
+    "func": "// clear out any incoming message for now.\nlet filter_by_tx = \"\";\nlet topic = \"00000000\"\nif (msg.payload.txId) {\n  filter_by_tx = `|> filter(fn: (r) => r[\"transactionId\"] == ${msg.payload.txId})`\n  topic = msg.payload.txId\n}\n\nmsg = {}\n\nmsg.topic = topic\n\nmsg.query = `from(bucket: \"OCPP\") \\\n  |> range( start: -365d) \\\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\") \\\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\") \\\n  ${filter_by_tx} \\\n  |> filter(fn: (r) => r[\"command\"] == \"StartTransaction\") \\\n  |> drop(columns: [\"_start\",\"_stop\",\"_measurement\"]) \\\n  |> group(columns: [\"transactionId\"]) \\\n  |> sort(columns: [\"_time\"])`\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 670,
+    "y": 280,
+    "wires": [
+      [
+        "cad0c9ccd4a89916"
+      ]
+    ]
+  },
+  {
+    "id": "cad0c9ccd4a89916",
+    "type": "influxdb in",
+    "z": "daf7a59ca2ce18df",
+    "influxdb": "7cb40fcee206391e",
+    "name": "",
+    "query": "",
+    "rawOutput": false,
+    "precision": "",
+    "retentionPolicy": "",
+    "org": "cipio",
+    "x": 920,
+    "y": 280,
+    "wires": [
+      [
+        "afc97f6be14c06af"
+      ]
+    ]
+  },
+  {
+    "id": "aef68b6786e5c5a7",
+    "type": "debug",
+    "z": "daf7a59ca2ce18df",
+    "name": "debug 67",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1370,
+    "y": 700,
+    "wires": []
+  },
+  {
+    "id": "a54940f160f7f0db",
+    "type": "ui-text",
+    "z": "daf7a59ca2ce18df",
+    "group": "750f030497b122aa",
+    "order": 3,
+    "width": "2",
+    "height": "1",
+    "name": "",
+    "label": "ChargeBoxID:",
+    "format": "{{msg.payload}}",
+    "layout": "row-left",
+    "style": true,
+    "font": "",
+    "fontSize": 16,
+    "color": "#aa14e1",
+    "wrapText": false,
+    "className": "",
+    "x": 1220,
+    "y": 840,
+    "wires": []
+  },
+  {
+    "id": "0cfe76cf25b87178",
+    "type": "ui-text",
+    "z": "daf7a59ca2ce18df",
+    "group": "750f030497b122aa",
+    "order": 4,
+    "width": "2",
+    "height": "1",
+    "name": "",
+    "label": "Connector:  ",
+    "format": "{{msg.payload}}",
+    "layout": "row-left",
+    "style": true,
+    "font": "",
+    "fontSize": 16,
+    "color": "#0db1f8",
+    "wrapText": false,
+    "className": "",
+    "x": 1210,
+    "y": 880,
+    "wires": []
+  },
+  {
+    "id": "d301de1fbbac9723",
+    "type": "ui-text",
+    "z": "daf7a59ca2ce18df",
+    "group": "750f030497b122aa",
+    "order": 8,
+    "width": "2",
+    "height": "1",
+    "name": "",
+    "label": "Client:  ",
+    "format": "{{msg.payload}}",
+    "layout": "row-left",
+    "style": true,
+    "font": "",
+    "fontSize": 16,
+    "color": "#ff8d0a",
+    "wrapText": false,
+    "className": "",
+    "x": 1190,
+    "y": 920,
+    "wires": []
+  },
+  {
+    "id": "33e220dd106839f5",
+    "type": "ui-text",
+    "z": "daf7a59ca2ce18df",
+    "group": "750f030497b122aa",
+    "order": 5,
+    "width": "2",
+    "height": "1",
+    "name": "",
+    "label": "Start MV:  ",
+    "format": "{{msg.payload}}",
+    "layout": "row-left",
+    "style": true,
+    "font": "",
+    "fontSize": 16,
+    "color": "#0e6735",
+    "wrapText": false,
+    "className": "",
+    "x": 1200,
+    "y": 960,
+    "wires": []
+  },
+  {
+    "id": "306d784e407efc57",
+    "type": "ui-text",
+    "z": "daf7a59ca2ce18df",
+    "group": "750f030497b122aa",
+    "order": 6,
+    "width": "2",
+    "height": "1",
+    "name": "",
+    "label": "End MV:  ",
+    "format": "{{msg.payload}}",
+    "layout": "row-left",
+    "style": true,
+    "font": "",
+    "fontSize": 16,
+    "color": "#0e6735",
+    "wrapText": false,
+    "className": "",
+    "x": 1200,
+    "y": 1000,
+    "wires": []
+  },
+  {
+    "id": "5aed68d7dac2c043",
+    "type": "ui-text",
+    "z": "daf7a59ca2ce18df",
+    "group": "750f030497b122aa",
+    "order": 7,
+    "width": "2",
+    "height": "1",
+    "name": "",
+    "label": "Total kWh:  ",
+    "format": "{{msg.payload}}",
+    "layout": "row-left",
+    "style": true,
+    "font": "",
+    "fontSize": 16,
+    "color": "#0e6735",
+    "wrapText": false,
+    "className": "",
+    "x": 1210,
+    "y": 1040,
+    "wires": []
+  },
+  {
+    "id": "9cec406f120e7d5d",
+    "type": "function",
+    "z": "daf7a59ca2ce18df",
+    "name": "Get Tx MeterStart/Stop  ",
+    "func": "let TxId = msg.payload\nmsg = {}\n\nmsg.query = `\nmeterStart = from(bucket: \"OCPP\")\n  |> range(start: -2d)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r[\"_field\"] == \"transactionId\" or r[\"_field\"] == \"meterStart\" or r[\"_field\"] == \"idTag\" or r[\"_field\"] == \"connectorId\")\n  |> filter(fn: (r) => r.command == \"StartTransaction\")\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> filter(fn: (r) => r.transactionId != 0)\n  |> drop(columns: [\"_start\",\"_stop\",\"msgFrom\",\"_measurement\"])\n\nmeterStop = from(bucket: \"OCPP\")\n  |> range(start: -2d)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r[\"_field\"] == \"transactionId\" or r[\"_field\"] == \"meterStop\")\n  |> filter(fn: (r) => r.command == \"StopTransaction\")\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> filter(fn: (r) => r.transactionId != 0)\n  |> drop(columns: [\"_start\",\"_stop\",\"msgFrom\",\"_measurement\"])\n\njoin(tables: {key1: meterStart, key2: meterStop}, on: [\"transactionId\"], method: \"inner\")\n|> map(fn: (r) => ({ r with totalEnergy: r.meterStop - r.meterStart}))\n|> map(fn: (r) => ({ r with difference_seconds: (uint( v: r._time_key2) - uint( v: r._time_key1)) / uint(v: 1000000000) }))\n|> filter(fn: (r) => r.transactionId == ${TxId})\n\n`\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 370,
+    "y": 800,
+    "wires": [
+      [
+        "54ff26bff532c2d5"
+      ]
+    ]
+  },
+  {
+    "id": "54ff26bff532c2d5",
+    "type": "influxdb in",
+    "z": "daf7a59ca2ce18df",
+    "influxdb": "7cb40fcee206391e",
+    "name": "",
+    "query": "",
+    "rawOutput": false,
+    "precision": "",
+    "retentionPolicy": "",
+    "org": "cipio",
+    "x": 600,
+    "y": 800,
+    "wires": [
+      [
+        "a6b605ca949e5de8",
+        "4cc7f71877e27f96"
+      ]
+    ]
+  },
+  {
+    "id": "a6b605ca949e5de8",
+    "type": "debug",
+    "z": "daf7a59ca2ce18df",
+    "name": "debug 68",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1230,
+    "y": 800,
+    "wires": []
+  },
+  {
+    "id": "5cc51912a700cb47",
+    "type": "inject",
+    "z": "daf7a59ca2ce18df",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "1736982609",
+    "payloadType": "num",
+    "x": 130,
+    "y": 800,
+    "wires": [
+      [
+        "9cec406f120e7d5d"
+      ]
+    ]
+  },
+  {
+    "id": "b2ad490ff03c2c97",
+    "type": "change",
+    "z": "daf7a59ca2ce18df",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "payload[0].cbId_key1",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 980,
+    "y": 840,
+    "wires": [
+      [
+        "a54940f160f7f0db"
+      ]
+    ]
+  },
+  {
+    "id": "2a2eb5a77e70df62",
+    "type": "change",
+    "z": "daf7a59ca2ce18df",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "payload[0].connectorId",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 980,
+    "y": 880,
+    "wires": [
+      [
+        "0cfe76cf25b87178"
+      ]
+    ]
+  },
+  {
+    "id": "9214f5879d50fbe0",
+    "type": "change",
+    "z": "daf7a59ca2ce18df",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "payload[0].idTag",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 980,
+    "y": 920,
+    "wires": [
+      [
+        "d301de1fbbac9723"
+      ]
+    ]
+  },
+  {
+    "id": "e5e3bc3824864970",
+    "type": "change",
+    "z": "daf7a59ca2ce18df",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "payload[0].meterStart",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 980,
+    "y": 960,
+    "wires": [
+      [
+        "33e220dd106839f5"
+      ]
+    ]
+  },
+  {
+    "id": "4a191fd359629475",
+    "type": "change",
+    "z": "daf7a59ca2ce18df",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "payload[0].meterStop",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 980,
+    "y": 1000,
+    "wires": [
+      [
+        "306d784e407efc57"
+      ]
+    ]
+  },
+  {
+    "id": "a6948cd72ae1a796",
+    "type": "change",
+    "z": "daf7a59ca2ce18df",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "payload[0].totalEnergy",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 980,
+    "y": 1040,
+    "wires": [
+      [
+        "5aed68d7dac2c043"
+      ]
+    ]
+  }
+]

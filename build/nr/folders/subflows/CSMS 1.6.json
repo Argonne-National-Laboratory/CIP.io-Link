@@ -1,0 +1,1234 @@
+[
+  {
+    "id": "1bbb83617feb5d61",
+    "type": "subflow",
+    "name": "CSMS 1.6",
+    "info": "",
+    "category": "",
+    "in": [
+      {
+        "x": 60,
+        "y": 40,
+        "wires": [
+          {
+            "id": "70bfca444e38cb32"
+          }
+        ]
+      }
+    ],
+    "out": [
+      {
+        "x": 1550,
+        "y": 240,
+        "wires": [
+          {
+            "id": "0508b4312099eed7",
+            "port": 0
+          }
+        ]
+      },
+      {
+        "x": 1560,
+        "y": 300,
+        "wires": [
+          {
+            "id": "f5e6a6b98ad89c35",
+            "port": 0
+          }
+        ]
+      },
+      {
+        "x": 1560,
+        "y": 360,
+        "wires": [
+          {
+            "id": "8bd502e33fe2ee01",
+            "port": 0
+          }
+        ]
+      }
+    ],
+    "env": [
+      {
+        "name": "CSMS_PORT",
+        "type": "num",
+        "value": "8863"
+      },
+      {
+        "name": "CSMS_PATH",
+        "type": "str",
+        "value": "/ocpp"
+      }
+    ],
+    "meta": {},
+    "color": "#3FADB5",
+    "outputLabels": [
+      "OCPP Msg",
+      "OCPP Logging",
+      "SubFlow Debug"
+    ],
+    "icon": "font-awesome/fa-bolt"
+  },
+  {
+    "id": "adad8cfed89e9a2e",
+    "type": "group",
+    "z": "1bbb83617feb5d61",
+    "name": "Calculate Charging Profile",
+    "style": {
+      "stroke": "#ff3f3f",
+      "fill": "#ffcf3f",
+      "label": true,
+      "color": "#000000"
+    },
+    "nodes": [
+      "31cbb896896da083",
+      "74558ab2bc828dd9",
+      "277e1a6705982260"
+    ],
+    "x": 794,
+    "y": 819,
+    "w": 452,
+    "h": 82
+  },
+  {
+    "id": "f6e1783b4f8d6029",
+    "type": "group",
+    "z": "1bbb83617feb5d61",
+    "name": "",
+    "style": {
+      "fill": "#c8e7a7",
+      "label": true
+    },
+    "nodes": [
+      "dcc4d675cbe95527",
+      "b348b5858bbb69e9",
+      "e892b41d16a803e6",
+      "3d9889d0e7face61",
+      "565b9e3d1ccde32e"
+    ],
+    "x": 794,
+    "y": 519,
+    "w": 592,
+    "h": 122
+  },
+  {
+    "id": "fac4518c226fbf0c",
+    "type": "group",
+    "z": "1bbb83617feb5d61",
+    "name": "Modify StartTx with TxId",
+    "style": {
+      "fill": "#b797cf",
+      "label": true,
+      "stroke": "#ffff00",
+      "color": "#001f60"
+    },
+    "nodes": [
+      "e930a4053f3ebf38",
+      "d5ea45e6cb0d7090",
+      "20e60ae443b8c057",
+      "7085c4e9b54ca5e5",
+      "81b335ea88991f47",
+      "05dc69bf9c191b85",
+      "885f7019dc576089"
+    ],
+    "x": 784,
+    "y": 659,
+    "w": 812,
+    "h": 142
+  },
+  {
+    "id": "1bf93bafdbd51e89",
+    "type": "junction",
+    "z": "1bbb83617feb5d61",
+    "x": 720,
+    "y": 200,
+    "wires": [
+      [
+        "e890b864470860a3"
+      ]
+    ]
+  },
+  {
+    "id": "e254737171de6271",
+    "type": "ocpp-remotej-cp",
+    "z": "1bbb83617feb5d61",
+    "name": "",
+    "cbId": "evsesim1",
+    "ocppver": "1.6j"
+  },
+  {
+    "id": "0b35c35ff6b34816",
+    "type": "CS server",
+    "z": "1bbb83617feb5d61",
+    "name": "CSMS Server",
+    "port": "CIPIO_CSMS_PORT",
+    "portType": "env",
+    "enabled15": false,
+    "path15": "/ocpp15s",
+    "enabled16": false,
+    "path16": "/ocpp16s",
+    "enabled16j": true,
+    "path16j": "${CIPIO_CSMS_PATH}",
+    "log": false,
+    "pathlog": "c:\\tmp\\OCPP__.log",
+    "x": 110,
+    "y": 280,
+    "wires": [
+      [
+        "20ceb4322d5e497f",
+        "29ecf3de64707bd2"
+      ],
+      [
+        "b53020c58b6c45a9"
+      ]
+    ]
+  },
+  {
+    "id": "20ceb4322d5e497f",
+    "type": "switch",
+    "z": "1bbb83617feb5d61",
+    "name": "OCPP CS Command Switch",
+    "property": "payload.command",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "BootNotification",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "Heartbeat",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "Authorize",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "StartTransaction",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "StatusNotification",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "MeterValues",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "StopTransaction",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "DataTransfer",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "FirmwareStatusNotification",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "DiagnosticsStatusNotification",
+        "vt": "str"
+      },
+      {
+        "t": "else"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 11,
+    "x": 440,
+    "y": 280,
+    "wires": [
+      [
+        "aa596f86a457bf40"
+      ],
+      [
+        "0526edd563f82711"
+      ],
+      [
+        "1bf93bafdbd51e89"
+      ],
+      [
+        "1bf93bafdbd51e89"
+      ],
+      [
+        "8491c20b715112f4",
+        "0d628f0894098128"
+      ],
+      [
+        "8491c20b715112f4"
+      ],
+      [
+        "9b51587a3c6a0b45"
+      ],
+      [
+        "0b39aae32daacd88"
+      ],
+      [
+        "8491c20b715112f4"
+      ],
+      [
+        "8491c20b715112f4"
+      ],
+      []
+    ]
+  },
+  {
+    "id": "fb654b19a6a965cd",
+    "type": "server response",
+    "z": "1bbb83617feb5d61",
+    "name": "",
+    "x": 1550,
+    "y": 420,
+    "wires": []
+  },
+  {
+    "id": "e930a4053f3ebf38",
+    "type": "function",
+    "z": "1bbb83617feb5d61",
+    "g": "fac4518c226fbf0c",
+    "name": "Auth/Start Tx",
+    "func": "// function handles both Authorize and StartTransaction\n// This generate a unique TxId, as long as the function doesn't get called twice\n// within the same millisecond\n\n\n// defaults\nconst ACCEPTED = \"Accepted\"\nlet status = ACCEPTED\nlet tags = []\n\n// copy message for the enhanced message with TxId\nlet msg2 = RED.util.cloneMessage(msg)\n\nmsg2.payload = {\n    idTagInfo: {\n        status\n    }\n}\n\nif (msg.ocpp.command === \"StartTransaction\"){\n    msg2.payload.transactionId = generateUniqueId()\n    msg.ocpp.command = 'StartTransactionEnhanced'\n    msg.payload.command = msg.ocpp.command\n    msg2.ocpp.connectorId = msg.payload.data.connectorId || 1\n}\n\n\nlet freeVend = global.get(\"CSMS:FreeVend\") \n    \nif (! freeVend ){\n    tags = global.get(\"CSMS:Tags\")\n\n    const result = tags.find((tag) => tag.tagId === msg.payload.data.idTag)\n\n    if (result){\n        if (!result.enabled){\n            msg2.payload.idTagInfo.status = \"Blocked\"\n        }\n        else if (result.expdate){\n            let expDate = new Date(result.expdate)\n            expDate.setHours(23, 59, 59, 999); // Set to the end of the day\n            let currentDate = new Date()\n\n            if (currentDate > expDate){\n                msg2.payload.idTagInfo.status = \"Expired\"\n            }\n            else {\n                msg2.payload.idTagInfo.expiryDate = expDate.toISOString()\n            }\n        } \n    }\n    else {\n        msg2.payload.idTagInfo.status = \"Invalid\"\n    }\n\n    if (msg2.payload.idTagInfo.status !== ACCEPTED){\n        msg2.payload.transactionId = 0\n    }\n\n}\n\nlet data\n\nif(msg.ocpp.command == \"StartTransaction\"){\n    data = msg.payload.data\n    data.transactionId = msg2.payload.transactionId\n    data.status = msg2.payload.idTagInfo.status\n    const ts = new Date(data.timestamp)\n    msg.timestamp = ts.getTime()\n    msg.cbId = msg2.ocpp.chargeBoxIdentity\n    msg.msgFrom = \"CS\"\n    msg.payload = [2,msg2.ocpp.MessageId,\"StartTransactionEnhanced\",data]\n} else {\n    msg = null\n} \n\nreturn [msg2,msg];\n\n\nfunction generateUniqueId() {\n    // Return a positive 32bit Int as a random TxId\n    const isoTimestamp = new Date().toISOString();\n    // Create a Date object from the ISO timestamp string\n    const date = new Date(isoTimestamp);\n\n    // Get the timestamp in seconds since the Unix epoch\n    const timestampInSeconds = Math.floor(date.getTime() / 1000);\n\n    // Calculate offset to ensure positive value within 32-bit signed range\n    const offset = timestampInSeconds < 0 ? 2147483648 : 0;\n\n    // Convert to 32-bit signed integer and apply offset\n    const int32Timestamp = (timestampInSeconds + offset) | 0;\n\n    return int32Timestamp;\n}\n",
+    "outputs": 2,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 930,
+    "y": 740,
+    "wires": [
+      [
+        "20e60ae443b8c057",
+        "7085c4e9b54ca5e5"
+      ],
+      [
+        "81b335ea88991f47"
+      ]
+    ]
+  },
+  {
+    "id": "70bfca444e38cb32",
+    "type": "CS request JSON",
+    "z": "1bbb83617feb5d61",
+    "name": "CS Req evse-001",
+    "remotecb": "e254737171de6271",
+    "command": "GetConfiguration",
+    "cmddata": "",
+    "log": true,
+    "pathlog": "",
+    "x": 250,
+    "y": 40,
+    "wires": [
+      [
+        "4a497f3abebf77a4"
+      ]
+    ]
+  },
+  {
+    "id": "3c84a4a19698b6e3",
+    "type": "comment",
+    "z": "1bbb83617feb5d61",
+    "name": "Basic OCPP Central System Server and supporting nodes",
+    "info": "Change the port address and paths to meet your needs.\nThis is a very basic (does represent a fully functional CS) example",
+    "x": 271,
+    "y": 135,
+    "wires": []
+  },
+  {
+    "id": "1013277df36e9c6b",
+    "type": "comment",
+    "z": "1bbb83617feb5d61",
+    "name": "Log all incoming msgs",
+    "info": "",
+    "x": 120,
+    "y": 340,
+    "wires": []
+  },
+  {
+    "id": "79545bf715d76089",
+    "type": "comment",
+    "z": "1bbb83617feb5d61",
+    "name": "Example with JSON 1.6",
+    "info": "Keep in mind that some of the basic CS responses vary depending on OCPP 1.5 vs 1.6",
+    "x": 231,
+    "y": 175,
+    "wires": []
+  },
+  {
+    "id": "dcc4d675cbe95527",
+    "type": "switch",
+    "z": "1bbb83617feb5d61",
+    "g": "f6e1783b4f8d6029",
+    "name": "Send Initial/Final ChargeProfile",
+    "property": "payload.data.status",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "Preparing",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "Available",
+        "vt": "str"
+      },
+      {
+        "t": "else"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 3,
+    "x": 1010,
+    "y": 580,
+    "wires": [
+      [
+        "b348b5858bbb69e9"
+      ],
+      [
+        "b348b5858bbb69e9"
+      ],
+      [
+        "e892b41d16a803e6"
+      ]
+    ]
+  },
+  {
+    "id": "b348b5858bbb69e9",
+    "type": "function",
+    "z": "1bbb83617feb5d61",
+    "g": "f6e1783b4f8d6029",
+    "name": "Reset",
+    "func": "let connectorId = 0\nlet cbId = msg.ocpp.chargeBoxIdentity\nlet amps = 6\n\nif (msg.payload.data.connectorId > 0){\n    connectorId = msg.payload.data.connectorId\n    msg.payload = {\n        command: \"SetChargingProfile\",\n        cbId,\n        data: {\n            connectorId,\n            csChargingProfiles: {\n              chargingProfileId: 1,\n              stackLevel: 1,\n              chargingProfilePurpose: \"TxDefaultProfile\",\n              chargingProfileKind: \"Absolute\",\n              chargingSchedule: {\n                chargingRateUnit: \"A\",\n                chargingSchedulePeriod: [\n                    {\n                        startPeriod: 0,\n                        limit: amps,\n                        numberPhases: 1\n                    }\n                ]\n              }  \n            }\n        }\n    }\n\n    return msg\n\n}\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1250,
+    "y": 560,
+    "wires": [
+      [
+        "3d9889d0e7face61"
+      ]
+    ]
+  },
+  {
+    "id": "e892b41d16a803e6",
+    "type": "function",
+    "z": "1bbb83617feb5d61",
+    "g": "f6e1783b4f8d6029",
+    "name": "Do Nothing",
+    "func": "msg.payload = `Got a status of ${msg.payload.data.status}`\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1270,
+    "y": 600,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "20e60ae443b8c057",
+    "type": "switch",
+    "z": "1bbb83617feb5d61",
+    "g": "fac4518c226fbf0c",
+    "name": "StartTx Accepted",
+    "property": "payload.idTagInfo.status",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "Accepted",
+        "vt": "str"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 1190,
+    "y": 720,
+    "wires": [
+      [
+        "05dc69bf9c191b85"
+      ]
+    ]
+  },
+  {
+    "id": "885f7019dc576089",
+    "type": "link out",
+    "z": "1bbb83617feb5d61",
+    "g": "fac4518c226fbf0c",
+    "name": "link out 26",
+    "mode": "link",
+    "links": [
+      "31cbb896896da083"
+    ],
+    "x": 1555,
+    "y": 760,
+    "wires": []
+  },
+  {
+    "id": "31cbb896896da083",
+    "type": "link in",
+    "z": "1bbb83617feb5d61",
+    "g": "adad8cfed89e9a2e",
+    "name": "Generate ChargeProfiles",
+    "links": [
+      "885f7019dc576089",
+      "03a8715970d7a77d"
+    ],
+    "x": 835,
+    "y": 860,
+    "wires": [
+      [
+        "74558ab2bc828dd9"
+      ]
+    ]
+  },
+  {
+    "id": "8eb3b8e8db8b77c7",
+    "type": "link in",
+    "z": "1bbb83617feb5d61",
+    "name": "Send OCPP CMD",
+    "links": [
+      "3d9889d0e7face61",
+      "277e1a6705982260"
+    ],
+    "x": 125,
+    "y": 80,
+    "wires": [
+      [
+        "70bfca444e38cb32"
+      ]
+    ]
+  },
+  {
+    "id": "3d9889d0e7face61",
+    "type": "link out",
+    "z": "1bbb83617feb5d61",
+    "g": "f6e1783b4f8d6029",
+    "name": "link out 27",
+    "mode": "link",
+    "links": [
+      "8eb3b8e8db8b77c7"
+    ],
+    "x": 1345,
+    "y": 560,
+    "wires": []
+  },
+  {
+    "id": "74558ab2bc828dd9",
+    "type": "function",
+    "z": "1bbb83617feb5d61",
+    "g": "adad8cfed89e9a2e",
+    "name": "Smart Charge Management Algorithm",
+    "func": "const currentTx = global.get(\"CSMS:SESSIONS\") || []\nconst loadLimit = global.get(\"SITE:LoadLimit\")\nlet adjustment = 1\n\nlet potential = 0\n\ncurrentTx.forEach(function(sess) {\n    potential += sess.amps\n})\n\nif (potential > loadLimit){\n    // Calculate an adjustment %\n    adjustment = 1 - ((( (potential - loadLimit ) / potential ) * 100) / 100)\n}\n\ncurrentTx.forEach(function(sess) {\n    msg = {}\n    msg.payload = {\n        command: \"SetChargingProfile\",\n        cbId: sess.cbId,\n        data: {\n            connectorId: sess.connectorId,\n            csChargingProfiles: {\n              chargingProfileId: 1,\n              transactionId: sess.transactionId,\n              stackLevel: 1,\n              chargingProfilePurpose: \"TxProfile\",\n              chargingProfileKind: \"Absolute\",\n              chargingSchedule: {\n                startSchedule: new Date().toISOString(),\n                chargingRateUnit: \"A\",\n                chargingSchedulePeriod: [\n                    {\n                        startPeriod: 0,\n                        limit: sess.amps * adjustment,\n                        numberPhases: 1\n                    }\n                ]\n              }  \n            }\n        }\n    }\n    msg.potential = potential\n    msg.adjustment = adjustment\n    msg.loadLimit = loadLimit\n    node.send(msg)\n});\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1020,
+    "y": 860,
+    "wires": [
+      [
+        "277e1a6705982260"
+      ]
+    ]
+  },
+  {
+    "id": "277e1a6705982260",
+    "type": "link out",
+    "z": "1bbb83617feb5d61",
+    "g": "adad8cfed89e9a2e",
+    "name": "link out 28",
+    "mode": "link",
+    "links": [
+      "8eb3b8e8db8b77c7",
+      "8bd502e33fe2ee01"
+    ],
+    "x": 1205,
+    "y": 860,
+    "wires": []
+  },
+  {
+    "id": "8bd502e33fe2ee01",
+    "type": "link in",
+    "z": "1bbb83617feb5d61",
+    "name": "Send Debug Output",
+    "links": [
+      "277e1a6705982260",
+      "03a8715970d7a77d"
+    ],
+    "x": 1395,
+    "y": 360,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "05dc69bf9c191b85",
+    "type": "function",
+    "z": "1bbb83617feb5d61",
+    "g": "fac4518c226fbf0c",
+    "name": "Save sessions context",
+    "func": "if (msg.ocpp.command === \"StartTransaction\"){\n    let session = {}\n    session.cbId = msg.ocpp.chargeBoxIdentity\n    session.connectorId = msg.ocpp.connectorId\n    session.transactionId = msg.payload.transactionId\n    session.amps = (session.cbId == \"EVOChargeLab1\") ? 32 : 40\n    let sessions = global.get(\"CSMS:SESSIONS\") || []\n    sessions.push(session)\n    global.set(\"CSMS:SESSIONS\",sessions)\n    return msg;\n}",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1460,
+    "y": 720,
+    "wires": [
+      [
+        "885f7019dc576089"
+      ]
+    ]
+  },
+  {
+    "id": "29b7e74ff8279110",
+    "type": "function",
+    "z": "1bbb83617feb5d61",
+    "name": "BootNotification",
+    "func": "//Load defaults\nconst interval = global.get(\"CSMS:HeartBeatInterval\") ?? 120\nconst currentTime = new Date().toISOString()\nconst validEVSEs = global.get(\"CSMS:EVSEs\") ?? []\n\nlet status = (validEVSEs.find((cbId) => cbId === msg.ocpp.chargeBoxIdentity.toLowerCase() ) != undefined) ? \"Accepted\" : \"Rejected\"\n\n\nmsg.payload = {\n    interval,\n    currentTime,\n    status\n}\nreturn msg;",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 440,
+    "y": 540,
+    "wires": [
+      [
+        "e09d8995ecbe67f7"
+      ]
+    ]
+  },
+  {
+    "id": "041c7cd4a35efa4d",
+    "type": "link in",
+    "z": "1bbb83617feb5d61",
+    "name": "Server Response Node",
+    "links": [
+      "e09d8995ecbe67f7",
+      "7085c4e9b54ca5e5",
+      "d363a59df51b1603",
+      "f15df67d396f9ee3",
+      "d822835855e62f28",
+      "0974c9afbf6425e2"
+    ],
+    "x": 1395,
+    "y": 420,
+    "wires": [
+      [
+        "fb654b19a6a965cd"
+      ]
+    ]
+  },
+  {
+    "id": "e09d8995ecbe67f7",
+    "type": "link out",
+    "z": "1bbb83617feb5d61",
+    "name": "link out 30",
+    "mode": "link",
+    "links": [
+      "041c7cd4a35efa4d"
+    ],
+    "x": 585,
+    "y": 540,
+    "wires": []
+  },
+  {
+    "id": "7085c4e9b54ca5e5",
+    "type": "link out",
+    "z": "1bbb83617feb5d61",
+    "g": "fac4518c226fbf0c",
+    "name": "link out 31",
+    "mode": "link",
+    "links": [
+      "041c7cd4a35efa4d"
+    ],
+    "x": 1035,
+    "y": 700,
+    "wires": []
+  },
+  {
+    "id": "f5e6a6b98ad89c35",
+    "type": "link in",
+    "z": "1bbb83617feb5d61",
+    "name": "OCPP Logging Port",
+    "links": [
+      "81b335ea88991f47",
+      "b53020c58b6c45a9"
+    ],
+    "x": 1395,
+    "y": 300,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "b53020c58b6c45a9",
+    "type": "link out",
+    "z": "1bbb83617feb5d61",
+    "name": "link out 32",
+    "mode": "link",
+    "links": [
+      "f5e6a6b98ad89c35"
+    ],
+    "x": 275,
+    "y": 340,
+    "wires": []
+  },
+  {
+    "id": "81b335ea88991f47",
+    "type": "link out",
+    "z": "1bbb83617feb5d61",
+    "g": "fac4518c226fbf0c",
+    "name": "link out 33",
+    "mode": "link",
+    "links": [
+      "f5e6a6b98ad89c35"
+    ],
+    "x": 1045,
+    "y": 760,
+    "wires": []
+  },
+  {
+    "id": "0508b4312099eed7",
+    "type": "link in",
+    "z": "1bbb83617feb5d61",
+    "name": "OCPP Msg Port",
+    "links": [
+      "29ecf3de64707bd2",
+      "4a497f3abebf77a4"
+    ],
+    "x": 1395,
+    "y": 240,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "29ecf3de64707bd2",
+    "type": "link out",
+    "z": "1bbb83617feb5d61",
+    "name": "link out 34",
+    "mode": "link",
+    "links": [
+      "0508b4312099eed7"
+    ],
+    "x": 275,
+    "y": 220,
+    "wires": []
+  },
+  {
+    "id": "4a497f3abebf77a4",
+    "type": "link out",
+    "z": "1bbb83617feb5d61",
+    "name": "link out 35",
+    "mode": "link",
+    "links": [
+      "0508b4312099eed7"
+    ],
+    "x": 405,
+    "y": 40,
+    "wires": []
+  },
+  {
+    "id": "50d2e6f3bb1e94f5",
+    "type": "link in",
+    "z": "1bbb83617feb5d61",
+    "name": "BootNotification",
+    "links": [
+      "90ba72aed925161f"
+    ],
+    "x": 285,
+    "y": 540,
+    "wires": [
+      [
+        "29b7e74ff8279110"
+      ]
+    ]
+  },
+  {
+    "id": "90ba72aed925161f",
+    "type": "link out",
+    "z": "1bbb83617feb5d61",
+    "name": "BootNotification Out",
+    "mode": "link",
+    "links": [
+      "50d2e6f3bb1e94f5"
+    ],
+    "x": 835,
+    "y": 20,
+    "wires": []
+  },
+  {
+    "id": "58a508d07089ac02",
+    "type": "change",
+    "z": "1bbb83617feb5d61",
+    "name": "Heartbeat",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "{}",
+        "tot": "json"
+      },
+      {
+        "t": "set",
+        "p": "payload.currentTime",
+        "pt": "msg",
+        "to": "$now()",
+        "tot": "jsonata"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 420,
+    "y": 600,
+    "wires": [
+      [
+        "d363a59df51b1603"
+      ]
+    ]
+  },
+  {
+    "id": "d363a59df51b1603",
+    "type": "link out",
+    "z": "1bbb83617feb5d61",
+    "name": "link out 37",
+    "mode": "link",
+    "links": [
+      "041c7cd4a35efa4d"
+    ],
+    "x": 585,
+    "y": 600,
+    "wires": []
+  },
+  {
+    "id": "26c6df27758d1898",
+    "type": "link in",
+    "z": "1bbb83617feb5d61",
+    "name": "HeartBeat",
+    "links": [
+      "1920fd977adf99ce"
+    ],
+    "x": 285,
+    "y": 600,
+    "wires": [
+      [
+        "58a508d07089ac02"
+      ]
+    ]
+  },
+  {
+    "id": "1920fd977adf99ce",
+    "type": "link out",
+    "z": "1bbb83617feb5d61",
+    "name": "link out 38",
+    "mode": "link",
+    "links": [
+      "26c6df27758d1898"
+    ],
+    "x": 1035,
+    "y": 140,
+    "wires": []
+  },
+  {
+    "id": "b109c9e3b6b4ef7a",
+    "type": "change",
+    "z": "1bbb83617feb5d61",
+    "name": "Generic Status=Accepted",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "{\"idTagInfo\":{\"status\":\"Accepted\"}}",
+        "tot": "json"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 470,
+    "y": 660,
+    "wires": [
+      [
+        "d822835855e62f28"
+      ]
+    ]
+  },
+  {
+    "id": "fff32048857b249d",
+    "type": "link in",
+    "z": "1bbb83617feb5d61",
+    "name": "Generic Status Accepted",
+    "links": [
+      "0b39aae32daacd88"
+    ],
+    "x": 285,
+    "y": 660,
+    "wires": [
+      [
+        "b109c9e3b6b4ef7a"
+      ]
+    ]
+  },
+  {
+    "id": "0b39aae32daacd88",
+    "type": "link out",
+    "z": "1bbb83617feb5d61",
+    "name": "Data Transfer Out",
+    "mode": "link",
+    "links": [
+      "fff32048857b249d"
+    ],
+    "x": 715,
+    "y": 480,
+    "wires": []
+  },
+  {
+    "id": "c65873db62d0456e",
+    "type": "function",
+    "z": "1bbb83617feb5d61",
+    "name": "Remove from active sessions",
+    "func": "let sessions = global.get(\"CSMS:SESSIONS\") || []\nlet cbId = msg.ocpp.chargeBoxIdentity\nlet transactionId = msg.payload.data.transactionId\n\nlet updated_sessions = sessions.filter( sess => (sess.cbId == cbId && sess.transactionId == transactionId) == false)\nmsg = {\n    payload: {\n        updated_sessions,\n        cbId,\n        transactionId\n    }\n}\n\nglobal.set(\"CSMS:SESSIONS\", updated_sessions)\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 480,
+    "y": 720,
+    "wires": [
+      [
+        "03a8715970d7a77d"
+      ]
+    ]
+  },
+  {
+    "id": "03a8715970d7a77d",
+    "type": "link out",
+    "z": "1bbb83617feb5d61",
+    "name": "link out 29",
+    "mode": "link",
+    "links": [
+      "31cbb896896da083",
+      "8bd502e33fe2ee01"
+    ],
+    "x": 635,
+    "y": 720,
+    "wires": []
+  },
+  {
+    "id": "9b51587a3c6a0b45",
+    "type": "link out",
+    "z": "1bbb83617feb5d61",
+    "name": "Stop Transaction Out",
+    "mode": "link",
+    "links": [
+      "20e77c4a2c2e1bc8",
+      "98a99004fba3ce97"
+    ],
+    "x": 685,
+    "y": 380,
+    "wires": []
+  },
+  {
+    "id": "98a99004fba3ce97",
+    "type": "link in",
+    "z": "1bbb83617feb5d61",
+    "name": "StopTransaction",
+    "links": [
+      "9b51587a3c6a0b45"
+    ],
+    "x": 285,
+    "y": 720,
+    "wires": [
+      [
+        "c65873db62d0456e",
+        "b109c9e3b6b4ef7a"
+      ]
+    ]
+  },
+  {
+    "id": "4df5bbe3dc069615",
+    "type": "change",
+    "z": "1bbb83617feb5d61",
+    "name": "Generic Return",
+    "rules": [
+      {
+        "t": "set",
+        "p": "ocpp.data",
+        "pt": "msg",
+        "to": "payload.data",
+        "tot": "msg"
+      },
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "{}",
+        "tot": "json"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 440,
+    "y": 480,
+    "wires": [
+      [
+        "f15df67d396f9ee3"
+      ]
+    ]
+  },
+  {
+    "id": "20e77c4a2c2e1bc8",
+    "type": "link in",
+    "z": "1bbb83617feb5d61",
+    "name": "link in 2",
+    "links": [
+      "8491c20b715112f4",
+      "9b51587a3c6a0b45"
+    ],
+    "x": 285,
+    "y": 480,
+    "wires": [
+      [
+        "4df5bbe3dc069615"
+      ]
+    ]
+  },
+  {
+    "id": "f15df67d396f9ee3",
+    "type": "link out",
+    "z": "1bbb83617feb5d61",
+    "name": "link out 41",
+    "mode": "link",
+    "links": [
+      "041c7cd4a35efa4d"
+    ],
+    "x": 585,
+    "y": 480,
+    "wires": []
+  },
+  {
+    "id": "8491c20b715112f4",
+    "type": "link out",
+    "z": "1bbb83617feb5d61",
+    "name": "Generic Out",
+    "mode": "link",
+    "links": [
+      "20e77c4a2c2e1bc8"
+    ],
+    "x": 705,
+    "y": 300,
+    "wires": []
+  },
+  {
+    "id": "d5ea45e6cb0d7090",
+    "type": "link in",
+    "z": "1bbb83617feb5d61",
+    "g": "fac4518c226fbf0c",
+    "name": "StartTransaction",
+    "links": [
+      "d0719425702055f4"
+    ],
+    "x": 825,
+    "y": 740,
+    "wires": [
+      [
+        "e930a4053f3ebf38"
+      ]
+    ]
+  },
+  {
+    "id": "d0719425702055f4",
+    "type": "link out",
+    "z": "1bbb83617feb5d61",
+    "name": "Auth / Start Tx Out",
+    "mode": "link",
+    "links": [
+      "d5ea45e6cb0d7090"
+    ],
+    "x": 735,
+    "y": 340,
+    "wires": []
+  },
+  {
+    "id": "565b9e3d1ccde32e",
+    "type": "link in",
+    "z": "1bbb83617feb5d61",
+    "g": "f6e1783b4f8d6029",
+    "name": "StatusNotification",
+    "links": [
+      "0d628f0894098128"
+    ],
+    "x": 835,
+    "y": 580,
+    "wires": [
+      [
+        "dcc4d675cbe95527"
+      ]
+    ]
+  },
+  {
+    "id": "0d628f0894098128",
+    "type": "link out",
+    "z": "1bbb83617feb5d61",
+    "name": "StatusNotification Out",
+    "mode": "link",
+    "links": [
+      "565b9e3d1ccde32e"
+    ],
+    "x": 685,
+    "y": 260,
+    "wires": []
+  },
+  {
+    "id": "d822835855e62f28",
+    "type": "link out",
+    "z": "1bbb83617feb5d61",
+    "name": "link out 45",
+    "mode": "link",
+    "links": [
+      "041c7cd4a35efa4d"
+    ],
+    "x": 625,
+    "y": 660,
+    "wires": []
+  },
+  {
+    "id": "0526edd563f82711",
+    "type": "link call",
+    "z": "1bbb83617feb5d61",
+    "name": "",
+    "links": [
+      "1e88d1e2d4dcc7d3"
+    ],
+    "linkType": "static",
+    "timeout": "30",
+    "x": 790,
+    "y": 120,
+    "wires": [
+      [
+        "bbcc0456033e143b"
+      ]
+    ]
+  },
+  {
+    "id": "0974c9afbf6425e2",
+    "type": "link out",
+    "z": "1bbb83617feb5d61",
+    "name": "link out 47",
+    "mode": "link",
+    "links": [
+      "041c7cd4a35efa4d"
+    ],
+    "x": 1235,
+    "y": 120,
+    "wires": []
+  },
+  {
+    "id": "e890b864470860a3",
+    "type": "link call",
+    "z": "1bbb83617feb5d61",
+    "name": "",
+    "links": [
+      "5bb26352bd2d7e5a"
+    ],
+    "linkType": "static",
+    "timeout": "30",
+    "x": 810,
+    "y": 200,
+    "wires": [
+      [
+        "0974c9afbf6425e2"
+      ]
+    ]
+  },
+  {
+    "id": "aa596f86a457bf40",
+    "type": "link call",
+    "z": "1bbb83617feb5d61",
+    "name": "",
+    "links": [
+      "056c40eb67d6fe4c"
+    ],
+    "linkType": "static",
+    "timeout": "30",
+    "x": 790,
+    "y": 60,
+    "wires": [
+      [
+        "0974c9afbf6425e2"
+      ]
+    ]
+  },
+  {
+    "id": "bbcc0456033e143b",
+    "type": "switch",
+    "z": "1bbb83617feb5d61",
+    "name": "",
+    "property": "ack",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "true"
+      },
+      {
+        "t": "else"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 930,
+    "y": 120,
+    "wires": [
+      [
+        "0974c9afbf6425e2"
+      ],
+      [
+        "1920fd977adf99ce"
+      ]
+    ]
+  }
+]

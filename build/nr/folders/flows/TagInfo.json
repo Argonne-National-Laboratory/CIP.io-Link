@@ -1,0 +1,645 @@
+[
+  {
+    "id": "55e67bd3e4f94c9a",
+    "type": "tab",
+    "label": "TagInfo",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "b05ce5e13a571231",
+    "type": "redis-command",
+    "z": "55e67bd3e4f94c9a",
+    "server": "0430675ed6c7cd83",
+    "command": "SET",
+    "name": "",
+    "topic": "",
+    "params": "[]",
+    "paramsType": "json",
+    "payloadType": "json",
+    "block": false,
+    "x": 530,
+    "y": 260,
+    "wires": [
+      [
+        "570c8d913eb44546"
+      ]
+    ]
+  },
+  {
+    "id": "a08dc1fc37195f4c",
+    "type": "json",
+    "z": "55e67bd3e4f94c9a",
+    "name": "",
+    "property": "payload",
+    "action": "",
+    "pretty": true,
+    "x": 370,
+    "y": 260,
+    "wires": [
+      [
+        "b05ce5e13a571231"
+      ]
+    ]
+  },
+  {
+    "id": "e0a2ea21b99cf98c",
+    "type": "redis-command",
+    "z": "55e67bd3e4f94c9a",
+    "server": "0430675ed6c7cd83",
+    "command": "KEYS",
+    "name": "",
+    "topic": "",
+    "params": "[]",
+    "paramsType": "json",
+    "payloadType": "json",
+    "block": false,
+    "x": 370,
+    "y": 360,
+    "wires": [
+      [
+        "c343b3129ff33360"
+      ]
+    ]
+  },
+  {
+    "id": "c343b3129ff33360",
+    "type": "json",
+    "z": "55e67bd3e4f94c9a",
+    "name": "",
+    "property": "payload",
+    "action": "",
+    "pretty": true,
+    "x": 510,
+    "y": 360,
+    "wires": [
+      [
+        "34c26ee02aa060fb"
+      ]
+    ]
+  },
+  {
+    "id": "21dc022ed140a1bc",
+    "type": "inject",
+    "z": "55e67bd3e4f94c9a",
+    "name": "Inject List at Startup",
+    "props": [
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": true,
+    "onceDelay": 0.1,
+    "topic": "0",
+    "x": 180,
+    "y": 100,
+    "wires": [
+      [
+        "76941cfcbf239f3e"
+      ]
+    ]
+  },
+  {
+    "id": "34c26ee02aa060fb",
+    "type": "json",
+    "z": "55e67bd3e4f94c9a",
+    "name": "",
+    "property": "payload",
+    "action": "",
+    "pretty": false,
+    "x": 630,
+    "y": 360,
+    "wires": [
+      [
+        "d7d05de12e3a6bb1"
+      ]
+    ]
+  },
+  {
+    "id": "75aa14505ccda591",
+    "type": "redis-command",
+    "z": "55e67bd3e4f94c9a",
+    "server": "0430675ed6c7cd83",
+    "command": "MGET",
+    "name": "",
+    "topic": "",
+    "params": "[]",
+    "paramsType": "json",
+    "payloadType": "json",
+    "block": false,
+    "x": 430,
+    "y": 440,
+    "wires": [
+      [
+        "bee3f345890bdc32"
+      ]
+    ]
+  },
+  {
+    "id": "a10ea6afabaa98a1",
+    "type": "redis-command",
+    "z": "55e67bd3e4f94c9a",
+    "server": "0430675ed6c7cd83",
+    "command": "DEL",
+    "name": "",
+    "topic": "",
+    "params": "",
+    "paramsType": "json",
+    "payloadType": "json",
+    "block": false,
+    "x": 1480,
+    "y": 440,
+    "wires": [
+      [
+        "478df7cbfd677ac8"
+      ]
+    ]
+  },
+  {
+    "id": "d7d05de12e3a6bb1",
+    "type": "change",
+    "z": "55e67bd3e4f94c9a",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "topic",
+        "pt": "msg",
+        "to": "gettags",
+        "tot": "str"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 230,
+    "y": 440,
+    "wires": [
+      [
+        "75aa14505ccda591"
+      ]
+    ]
+  },
+  {
+    "id": "bee3f345890bdc32",
+    "type": "function",
+    "z": "55e67bd3e4f94c9a",
+    "name": "function 5",
+    "func": "let evse\nlet tagInfo\nlet tags = []\n\nmsg.payload.splice(0,1)\n\nmsg.payload.forEach(function(tagItem) {\n    tagInfo = JSON.parse(tagItem)\n    tags.push(tagInfo)\n})\n\n/*\nmsg.headers = [\n    { key: 'name', title: 'Name', align: 'start'},\n    { key: 'tagId', title: \"Tag\"}, // title: 'Tag ID', value: 'item.tagId'},\n    { key: 'expdate', title: 'Expires'},\n    { key: 'enabled', title: 'Enabled'},\n    { key: 'lasttxdate', title: 'Last Tx'},\n    { key: 'actions', title: 'Action',align: 'end', sortable: false} \n]\n*/\n\nglobal.set(\"CSMS:Tags\",tags)\nmsg.payload = tags\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 580,
+    "y": 440,
+    "wires": [
+      [
+        "7c94e421f65d1c9e",
+        "5a2226d788de7cae"
+      ]
+    ]
+  },
+  {
+    "id": "e3a6be6f872e5ee3",
+    "type": "function",
+    "z": "55e67bd3e4f94c9a",
+    "name": "Create taginfo:",
+    "func": "let key = `taginfo:${msg.payload.tagId}`\nmsg.topic = key\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 220,
+    "y": 260,
+    "wires": [
+      [
+        "a08dc1fc37195f4c"
+      ]
+    ]
+  },
+  {
+    "id": "7c94e421f65d1c9e",
+    "type": "ui-template",
+    "z": "55e67bd3e4f94c9a",
+    "group": "447b58f3ddb86ab6",
+    "page": "",
+    "ui": "",
+    "name": "Drivers List",
+    "order": 1,
+    "width": 0,
+    "height": 0,
+    "head": "",
+    "format": "<template>\n\n    <v-toolbar flat>\n      <v-toolbar-title class=\"text-grey\">\n        Actions\n      </v-toolbar-title>\n\n      <v-spacer></v-spacer>\n           <v-tooltip text=\"Refresh\" location=\"bottom\">\n        <template v-slot:activator=\"{ props }\">\n          <v-btn icon v-bind=\"props\" @click=\"refresh\">\n            <v-icon>mdi-refresh</v-icon>\n          </v-btn>\n        </template>\n      </v-tooltip>\n      <v-tooltip text=\"New\" location=\"bottom\">\n        <template v-slot:activator=\"{ props }\">\n          <v-btn icon v-bind=\"props\" @click=\"addNew\">\n            <v-icon>mdi-card-account-details-outline</v-icon>\n          </v-btn>\n        </template>\n      </v-tooltip>\n\n    </v-toolbar>\n\n      <v-text-field\n        v-model=\"search\"\n        label=\"Search\"\n        prepend-inner-icon=\"mdi-magnify\"\n        variant=\"outlined\"\n        hide-details\n        single-line\n      ></v-text-field>\n\n    \n    <v-data-table  \n        :search=\"search\" \n        :items=\"msg?.payload\"\n        :headers=\"headers\"\n        v-model=\"selected\"\n        item-selectable=\"selectable\"\n        select-strategy=\"all\"\n        hide-select    \n        return-object>\n      <template v-slot:header.lasttxdate>\n        <div><v-icon icon=\"mdi-calendar\" class=\"text-center\"></div>\n      </template>\n\n      <template v-slot:item.name=\"{ item }\">\n        <div :class=\"statusClass(item)\">\n          <v-text>{{ item.name }}</v-text>\n      </template>\n\n      <template v-slot:item.tagId=\"{ item }\">\n        <div :class=\"statusClass(item)\">\n          <v-text>{{ item.tagId }}</v-text>\n      </template>\n      \n\n      <template v-slot:item.expdate=\"{ item }\">\n        <div :class=\"statusClass(item)\">\n          <v-text>{{ item.expdate }}</v-text>\n      </template>\n\n      \n      <template v-slot:item.enabled=\"{ item }\">\n        <div class=\"text-center\">\n          <v-icon v-if=\"item.enabled\" color=\"green\" icon=\"mdi-checkbox-outline\"></v-icon>\n          <v-icon v-else color=\"red\" icon=\"mdi-minus-box-outline\"></v-icon>\n        </div>\n      </template>\n\n      <template v-slot:item.actions=\"{ item }\">\n        <v-icon\n          class=\"me-2\"\n          size=\"small\"\n          @click=\"send({action: 'edit', payload: [item]})\"\n        >\n          mdi-pencil\n        </v-icon>\n        <v-icon\n          size=\"small\"\n          @click=\"send({action: 'delete', payload: [item]})\"\n        >\n          mdi-delete\n        </v-icon>\n      </template>\n\n    </v-data-table>\n\n</template>\n\n<script>\n    export default {\n    data () {\n      return {\n        selected: [],\n        search: '',\n        multiSelected: 0,\n        heartbeat: 30,\n        headers: [\n            { key: 'name', title: 'Name', align: 'start'},\n            { key: 'tagId', title: \"Tag\"},\n            { key: 'expdate', title: 'Expires'},\n            { key: 'enabled', title: 'Enabled', align: 'center'},\n            //{ key: 'lasttxdate', title: 'Last Tx'},\n            { key: 'actions', title: 'Action',align: 'end', sortable: false} \n        ]\n      }\n    },\n    watch: {\n        selected: function() {\n          this.multiSelected = this.selected.length\n        }\n    },\n    methods: {\n      // expose a method to our <template> and Vue Application\n      addNew() {\n        this.send({action: 'add', payload: [{ cbId: ''}]});\n        this.selected = [];\n        this.multiSelected = 0;\n      },\n      statusClass(item) {\n        if (item.expdate){ \n            let expDate = new Date(item.expdate)\n            expDate.setHours(23, 59, 59, 999); // Set to the end of the day\n            let currentDate = new Date()\n\n            if (currentDate > expDate){\n              return \"disabled\"\n            }\n        }\n\n          return (item.enabled)? \"enabled\" : \"disabled\"\n      }\n    }  \n  }\n</script>\n\n<style>\n  .disabled {\n    color: red;\n    text-decoration: line-through;\n  }\n  .enabled {\n    color: darkgreen;\n    font-weight: bold;\n  }\n</style>",
+    "storeOutMessages": true,
+    "passthru": false,
+    "resendOnRefresh": true,
+    "templateScope": "local",
+    "className": "",
+    "x": 730,
+    "y": 440,
+    "wires": [
+      [
+        "7bf0c2f4c53b878c"
+      ]
+    ]
+  },
+  {
+    "id": "9cfd6611eb504813",
+    "type": "ui-template",
+    "z": "55e67bd3e4f94c9a",
+    "group": "447b58f3ddb86ab6",
+    "page": "",
+    "ui": "",
+    "name": "Edit Form",
+    "order": 2,
+    "width": "0",
+    "height": "0",
+    "head": "",
+    "format": "<template>\n    <v-dialog width=\"auto\" v-model=\"showDialog\">\n        <v-card color=\"white\" v-click-outside=\"{handler: onDoNothing}\">\n            <v-toolbar color=\"primary\">\n                <v-card-title>\n                    <span>{{ title }}</span>\n                </v-card-title>\n            </v-toolbar>\n            <v-container>\n                <v-text-field\n                    v-model=\"name\"\n                    label=\"Account Name\"\n                    type=\"text\"\n                    min-width=25em\n                    hint=\"Name for this account (user, company etc.)\"\n                ></v-text-field>\n                <v-text-field\n                    v-model=\"tagId\"\n                    label=\"Tag ID\"\n                    type=\"text\"\n                ></v-text-field>\n                <v-text-field\n                    v-model=\"expdate\"\n                    label=\"Expiration\"\n                    type=\"date\"\n                    hint=\"\"\n                ></v-text-field>\n                <v-checkbox\n                    v-model=\"enabled\"\n                    label=\"Enabled\"\n                    type=\"checkbox\"\n                ></v-checkbox>\n                <!-- v-text-field\n                    v-model=\"lasttxdate\"\n                    label=\"Last Tx\"\n                    type=\"number\"\n                    placeholder=\"<optional>\"\n                ></v-text-field -->\n\n                <v-card-actions class=\"justify-end\">\n                    <v-btn variant=\"elevated\" @click=\"okDialog\">{{ okText }}</v-btn>\n                    <v-btn variant=\"elevated\" @click=\"cancelDialog\">{{ cancelText }}</v-btn>\n                </v-card-actions>\n            </v-container>\n        </v-card>\n    </v-dialog>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                name: '',\n                tagId: '',\n                expdate: Date.now(),\n                enabled: false,\n                lasttxdate: Date.now(),\n                showDialog: false\n            }\n        },\n        watch: {\n            // watch for any changes of \"count\"\n        },    \n        computed: {\n            // automatically compute this variable\n            // whenever VueJS deems appropriate\n\n        },\n        methods: {\n            // expose a method to our <template> and Vue Application\n            sendtagiddata: function() {\n                this.send({\n                    payload: {\n                        name: this.name,\n                        tagId: this.tagId,\n                        expdate: this.expdate,\n                        enabled: this.enabled,\n                        lasttxdate: this.lasttxdate\n                    }\n                })\n            },\n            okDialog: function() {\n                this.sendtagiddata()\n                this.showDialog = false\n            },\n            cancelDialog: function() {\n                this.msg.payload = {}\n                this.showDialog = false\n            },\n            onClickOutside: function() {\n                this.msg.payload = {}\n                this.showDialog = false\n            },\n            onDoNothing: function() { this.showDialog = true},\n            getReadOnly: function() {\n                return (this.newEdit == \"New\") ? false : true\n            }\n\n        },\n        mounted() {\n\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n                // do stuff with msg\n                // runs only when messages are received\n                if (this.msg?.payload){\n                    let payload = this.msg.payload\n                    this.name = payload.name ?? ''\n                    this.tagId = payload.tagId ?? ''\n                    this.expdate = payload.expdate ?? null\n                    this.enabled = payload.enabled ?? false\n                    this.lasttxdate = payload.lasttxdate ?? null\n                }\n                if (this.msg?.dialog) {\n                    let dialog = this.msg.dialog\n                    this.okText = dialog.okText ?? \"OK\"\n                    this.cancelText = dialog.cancelText ?? \"Cancel\"\n                    this.showDialog = dialog.showDialog ?? false\n                    this.title = dialog.title ?? \"Tag Info\"\n                    this.newEdit = dialog.newEdit ?? \"New\"\n                }\n            })\n                        \n        },\n        unmounted() {}\n   }\n</script>\n",
+    "storeOutMessages": true,
+    "passthru": false,
+    "resendOnRefresh": true,
+    "templateScope": "local",
+    "className": "",
+    "x": 220,
+    "y": 180,
+    "wires": [
+      [
+        "c0bcd5f7e0d961d1"
+      ]
+    ]
+  },
+  {
+    "id": "c0bcd5f7e0d961d1",
+    "type": "link out",
+    "z": "55e67bd3e4f94c9a",
+    "name": "link out 4",
+    "mode": "link",
+    "links": [
+      "b3e37204b499ad30"
+    ],
+    "x": 405,
+    "y": 180,
+    "wires": []
+  },
+  {
+    "id": "b3e37204b499ad30",
+    "type": "link in",
+    "z": "55e67bd3e4f94c9a",
+    "name": "Set TagInfo",
+    "links": [
+      "c0bcd5f7e0d961d1"
+    ],
+    "x": 85,
+    "y": 260,
+    "wires": [
+      [
+        "e3a6be6f872e5ee3"
+      ]
+    ]
+  },
+  {
+    "id": "db0ee15864de99ca",
+    "type": "link in",
+    "z": "55e67bd3e4f94c9a",
+    "name": "RefreshTaginfo List",
+    "links": [
+      "478df7cbfd677ac8",
+      "570c8d913eb44546",
+      "76941cfcbf239f3e",
+      "cf180dbcd550b118"
+    ],
+    "x": 85,
+    "y": 360,
+    "wires": [
+      [
+        "c7703b48d88b3bdd"
+      ]
+    ]
+  },
+  {
+    "id": "570c8d913eb44546",
+    "type": "link out",
+    "z": "55e67bd3e4f94c9a",
+    "name": "link out 5",
+    "mode": "link",
+    "links": [
+      "db0ee15864de99ca"
+    ],
+    "x": 635,
+    "y": 260,
+    "wires": []
+  },
+  {
+    "id": "7bf0c2f4c53b878c",
+    "type": "switch",
+    "z": "55e67bd3e4f94c9a",
+    "name": "",
+    "property": "action",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "add",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "edit",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "delete",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "refresh",
+        "vt": "str"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 4,
+    "x": 870,
+    "y": 440,
+    "wires": [
+      [
+        "f3dd4285d1436aac"
+      ],
+      [
+        "f3dd4285d1436aac"
+      ],
+      [
+        "25e25012a3dc58c5"
+      ],
+      [
+        "cf180dbcd550b118"
+      ]
+    ]
+  },
+  {
+    "id": "733e64a4e54121b8",
+    "type": "function",
+    "z": "55e67bd3e4f94c9a",
+    "name": "function 7",
+    "func": "let key = `taginfo:${msg.payload.tagId}`\nmsg = {}\nmsg.topic = key\nreturn msg\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1340,
+    "y": 440,
+    "wires": [
+      [
+        "a10ea6afabaa98a1"
+      ]
+    ]
+  },
+  {
+    "id": "478df7cbfd677ac8",
+    "type": "link out",
+    "z": "55e67bd3e4f94c9a",
+    "name": "link out 6",
+    "mode": "link",
+    "links": [
+      "db0ee15864de99ca"
+    ],
+    "x": 1575,
+    "y": 440,
+    "wires": []
+  },
+  {
+    "id": "f3dd4285d1436aac",
+    "type": "change",
+    "z": "55e67bd3e4f94c9a",
+    "name": "Add/Edit Dialog ",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "payload[0]",
+        "tot": "msg"
+      },
+      {
+        "t": "set",
+        "p": "dialog.showDialog",
+        "pt": "msg",
+        "to": "true",
+        "tot": "bool"
+      },
+      {
+        "t": "set",
+        "p": "dialog.okText",
+        "pt": "msg",
+        "to": "Ok",
+        "tot": "str"
+      },
+      {
+        "t": "set",
+        "p": "dialog.cancelText",
+        "pt": "msg",
+        "to": "Cancel",
+        "tot": "str"
+      },
+      {
+        "t": "set",
+        "p": "dialog.title",
+        "pt": "msg",
+        "to": "TagInfo",
+        "tot": "str"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1040,
+    "y": 400,
+    "wires": [
+      [
+        "bf8f0dfada9e7ff4"
+      ]
+    ]
+  },
+  {
+    "id": "c7703b48d88b3bdd",
+    "type": "function",
+    "z": "55e67bd3e4f94c9a",
+    "name": "Scan taginfo:",
+    "func": "msg = {}\nmsg.payload = \"taginfo:*\"\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 210,
+    "y": 360,
+    "wires": [
+      [
+        "e0a2ea21b99cf98c"
+      ]
+    ]
+  },
+  {
+    "id": "afcd44d6a459fb11",
+    "type": "link in",
+    "z": "55e67bd3e4f94c9a",
+    "name": "TagInfo Edit Form",
+    "links": [
+      "bf8f0dfada9e7ff4"
+    ],
+    "x": 85,
+    "y": 180,
+    "wires": [
+      [
+        "9cfd6611eb504813"
+      ]
+    ]
+  },
+  {
+    "id": "bf8f0dfada9e7ff4",
+    "type": "link out",
+    "z": "55e67bd3e4f94c9a",
+    "name": "link out 9",
+    "mode": "link",
+    "links": [
+      "afcd44d6a459fb11"
+    ],
+    "x": 1165,
+    "y": 400,
+    "wires": []
+  },
+  {
+    "id": "76941cfcbf239f3e",
+    "type": "link out",
+    "z": "55e67bd3e4f94c9a",
+    "name": "link out 10",
+    "mode": "link",
+    "links": [
+      "db0ee15864de99ca"
+    ],
+    "x": 325,
+    "y": 100,
+    "wires": []
+  },
+  {
+    "id": "cf180dbcd550b118",
+    "type": "link out",
+    "z": "55e67bd3e4f94c9a",
+    "name": "link out 15",
+    "mode": "link",
+    "links": [
+      "db0ee15864de99ca"
+    ],
+    "x": 985,
+    "y": 480,
+    "wires": []
+  },
+  {
+    "id": "95f17244a08397ca",
+    "type": "ui-template",
+    "z": "55e67bd3e4f94c9a",
+    "group": "447b58f3ddb86ab6",
+    "page": "",
+    "ui": "",
+    "name": "Verify Delete",
+    "order": 3,
+    "width": 0,
+    "height": 0,
+    "head": "",
+    "format": "<template>\n    <v-dialog width=\"auto\" v-model=\"showDialog\">\n        <v-card color=\"white\" v-click-outside=\"{handler: onClickOutside}\">\n            <v-toolbar color=\"primary\">\n                <v-card-title>\n                    <span>Delete {{ name }}:{{tagId}}?</span>\n                </v-card-title>\n            </v-toolbar>\n            <v-container>\n                <v-card-actions class=\"justify-end\">\n                    <v-btn variant=\"elevated\" @click=\"okDialog\">{{ okText }}</v-btn>\n                    <v-btn variant=\"elevated\" @click=\"cancelDialog\">{{ cancelText }}</v-btn>\n                </v-card-actions>\n            </v-container>\n        </v-card>\n    </v-dialog>\n</template>\n\n<script>\n    export default {\n        data() {\n            return {\n                okText: 'Delete',\n                cancelText: 'Cancel',\n                showDialog: false,\n                name: '<undefined>',\n                tagId: '<undefined>'\n            }\n        },\n\n        watch: {},\n        \n        mounted() {\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n                if (this.msg.dialog){\n                    let dialog = this.msg.dialog\n                    this.showDialog = dialog.showDialog ?? false\n                    this.okText = dialog?.okText\n                    this.cancelText = dialog?.cancelText\n                }\n                if (this.msg.payload){\n                    let payload = this.msg.payload\n                    this.name = payload.name\n                    this.tagId = payload.tagId\n                }\n            })\n        },\n        methods: {\n            okDialog: function() {\n                this.showDialog = false\n                this.send(this.msg)\n\n            },\n            cancelDialog: function() {\n                this.msg.paylaod = {}\n                this.showDialog = false\n            }\n\n        }\n    }\n</script>\n",
+    "storeOutMessages": true,
+    "passthru": false,
+    "resendOnRefresh": true,
+    "templateScope": "local",
+    "className": "",
+    "x": 1190,
+    "y": 440,
+    "wires": [
+      [
+        "733e64a4e54121b8"
+      ]
+    ]
+  },
+  {
+    "id": "25e25012a3dc58c5",
+    "type": "change",
+    "z": "55e67bd3e4f94c9a",
+    "name": "Delete Verify",
+    "rules": [
+      {
+        "t": "set",
+        "p": "dialog.showDialog",
+        "pt": "msg",
+        "to": "true",
+        "tot": "bool"
+      },
+      {
+        "t": "set",
+        "p": "dialog.okText",
+        "pt": "msg",
+        "to": "Delete",
+        "tot": "str"
+      },
+      {
+        "t": "set",
+        "p": "dialog.cancelText",
+        "pt": "msg",
+        "to": "Cancel",
+        "tot": "str"
+      },
+      {
+        "t": "move",
+        "p": "payload[0]",
+        "pt": "msg",
+        "to": "payload",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1030,
+    "y": 440,
+    "wires": [
+      [
+        "95f17244a08397ca"
+      ]
+    ]
+  },
+  {
+    "id": "5a2226d788de7cae",
+    "type": "debug",
+    "z": "55e67bd3e4f94c9a",
+    "name": "debug 56",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 730,
+    "y": 580,
+    "wires": []
+  }
+]

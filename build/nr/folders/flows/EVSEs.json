@@ -1,0 +1,1742 @@
+[
+  {
+    "id": "217382551c48905d",
+    "type": "tab",
+    "label": "EVSEs",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "f740792ad0c8f5fd",
+    "type": "junction",
+    "z": "217382551c48905d",
+    "x": 1360,
+    "y": 180,
+    "wires": [
+      [
+        "9061953296c99fc7"
+      ]
+    ]
+  },
+  {
+    "id": "366db60c10403558",
+    "type": "redis-command",
+    "z": "217382551c48905d",
+    "server": "0430675ed6c7cd83",
+    "command": "SET",
+    "name": "",
+    "topic": "",
+    "params": "[]",
+    "paramsType": "json",
+    "payloadType": "json",
+    "block": false,
+    "x": 540,
+    "y": 560,
+    "wires": [
+      [
+        "1365105ad88ede6c",
+        "b04ff9b4a10e46b3"
+      ]
+    ]
+  },
+  {
+    "id": "1365105ad88ede6c",
+    "type": "debug",
+    "z": "217382551c48905d",
+    "name": "debug 2",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 680,
+    "y": 600,
+    "wires": []
+  },
+  {
+    "id": "6c962dc6f4338719",
+    "type": "inject",
+    "z": "217382551c48905d",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "evse:1",
+    "payload": "{\"cbId\":\"ChargionONE\",\"ports\":1,\"type\":\"DCFC\",\"amps\":40}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 520,
+    "wires": [
+      [
+        "a22435a838a7042d"
+      ]
+    ]
+  },
+  {
+    "id": "a22435a838a7042d",
+    "type": "json",
+    "z": "217382551c48905d",
+    "name": "",
+    "property": "payload",
+    "action": "",
+    "pretty": true,
+    "x": 370,
+    "y": 560,
+    "wires": [
+      [
+        "366db60c10403558"
+      ]
+    ]
+  },
+  {
+    "id": "cc105e30cbf544b1",
+    "type": "redis-command",
+    "z": "217382551c48905d",
+    "server": "0430675ed6c7cd83",
+    "command": "KEYS",
+    "name": "",
+    "topic": "",
+    "params": "[]",
+    "paramsType": "json",
+    "payloadType": "json",
+    "block": false,
+    "x": 360,
+    "y": 420,
+    "wires": [
+      [
+        "3381d09488bdd1f6",
+        "a25df1a5696fa43b"
+      ]
+    ]
+  },
+  {
+    "id": "3381d09488bdd1f6",
+    "type": "json",
+    "z": "217382551c48905d",
+    "name": "",
+    "property": "payload",
+    "action": "",
+    "pretty": true,
+    "x": 500,
+    "y": 420,
+    "wires": [
+      [
+        "0d19c3c9e4f2be19"
+      ]
+    ]
+  },
+  {
+    "id": "75bf5024ec62eb25",
+    "type": "inject",
+    "z": "217382551c48905d",
+    "name": "Inject List at Startup",
+    "props": [
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": true,
+    "onceDelay": "3",
+    "topic": "0",
+    "x": 160,
+    "y": 80,
+    "wires": [
+      [
+        "2f70c5015a5d4885"
+      ]
+    ]
+  },
+  {
+    "id": "0d19c3c9e4f2be19",
+    "type": "json",
+    "z": "217382551c48905d",
+    "name": "",
+    "property": "payload",
+    "action": "",
+    "pretty": false,
+    "x": 620,
+    "y": 420,
+    "wires": [
+      [
+        "f25b98ea7ace00e0"
+      ]
+    ]
+  },
+  {
+    "id": "7d7b852ff14ab0d0",
+    "type": "redis-command",
+    "z": "217382551c48905d",
+    "server": "0430675ed6c7cd83",
+    "command": "MGET",
+    "name": "",
+    "topic": "",
+    "params": "[]",
+    "paramsType": "json",
+    "payloadType": "json",
+    "block": false,
+    "x": 930,
+    "y": 420,
+    "wires": [
+      [
+        "928aa3eab1d807cf"
+      ]
+    ]
+  },
+  {
+    "id": "426241cfa981a02b",
+    "type": "redis-command",
+    "z": "217382551c48905d",
+    "server": "0430675ed6c7cd83",
+    "command": "DEL",
+    "name": "",
+    "topic": "",
+    "params": "",
+    "paramsType": "json",
+    "payloadType": "json",
+    "block": false,
+    "x": 1880,
+    "y": 460,
+    "wires": [
+      [
+        "d67d4f13803bc38a"
+      ]
+    ]
+  },
+  {
+    "id": "928aa3eab1d807cf",
+    "type": "function",
+    "z": "217382551c48905d",
+    "name": "function 1",
+    "func": "let evse\nlet evse_str\nlet evses = []\n\nmsg.payload.splice(0,1)\n\nmsg.payload.forEach(function(evse_str) {\n    evse = JSON.parse(evse_str)\n    evses.push(evse)\n})\nmsg.headers = [\n    { key: 'cbId', title: 'ChargeBox ID', align: 'start'},\n    { key: 'type', title: 'Type'},\n    { key: 'amps', title: 'Amps'},\n    { key: 'ports', title: 'Ports'},\n    { key: 'password', title: 'P/W'},\n    { key: 'lat', title: 'lat'},\n    { key: 'lon', title: 'lon'},\n    { key: 'group', title: 'Group'},\n    { key: 'lastcommtime'},\n    { key: 'actions', title: 'Action',align: 'end', sortable: false} \n]\nmsg.payload = evses\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1080,
+    "y": 420,
+    "wires": [
+      [
+        "ee41c358ac7c402f",
+        "40fe4278635a683c",
+        "a361a3233397f32f",
+        "3cf0aaa06cd6633b"
+      ]
+    ]
+  },
+  {
+    "id": "c5027bda20e0bca6",
+    "type": "function",
+    "z": "217382551c48905d",
+    "name": "Create Key",
+    "func": "let key = `evse:${msg.payload.cbId}`\nmsg.topic = key.toLowerCase()\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 190,
+    "y": 560,
+    "wires": [
+      [
+        "a22435a838a7042d"
+      ]
+    ]
+  },
+  {
+    "id": "ee41c358ac7c402f",
+    "type": "ui-template",
+    "z": "217382551c48905d",
+    "group": "1723c74d3f81385c",
+    "page": "",
+    "ui": "",
+    "name": "EVSE List",
+    "order": 1,
+    "width": 0,
+    "height": 0,
+    "head": "",
+    "format": "<template>\n    <v-toolbar flat>\n      <v-toolbar-title class=\"text-grey\">\n        Actions\n      </v-toolbar-title>\n\n      <v-spacer></v-spacer>\n\n      <v-tooltip text=\"Refresh\" location=\"bottom\">\n        <template v-slot:activator=\"{ props }\">\n          <v-btn icon v-bind=\"props\" @click=\"refresh\">\n            <v-icon>mdi-refresh</v-icon>\n          </v-btn>\n        </template>\n      </v-tooltip>\n\n      <v-tooltip text=\"New\" location=\"bottom\">\n        <template v-slot:activator=\"{ props }\">\n          <v-btn icon v-bind=\"props\" @click=\"addNew\">\n            <v-icon>mdi-ev-station</v-icon>\n          </v-btn>\n        </template>\n      </v-tooltip>\n\n    </v-toolbar>\n\n\n      <v-text-field\n        v-model=\"search\"\n        label=\"Search\"\n        prepend-inner-icon=\"mdi-magnify\"\n        variant=\"outlined\"\n        hide-details\n        single-line\n      ></v-text-field>\n\n    \n    <v-data-table  \n        :search=\"search\" \n        :items=\"msg?.payload\"\n        :headers=\"msg?.headers\"\n        v-model=\"selected\"\n        item-selectable=\"selectable\"\n        select-strategy=\"all\"\n        hide-select    \n        return-object>\n      <template v-slot:loading>\n        <v-skeleton-loader type=\"table-row@10\"></v-skeleton-loader>\n      </template>\n\n      <template v-slot:header.lastcommtime>\n        <div><v-icon icon=\"mdi-heart\" class=\"text-center\"></div>\n      </template>\n\n      <template v-slot:header.password>\n        <div class=\"text-center\">p/w</div>\n      </template>\n      <template v-slot:header.ports>\n        <div class=\"text-center\">Ports</div>\n      </template>\n      \n      <template v-slot:item.ports=\"{ item }\">\n        <div class=\"text-center header1\">\n          <v-text>{{ item.ports }}</v-text>\n        </div>\n      </template>\n      \n      <template v-slot:item.cbId=\"{ item }\">\n        <div>\n          <v-text>{{ item.cbId }} xyz</v-text>\n        </div>\n      </template>\n      <template v-slot:item.lat=\"{ item }\">\n        <div class=\"text-center\">\n          <v-text >{{ getShortLatLon(item.lat) }}</v-text>\n        </div>\n      </template>\n      <template v-slot:item.lon=\"{ item }\">\n        <div class=\"text-center\">\n          <v-text >{{ getShortLatLon(item.lon) }}</v-text>\n        </div>\n      </template>      \n\n      <template v-slot:item.password=\"{ item }\">\n        <div class=\"text-center\">\n          <v-icon v-if=\"item.password.length > 0\" color=\"green\" icon=\"mdi-checkbox-outline\"></v-icon>\n        </div>\n      </template>\n\n      <template v-slot:item.lastcommtime=\"{ item }\">\n        <div class=\"text-center\">\n          <v-icon :icon=\"getLastCommIcon(item)\" :color=\"getLastCommColor(item)\"></v-icon>\n        </div>\n      </template>\n      <template v-slot:item.amps=\"{ item }\">\n        <v-text>{{ item.amps }}A</v-chip>\n      </template>\n\n      <template v-slot:item.type=\"{ item }\">\n        <v-chip :color=\"getTypeColor(item)\">{{ item.type }}</v-chip>\n      </template>\n\n      <template v-slot:item.actions=\"{ item }\">\n        <v-icon v-if=\"getIsOnline(item)\"\n          class=\"me-2\"\n          size=\"small\"\n          @click=\"send({action: 'command', payload: [item]})\"\n        >\n          mdi-apps\n        </v-icon>\n        <v-icon\n          class=\"me-2\"\n          size=\"small\"\n          @click=\"send({action: 'edit', payload: [item]})\"\n        >\n          mdi-pencil\n        </v-icon>\n        <v-icon\n          size=\"small\"\n          @click=\"send({action: 'delete', payload: [item]})\"\n        >\n          mdi-delete\n        </v-icon>\n      </template>\n\n    </v-data-table>\n</template>\n\n<script>\n    export default {\n    data () {\n      return {\n        selected: [],\n        search: '',\n        multiSelected: 0,\n        heartbeat: 120,\n      }\n    },\n    watch: {\n        selected: function() {\n          this.multiSelected = this.selected.length\n        }\n    },\n    mounted() {\n      this.refresh()\n    },\n    methods: {\n      addNew() {\n        this.send({action: 'add', payload: [{ cbId: ''}]});\n        this.selected = [];\n        this.multiSelected = 0;\n      },\n      refresh() {\n        this.send({action: 'refresh', payload: [{}]});\n        this.selected = []\n        this.multiSelected = 0;\n      },\n      // expose a method to our <template> and Vue Application\n      getTypeColor: function(item) {\n        switch(item.type.toLowerCase()) {\n          case 'l1':\n          case 'level1':\n          case 'level 1':\n            return 'gray';\n            break;\n          case 'l2':\n          case 'level2':\n          case 'level 2':\n            return 'purple';\n            break;\n          case 'dcfc':\n          case 'dc':\n            return 'green';\n            break;\n          case 'xfc':\n          case 'hpc':\n            return 'blue';\n            break;\n          default:\n            return 'cyan';\n            break;\n        }\n      },\n\n      getLastCommIcon: function(item) {\n        if (Math.floor((Date.now() - item.lastcommtime) / 1000) > this.heartbeat ){\n          return \"mdi-heart-broken\"\n        }\n        else return \"mdi-heart-flash\"\n      },\n      getLastCommColor: function(item) {\n        if (Math.floor((Date.now() - item.lastcommtime) / 1000) > this.heartbeat ){\n          return \"grey\"\n        }\n        else return \"green\"\n      },\n      getLastCommClass: function(item) {\n        if (Math.floor((Date.now() - item.lastcommtime) / 1000) > this.heartbeat ){\n          return \"offline\"\n        }\n        else return \"online\"\n      },\n      getIsOnline: function(item) {\n        return (Math.floor((Date.now() - item.lastcommtime) / 1000) <= this.heartbeat)\n      },\n      getShortLatLon: function(latlon){\n        if (latlon){\n          return (Math.floor(Number(latlon) * 100)/ 100)\n        }\n      }\n    }  \n  }\n</script>\n\n<style>\n\n  .online {\n    font-weight: bold;\n    color: green;\n  }\n  .offline {\n    color: grey;\n  }\n  .header1 {\n    font-weight: bolder;\n  }\n</style>",
+    "storeOutMessages": true,
+    "passthru": false,
+    "resendOnRefresh": true,
+    "templateScope": "local",
+    "className": "",
+    "x": 1230,
+    "y": 380,
+    "wires": [
+      [
+        "cdfaf0ad88e1c53d"
+      ]
+    ]
+  },
+  {
+    "id": "cb4389b379c7a461",
+    "type": "ui-template",
+    "z": "217382551c48905d",
+    "group": "276c45fccf8e6765",
+    "page": "",
+    "ui": "",
+    "name": "Edit Dialog",
+    "order": 4,
+    "width": "0",
+    "height": "0",
+    "head": "",
+    "format": "<template>\n    <v-dialog width=\"50%\" v-model=\"showDialog\">\n        <v-card color=\"white\" v-click-outside=\"{handler: onClickOutside}\">\n            <v-toolbar color=\"primary\">\n                <v-card-title>\n                    <span>{{ title }}</span>\n                </v-card-title>\n            </v-toolbar>\n            <v-container>\n                <v-text-field\n                    v-model=\"cbid\"\n                    label=\"Chargebox ID\"\n                    type=\"text\"\n                    :readonly=\"getReadOnly()\"\n                    hint=\"Provide a unique chargebox name\"\n                ></v-text-field>\n                <v-text-field\n                    v-model=\"evseType\"\n                    label=\"Type\"\n                    type=\"text\"\n                    hint=\"example: L2 or DCFC\"\n                ></v-text-field>\n                <v-text-field\n                    v-model=\"ports\"\n                    label=\"Connectors\"\n                    type=\"number\"\n                    hint=\"Number of connectors/ports\"\n                ></v-text-field>\n                <v-text-field\n                    v-model=\"amps\"\n                    label=\"Amperage\"\n                    type=\"number\"\n                    suffix=\"Amps\"\n                    hint=\"Example: 40\"\n                ></v-text-field>\n                <v-text-field\n                    v-model=\"password\"\n                    label=\"Password\"\n                    type=\"password\"\n                    placeholder=\"<optional>\"\n                    hint=\"Enter a password if using basic auth\"\n                ></v-text-field>\n                <v-text-field\n                    v-model=\"lat\"\n                    label=\"latitude\"\n                    type=\"number\"\n                    placeholder=\"<optional>\"\n                    hint=\"Enter location latiitude\"\n                ></v-text-field>\n               <v-text-field\n                    v-model=\"lon\"\n                    label=\"longitude\"\n                    type=\"number\"\n                    placeholder=\"<optional>\"\n                    hint=\"Enter location longitude\"\n                ></v-text-field>               <v-text-field\n                    v-model=\"group\"\n                    label=\"Group\"\n                    type=\"number\"\n                    placeholder=\"<optional>\"\n                    hint=\"Enter EVSE group\"\n                ></v-text-field>\n                <v-card-actions class=\"justify-end\">\n                    <v-btn variant=\"elevated\" @click=\"okDialog\">{{ okText }}</v-btn>\n                    <v-btn variant=\"elevated\" @click=\"cancelDialog\">{{ cancelText }}</v-btn>\n                </v-card-actions>\n            </v-container>\n        </v-card>\n    </v-dialog>\n</template>\n\n<script>\n    export default {\n        data() {\n            return {\n                cbid: '',\n                ports: 1,\n                amps: 30,\n                evseType: 'L2',\n                password: '',\n                lat: '',\n                lon: '',\n                group: '',\n                lastcommtime: '',\n                newEdit: \"New\",\n                title: \"\",\n                showDialog: false,\n                okText: \"OK\",\n                cancelText: \"Cancel\"\n            }\n        },\n        watch: {\n            \n\n        },\n\n        computed: {\n            // automatically compute this variable\n            // whenever VueJS deems appropriate\n            \n        },\n        mounted: {\n            //this.showDialog = false\n        },\n        unmounted: {\n            //this.showDialog = false\n        },\n        methods: {\n            // expose a method to our <template> and Vue Application\n            sendevsedata: function() {\n                this.send({\n                    payload: {\n                        cbId: this.cbid,\n                        type: this.evseType,\n                        amps: this.amps,\n                        ports: this.ports,\n                        password: this.password,\n                        lat: this.lat,\n                        lon: this.lon,\n                        group: this.group,\n                        lastcommtime: this.lastcommtime || Math.floor(Date.now() / 1000)\n                    }\n                })\n            },\n            okDialog: function() {\n                this.sendevsedata()\n                this.showDialog = false\n            },\n            cancelDialog: function() {\n                this.msg.payload = {}\n                this.showDialog = false\n            },\n            onClickOutside: function() {\n                this.msg.payload = {}\n                this.showDialog = false\n            },\n            getReadOnly: function() {\n                return (this.newEdit == \"New\") ? false : true\n            }\n\n        },\n        mounted() {\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n            // do stuff with msg\n            // runs only when messages are received\n                if (this.msg.payload){\n                    let payload = this.msg.payload\n                    this.ports = payload.ports\n                    this.cbid = payload.cbId\n                    this.amps = payload.amps\n                    this.evseType = payload.type\n                    this.password = payload.password\n                    this.lat = payload.lat\n                    this.lon = payload.lon\n                    this.group = payload.group\n                    this.lastcommtime = payload.lastcommtime ?? Math.floor(Date.now() / 1000);\n                }\n                if (this.msg.dialog){\n                    let dialog = this.msg.dialog\n                    this.showDialog = dialog.showDialog\n                    this.okText = dialog.okText ?? \"OK\"\n                    this.cancelText = dialog.cancelText ?? \"Cancel\"\n                    this.showDialog = dialog.showDialog ?? false\n                    this.title = dialog.title ?? \"EVSE\"\n                    this.newEdit = dialog.newEdit ?? \"New\"\n                }\n            })\n        },\n   }\n</script>\n",
+    "storeOutMessages": true,
+    "passthru": false,
+    "resendOnRefresh": true,
+    "templateScope": "local",
+    "className": "",
+    "x": 310,
+    "y": 140,
+    "wires": [
+      [
+        "f02867b7f09b0ad1",
+        "c1ed374a1bace4de"
+      ]
+    ]
+  },
+  {
+    "id": "c1ed374a1bace4de",
+    "type": "link out",
+    "z": "217382551c48905d",
+    "name": "link out 1",
+    "mode": "link",
+    "links": [
+      "9309e7f51ccc6c6c",
+      "9405f117efca5faf",
+      "19a1d55d0ad937f5"
+    ],
+    "x": 455,
+    "y": 140,
+    "wires": []
+  },
+  {
+    "id": "9309e7f51ccc6c6c",
+    "type": "link in",
+    "z": "217382551c48905d",
+    "name": "Edit EVSE",
+    "links": [
+      "c1ed374a1bace4de"
+    ],
+    "x": 65,
+    "y": 560,
+    "wires": [
+      [
+        "c5027bda20e0bca6"
+      ]
+    ]
+  },
+  {
+    "id": "19a1d55d0ad937f5",
+    "type": "link in",
+    "z": "217382551c48905d",
+    "name": "Refresh EVSE List",
+    "links": [
+      "b04ff9b4a10e46b3",
+      "d67d4f13803bc38a",
+      "2f70c5015a5d4885",
+      "a20667f00c1262ba",
+      "a1f721f1a03c965a",
+      "c1ed374a1bace4de"
+    ],
+    "x": 65,
+    "y": 420,
+    "wires": [
+      [
+        "bd34c2295601f999"
+      ]
+    ]
+  },
+  {
+    "id": "b04ff9b4a10e46b3",
+    "type": "link out",
+    "z": "217382551c48905d",
+    "name": "link out 2",
+    "mode": "link",
+    "links": [
+      "19a1d55d0ad937f5"
+    ],
+    "x": 685,
+    "y": 540,
+    "wires": []
+  },
+  {
+    "id": "cdfaf0ad88e1c53d",
+    "type": "switch",
+    "z": "217382551c48905d",
+    "name": "",
+    "property": "action",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "add",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "edit",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "delete",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "command",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "refresh",
+        "vt": "str"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 5,
+    "x": 1360,
+    "y": 380,
+    "wires": [
+      [
+        "153896150836a241"
+      ],
+      [
+        "2df63633a3901591"
+      ],
+      [
+        "d9db7aa7fbab290f"
+      ],
+      [
+        "7bc827572072b785"
+      ],
+      [
+        "a20667f00c1262ba"
+      ]
+    ]
+  },
+  {
+    "id": "639178f5d96d873a",
+    "type": "debug",
+    "z": "217382551c48905d",
+    "name": "debug 10",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1700,
+    "y": 440,
+    "wires": []
+  },
+  {
+    "id": "d67d4f13803bc38a",
+    "type": "link out",
+    "z": "217382551c48905d",
+    "name": "link out 3",
+    "mode": "link",
+    "links": [
+      "19a1d55d0ad937f5"
+    ],
+    "x": 1975,
+    "y": 460,
+    "wires": []
+  },
+  {
+    "id": "96ac685aafead6da",
+    "type": "change",
+    "z": "217382551c48905d",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "payload[0]",
+        "tot": "msg"
+      },
+      {
+        "t": "set",
+        "p": "dialog.showDialog",
+        "pt": "msg",
+        "to": "true",
+        "tot": "bool"
+      },
+      {
+        "t": "set",
+        "p": "dialog.cancelText",
+        "pt": "msg",
+        "to": "Cancel",
+        "tot": "str"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1740,
+    "y": 340,
+    "wires": [
+      [
+        "8c62605df95e3ac2",
+        "f305a66a592946cc"
+      ]
+    ]
+  },
+  {
+    "id": "6563370d3a461ac1",
+    "type": "ui-template",
+    "z": "217382551c48905d",
+    "group": "276c45fccf8e6765",
+    "page": "",
+    "ui": "",
+    "name": "EVSE Commands Dialog",
+    "order": 5,
+    "width": 0,
+    "height": 0,
+    "head": "",
+    "format": "<template>\n    <v-dialog width=\"auto\" v-model=\"showDialog\">\n        <v-card color=\"white\" v-click-outside=\"{handler: onClickOutside}\" >\n            <v-toolbar color=\"primary\">\n                <v-card-title>\n                    <span>{{ title }}</span>\n                </v-card-title>\n            </v-toolbar>\n            <v-container>\n                                <v-row>\n                <v-col cols=\"12\">\n                    <v-card \n                        :title=\"this.cbId\"\n                        prepend-icon=\"mdi-ev-station\"\n                        subtitle=\"Commands will be sent to this EVSE\">\n                    </v-card>\n                </v-col>\n                </v-row>\n                                <v-row>\n                <v-col cols=\"6\">\n                    <v-btn block \n                        prepend-icon=\"mdi-lock-open\" \n                        color=\"primary\" \n                        @click=\"sendCmd('UnlockConnector')\"\n                        >\n                        Unlock Connector\n                    </v-btn>\n                </v-col>\n                <v-col cols=\"6\">\n                    <v-btn block \n                        prepend-icon=\"mdi-pause-octagon-outline\" \n                        color=\"primary\" \n                        @click=\"sendCmd('ChangeAvailability')\"\n                        >\n                        Change Availability\n                    </v-btn>\n                </v-col>\n                </v-row>\n                <v-row>\n                <v-col cols=\"6\">\n                    <v-btn block prepend-icon=\"mdi-play-circle-outline\" color=\"primary\" @click=\"sendCmd('RemoteStartTransaction')\">Remote Start Transaction</v-btn>\n                </v-col>\n                <v-col cols=\"6\">\n                    <v-btn block prepend-icon=\"mdi-stop-circle-outline\" color=\"primary\" @click=\"sendCmd('RemoteStopTransaction')\">Remote Stop Transaction</v-btn>\n                </v-col>\n                </v-row>\n                <v-row>\n                <v-col cols=\"6\">\n                    <v-btn block prepend-icon=\"mdi-hammer-screwdriver\" color=\"primary\" @click=\"sendCmd('TriggerMessage')\">Trigger Message</v-btn>\n                </v-col>\n                <v-col cols=\"6\">\n                    <v-btn block prepend-icon=\"mdi-cog-counterclockwise\" color=\"primary\" @click=\"sendCmd('ClearCache',{})\">Clear Cache</v-btn>\n                </v-col>\n                </v-row>                                        \n                <v-row>\n                <v-col cols=\"6\">\n                    <v-btn block prepend-icon=\"mdi-power-plug-outline\" color=\"primary\" @click=\"sendCmd('Reset',{ type: 'Soft'})\">Soft Reset</v-btn>\n                </v-col>\n                <v-col cols=\"6\">\n                    <v-btn block prepend-icon=\"mdi-power-plug\" color=\"primary\" @click=\"sendCmd('Reset',{ type: 'Hard'} )\">Hard Reset</v-btn>\n                </v-col>\n                </v-row>\n                <v-row>\n                    <v-col cols=\"12\">\n                    <v-btn block variant=\"elevated\" color=\"secondary\" @click=\"closeDialog()\">Close</v-btn>\n                </v-col>                                        \n\n            </v-container>\n        </v-card>\n    </v-dialog>                \n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                cbId: '',\n                ports: 1,\n                showDialog: false,\n                title: 'Send OCPP Commands'\n            }\n        },\n        watch: {  \n        },\n\n        computed: {\n            // automatically compute this variable\n            // whenever VueJS deems appropriate\n\n        },\n        methods: {\n            // expose a method to our <template> and Vue Application\n\n            sendCmd: function(command, data=0){\n                let payload = {\n                    cbId: this.cbId,\n                    command: command\n                }\n\n                if (data != 0) {\n                    payload.data = data\n                }\n\n                this.send({\n                    payload\n                })\n            },\n            closeDialog: function() {\n                let payload = {\n                    command: \"closeDialog\"\n                }\n                this.send({payload})\n                this.showDialog = false\n            }\n\n        },\n        mounted() {\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n                if (this.msg.payload){\n                let payload = this.msg.payload\n                this.cbId = payload.cbId\n                this.ports = payload.ports\n                }\n                \n                if (this.msg.dialog) {\n                let dialog = this.msg.dialog\n                this.showDialog = dialog.showDialog\n                this.closeText = dialog.closeText\n                this.title = dialog.title ?? 'Send OCPP Commands'\n                }\n            })\n        },\n   }\n</script>\n",
+    "storeOutMessages": true,
+    "passthru": false,
+    "resendOnRefresh": true,
+    "templateScope": "local",
+    "className": "",
+    "x": 410,
+    "y": 220,
+    "wires": [
+      [
+        "abdf3b3fe821405d",
+        "b89d3bee61c371a8"
+      ]
+    ]
+  },
+  {
+    "id": "67831ed4d8bdfde1",
+    "type": "change",
+    "z": "217382551c48905d",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "payload[0]",
+        "tot": "msg"
+      },
+      {
+        "t": "set",
+        "p": "dialog.showDialog",
+        "pt": "msg",
+        "to": "true",
+        "tot": "bool"
+      },
+      {
+        "t": "set",
+        "p": "dialog.title",
+        "pt": "msg",
+        "to": "EVSE Commands",
+        "tot": "str"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 200,
+    "y": 220,
+    "wires": [
+      [
+        "6563370d3a461ac1"
+      ]
+    ]
+  },
+  {
+    "id": "bd34c2295601f999",
+    "type": "function",
+    "z": "217382551c48905d",
+    "name": "Scan evse tags",
+    "func": "msg = {}\nmsg.payload = \"evse:*\"\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 180,
+    "y": 420,
+    "wires": [
+      [
+        "cc105e30cbf544b1"
+      ]
+    ]
+  },
+  {
+    "id": "f25b98ea7ace00e0",
+    "type": "change",
+    "z": "217382551c48905d",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "topic",
+        "pt": "msg",
+        "to": "getevses",
+        "tot": "str"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 770,
+    "y": 420,
+    "wires": [
+      [
+        "7d7b852ff14ab0d0"
+      ]
+    ]
+  },
+  {
+    "id": "40fe4278635a683c",
+    "type": "link out",
+    "z": "217382551c48905d",
+    "name": "link out 7",
+    "mode": "link",
+    "links": [
+      "801901d267859d27"
+    ],
+    "x": 1245,
+    "y": 440,
+    "wires": []
+  },
+  {
+    "id": "abdf3b3fe821405d",
+    "type": "debug",
+    "z": "217382551c48905d",
+    "name": "debug 29",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 600,
+    "y": 260,
+    "wires": []
+  },
+  {
+    "id": "82c7dc438bcf613e",
+    "type": "link out",
+    "z": "217382551c48905d",
+    "name": "OCPP Cmd Out",
+    "mode": "link",
+    "links": [
+      "14970b0433fc1816",
+      "9405f117efca5faf"
+    ],
+    "x": 1425,
+    "y": 80,
+    "wires": []
+  },
+  {
+    "id": "2f70c5015a5d4885",
+    "type": "link out",
+    "z": "217382551c48905d",
+    "name": "link out 11",
+    "mode": "link",
+    "links": [
+      "19a1d55d0ad937f5"
+    ],
+    "x": 285,
+    "y": 80,
+    "wires": []
+  },
+  {
+    "id": "56ecdf3e1e7ccd5a",
+    "type": "link in",
+    "z": "217382551c48905d",
+    "name": "Edit TagInfo",
+    "links": [
+      "8c62605df95e3ac2"
+    ],
+    "x": 45,
+    "y": 140,
+    "wires": [
+      [
+        "a15783afb2f690dc"
+      ]
+    ]
+  },
+  {
+    "id": "8c62605df95e3ac2",
+    "type": "link out",
+    "z": "217382551c48905d",
+    "name": "link out 12",
+    "mode": "link",
+    "links": [
+      "56ecdf3e1e7ccd5a",
+      "abd4fc7cece76024"
+    ],
+    "x": 1855,
+    "y": 340,
+    "wires": []
+  },
+  {
+    "id": "bc68a668b062814c",
+    "type": "link in",
+    "z": "217382551c48905d",
+    "name": "Open EVSE Commands",
+    "links": [
+      "7bc827572072b785"
+    ],
+    "x": 45,
+    "y": 220,
+    "wires": [
+      [
+        "f813f3d81530033f"
+      ]
+    ]
+  },
+  {
+    "id": "7bc827572072b785",
+    "type": "link out",
+    "z": "217382551c48905d",
+    "name": "link out 13",
+    "mode": "link",
+    "links": [
+      "abd4fc7cece76024",
+      "bc68a668b062814c"
+    ],
+    "x": 1505,
+    "y": 440,
+    "wires": []
+  },
+  {
+    "id": "f02867b7f09b0ad1",
+    "type": "debug",
+    "z": "217382551c48905d",
+    "name": "debug 32",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 430,
+    "y": 60,
+    "wires": []
+  },
+  {
+    "id": "153896150836a241",
+    "type": "change",
+    "z": "217382551c48905d",
+    "name": "Add",
+    "rules": [
+      {
+        "t": "set",
+        "p": "dialog",
+        "pt": "msg",
+        "to": "{}",
+        "tot": "json"
+      },
+      {
+        "t": "set",
+        "p": "dialog.title",
+        "pt": "msg",
+        "to": "Add New EVSE",
+        "tot": "str"
+      },
+      {
+        "t": "set",
+        "p": "dialog.newEdit",
+        "pt": "msg",
+        "to": "New",
+        "tot": "str"
+      },
+      {
+        "t": "set",
+        "p": "dialog.okText",
+        "pt": "msg",
+        "to": "Add",
+        "tot": "str"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1510,
+    "y": 320,
+    "wires": [
+      [
+        "96ac685aafead6da"
+      ]
+    ]
+  },
+  {
+    "id": "2df63633a3901591",
+    "type": "change",
+    "z": "217382551c48905d",
+    "name": "Edit",
+    "rules": [
+      {
+        "t": "set",
+        "p": "dialog.title",
+        "pt": "msg",
+        "to": "Edit EVSE",
+        "tot": "str"
+      },
+      {
+        "t": "set",
+        "p": "dialog.newEdit",
+        "pt": "msg",
+        "to": "Edit",
+        "tot": "str"
+      },
+      {
+        "t": "set",
+        "p": "dialog.okText",
+        "pt": "msg",
+        "to": "Update",
+        "tot": "str"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1510,
+    "y": 360,
+    "wires": [
+      [
+        "96ac685aafead6da"
+      ]
+    ]
+  },
+  {
+    "id": "f305a66a592946cc",
+    "type": "debug",
+    "z": "217382551c48905d",
+    "name": "debug 33",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1900,
+    "y": 280,
+    "wires": []
+  },
+  {
+    "id": "4ff6ccb2ddf56bba",
+    "type": "ui-template",
+    "z": "217382551c48905d",
+    "group": "276c45fccf8e6765",
+    "page": "",
+    "ui": "",
+    "name": "Unlock Connector",
+    "order": 6,
+    "width": 0,
+    "height": 0,
+    "head": "",
+    "format": "<template>\n    <v-dialog width=\"auto\" v-model=\"showDialog\">\n        <v-card color=\"white\" v-click-outside=\"{handler: onClickOutside}\">\n            <v-toolbar color=\"primary\">\n                <v-card-title>\n                    <span>{{ cbId }}: Unlock Connector</span>\n                </v-card-title>\n            </v-toolbar>\n            <v-container>\n                <v-text-field\n                    v-model=\"connector\"\n                    label=\"Connector ID\"\n                    type=\"number\"\n                    hint=\"Connector ID to unlock\"\n                ></v-text-field>\n            </v-container>\n            <v-card-actions class=\"justify-end\">\n                <v-btn variant=\"elevated\" @click=\"okDialog\">{{ okText }}</v-btn>\n                <v-btn variant=\"elevated\" @click=\"cancelDialog\">{{ cancelText }}</v-btn>\n            </v-card-actions>\n        </v-card>\n    </v-dialog>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                connector: 1,\n                showDialog: false,\n                cbId: 'xyzzz',\n                okText: 'OK',\n                cancelText: 'Cancel',\n                command: 'unlockConnecotor'\n            }\n        },\n\n        watch: {},\n        mounted() {\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n                if (this.msg.dialog){\n                    let dialog = this.msg.dialog\n                    this.showDialog = dialog.showDialog ?? false\n                    this.okText = dialog.okText ?? \"OK\"\n                    this.cancelText = dialog.cancelText ?? \"Cancel\"\n                }\n                if (this.msg.payload){\n                    this.cbId = this.msg.payload.cbId\n                    this.command = this.msg.payload.command\n\n                }\n            })\n        },\n        methods: {\n            okDialog: function() {\n                this.showDialog = false\n                this.send({\n                    payload: {\n                        cbId: this.cbId,\n                        data: {\n                            connector: this.connector\n                        },\n                        command: this.command\n                    }\n                })\n\n            },\n            cancelDialog: function() {\n                this.msg.paylaod = {}\n                this.showDialog = false\n                \n            }\n\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: red;\n    }\n</style>",
+    "storeOutMessages": true,
+    "passthru": false,
+    "resendOnRefresh": true,
+    "templateScope": "local",
+    "className": "",
+    "x": 1230,
+    "y": 120,
+    "wires": [
+      [
+        "f740792ad0c8f5fd"
+      ]
+    ]
+  },
+  {
+    "id": "f024c7fc32d8d05e",
+    "type": "switch",
+    "z": "217382551c48905d",
+    "name": "Switch Command",
+    "property": "payload.command",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "TriggerMessage",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "UnlockConnector",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "ChangeAvailability",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "RemoteStartTransaction",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "RemoteStopTransaction",
+        "vt": "str"
+      },
+      {
+        "t": "else"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 6,
+    "x": 810,
+    "y": 220,
+    "wires": [
+      [
+        "297ebea211c663ac"
+      ],
+      [
+        "4ff6ccb2ddf56bba"
+      ],
+      [
+        "c84ee996687096fe"
+      ],
+      [
+        "35448e49dfc5fde2"
+      ],
+      [
+        "f5a99899b46e0e63"
+      ],
+      [
+        "c36b63f7c3de6924",
+        "f740792ad0c8f5fd",
+        "5e3e9b161183e7fa"
+      ]
+    ]
+  },
+  {
+    "id": "297ebea211c663ac",
+    "type": "ui-template",
+    "z": "217382551c48905d",
+    "group": "276c45fccf8e6765",
+    "page": "",
+    "ui": "",
+    "name": "Trigger Msg",
+    "order": 3,
+    "width": 0,
+    "height": 0,
+    "head": "",
+    "format": "<template>\n    <v-dialog width=\"auto\" v-model=\"showDialog\">\n        <v-card color=\"white\" v-click-outside=\"{handler: onClickOutside}\">\n            <v-toolbar color=\"primary\">\n                <v-card-title>\n                    <span>{{ cbId }}: Trigger Msg</span>\n                </v-card-title>\n            </v-toolbar>\n            <v-container>\n                <v-text-field \n                    v-model=\"connectorId\" \n                    label=\"Connector ID\" \n                    type=\"number\" \n                    hint=\"Connector ID\"\n                >\n                </v-text-field>\n                <v-select \n                    v-model=\"requestedMessage\" \n                    label=\"Command\"\n                    :items='requestedMessages'\n                    hint=\"OCPP Trigger Message\">\n                </v-select>            \n            </v-container>\n            <v-card-actions class=\"justify-end\">\n                <v-btn variant=\"elevated\" @click=\"okDialog\">{{ okText }}</v-btn>\n                <v-btn variant=\"elevated\" @click=\"cancelDialog\">{{ cancelText }}</v-btn>\n            </v-card-actions>\n        </v-card>\n    </v-dialog>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                connectorId: 1,\n                showDialog: false,\n                cbId: 'xyzzz',\n                okText: 'OK',\n                cancelText: 'Cancel',\n                requestedMessages: ['BootNotification','DiagnosticStatusNotification','FirmwareStatusNotification','Heartbeat','MeterValues','StatusNotification'] ,\n                requestedMessage: 'StatusNotification',\n                command: 'TriggerMessage',\n                trigger: 'StatusNotification'\n            }\n        },\n\n        watch: {},\n        mounted() {\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n            \n                if (this.msg.dialog){\n                    let dialog = this.msg.dialog\n                    this.showDialog = dialog.showDialog ?? false\n                    this.okText = dialog.okText ?? \"OK\"\n                    this.cancelText = dialog.cancelText ?? \"Cancel\"\n                }\n                if (this.msg.payload){\n                    this.cbId = this.msg.payload.cbId\n                    this.command = this.msg.payload.command\n\n                }\n            })\n        },\n        methods: {\n            okDialog: function() {\n                this.showDialog = false\n                this.send({\n                    payload: {\n                        cbId: this.cbId,\n                        connectorId: this.connectorId,\n                        command: this.command,\n                        requestedMessage: this.requestedMessage\n                    }\n                })\n\n            },\n            cancelDialog: function() {\n                this.msg.paylaod = {}\n                this.showDialog = false\n                \n            }\n\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: red;\n    }\n</style>",
+    "storeOutMessages": true,
+    "passthru": false,
+    "resendOnRefresh": true,
+    "templateScope": "local",
+    "className": "",
+    "x": 1210,
+    "y": 80,
+    "wires": [
+      [
+        "82c7dc438bcf613e"
+      ]
+    ]
+  },
+  {
+    "id": "f4550ea4a5f41146",
+    "type": "ui-template",
+    "z": "217382551c48905d",
+    "group": "276c45fccf8e6765",
+    "page": "",
+    "ui": "",
+    "name": "Remote Start Tx",
+    "order": 1,
+    "width": 0,
+    "height": 0,
+    "head": "",
+    "format": "<template>\n    <v-dialog width=\"auto\" v-model=\"showDialog\">\n        <v-card color=\"white\" v-click-outside=\"{handler: onClickOutside}\">\n            <v-toolbar color=\"primary\">\n                <v-card-title>\n                    <span>{{ cbId }}: Remote Start Transaction</span>\n                </v-card-title>\n            </v-toolbar>\n            <v-container>\n                <v-text-field\n                    v-model=\"connector\"\n                    label=\"Connector ID\"\n                    type=\"number\"\n                    hint=\"Connector ID to start transaction on\"\n                ></v-text-field>\n                <v-select \n                    v-model=\"option\" \n                    label=\"tagId\"\n                    :items='options'\n                    hint=\"TokenID\">\n                </v-select>            \n            </v-container>\n            <v-card-actions class=\"justify-end\">\n                <v-btn variant=\"elevated\" @click=\"okDialog\">{{ okText }}</v-btn>\n                <v-btn variant=\"elevated\" @click=\"cancelDialog\">{{ cancelText }}</v-btn>\n            </v-card-actions>\n        </v-card>\n    </v-dialog>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                connector: 1,\n                cbId: 'xyzzz',\n                option: '',\n                options: [],\n                okText: 'OK',\n                showDialog: false,\n                cancelText: 'Cancel',\n                command: 'RemoteStartTransaction'                \n\n            }\n        },\n        mounted() {\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n            \n                if (this.msg.dialog){\n                    let dialog = this.msg.dialog\n                    this.showDialog = dialog.showDialog ?? false\n                    this.okText = dialog.okText ?? \"OK\"\n                    this.cancelText = dialog.cancelText ?? \"Cancel\"\n                }\n                if (this.msg.payload){\n                    this.cbId = this.msg.payload.cbId\n                    this.command = this.msg.payload.command\n\n                }\n                if (this.msg.tags){\n                    this.options = this.msg.tags\n                }\n            })\n        },\n        methods: {\n            okDialog: function() {\n                this.showDialog = false\n                this.send({\n                    payload: {\n                        cbId: this.cbId,\n                        data: {\n                            connectorId: this.connector,\n                            tagId: this.option,\n                        },\n                        command: this.command\n                    }\n                })\n\n            },\n            cancelDialog: function() {\n                this.msg.paylaod = {}\n                this.showDialog = false\n                \n            }\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: red;\n    }\n</style>",
+    "storeOutMessages": true,
+    "passthru": false,
+    "resendOnRefresh": true,
+    "templateScope": "local",
+    "className": "",
+    "x": 1500,
+    "y": 220,
+    "wires": [
+      [
+        "3303c9688b7cce62",
+        "9061953296c99fc7"
+      ]
+    ]
+  },
+  {
+    "id": "f5a99899b46e0e63",
+    "type": "ui-template",
+    "z": "217382551c48905d",
+    "group": "276c45fccf8e6765",
+    "page": "",
+    "ui": "",
+    "name": "Remote Stop Tx",
+    "order": 2,
+    "width": 0,
+    "height": 0,
+    "head": "",
+    "format": "<template>\n    <v-dialog width=\"auto\" v-model=\"showDialog\">\n        <v-card color=\"white\" v-click-outside=\"{handler: onClickOutside}\">\n            <v-toolbar color=\"primary\">\n                <v-card-title>\n                    <span>{{ cbId }}: Remote Start Transaction</span>\n                </v-card-title>\n            </v-toolbar>\n            <v-container>\n                <v-text-field\n                    v-model=\"transactionId\"\n                    label=\"Transaction ID\"\n                    type=\"number\"\n                    hint=\"Transaction ID to session to stop\"\n                ></v-text-field>\n            </v-container>\n            <v-card-actions class=\"justify-end\">\n                <v-btn variant=\"elevated\" @click=\"okDialog\">{{ okText }}</v-btn>\n                <v-btn variant=\"elevated\" @click=\"cancelDialog\">{{ cancelText }}</v-btn>\n            </v-card-actions>\n        </v-card>\n    </v-dialog>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                transactionId: 0,\n                cbId: 'xyzzz',\n                option: '',\n                options: [],\n                okText: 'OK',\n                showDialog: false,\n                cancelText: 'Cancel',\n                command: 'RemoteStopTransaction'                \n\n            }\n        },\n        mounted() {\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n            \n                if (this.msg.dialog){\n                    let dialog = this.msg.dialog\n                    this.showDialog = dialog.showDialog ?? false\n                    this.okText = dialog.okText ?? \"OK\"\n                    this.cancelText = dialog.cancelText ?? \"Cancel\"\n                }\n                if (this.msg.payload){\n                    this.cbId = this.msg.payload.cbId\n                    this.command = this.msg.payload.command\n\n                }\n             })\n        },\n        methods: {\n            okDialog: function() {\n                this.showDialog = false\n                this.send({\n                    payload: {\n                        cbId: this.cbId,\n                        data: {\n                            transactionId: this.transactionId\n                        },\n                        command: this.command\n                    }\n                })\n\n            },\n            cancelDialog: function() {\n                this.msg.paylaod = {}\n                this.showDialog = false\n                \n            }\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: red;\n    }\n</style>",
+    "storeOutMessages": true,
+    "passthru": false,
+    "resendOnRefresh": true,
+    "templateScope": "local",
+    "className": "",
+    "x": 1220,
+    "y": 260,
+    "wires": [
+      [
+        "485897ecb288f5b2"
+      ]
+    ]
+  },
+  {
+    "id": "b89d3bee61c371a8",
+    "type": "change",
+    "z": "217382551c48905d",
+    "name": "showDialog",
+    "rules": [
+      {
+        "t": "set",
+        "p": "dialog.showDialog",
+        "pt": "msg",
+        "to": "true",
+        "tot": "bool"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 610,
+    "y": 220,
+    "wires": [
+      [
+        "f024c7fc32d8d05e"
+      ]
+    ]
+  },
+  {
+    "id": "a20667f00c1262ba",
+    "type": "link out",
+    "z": "217382551c48905d",
+    "name": "link out 14",
+    "mode": "link",
+    "links": [
+      "19a1d55d0ad937f5"
+    ],
+    "x": 1505,
+    "y": 480,
+    "wires": []
+  },
+  {
+    "id": "c84ee996687096fe",
+    "type": "ui-template",
+    "z": "217382551c48905d",
+    "group": "276c45fccf8e6765",
+    "page": "",
+    "ui": "",
+    "name": "Change Avail",
+    "order": 8,
+    "width": 0,
+    "height": 0,
+    "head": "",
+    "format": "<template>\n    <v-dialog width=\"auto\" v-model=\"showDialog\">\n        <v-card color=\"white\" v-click-outside=\"{handler: onClickOutside}\">\n            <v-toolbar color=\"primary\">\n                <v-card-title>\n                    <span>{{ cbId }}: Change Availability</span>\n                </v-card-title>\n            </v-toolbar>\n            <v-container>\n                <v-text-field\n                    v-model=\"connector\"\n                    label=\"Connector ID\"\n                    type=\"number\"\n                    hint=\"Connector ID to unlock\"\n                ></v-text-field>\n                <v-select \n                    v-model=\"option\" \n                    label=\"Availability\"\n                    :items='options'\n                    hint=\"OCPP Trigger Message\">\n                </v-select>            \n            </v-container>\n            <v-card-actions class=\"justify-end\">\n                <v-btn variant=\"elevated\" @click=\"okDialog\">{{ okText }}</v-btn>\n                <v-btn variant=\"elevated\" @click=\"cancelDialog\">{{ cancelText }}</v-btn>\n            </v-card-actions>\n        </v-card>\n    </v-dialog>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                connector: 1,\n                cbId: 'xyzzz',\n                option: 'Operative',\n                options: ['Operative','Inoperative'],\n                okText: 'OK',\n                showDialog: false,\n                cancelText: 'Cancel',\n                command: 'ChangeAvailability'\n            }\n        },\n\n        watch: {},\n        mounted() {\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n                if (this.msg.dialog){\n                    let dialog = this.msg.dialog\n                    this.showDialog = dialog.showDialog ?? false\n                    this.okText = dialog.okText ?? \"OK\"\n                    this.cancelText = dialog.cancelText ?? \"Cancel\"\n                }\n                if (this.msg.payload){\n                    this.cbId = this.msg.payload.cbId\n                    this.command = this.msg.payload.command\n\n                }\n            })\n        },\n        methods: {\n            okDialog: function() {\n                this.showDialog = false\n                this.send({\n                    payload: {\n                        cbId: this.cbId,\n                        data: {\n                            connectorId: this.connector,\n                            type: this.option,\n                        },\n                        command: this.command\n                    }\n                })\n\n            },\n            cancelDialog: function() {\n                this.msg.paylaod = {}\n                this.showDialog = false\n                \n            }\n\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: red;\n    }\n</style>",
+    "storeOutMessages": true,
+    "passthru": false,
+    "resendOnRefresh": true,
+    "templateScope": "local",
+    "className": "",
+    "x": 1210,
+    "y": 160,
+    "wires": [
+      [
+        "f740792ad0c8f5fd"
+      ]
+    ]
+  },
+  {
+    "id": "c36b63f7c3de6924",
+    "type": "ui-template",
+    "z": "217382551c48905d",
+    "group": "276c45fccf8e6765",
+    "page": "",
+    "ui": "",
+    "name": "Ack Msg Sent",
+    "order": 7,
+    "width": 0,
+    "height": 0,
+    "head": "",
+    "format": "<template>\n    <v-dialog width=\"auto\" v-model=\"showDialog\">\n        <v-card color=\"white\" v-click-outside=\"{handler: onClickOutside}\">\n            <v-toolbar color=\"primary\">\n                <v-card-title>\n                    <span>Message Sent: {{ cbId }}:{{command}}</span>\n                </v-card-title>\n            </v-toolbar>\n            <v-container>\n            <v-card-actions>\n                <v-btn variant=\"elevated\" @click=\"okDialog\" block>{{ okText }}</v-btn>\n            </v-card-actions>\n        </v-card>\n    </v-dialog>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                cbId: '',\n                okText: 'Close',\n                command: '',\n                showDialog: false,\n            }\n        },\n\n        watch: {},\n        mounted() {\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n                if (this.msg.dialog){\n                    let dialog = this.msg.dialog\n                    this.showDialog = dialog.showDialog ?? false\n                }\n                if (this.msg.payload){\n                    this.cbId = this.msg?.payload?.cbId\n                    this.command = this.msg?.payload?.command ?? 'unknown'\n                }\n            })\n        },\n        methods: {\n            okDialog: function() {\n                this.showDialog = false\n\n            },\n            cancelDialog: function() {\n                this.msg.paylaod = {}\n                this.showDialog = false\n                \n            }\n\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: red;\n    }\n</style>",
+    "storeOutMessages": true,
+    "passthru": false,
+    "resendOnRefresh": true,
+    "templateScope": "local",
+    "className": "",
+    "x": 1220,
+    "y": 340,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "9061953296c99fc7",
+    "type": "link out",
+    "z": "217382551c48905d",
+    "name": "link out 18",
+    "mode": "link",
+    "links": [
+      "6ea73070a96d4eeb",
+      "9405f117efca5faf"
+    ],
+    "x": 1665,
+    "y": 180,
+    "wires": []
+  },
+  {
+    "id": "5e3e9b161183e7fa",
+    "type": "debug",
+    "z": "217382551c48905d",
+    "name": "debug 43",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1200,
+    "y": 300,
+    "wires": []
+  },
+  {
+    "id": "25588a53fed4f232",
+    "type": "redis-command",
+    "z": "217382551c48905d",
+    "server": "0430675ed6c7cd83",
+    "command": "KEYS",
+    "name": "",
+    "topic": "evse:*",
+    "params": "[]",
+    "paramsType": "json",
+    "payloadType": "json",
+    "block": false,
+    "x": 350,
+    "y": 940,
+    "wires": [
+      [
+        "eceaa7b18c62ab6e"
+      ]
+    ]
+  },
+  {
+    "id": "121272e1c2db07c3",
+    "type": "inject",
+    "z": "217382551c48905d",
+    "name": "",
+    "props": [
+      {
+        "p": "payload2",
+        "v": "{\"cbid\":\"test\"}",
+        "vt": "json"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "x": 170,
+    "y": 940,
+    "wires": [
+      [
+        "25588a53fed4f232"
+      ]
+    ]
+  },
+  {
+    "id": "eceaa7b18c62ab6e",
+    "type": "debug",
+    "z": "217382551c48905d",
+    "name": "debug 44",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 560,
+    "y": 940,
+    "wires": []
+  },
+  {
+    "id": "78ba51776812da90",
+    "type": "redis-command",
+    "z": "217382551c48905d",
+    "server": "0430675ed6c7cd83",
+    "command": "KEYS",
+    "name": "Get TagInfo",
+    "topic": "taginfo:*",
+    "params": "[]",
+    "paramsType": "json",
+    "payloadType": "json",
+    "block": false,
+    "x": 1210,
+    "y": 220,
+    "wires": [
+      [
+        "dee9becc2f4f6552"
+      ]
+    ]
+  },
+  {
+    "id": "35448e49dfc5fde2",
+    "type": "change",
+    "z": "217382551c48905d",
+    "name": "Protect Payload",
+    "rules": [
+      {
+        "t": "move",
+        "p": "payload",
+        "pt": "msg",
+        "to": "payload2",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1040,
+    "y": 220,
+    "wires": [
+      [
+        "78ba51776812da90"
+      ]
+    ]
+  },
+  {
+    "id": "dee9becc2f4f6552",
+    "type": "change",
+    "z": "217382551c48905d",
+    "name": "tags",
+    "rules": [
+      {
+        "t": "move",
+        "p": "payload",
+        "pt": "msg",
+        "to": "tags",
+        "tot": "msg"
+      },
+      {
+        "t": "move",
+        "p": "payload2",
+        "pt": "msg",
+        "to": "payload",
+        "tot": "msg"
+      },
+      {
+        "t": "set",
+        "p": "tags",
+        "pt": "msg",
+        "to": "$map(tags,function($v,$i,$a){ $substringAfter($v, \":\")})",
+        "tot": "jsonata"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1350,
+    "y": 220,
+    "wires": [
+      [
+        "f4550ea4a5f41146"
+      ]
+    ]
+  },
+  {
+    "id": "3303c9688b7cce62",
+    "type": "debug",
+    "z": "217382551c48905d",
+    "name": "debug 45",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1720,
+    "y": 220,
+    "wires": []
+  },
+  {
+    "id": "061560f521c54ff7",
+    "type": "function",
+    "z": "217382551c48905d",
+    "name": "function 15",
+    "func": "let key = `evse:${msg.payload.cbId.toLowerCase()}`\nmsg = {}\nmsg.topic = key\nreturn msg\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1870,
+    "y": 400,
+    "wires": [
+      [
+        "426241cfa981a02b"
+      ]
+    ]
+  },
+  {
+    "id": "aadafb1151581c5d",
+    "type": "ui-template",
+    "z": "217382551c48905d",
+    "group": "1723c74d3f81385c",
+    "page": "",
+    "ui": "",
+    "name": "Verify Delete",
+    "order": 2,
+    "width": 0,
+    "height": 0,
+    "head": "",
+    "format": "<template>\n    <v-dialog width=\"auto\" v-model=\"showDialog\">\n        <v-card color=\"white\" v-click-outside=\"{handler: onClickOutside}\">\n            <v-toolbar color=\"primary\">\n                <v-card-title>\n                    <span>Delete {{ cbId }}?</span>\n                </v-card-title>\n            </v-toolbar>\n            <v-container>\n                <v-card-actions class=\"justify-end\">\n                    <v-btn variant=\"elevated\" @click=\"okDialog\">{{ okText }}</v-btn>\n                    <v-btn variant=\"elevated\" @click=\"cancelDialog\">{{ cancelText }}</v-btn>\n                </v-card-actions>\n            </v-container>\n        </v-card>\n    </v-dialog>\n</template>\n\n<script>\n    export default {\n        data() {\n            return {\n                okText: 'Delete',\n                cancelText: 'Cancel',\n                showDialog: false,\n                cbId: '<undefined>'\n            }\n        },\n\n        watch: {},\n        \n        mounted() {\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n                if (this.msg.dialog){\n                    let dialog = this.msg.dialog\n                    this.showDialog = dialog.showDialog ?? false\n                    this.okText = dialog?.okText\n                    this.cancelText = dialog?.cancelText\n                }\n                if (this.msg.payload){\n                    let payload = this.msg.payload\n                    this.cbId = payload.cbId\n                }\n            })\n        },\n        methods: {\n            okDialog: function() {\n                this.showDialog = false\n                this.send(this.msg)\n\n            },\n            cancelDialog: function() {\n                this.msg.paylaod = {}\n                this.showDialog = false\n            }\n\n        }\n    }\n</script>\n",
+    "storeOutMessages": true,
+    "passthru": false,
+    "resendOnRefresh": true,
+    "templateScope": "local",
+    "className": "",
+    "x": 1710,
+    "y": 400,
+    "wires": [
+      [
+        "061560f521c54ff7"
+      ]
+    ]
+  },
+  {
+    "id": "d9db7aa7fbab290f",
+    "type": "change",
+    "z": "217382551c48905d",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "dialog.showDialog",
+        "pt": "msg",
+        "to": "true",
+        "tot": "bool"
+      },
+      {
+        "t": "set",
+        "p": "dialog.okText",
+        "pt": "msg",
+        "to": "Delete",
+        "tot": "str"
+      },
+      {
+        "t": "set",
+        "p": "dialog.cancelText",
+        "pt": "msg",
+        "to": "Cancel",
+        "tot": "str"
+      },
+      {
+        "t": "move",
+        "p": "payload[0]",
+        "pt": "msg",
+        "to": "payload",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1540,
+    "y": 400,
+    "wires": [
+      [
+        "aadafb1151581c5d",
+        "639178f5d96d873a"
+      ]
+    ]
+  },
+  {
+    "id": "a25df1a5696fa43b",
+    "type": "change",
+    "z": "217382551c48905d",
+    "name": "tags",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "$map(payload,function($v,$i,$a){ $substringAfter($v, \":\")})",
+        "tot": "jsonata"
+      },
+      {
+        "t": "set",
+        "p": "CSMS:EVSEs",
+        "pt": "global",
+        "to": "payload",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 510,
+    "y": 480,
+    "wires": [
+      [
+        "aa90b7e66d3251d1"
+      ]
+    ]
+  },
+  {
+    "id": "aa90b7e66d3251d1",
+    "type": "debug",
+    "z": "217382551c48905d",
+    "name": "debug 49",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 790,
+    "y": 480,
+    "wires": []
+  },
+  {
+    "id": "a361a3233397f32f",
+    "type": "link out",
+    "z": "217382551c48905d",
+    "name": "link out 21",
+    "mode": "link",
+    "links": [
+      "fd0ce11a6c04c0f3"
+    ],
+    "x": 1245,
+    "y": 540,
+    "wires": []
+  },
+  {
+    "id": "240e92a246471c35",
+    "type": "ui-control",
+    "z": "217382551c48905d",
+    "name": "",
+    "ui": "8cdc313c9611f13f",
+    "events": "all",
+    "x": 560,
+    "y": 320,
+    "wires": [
+      [
+        "67e1b0b8d9f9b568"
+      ]
+    ]
+  },
+  {
+    "id": "67e1b0b8d9f9b568",
+    "type": "debug",
+    "z": "217382551c48905d",
+    "name": "debug 55",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 700,
+    "y": 320,
+    "wires": []
+  },
+  {
+    "id": "a54b3536ac0b7516",
+    "type": "function",
+    "z": "217382551c48905d",
+    "name": "Hide",
+    "func": "msg.payload = {\n    \"groups\": {\n        \"hide\": [\n            \"EVSEs:Hidden\"\n        ]\n    }\n}\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 370,
+    "y": 320,
+    "wires": [
+      [
+        "240e92a246471c35"
+      ]
+    ]
+  },
+  {
+    "id": "d58c45d08125f791",
+    "type": "function",
+    "z": "217382551c48905d",
+    "name": "Show",
+    "func": "msg.payload = {\n    \"groups\": {\n        \"show\": [\n            \"EVSEs:Hidden\"\n        ]\n    }\n}\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 370,
+    "y": 280,
+    "wires": [
+      [
+        "240e92a246471c35"
+      ]
+    ]
+  },
+  {
+    "id": "9405f117efca5faf",
+    "type": "link in",
+    "z": "217382551c48905d",
+    "name": "Hide Hidden",
+    "links": [
+      "9061953296c99fc7",
+      "82c7dc438bcf613e",
+      "c1ed374a1bace4de",
+      "485897ecb288f5b2"
+    ],
+    "x": 105,
+    "y": 320,
+    "wires": [
+      [
+        "2360b2b5d9f086ce"
+      ]
+    ]
+  },
+  {
+    "id": "4accb5be39dab46c",
+    "type": "inject",
+    "z": "217382551c48905d",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": true,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 285,
+    "y": 360,
+    "wires": [
+      [
+        "a54b3536ac0b7516"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "abd4fc7cece76024",
+    "type": "link in",
+    "z": "217382551c48905d",
+    "name": "Show Hidden",
+    "links": [
+      "7bc827572072b785",
+      "8c62605df95e3ac2"
+    ],
+    "x": 235,
+    "y": 280,
+    "wires": [
+      [
+        "d58c45d08125f791"
+      ]
+    ]
+  },
+  {
+    "id": "f813f3d81530033f",
+    "type": "delay",
+    "z": "217382551c48905d",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "5",
+    "timeoutUnits": "milliseconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 110,
+    "y": 280,
+    "wires": [
+      [
+        "67831ed4d8bdfde1"
+      ]
+    ]
+  },
+  {
+    "id": "2360b2b5d9f086ce",
+    "type": "delay",
+    "z": "217382551c48905d",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "5",
+    "timeoutUnits": "milliseconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 210,
+    "y": 320,
+    "wires": [
+      [
+        "a54b3536ac0b7516"
+      ]
+    ]
+  },
+  {
+    "id": "a15783afb2f690dc",
+    "type": "delay",
+    "z": "217382551c48905d",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "5",
+    "timeoutUnits": "milliseconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 150,
+    "y": 140,
+    "wires": [
+      [
+        "cb4389b379c7a461"
+      ]
+    ]
+  },
+  {
+    "id": "3cf0aaa06cd6633b",
+    "type": "debug",
+    "z": "217382551c48905d",
+    "name": "debug 65",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1290,
+    "y": 660,
+    "wires": []
+  },
+  {
+    "id": "485897ecb288f5b2",
+    "type": "link out",
+    "z": "217382551c48905d",
+    "name": "OCPP Cmd Out",
+    "mode": "link",
+    "links": [
+      "14970b0433fc1816",
+      "9405f117efca5faf"
+    ],
+    "x": 1349,
+    "y": 258,
+    "wires": []
+  },
+  {
+    "id": "4bfdf6dac88ec5ca",
+    "type": "debug",
+    "z": "217382551c48905d",
+    "name": "debug 82",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1010,
+    "y": 540,
+    "wires": []
+  }
+]

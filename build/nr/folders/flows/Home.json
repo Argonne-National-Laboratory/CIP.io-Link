@@ -1,0 +1,1327 @@
+[
+  {
+    "id": "92d055a5ecbac90c",
+    "type": "tab",
+    "label": "Home",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "49370f62ef275c28",
+    "type": "function",
+    "z": "92d055a5ecbac90c",
+    "name": "function 14",
+    "func": "let sess = global.get(\"CSMS:SESSIONS\") || []\nlet heartbeat = global.get(\"CSMS:HeartbeatInterval\") || 300\nlet sess_cbid = sess.map( (x) => x.cbId )\n\nconst COLOROFFLINE = \"#CCCCCC\"\nconst COLORONLINE = \"#33ceff\"\nconst COLORCHARGE = \"#007700\"\n\n\nmsg.payload.forEach(function(evse) {\n    if (evse.lat && evse.lon){\n\n        let iconColor =  (getIsOnline(evse) == true) ? COLORONLINE : COLOROFFLINE\n         \n        iconColor = ( sess_cbid.indexOf(evse.cbId) != -1 ) ? COLORCHARGE : iconColor \n        let msg2 = {\n            payload: {\n                name: evse.cbId,\n                lat: evse.lat,\n                lon: evse.lon,\n                icon: (iconColor == COLORCHARGE) ? \"car\": \"flash\",\n                iconColor\n            }\n        }        \n        node.send(msg2)\n    }\n});\n\n\nfunction getIsOnline(item) {\n    return (Math.floor((Date.now() - item.lastcommtime) / 1000) <= heartbeat)\n}\n\n\n//                 icon: \"https://api.mdisvg.com/v1/i/mdi-ev-station\",",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 290,
+    "y": 40,
+    "wires": [
+      [
+        "089bf4f30ca18408"
+      ]
+    ]
+  },
+  {
+    "id": "089bf4f30ca18408",
+    "type": "worldmap",
+    "z": "92d055a5ecbac90c",
+    "name": "",
+    "lat": "",
+    "lon": "",
+    "zoom": "",
+    "layer": "OSMG",
+    "cluster": "",
+    "maxage": "",
+    "usermenu": "show",
+    "layers": "show",
+    "panit": "false",
+    "panlock": "false",
+    "zoomlock": "false",
+    "hiderightclick": "false",
+    "coords": "deg",
+    "showgrid": "false",
+    "showruler": "false",
+    "allowFileDrop": "false",
+    "path": "/worldmap",
+    "overlist": "DR,CO,TL",
+    "maplist": "OSMG,OSMC,EsriC,EsriS,UKOS",
+    "mapname": "",
+    "mapurl": "",
+    "mapopt": "",
+    "mapwms": false,
+    "x": 540,
+    "y": 40,
+    "wires": []
+  },
+  {
+    "id": "fd0ce11a6c04c0f3",
+    "type": "link in",
+    "z": "92d055a5ecbac90c",
+    "name": "Map Items",
+    "links": [
+      "a361a3233397f32f"
+    ],
+    "x": 165,
+    "y": 40,
+    "wires": [
+      [
+        "49370f62ef275c28"
+      ]
+    ]
+  },
+  {
+    "id": "af38625e0eb46e1a",
+    "type": "ui-template",
+    "z": "92d055a5ecbac90c",
+    "group": "1e933af2c31d3e40",
+    "page": "",
+    "ui": "",
+    "name": "Graphic Banner",
+    "order": 1,
+    "width": 0,
+    "height": 0,
+    "head": "",
+    "format": "<template>\n    <container>\n        <v-img v-if=\"showx\" :src=\"this.url\"><v-img>\n    </container>\n</template>\n\n<script>\n    export default {\n\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                url: \"\",\n                show: false,\n                showx: true\n            }\n        },\n        \n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        },\n        mounted() {\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n                if (this.msg.payload){\n                    let payload = this.msg.payload\n                    this.url = payload.banner_url\n                    this.show = payload.show || true\n                }\n            })\n            this.refresh()\n        },      \n        methods: {\n        },\n    }\n</script>",
+    "storeOutMessages": true,
+    "passthru": true,
+    "resendOnRefresh": true,
+    "templateScope": "local",
+    "className": "",
+    "x": 600,
+    "y": 240,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "39f51e38c8ce88f2",
+    "type": "change",
+    "z": "92d055a5ecbac90c",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "{\"currentA\":0,\"time\":\"\"}",
+        "tot": "json"
+      },
+      {
+        "t": "set",
+        "p": "payload.currentA",
+        "pt": "msg",
+        "to": "SITE:LoadLimit",
+        "tot": "global"
+      },
+      {
+        "t": "set",
+        "p": "payload.time",
+        "pt": "msg",
+        "to": "",
+        "tot": "date"
+      },
+      {
+        "t": "set",
+        "p": "topic",
+        "pt": "msg",
+        "to": "LoadLimit",
+        "tot": "str"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 340,
+    "y": 1020,
+    "wires": [
+      [
+        "d1bc1b3ba06b799a"
+      ]
+    ]
+  },
+  {
+    "id": "74499b15f0145429",
+    "type": "inject",
+    "z": "92d055a5ecbac90c",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "3",
+    "crontab": "",
+    "once": true,
+    "onceDelay": "0.5",
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 130,
+    "y": 1020,
+    "wires": [
+      [
+        "39f51e38c8ce88f2",
+        "f18b9979d2212d1b"
+      ]
+    ]
+  },
+  {
+    "id": "f3b30d3612e48f36",
+    "type": "influxdb in",
+    "z": "92d055a5ecbac90c",
+    "influxdb": "7cb40fcee206391e",
+    "name": "",
+    "query": "",
+    "rawOutput": false,
+    "precision": "",
+    "retentionPolicy": "",
+    "org": "cipio",
+    "x": 580,
+    "y": 1060,
+    "wires": [
+      [
+        "0f02c20fb2330f7a",
+        "825191f59f313cab",
+        "19926af6f970a4b9"
+      ]
+    ]
+  },
+  {
+    "id": "f18b9979d2212d1b",
+    "type": "function",
+    "z": "92d055a5ecbac90c",
+    "name": "FLUX Get raw MV OCPP",
+    "func": "// clear out any incoming message for now.\nlet filter_by_tx = \"\";\nlet topic = \"00000000\"\n\n/*\nif (msg.payload.txId) {\n  filter_by_tx = `|> filter(fn: (r) => r[\"transactionId\"] == \"${msg.payload.txId}\")`\n  topic = msg.payload.txId\n}\n*/\n\nmsg = {}\n\nmsg.topic = topic\n\nmsg.query = \n  `from(bucket: \"OCPP\") \n    |> range(start: -1h) \n    |> filter(fn: (r) => r[\"_measurement\"] == \"MeterValues\") \n    |> filter(fn: (r) => r[\"_field\"] == \"CurrentA\")\n    |> drop(columns: [\"_start\",\"_stop\",\"_measurement\",\"transactionId\"])\n    |> sort(columns: [\"_time\"])`\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 370,
+    "y": 1060,
+    "wires": [
+      [
+        "f3b30d3612e48f36"
+      ]
+    ]
+  },
+  {
+    "id": "0f02c20fb2330f7a",
+    "type": "function",
+    "z": "92d055a5ecbac90c",
+    "name": "FLUX remove extras",
+    "func": "msg.payload.forEach(function(mv) {\n    //delete ocppMsg.result;\n    //delete ocppMsg.table;\n    node.send({ \n        topic: `${mv.cbId}:P${mv.connectorId}`, \n        payload: {\n            currentA: mv._value,\n            time: mv._time \n        } \n    })\n});\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 840,
+    "y": 1040,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "825191f59f313cab",
+    "type": "debug",
+    "z": "92d055a5ecbac90c",
+    "name": "debug 62",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 800,
+    "y": 1000,
+    "wires": []
+  },
+  {
+    "id": "d1bc1b3ba06b799a",
+    "type": "debug",
+    "z": "92d055a5ecbac90c",
+    "name": "debug 63",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 520,
+    "y": 1020,
+    "wires": []
+  },
+  {
+    "id": "9ccf03b5bb8eecc2",
+    "type": "debug",
+    "z": "92d055a5ecbac90c",
+    "name": "debug 64",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 940,
+    "y": 1080,
+    "wires": []
+  },
+  {
+    "id": "19926af6f970a4b9",
+    "type": "ui-template",
+    "z": "92d055a5ecbac90c",
+    "group": "530fe8d240942ac0",
+    "page": "",
+    "ui": "",
+    "name": "ChartJS",
+    "order": 8,
+    "width": 0,
+    "height": 0,
+    "head": "",
+    "format": "<template>\n    <canvas ref=\"chart\" />\n</template>\n\n<script src=\"https://cdn.jsdelivr.net/npm/chart.js\"></script>\n\n<script>\n    export default {\n        mounted() {\n            // register a listener for incoming data\n            this.$socket.on('msg-input:' + this.id, this.onInput)\n\n            // check with ChartJS has loaded\n            let interval = setInterval(() => {\n                if (window.Chart) {\n                    // clear the check for ChartJS\n                    clearInterval(interval);\n                    // draw our initial chart\n                    this.draw()\n                }\n            }, 100);\n        },\n        methods: {\n            draw () {\n                // get reference to the <canvas /> element\n                const ctx = this.$refs.chart\n                \n                // Render the chart\n                const chart = new Chart(ctx, {\n                    type: 'line',\n                    data: {\n                        datasets: [{\n                            label: \"\",  // label for the single line we'll render\n                            data: [\n                            ],            // start with no data\n                            fill: 1\n                        }]\n                    },\n                    options: {\n                        animation: false, // don't run the animation for incoming data\n                        responsive: true, // ensure we auto-resize the content\n                        scales: {\n                            x: {\n                                type: 'time' // in this example, we're rendering timestamps\n                            },\n                            y: {\n                                stacked: true\n                            }\n                        },\n                        parsing: {\n                            xAxisKey: 'time', // the property to render on the x-axis\n                            yAxisKey: 'value' // the property to render on the y-axis\n                        },\n                        plugins: {\n                            legend: {\n                                position: 'top',\n                            },\n                            title: {\n                                display: true,\n                                text: 'EVSE Load (Amps)'\n                            }\n                        }   \n                    },\n                });\n                // make this available to all elements of the component\n                this.chart = chart\n            },\n            onInput (msg) {\n                this.chart.data.datasets = []\n                // this.chart.data.datasets[0].data = []\n                this.chart.update()\n             \n\n\n                msg.payload.forEach( ( mvItem ) => {\n                    let label = `${mvItem.cbId}:P${mvItem.connectorId}`\n                    let idx = this.chart.data.datasets.findIndex( (ds) => ds.label == label )\n\n                    if (idx == -1) { \n                        idx = this.chart.data.datasets.push( {label: label, data: [] } ) - 1\n                    }\n                    \n                    this.chart.data.datasets[idx].data.push({time: mvItem._time, value: mvItem._value}) \n                })\n                this.chart.update()  \n            }    \n            \n        }\n    }\n\n</script>",
+    "storeOutMessages": true,
+    "passthru": true,
+    "resendOnRefresh": true,
+    "templateScope": "local",
+    "className": "",
+    "x": 800,
+    "y": 1080,
+    "wires": [
+      [
+        "9ccf03b5bb8eecc2"
+      ]
+    ]
+  },
+  {
+    "id": "4e88cb3fee82d891",
+    "type": "function",
+    "z": "92d055a5ecbac90c",
+    "name": "Get Tx MeterStart/Stop  ",
+    "func": "msg = {}\n\nmsg.query = `\nmeterStart = from(bucket: \"OCPP\")\n  |> range(start: -2d)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r[\"_field\"] == \"transactionId\" or r[\"_field\"] == \"meterStart\")\n  |> filter(fn: (r) => r.command == \"StartTransaction\")\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> filter(fn: (r) => r.transactionId != 0)\n  |> drop(columns: [\"_start\",\"_stop\",\"msgFrom\",\"_measurement\"])\n\nmeterStop = from(bucket: \"OCPP\")\n  |> range(start: -2d)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r[\"_field\"] == \"transactionId\" or r[\"_field\"] == \"meterStop\")\n  |> filter(fn: (r) => r.command == \"StopTransaction\")\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> filter(fn: (r) => r.transactionId != 0)\n  |> drop(columns: [\"_start\",\"_stop\",\"msgFrom\",\"_measurement\"])\n\njoin(tables: {key1: meterStart, key2: meterStop}, on: [\"transactionId\"], method: \"inner\")\n|> map(fn: (r) => ({ r with totalEnergy: r.meterStop - r.meterStart}))\n|> map(fn: (r) => ({ r with difference_seconds: (uint( v: r._time_key2) - uint( v: r._time_key1)) / uint(v: 1000000000) }))\n\n`\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 350,
+    "y": 440,
+    "wires": [
+      [
+        "e227df7e261ca442"
+      ]
+    ]
+  },
+  {
+    "id": "e227df7e261ca442",
+    "type": "influxdb in",
+    "z": "92d055a5ecbac90c",
+    "influxdb": "7cb40fcee206391e",
+    "name": "",
+    "query": "${CIPIO_INFLUX_TOKEN}",
+    "rawOutput": false,
+    "precision": "",
+    "retentionPolicy": "",
+    "org": "cipio",
+    "x": 570,
+    "y": 440,
+    "wires": [
+      [
+        "632ee4461df6dec4"
+      ]
+    ]
+  },
+  {
+    "id": "f8ba7f2f6416f7ca",
+    "type": "inject",
+    "z": "92d055a5ecbac90c",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 140,
+    "y": 440,
+    "wires": [
+      [
+        "4e88cb3fee82d891"
+      ]
+    ]
+  },
+  {
+    "id": "632ee4461df6dec4",
+    "type": "debug",
+    "z": "92d055a5ecbac90c",
+    "name": "debug 66",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 800,
+    "y": 440,
+    "wires": []
+  },
+  {
+    "id": "fc4d9666fe59b41b",
+    "type": "ui-text",
+    "z": "92d055a5ecbac90c",
+    "group": "530fe8d240942ac0",
+    "order": 2,
+    "width": "2",
+    "height": "1",
+    "name": "",
+    "label": "Tx Today:  ",
+    "format": "{{msg.payload}}",
+    "layout": "row-left",
+    "style": true,
+    "font": "",
+    "fontSize": "22",
+    "color": "#490481",
+    "wrapText": false,
+    "className": "",
+    "x": 920,
+    "y": 620,
+    "wires": []
+  },
+  {
+    "id": "86c44caadc208afb",
+    "type": "ui-text",
+    "z": "92d055a5ecbac90c",
+    "group": "530fe8d240942ac0",
+    "order": 1,
+    "width": "2",
+    "height": "1",
+    "name": "",
+    "label": "Active Tx:  ",
+    "format": "{{msg.payload}}",
+    "layout": "row-left",
+    "style": true,
+    "font": "",
+    "fontSize": "22",
+    "color": "#490481",
+    "wrapText": false,
+    "className": "",
+    "x": 580,
+    "y": 580,
+    "wires": []
+  },
+  {
+    "id": "dc8ebffcfc3e5ce0",
+    "type": "ui-text",
+    "z": "92d055a5ecbac90c",
+    "group": "530fe8d240942ac0",
+    "order": 4,
+    "width": "2",
+    "height": "1",
+    "name": "",
+    "label": "Energy Today:  ",
+    "format": "{{msg.payload}}",
+    "layout": "row-left",
+    "style": true,
+    "font": "",
+    "fontSize": "22",
+    "color": "#068104",
+    "wrapText": false,
+    "className": "",
+    "x": 940,
+    "y": 720,
+    "wires": []
+  },
+  {
+    "id": "5b67ef06c0cafdd5",
+    "type": "ui-text",
+    "z": "92d055a5ecbac90c",
+    "group": "530fe8d240942ac0",
+    "order": 5,
+    "width": "2",
+    "height": "1",
+    "name": "",
+    "label": "Energy (7 Days):  ",
+    "format": "{{msg.payload}}",
+    "layout": "row-left",
+    "style": true,
+    "font": "",
+    "fontSize": "22",
+    "color": "#068104",
+    "wrapText": false,
+    "className": "",
+    "x": 1070,
+    "y": 840,
+    "wires": []
+  },
+  {
+    "id": "3c5eb5272e0500f6",
+    "type": "ui-text",
+    "z": "92d055a5ecbac90c",
+    "group": "530fe8d240942ac0",
+    "order": 6,
+    "width": "2",
+    "height": "1",
+    "name": "",
+    "label": "Limit:  ",
+    "format": "{{msg.payload}}",
+    "layout": "row-left",
+    "style": true,
+    "font": "",
+    "fontSize": "22",
+    "color": "#068104",
+    "wrapText": false,
+    "className": "",
+    "x": 910,
+    "y": 760,
+    "wires": []
+  },
+  {
+    "id": "82f2206a8bad6087",
+    "type": "ui-text",
+    "z": "92d055a5ecbac90c",
+    "group": "530fe8d240942ac0",
+    "order": 3,
+    "width": "2",
+    "height": "1",
+    "name": "",
+    "label": "Tx (7 Days):  ",
+    "format": "{{msg.payload}}",
+    "layout": "row-left",
+    "style": true,
+    "font": "",
+    "fontSize": "22",
+    "color": "#490481",
+    "wrapText": false,
+    "className": "",
+    "x": 930,
+    "y": 660,
+    "wires": []
+  },
+  {
+    "id": "67c26650958b4c02",
+    "type": "ui-text",
+    "z": "92d055a5ecbac90c",
+    "d": true,
+    "group": "530fe8d240942ac0",
+    "order": 7,
+    "width": "2",
+    "height": "1",
+    "name": "",
+    "label": "Current Load:  ",
+    "format": "{{msg.payload}}",
+    "layout": "row-left",
+    "style": true,
+    "font": "",
+    "fontSize": "22",
+    "color": "#068104",
+    "wrapText": false,
+    "className": "",
+    "x": 600,
+    "y": 800,
+    "wires": []
+  },
+  {
+    "id": "0256c52788664639",
+    "type": "ui-notification",
+    "z": "92d055a5ecbac90c",
+    "ui": "8cdc313c9611f13f",
+    "position": "top right",
+    "colorDefault": false,
+    "color": "#4b24d6",
+    "displayTime": "5",
+    "showCountdown": true,
+    "outputs": 1,
+    "allowDismiss": true,
+    "dismissText": "Close",
+    "allowConfirm": false,
+    "confirmText": "Confirm",
+    "raw": true,
+    "className": "",
+    "name": "",
+    "x": 390,
+    "y": 540,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "05b1553fcabcbc8b",
+    "type": "link in",
+    "z": "92d055a5ecbac90c",
+    "name": "Tx Notification",
+    "links": [
+      "dd9016feeab69f8a"
+    ],
+    "x": 245,
+    "y": 540,
+    "wires": [
+      [
+        "0256c52788664639"
+      ]
+    ]
+  },
+  {
+    "id": "a81b9fb52754cfc9",
+    "type": "inject",
+    "z": "92d055a5ecbac90c",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "10",
+    "crontab": "",
+    "once": true,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "8",
+    "payloadType": "str",
+    "x": 230,
+    "y": 620,
+    "wires": [
+      [
+        "3c1e11c8ed086779",
+        "cae50a9e566c31a2"
+      ]
+    ]
+  },
+  {
+    "id": "a6da137cccf7aed8",
+    "type": "inject",
+    "z": "92d055a5ecbac90c",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "5",
+    "crontab": "",
+    "once": true,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "2",
+    "payloadType": "str",
+    "x": 230,
+    "y": 580,
+    "wires": [
+      [
+        "f874cc3bd44a0208"
+      ]
+    ]
+  },
+  {
+    "id": "8dfd14d0c2d79980",
+    "type": "inject",
+    "z": "92d055a5ecbac90c",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "5",
+    "crontab": "",
+    "once": true,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "400 kWh",
+    "payloadType": "str",
+    "x": 220,
+    "y": 720,
+    "wires": [
+      [
+        "60e4d09450fdac13"
+      ]
+    ]
+  },
+  {
+    "id": "f803a977c0eea8b2",
+    "type": "inject",
+    "z": "92d055a5ecbac90c",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "5",
+    "crontab": "",
+    "once": true,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "3200 kWh",
+    "payloadType": "str",
+    "x": 210,
+    "y": 840,
+    "wires": [
+      [
+        "7bf24886ffe6be85"
+      ]
+    ]
+  },
+  {
+    "id": "10cd57b6e514e458",
+    "type": "inject",
+    "z": "92d055a5ecbac90c",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "5",
+    "crontab": "",
+    "once": true,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "SITE:LoadLimit",
+    "payloadType": "global",
+    "x": 250,
+    "y": 760,
+    "wires": [
+      [
+        "58602cbda0a10753"
+      ]
+    ]
+  },
+  {
+    "id": "4d2028a35bb0c9a4",
+    "type": "inject",
+    "z": "92d055a5ecbac90c",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": true,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "40 Amps",
+    "payloadType": "str",
+    "x": 220,
+    "y": 800,
+    "wires": [
+      [
+        "67c26650958b4c02"
+      ]
+    ]
+  },
+  {
+    "id": "055e1f42c0a62ef4",
+    "type": "comment",
+    "z": "92d055a5ecbac90c",
+    "name": "",
+    "info": "https://github.com/bnystrom/stuff/blob/main/cipiologo.png?raw=true",
+    "x": 360,
+    "y": 180,
+    "wires": []
+  },
+  {
+    "id": "a96ec32fd158cdc3",
+    "type": "inject",
+    "z": "92d055a5ecbac90c",
+    "name": "",
+    "props": [
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "5",
+    "crontab": "",
+    "once": true,
+    "onceDelay": "0.5",
+    "topic": "",
+    "x": 185,
+    "y": 240,
+    "wires": [
+      [
+        "445e1fd97be6944e"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "445e1fd97be6944e",
+    "type": "change",
+    "z": "92d055a5ecbac90c",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "{}",
+        "tot": "json"
+      },
+      {
+        "t": "set",
+        "p": "payload.banner_url",
+        "pt": "msg",
+        "to": "CSMS:BannerURL",
+        "tot": "global"
+      },
+      {
+        "t": "set",
+        "p": "payload.show",
+        "pt": "msg",
+        "to": "CSMS:ShowBanner",
+        "tot": "global"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 370,
+    "y": 240,
+    "wires": [
+      [
+        "af38625e0eb46e1a",
+        "b63fd5d1f402a2bf"
+      ]
+    ]
+  },
+  {
+    "id": "b63fd5d1f402a2bf",
+    "type": "debug",
+    "z": "92d055a5ecbac90c",
+    "name": "debug 75",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 580,
+    "y": 280,
+    "wires": []
+  },
+  {
+    "id": "f4cb836a36b77b75",
+    "type": "link in",
+    "z": "92d055a5ecbac90c",
+    "name": "Update Banner",
+    "links": [
+      "4f2eb882456520c0"
+    ],
+    "x": 185,
+    "y": 180,
+    "wires": [
+      [
+        "445e1fd97be6944e"
+      ]
+    ]
+  },
+  {
+    "id": "f874cc3bd44a0208",
+    "type": "function",
+    "z": "92d055a5ecbac90c",
+    "name": "function 27",
+    "func": "let sess = global.get(\"CSMS:SESSIONS\") || []\nmsg = {\n    payload: sess.length\n}\nreturn msg",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 410,
+    "y": 580,
+    "wires": [
+      [
+        "86c44caadc208afb"
+      ]
+    ]
+  },
+  {
+    "id": "3c1e11c8ed086779",
+    "type": "function",
+    "z": "92d055a5ecbac90c",
+    "name": "function 28",
+    "func": "function getMidnightISODateInCurrentTimezone() {\n  const now = new Date();\n\n  // Get the year, month, and day in the current timezone\n  const year = now.getFullYear();\n  const month = now.getMonth();\n  const day = now.getDate();\n\n  // Create a new Date object representing midnight in the current timezone\n  const midnight = new Date(year, month, day);\n\n  // Convert to ISO string.  The important part here is using toISOString() which\n  // handles the timezone conversion for you automatically.\n  return midnight.toISOString();\n}\n\nlet start = getMidnightISODateInCurrentTimezone()\nlet query = `\nfrom(bucket: \"OCPP\")\n  |> range(start: ${start} )\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r._field == \"transactionId\" and r._value != 0)\n  |> group()\n  |> count(column: \"_value\")\n`\nmsg = {\n  query\n}\nreturn msg;\n\n\n\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 390,
+    "y": 620,
+    "wires": [
+      [
+        "cea3bc92b15fb35f"
+      ]
+    ]
+  },
+  {
+    "id": "cea3bc92b15fb35f",
+    "type": "influxdb in",
+    "z": "92d055a5ecbac90c",
+    "influxdb": "7cb40fcee206391e",
+    "name": "",
+    "query": "",
+    "rawOutput": false,
+    "precision": "",
+    "retentionPolicy": "",
+    "org": "cipio",
+    "x": 560,
+    "y": 620,
+    "wires": [
+      [
+        "9cb30a86aa7a3db5",
+        "aa44370d62643c3d"
+      ]
+    ]
+  },
+  {
+    "id": "9cb30a86aa7a3db5",
+    "type": "function",
+    "z": "92d055a5ecbac90c",
+    "name": "function 29",
+    "func": "let count = 0\ncount = msg?.payload[0]?._value || 0\n\nmsg = {\n    payload: count\n}\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 750,
+    "y": 620,
+    "wires": [
+      [
+        "fc4d9666fe59b41b"
+      ]
+    ]
+  },
+  {
+    "id": "cae50a9e566c31a2",
+    "type": "function",
+    "z": "92d055a5ecbac90c",
+    "name": "function 30",
+    "func": "function getMidnightISODateSevenDaysAgo() {\n  const now = new Date();\n\n  // Calculate the date 7 days ago\n  const sevenDaysAgo = new Date(now);\n  sevenDaysAgo.setDate(now.getDate() - 7);\n\n  // Extract year, month, and day from the date 7 days ago\n  const year = sevenDaysAgo.getFullYear();\n  const month = sevenDaysAgo.getMonth();\n  const day = sevenDaysAgo.getDate();\n\n  // Create a new Date object representing midnight 7 days ago\n  const midnightSevenDaysAgo = new Date(year, month, day);\n\n  return midnightSevenDaysAgo.toISOString();\n}\n\nlet start = getMidnightISODateSevenDaysAgo()\nlet query = `\nfrom(bucket: \"OCPP\")\n  |> range(start: ${start} )\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r._field == \"transactionId\" and r._value != 0)\n  |> group()\n  |> count(column: \"_value\")\n`\nmsg = {\n  query\n}\nreturn msg;\n\n\n\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 390,
+    "y": 660,
+    "wires": [
+      [
+        "83c828f165ecf5af"
+      ]
+    ]
+  },
+  {
+    "id": "83c828f165ecf5af",
+    "type": "influxdb in",
+    "z": "92d055a5ecbac90c",
+    "influxdb": "7cb40fcee206391e",
+    "name": "",
+    "query": "",
+    "rawOutput": false,
+    "precision": "",
+    "retentionPolicy": "",
+    "org": "cipio",
+    "x": 560,
+    "y": 660,
+    "wires": [
+      [
+        "d56bc41c9ec2b1f8"
+      ]
+    ]
+  },
+  {
+    "id": "d56bc41c9ec2b1f8",
+    "type": "function",
+    "z": "92d055a5ecbac90c",
+    "name": "function 31",
+    "func": "let count = 0\ncount = msg?.payload[0]?._value || 0\n\nmsg = {\n    payload: count\n}\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 750,
+    "y": 660,
+    "wires": [
+      [
+        "82f2206a8bad6087"
+      ]
+    ]
+  },
+  {
+    "id": "60e4d09450fdac13",
+    "type": "function",
+    "z": "92d055a5ecbac90c",
+    "name": "function 32",
+    "func": "function getMidnightISODateInCurrentTimezone() {\n  const now = new Date();\n\n  // Get the year, month, and day in the current timezone\n  const year = now.getFullYear();\n  const month = now.getMonth();\n  const day = now.getDate();\n\n  // Create a new Date object representing midnight in the current timezone\n  const midnight = new Date(year, month, day);\n\n  // Convert to ISO string.  The important part here is using toISOString() which\n  // handles the timezone conversion for you automatically.\n  return midnight.toISOString();\n}\n\nlet start = getMidnightISODateInCurrentTimezone()\n\nlet query = `\nimport \"join\"\n\nstopTx = from(bucket: \"OCPP\")\n  |> range(start: ${start})\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r.command == \"StopTransaction\")\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> keep(columns: [\"_cbId\", \"meterStop\",\"meterStart\",\"transactionId\"])\n  |> filter(fn: (r) => r.transactionId != 0)\n\nstartTx = from(bucket: \"OCPP\")\n  |> range(start: ${start})\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r.command == \"StartTransaction\")\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> keep(columns: [\"_cbId\", \"meterStop\",\"meterStart\",\"transactionId\"])\n  |> filter(fn: (r) => r.transactionId != 0)\n\n\njoin.inner(left: stopTx, right: startTx, on: (l, r) => l.transactionId == r.transactionId, as: (l, r) => { return {transactionId: l.transactionId, meterStop: l.meterStop, meterStart: r.meterStart, meter: l.meterStop - r.meterStart}})\n\n`\nmsg = {\n  query\n}\nreturn msg;\n\n\n\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 390,
+    "y": 720,
+    "wires": [
+      [
+        "e1d6e963d03a9dab"
+      ]
+    ]
+  },
+  {
+    "id": "e1d6e963d03a9dab",
+    "type": "influxdb in",
+    "z": "92d055a5ecbac90c",
+    "influxdb": "7cb40fcee206391e",
+    "name": "",
+    "query": "",
+    "rawOutput": false,
+    "precision": "",
+    "retentionPolicy": "",
+    "org": "cipio",
+    "x": 560,
+    "y": 720,
+    "wires": [
+      [
+        "75601251f82f3089"
+      ]
+    ]
+  },
+  {
+    "id": "75601251f82f3089",
+    "type": "function",
+    "z": "92d055a5ecbac90c",
+    "name": "function 33",
+    "func": "const sum = msg.payload.reduce((accumulator, currentValue) => {\n  return accumulator + currentValue.meter;\n}, 0); // 0 is the initial value of the accumulator\n\n\n//let count = 0\n//count = msg?.payload[0]?._value || 0\n\nmsg = {\n    payload: `${sum} Wh`\n}\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 750,
+    "y": 720,
+    "wires": [
+      [
+        "dc8ebffcfc3e5ce0"
+      ]
+    ]
+  },
+  {
+    "id": "7bf24886ffe6be85",
+    "type": "function",
+    "z": "92d055a5ecbac90c",
+    "name": "function 34",
+    "func": "function getMidnightISODateSevenDaysAgo() {\n  const now = new Date();\n\n  // Calculate the date 7 days ago\n  const sevenDaysAgo = new Date(now);\n  sevenDaysAgo.setDate(now.getDate() - 7);\n\n  // Extract year, month, and day from the date 7 days ago\n  const year = sevenDaysAgo.getFullYear();\n  const month = sevenDaysAgo.getMonth();\n  const day = sevenDaysAgo.getDate();\n\n  // Create a new Date object representing midnight 7 days ago\n  const midnightSevenDaysAgo = new Date(year, month, day);\n\n  return midnightSevenDaysAgo.toISOString();\n}\n\nlet start = getMidnightISODateSevenDaysAgo()\n\nlet query = `\nimport \"join\"\n\nstopTx = from(bucket: \"OCPP\")\n  |> range(start: ${start})\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r.command == \"StopTransaction\")\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> keep(columns: [\"_cbId\", \"meterStop\",\"meterStart\",\"transactionId\"])\n  |> filter(fn: (r) => r.transactionId != 0)\n\nstartTx = from(bucket: \"OCPP\")\n  |> range(start: ${start})\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r.command == \"StartTransaction\")\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> keep(columns: [\"_cbId\", \"meterStop\",\"meterStart\",\"transactionId\"])\n  |> filter(fn: (r) => r.transactionId != 0)\n\n\njoin.inner(left: stopTx, right: startTx, on: (l, r) => l.transactionId == r.transactionId, as: (l, r) => { return {transactionId: l.transactionId, meterStop: l.meterStop, meterStart: r.meterStart, meter: l.meterStop - r.meterStart}})\n\n  \n`\nmsg = {\n  query\n}\nreturn msg;\n\n\n\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 410,
+    "y": 840,
+    "wires": [
+      [
+        "5ead2fdeaf4adffc"
+      ]
+    ]
+  },
+  {
+    "id": "5ead2fdeaf4adffc",
+    "type": "influxdb in",
+    "z": "92d055a5ecbac90c",
+    "influxdb": "7cb40fcee206391e",
+    "name": "",
+    "query": "",
+    "rawOutput": false,
+    "precision": "",
+    "retentionPolicy": "",
+    "org": "cipio",
+    "x": 600,
+    "y": 840,
+    "wires": [
+      [
+        "bac3ee121d202814",
+        "9a5b84aed1918012"
+      ]
+    ]
+  },
+  {
+    "id": "bac3ee121d202814",
+    "type": "function",
+    "z": "92d055a5ecbac90c",
+    "name": "function 35",
+    "func": "const sum = msg.payload.reduce((accumulator, currentValue) => {\n  return accumulator + currentValue.meter;\n}, 0); // 0 is the initial value of the accumulator\n\n\n//let count = 0\n//count = msg?.payload[0]?._value || 0\n\nmsg = {\n    payload: `${sum} Wh`\n}\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 870,
+    "y": 840,
+    "wires": [
+      [
+        "5b67ef06c0cafdd5",
+        "9a5b84aed1918012"
+      ]
+    ]
+  },
+  {
+    "id": "aa44370d62643c3d",
+    "type": "debug",
+    "z": "92d055a5ecbac90c",
+    "name": "debug 88",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 810,
+    "y": 540,
+    "wires": []
+  },
+  {
+    "id": "9a5b84aed1918012",
+    "type": "debug",
+    "z": "92d055a5ecbac90c",
+    "name": "debug 89",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1260,
+    "y": 720,
+    "wires": []
+  },
+  {
+    "id": "58602cbda0a10753",
+    "type": "function",
+    "z": "92d055a5ecbac90c",
+    "name": "function 36",
+    "func": "msg.payload = `${msg.payload} Amps`\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 730,
+    "y": 760,
+    "wires": [
+      [
+        "3c5eb5272e0500f6"
+      ]
+    ]
+  },
+  {
+    "id": "c32e966c78977a1f",
+    "type": "ui-template",
+    "z": "92d055a5ecbac90c",
+    "group": "195e75b71683482a",
+    "page": "",
+    "ui": "",
+    "name": "",
+    "order": 1,
+    "width": "6",
+    "height": "8",
+    "head": "",
+    "format": "<template>\n\n    <div>\n        <iframe src=\"/worldmap\" height=\"100%\" width=\"100%\"></iframe>\n    </div>\n \n</template>\n\n",
+    "storeOutMessages": true,
+    "passthru": true,
+    "resendOnRefresh": true,
+    "templateScope": "local",
+    "className": "",
+    "x": 540,
+    "y": 100,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "f15e121d9ddb12b7",
+    "type": "ui-control",
+    "z": "92d055a5ecbac90c",
+    "name": "",
+    "ui": "8cdc313c9611f13f",
+    "events": "all",
+    "x": 580,
+    "y": 340,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "05af92729c0b7aca",
+    "type": "function",
+    "z": "92d055a5ecbac90c",
+    "name": "hide map",
+    "func": "msg.payload = {\n    \"groups\": {\n        \"hide\": [\n            \"Home:Map\",\n            \"Home:Banner\"\n        ],\n        \"show\": [\n            \"Home:Summary\"\n        ]\n    }\n}\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 280,
+    "y": 300,
+    "wires": [
+      [
+        "f15e121d9ddb12b7"
+      ]
+    ]
+  },
+  {
+    "id": "06f255386238e0c2",
+    "type": "function",
+    "z": "92d055a5ecbac90c",
+    "name": "function 3",
+    "func": "msg.payload = {\n    \"groups\": {\n        \"show\": [\n            \"Home:Map\",\n            \"Home:Banner\"\n        ],\n    }\n}\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 280,
+    "y": 360,
+    "wires": [
+      [
+        "f15e121d9ddb12b7"
+      ]
+    ]
+  },
+  {
+    "id": "01ae528e56c53daf",
+    "type": "inject",
+    "z": "92d055a5ecbac90c",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 130,
+    "y": 300,
+    "wires": [
+      [
+        "05af92729c0b7aca"
+      ]
+    ]
+  },
+  {
+    "id": "4819717198a80156",
+    "type": "inject",
+    "z": "92d055a5ecbac90c",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 90,
+    "y": 360,
+    "wires": [
+      [
+        "06f255386238e0c2"
+      ]
+    ]
+  }
+]
