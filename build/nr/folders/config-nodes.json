@@ -1,0 +1,914 @@
+[
+  {
+    "id": "0430675ed6c7cd83",
+    "type": "redis-config",
+    "name": "cipio redis",
+    "options": "CIPIO_VALKEY_OPTIONS",
+    "cluster": false,
+    "optionsType": "env"
+  },
+  {
+    "id": "46fa89673b9bfc15",
+    "type": "ui_base",
+    "theme": {
+      "name": "theme-light",
+      "lightTheme": {
+        "default": "#0094CE",
+        "baseColor": "#0094CE",
+        "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+        "edited": true,
+        "reset": false
+      },
+      "darkTheme": {
+        "default": "#097479",
+        "baseColor": "#097479",
+        "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+        "edited": false
+      },
+      "customTheme": {
+        "name": "Untitled Theme 1",
+        "default": "#4B7930",
+        "baseColor": "#4B7930",
+        "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+      },
+      "themeState": {
+        "base-color": {
+          "default": "#0094CE",
+          "value": "#0094CE",
+          "edited": false
+        },
+        "page-titlebar-backgroundColor": {
+          "value": "#0094CE",
+          "edited": false
+        },
+        "page-backgroundColor": {
+          "value": "#fafafa",
+          "edited": false
+        },
+        "page-sidebar-backgroundColor": {
+          "value": "#ffffff",
+          "edited": false
+        },
+        "group-textColor": {
+          "value": "#1bbfff",
+          "edited": false
+        },
+        "group-borderColor": {
+          "value": "#ffffff",
+          "edited": false
+        },
+        "group-backgroundColor": {
+          "value": "#ffffff",
+          "edited": false
+        },
+        "widget-textColor": {
+          "value": "#111111",
+          "edited": false
+        },
+        "widget-backgroundColor": {
+          "value": "#0094ce",
+          "edited": false
+        },
+        "widget-borderColor": {
+          "value": "#ffffff",
+          "edited": false
+        },
+        "base-font": {
+          "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+        }
+      },
+      "angularTheme": {
+        "primary": "indigo",
+        "accents": "blue",
+        "warn": "red",
+        "background": "grey",
+        "palette": "light"
+      }
+    },
+    "site": {
+      "name": "Node-RED Dashboard",
+      "hideToolbar": "false",
+      "allowSwipe": "false",
+      "lockMenu": "false",
+      "allowTempTheme": "true",
+      "dateFormat": "DD/MM/YYYY",
+      "sizes": {
+        "sx": 48,
+        "sy": 48,
+        "gx": 6,
+        "gy": 6,
+        "cx": 6,
+        "cy": 6,
+        "px": 0,
+        "py": 0
+      }
+    }
+  },
+  {
+    "id": "8cdc313c9611f13f",
+    "type": "ui-base",
+    "name": "My Dashboard",
+    "path": "/dashboard",
+    "appIcon": "",
+    "includeClientData": true,
+    "acceptsClientConfig": [
+      "ui-notification",
+      "ui-control"
+    ],
+    "showPathInSidebar": false,
+    "headerContent": "page",
+    "navigationStyle": "icon",
+    "titleBarStyle": "default",
+    "showReconnectNotification": false,
+    "notificationDisplayTime": "5",
+    "showDisconnectNotification": false
+  },
+  {
+    "id": "a78a40b473af28cd",
+    "type": "ui-theme",
+    "name": "Default Theme",
+    "colors": {
+      "surface": "#ffffff",
+      "primary": "#0094CE",
+      "bgPage": "#eeeeee",
+      "groupBg": "#ffffff",
+      "groupOutline": "#cccccc"
+    },
+    "sizes": {
+      "density": "default",
+      "pagePadding": "12px",
+      "groupGap": "12px",
+      "groupBorderRadius": "4px",
+      "widgetGap": "12px"
+    }
+  },
+  {
+    "id": "0d92c765bfad87e6",
+    "type": "ui-theme",
+    "name": "Basic Blue Theme",
+    "colors": {
+      "surface": "#4d58ff",
+      "primary": "#0094ce",
+      "bgPage": "#eeeeee",
+      "groupBg": "#ffffff",
+      "groupOutline": "#cccccc"
+    },
+    "sizes": {
+      "pagePadding": "12px",
+      "groupGap": "12px",
+      "groupBorderRadius": "4px",
+      "widgetGap": "12px",
+      "density": "default"
+    }
+  },
+  {
+    "id": "0a8c3bb3babc19a4",
+    "type": "ui-page",
+    "name": "Drivers",
+    "ui": "8cdc313c9611f13f",
+    "path": "/drivers",
+    "icon": "mdi-card-account-details-outline",
+    "layout": "notebook",
+    "theme": "0d92c765bfad87e6",
+    "breakpoints": [
+      {
+        "name": "Default",
+        "px": "0",
+        "cols": "3"
+      },
+      {
+        "name": "Tablet",
+        "px": "576",
+        "cols": "6"
+      },
+      {
+        "name": "Small Desktop",
+        "px": "768",
+        "cols": "9"
+      },
+      {
+        "name": "Desktop",
+        "px": "1024",
+        "cols": "12"
+      }
+    ],
+    "order": 3,
+    "className": "",
+    "visible": true,
+    "disabled": false
+  },
+  {
+    "id": "447b58f3ddb86ab6",
+    "type": "ui-group",
+    "name": "Drivers List",
+    "page": "0a8c3bb3babc19a4",
+    "width": "6",
+    "height": "1",
+    "order": 1,
+    "showTitle": true,
+    "className": "",
+    "visible": "true",
+    "disabled": "false",
+    "groupType": "default"
+  },
+  {
+    "id": "92124697.6658f",
+    "type": "ocpp-remote-cs",
+    "name": "Localhost:8834/ocpp",
+    "url": "ws://localhost:8834/ocpp"
+  },
+  {
+    "id": "2bafdaab.15b956",
+    "type": "ocpp-remotej-cp",
+    "name": "",
+    "cbId": "evse-001",
+    "ocppver": "1.6j"
+  },
+  {
+    "id": "9193cb43c1fc44ef",
+    "type": "ocpp-remote-cs",
+    "name": "192.168.1.119:8834",
+    "url": "ws://192.168.1.119:8834/ocpp"
+  },
+  {
+    "id": "ec76a27f96b6b92a",
+    "type": "ocpp-remote-cs",
+    "name": "node-red-dev:8834",
+    "url": "ws://node-red-dev:8834/ocpp"
+  },
+  {
+    "id": "7b05d2e15e8fc23c",
+    "type": "ui-page",
+    "name": "OCPP Log",
+    "ui": "8cdc313c9611f13f",
+    "path": "/ocpplogs",
+    "icon": "mdi-book-open-variant",
+    "layout": "notebook",
+    "theme": "0d92c765bfad87e6",
+    "breakpoints": [
+      {
+        "name": "Default",
+        "px": "0",
+        "cols": "3"
+      },
+      {
+        "name": "Tablet",
+        "px": "576",
+        "cols": "6"
+      },
+      {
+        "name": "Small Desktop",
+        "px": "768",
+        "cols": "9"
+      },
+      {
+        "name": "Desktop",
+        "px": "1024",
+        "cols": "12"
+      }
+    ],
+    "order": 5,
+    "className": "",
+    "visible": true,
+    "disabled": false
+  },
+  {
+    "id": "7cb40fcee206391e",
+    "type": "influxdb",
+    "hostname": "influx2",
+    "port": "8086",
+    "protocol": "http",
+    "database": "database",
+    "name": "cipio.link",
+    "usetls": false,
+    "tls": "",
+    "influxdbVersion": "2.0",
+    "url": "http://influx2:8086",
+    "timeout": "10",
+    "rejectUnauthorized": true
+  },
+  {
+    "id": "c187df53e1cacaad",
+    "type": "ui-group",
+    "name": "OCPP Log",
+    "page": "7b05d2e15e8fc23c",
+    "width": "6",
+    "height": "1",
+    "order": 1,
+    "showTitle": true,
+    "className": "",
+    "visible": "true",
+    "disabled": "false",
+    "groupType": "default"
+  },
+  {
+    "id": "e4ddc95d1509efab",
+    "type": "ui-page",
+    "name": "Transactions",
+    "ui": "8cdc313c9611f13f",
+    "path": "/sessions",
+    "icon": "mdi-bullseye",
+    "layout": "notebook",
+    "theme": "0d92c765bfad87e6",
+    "breakpoints": [
+      {
+        "name": "Default",
+        "px": "0",
+        "cols": "3"
+      },
+      {
+        "name": "Tablet",
+        "px": "576",
+        "cols": "6"
+      },
+      {
+        "name": "Small Desktop",
+        "px": "768",
+        "cols": "9"
+      },
+      {
+        "name": "Desktop",
+        "px": "1024",
+        "cols": "12"
+      }
+    ],
+    "order": 4,
+    "className": "",
+    "visible": true,
+    "disabled": "false"
+  },
+  {
+    "id": "17fb40c0e949759b",
+    "type": "ui-group",
+    "name": "Transactions",
+    "page": "e4ddc95d1509efab",
+    "width": "6",
+    "height": "1",
+    "order": 2,
+    "showTitle": true,
+    "className": "",
+    "visible": "true",
+    "disabled": "false",
+    "groupType": "default"
+  },
+  {
+    "id": "a7002ddddf5f5b3b",
+    "type": "ui-page",
+    "name": "Home",
+    "ui": "8cdc313c9611f13f",
+    "path": "/home",
+    "icon": "home",
+    "layout": "notebook",
+    "theme": "0d92c765bfad87e6",
+    "breakpoints": [
+      {
+        "name": "Default",
+        "px": "0",
+        "cols": "3"
+      },
+      {
+        "name": "Tablet",
+        "px": "576",
+        "cols": "6"
+      },
+      {
+        "name": "Small Desktop",
+        "px": "768",
+        "cols": "9"
+      },
+      {
+        "name": "Desktop",
+        "px": "1024",
+        "cols": "12"
+      }
+    ],
+    "order": 1,
+    "className": "",
+    "visible": true,
+    "disabled": false
+  },
+  {
+    "id": "01bc43f19d1edf0a",
+    "type": "ui-page",
+    "name": "EVSE Config",
+    "ui": "8cdc313c9611f13f",
+    "path": "/ocppconfig",
+    "icon": "mdi-cog-transfer",
+    "layout": "notebook",
+    "theme": "0d92c765bfad87e6",
+    "breakpoints": [
+      {
+        "name": "Default",
+        "px": "0",
+        "cols": "3"
+      },
+      {
+        "name": "Tablet",
+        "px": "576",
+        "cols": "6"
+      },
+      {
+        "name": "Small Desktop",
+        "px": "768",
+        "cols": "9"
+      },
+      {
+        "name": "Desktop",
+        "px": "1024",
+        "cols": "12"
+      }
+    ],
+    "order": 6,
+    "className": "",
+    "visible": "true",
+    "disabled": "false"
+  },
+  {
+    "id": "c04aff20955da79f",
+    "type": "ui-group",
+    "name": "EVSE Configuration",
+    "page": "01bc43f19d1edf0a",
+    "width": "6",
+    "height": "1",
+    "order": 1,
+    "showTitle": true,
+    "className": "",
+    "visible": "true",
+    "disabled": "false",
+    "groupType": "default"
+  },
+  {
+    "id": "191526b4c53ba7c0",
+    "type": "mqtt-broker",
+    "name": "",
+    "broker": "iot.ioc.anl.gov",
+    "port": "8883",
+    "tls": "",
+    "clientid": "",
+    "autoConnect": true,
+    "usetls": true,
+    "protocolVersion": "4",
+    "keepalive": "60",
+    "cleansession": true,
+    "autoUnsubscribe": true,
+    "birthTopic": "",
+    "birthQos": "0",
+    "birthRetain": "false",
+    "birthPayload": "",
+    "birthMsg": {},
+    "closeTopic": "",
+    "closeQos": "0",
+    "closeRetain": "false",
+    "closePayload": "",
+    "closeMsg": {},
+    "willTopic": "",
+    "willQos": "0",
+    "willRetain": "false",
+    "willPayload": "",
+    "willMsg": {},
+    "userProps": "",
+    "sessionExpiry": ""
+  },
+  {
+    "id": "213076b7a395d1a9",
+    "type": "mqtt-broker",
+    "name": "CIPio MQTT Broker",
+    "broker": "mqtt",
+    "port": "1883",
+    "clientid": "",
+    "autoConnect": true,
+    "usetls": false,
+    "protocolVersion": "4",
+    "keepalive": "60",
+    "cleansession": true,
+    "autoUnsubscribe": true,
+    "birthTopic": "",
+    "birthQos": "0",
+    "birthRetain": "false",
+    "birthPayload": "",
+    "birthMsg": {},
+    "closeTopic": "",
+    "closeQos": "0",
+    "closeRetain": "false",
+    "closePayload": "",
+    "closeMsg": {},
+    "willTopic": "",
+    "willQos": "0",
+    "willRetain": "false",
+    "willPayload": "",
+    "willMsg": {},
+    "userProps": "",
+    "sessionExpiry": ""
+  },
+  {
+    "id": "71a048bb2b0ae0b6",
+    "type": "ui-page",
+    "name": "Meters",
+    "ui": "8cdc313c9611f13f",
+    "path": "/meters",
+    "icon": "mdi-speedometer",
+    "layout": "grid",
+    "theme": "0d92c765bfad87e6",
+    "breakpoints": [
+      {
+        "name": "Default",
+        "px": "0",
+        "cols": "3"
+      },
+      {
+        "name": "Tablet",
+        "px": "576",
+        "cols": "6"
+      },
+      {
+        "name": "Small Desktop",
+        "px": "768",
+        "cols": "9"
+      },
+      {
+        "name": "Desktop",
+        "px": "1024",
+        "cols": "12"
+      }
+    ],
+    "order": 7,
+    "className": "",
+    "visible": true,
+    "disabled": false
+  },
+  {
+    "id": "6e1897c297826e17",
+    "type": "ui-group",
+    "name": "Guages",
+    "page": "71a048bb2b0ae0b6",
+    "width": "6",
+    "height": "1",
+    "order": 1,
+    "showTitle": false,
+    "className": "",
+    "visible": "true",
+    "disabled": "false",
+    "groupType": "default"
+  },
+  {
+    "id": "c808be4d8b5feb66",
+    "type": "websocket-listener",
+    "path": "/deleteme",
+    "wholemsg": "false"
+  },
+  {
+    "id": "0e43d0c136633834",
+    "type": "ui-page",
+    "name": "Settings",
+    "ui": "8cdc313c9611f13f",
+    "path": "/page8",
+    "icon": "mdi-cogs",
+    "layout": "notebook",
+    "theme": "0d92c765bfad87e6",
+    "breakpoints": [
+      {
+        "name": "Default",
+        "px": "0",
+        "cols": "3"
+      },
+      {
+        "name": "Tablet",
+        "px": "576",
+        "cols": "6"
+      },
+      {
+        "name": "Small Desktop",
+        "px": "768",
+        "cols": "9"
+      },
+      {
+        "name": "Desktop",
+        "px": "1024",
+        "cols": "12"
+      }
+    ],
+    "order": 8,
+    "className": "",
+    "visible": "true",
+    "disabled": "false"
+  },
+  {
+    "id": "ace44af4012c4fc1",
+    "type": "ui-group",
+    "name": "EVSE",
+    "page": "0e43d0c136633834",
+    "width": "6",
+    "height": "1",
+    "order": 2,
+    "showTitle": true,
+    "className": "",
+    "visible": "true",
+    "disabled": "false",
+    "groupType": "default"
+  },
+  {
+    "id": "c48e064d37e64bbf",
+    "type": "ui-group",
+    "name": "Site",
+    "page": "0e43d0c136633834",
+    "width": "6",
+    "height": "1",
+    "order": 1,
+    "showTitle": true,
+    "className": "",
+    "visible": "true",
+    "disabled": "false",
+    "groupType": "default"
+  },
+  {
+    "id": "530fe8d240942ac0",
+    "type": "ui-group",
+    "name": "Summary",
+    "page": "a7002ddddf5f5b3b",
+    "width": "6",
+    "height": "1",
+    "order": 2,
+    "showTitle": false,
+    "className": "",
+    "visible": true,
+    "disabled": "false",
+    "groupType": "default"
+  },
+  {
+    "id": "ad922d352fe06617",
+    "type": "modbus-client",
+    "name": "Flexy",
+    "clienttype": "tcp",
+    "bufferCommands": true,
+    "stateLogEnabled": false,
+    "queueLogEnabled": false,
+    "failureLogEnabled": true,
+    "tcpHost": "127.0.0.1",
+    "tcpPort": "502",
+    "tcpType": "DEFAULT",
+    "serialPort": "/dev/ttyUSB",
+    "serialType": "RTU-BUFFERD",
+    "serialBaudrate": "9600",
+    "serialDatabits": "8",
+    "serialStopbits": "1",
+    "serialParity": "none",
+    "serialConnectionDelay": "100",
+    "serialAsciiResponseStartDelimiter": "0x3A",
+    "unit_id": "1",
+    "commandDelay": "1",
+    "clientTimeout": "1000",
+    "reconnectOnTimeout": true,
+    "reconnectTimeout": "2000",
+    "parallelUnitIdsAllowed": true,
+    "showErrors": false,
+    "showWarnings": true,
+    "showLogs": true
+  },
+  {
+    "id": "a477577e.9e0bc",
+    "type": "modbus-client",
+    "name": "Modbus Switch TCP",
+    "clienttype": "tcp",
+    "bufferCommands": true,
+    "stateLogEnabled": false,
+    "queueLogEnabled": false,
+    "failureLogEnabled": false,
+    "tcpHost": "127.0.0.1",
+    "tcpPort": "10512",
+    "tcpType": "DEFAULT",
+    "serialPort": "/dev/ttyUSB",
+    "serialType": "RTU-BUFFERD",
+    "serialBaudrate": "9600",
+    "serialDatabits": "8",
+    "serialStopbits": "1",
+    "serialParity": "none",
+    "serialConnectionDelay": "100",
+    "serialAsciiResponseStartDelimiter": "",
+    "unit_id": 1,
+    "commandDelay": 1,
+    "clientTimeout": 1000,
+    "reconnectOnTimeout": true,
+    "reconnectTimeout": 2000,
+    "parallelUnitIdsAllowed": true
+  },
+  {
+    "id": "a9050e37.a6f618",
+    "type": "modbus-client",
+    "name": "Modbus Flex Server",
+    "clienttype": "tcp",
+    "bufferCommands": true,
+    "stateLogEnabled": false,
+    "queueLogEnabled": false,
+    "tcpHost": "127.0.0.1",
+    "tcpPort": "15502",
+    "tcpType": "DEFAULT",
+    "serialPort": "/dev/ttyUSB",
+    "serialType": "RTU-BUFFERD",
+    "serialBaudrate": "9600",
+    "serialDatabits": "8",
+    "serialStopbits": "1",
+    "serialParity": "none",
+    "serialConnectionDelay": "100",
+    "unit_id": 1,
+    "commandDelay": 1,
+    "clientTimeout": 1000,
+    "reconnectOnTimeout": true,
+    "reconnectTimeout": 2000,
+    "parallelUnitIdsAllowed": true
+  },
+  {
+    "id": "352955bb.be6e6a",
+    "type": "modbus-client",
+    "name": "Modbus Server",
+    "clienttype": "tcp",
+    "bufferCommands": true,
+    "stateLogEnabled": false,
+    "queueLogEnabled": false,
+    "tcpHost": "127.0.0.1",
+    "tcpPort": "14502",
+    "tcpType": "DEFAULT",
+    "serialPort": "/dev/ttyUSB",
+    "serialType": "RTU-BUFFERD",
+    "serialBaudrate": "9600",
+    "serialDatabits": "8",
+    "serialStopbits": "1",
+    "serialParity": "none",
+    "serialConnectionDelay": "100",
+    "unit_id": "1",
+    "commandDelay": "1",
+    "clientTimeout": "1000",
+    "reconnectOnTimeout": true,
+    "reconnectTimeout": "2000",
+    "parallelUnitIdsAllowed": true
+  },
+  {
+    "id": "750f030497b122aa",
+    "type": "ui-group",
+    "name": "Meter Values",
+    "page": "e4ddc95d1509efab",
+    "width": "6",
+    "height": "1",
+    "order": 3,
+    "showTitle": true,
+    "className": "",
+    "visible": "true",
+    "disabled": "false",
+    "groupType": "default"
+  },
+  {
+    "id": "3fa519dd01e52d85",
+    "type": "ui-group",
+    "name": "Header",
+    "page": "e4ddc95d1509efab",
+    "width": "6",
+    "height": "1",
+    "order": 1,
+    "showTitle": false,
+    "className": "",
+    "visible": false,
+    "disabled": "false",
+    "groupType": "default"
+  },
+  {
+    "id": "09addd16699c78ac",
+    "type": "ui-page",
+    "name": "EVSEs",
+    "ui": "8cdc313c9611f13f",
+    "path": "/evses",
+    "icon": "mdi-ev-station",
+    "layout": "notebook",
+    "theme": "0d92c765bfad87e6",
+    "breakpoints": [
+      {
+        "name": "Default",
+        "px": "0",
+        "cols": "3"
+      },
+      {
+        "name": "Tablet",
+        "px": "576",
+        "cols": "6"
+      },
+      {
+        "name": "Small Desktop",
+        "px": "768",
+        "cols": "9"
+      },
+      {
+        "name": "Desktop",
+        "px": "1024",
+        "cols": "12"
+      }
+    ],
+    "order": 2,
+    "className": "",
+    "visible": true,
+    "disabled": false
+  },
+  {
+    "id": "1723c74d3f81385c",
+    "type": "ui-group",
+    "name": "EVSE List",
+    "page": "09addd16699c78ac",
+    "width": "6",
+    "height": "1",
+    "order": 1,
+    "showTitle": true,
+    "className": "",
+    "visible": "true",
+    "disabled": "false",
+    "groupType": "default"
+  },
+  {
+    "id": "276c45fccf8e6765",
+    "type": "ui-group",
+    "name": "Hidden",
+    "page": "09addd16699c78ac",
+    "width": "1",
+    "height": "1",
+    "order": 2,
+    "showTitle": false,
+    "className": "",
+    "visible": "true",
+    "disabled": "false",
+    "groupType": "default"
+  },
+  {
+    "id": "cf2cafbfdcae6364",
+    "type": "ui-page",
+    "name": "Sandbox",
+    "ui": "8cdc313c9611f13f",
+    "path": "/sandbox",
+    "icon": "tools",
+    "layout": "grid",
+    "theme": "a78a40b473af28cd",
+    "breakpoints": [
+      {
+        "name": "Default",
+        "px": "0",
+        "cols": "3"
+      },
+      {
+        "name": "Tablet",
+        "px": "576",
+        "cols": "6"
+      },
+      {
+        "name": "Small Desktop",
+        "px": "768",
+        "cols": "9"
+      },
+      {
+        "name": "Desktop",
+        "px": "1024",
+        "cols": "12"
+      }
+    ],
+    "order": 9,
+    "className": "",
+    "visible": false,
+    "disabled": "false"
+  },
+  {
+    "id": "c8984401bfe4761a",
+    "type": "ui-group",
+    "name": "Sandbox",
+    "page": "cf2cafbfdcae6364",
+    "width": 6,
+    "height": 1,
+    "order": 1,
+    "showTitle": true,
+    "className": "",
+    "visible": "true",
+    "disabled": "false",
+    "groupType": "default"
+  },
+  {
+    "id": "195e75b71683482a",
+    "type": "ui-group",
+    "name": "Map",
+    "page": "a7002ddddf5f5b3b",
+    "width": 6,
+    "height": 1,
+    "order": 3,
+    "showTitle": true,
+    "className": "",
+    "visible": "true",
+    "disabled": "false",
+    "groupType": "default"
+  },
+  {
+    "id": "1e933af2c31d3e40",
+    "type": "ui-group",
+    "name": "Banner",
+    "page": "a7002ddddf5f5b3b",
+    "width": 6,
+    "height": 1,
+    "order": 1,
+    "showTitle": false,
+    "className": "",
+    "visible": "true",
+    "disabled": "false",
+    "groupType": "default"
+  }
+]
