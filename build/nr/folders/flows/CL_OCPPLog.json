@@ -2,8 +2,9 @@
   {
     "id": "294f3520d49a4f00",
     "type": "tab",
-    "label": "OCPP Log",
+    "label": "CL_OCPPLog",
     "disabled": false,
+    "locked": true,
     "info": "",
     "env": []
   },
@@ -38,6 +39,93 @@
         "a032c7f04398d7d4",
         "687284eeeefc6094",
         "e7de0b7ea1e77e8e"
+      ]
+    ]
+  },
+  {
+    "id": "ed8247496c428ec6",
+    "type": "change",
+    "z": "294f3520d49a4f00",
+    "g": "5c57038f3942292a",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "topic",
+        "pt": "msg",
+        "to": "$replace(msg.topic, \"ANL/SEP\", \"CIPio/Debbie\")\t",
+        "tot": "jsonata"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 330,
+    "y": 820,
+    "wires": [
+      [
+        "618def1a0f4236f9",
+        "8a6a1c999a396dc9"
+      ]
+    ]
+  },
+  {
+    "id": "8a6a1c999a396dc9",
+    "type": "mqtt out",
+    "z": "294f3520d49a4f00",
+    "g": "5c57038f3942292a",
+    "name": "",
+    "topic": "",
+    "qos": "",
+    "retain": "",
+    "respTopic": "",
+    "contentType": "",
+    "userProps": "",
+    "correl": "",
+    "expiry": "",
+    "broker": "213076b7a395d1a9",
+    "x": 530,
+    "y": 860,
+    "wires": []
+  },
+  {
+    "id": "618def1a0f4236f9",
+    "type": "debug",
+    "z": "294f3520d49a4f00",
+    "g": "5c57038f3942292a",
+    "name": "debug 39",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 540,
+    "y": 820,
+    "wires": []
+  },
+  {
+    "id": "b645202acfa17bbe",
+    "type": "mqtt in",
+    "z": "294f3520d49a4f00",
+    "g": "5c57038f3942292a",
+    "name": "",
+    "topic": "ANL/SEP/Meter/#",
+    "qos": "2",
+    "datatype": "auto-detect",
+    "broker": "191526b4c53ba7c0",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 150,
+    "y": 820,
+    "wires": [
+      [
+        "ed8247496c428ec6"
       ]
     ]
   },
@@ -276,93 +364,6 @@
     "wires": [
       [
         "fca2ef466dd35c31"
-      ]
-    ]
-  },
-  {
-    "id": "b645202acfa17bbe",
-    "type": "mqtt in",
-    "z": "294f3520d49a4f00",
-    "g": "5c57038f3942292a",
-    "name": "",
-    "topic": "ANL/SEP/Meter/#",
-    "qos": "2",
-    "datatype": "auto-detect",
-    "broker": "191526b4c53ba7c0",
-    "nl": false,
-    "rap": true,
-    "rh": 0,
-    "inputs": 0,
-    "x": 150,
-    "y": 820,
-    "wires": [
-      [
-        "ed8247496c428ec6"
-      ]
-    ]
-  },
-  {
-    "id": "618def1a0f4236f9",
-    "type": "debug",
-    "z": "294f3520d49a4f00",
-    "g": "5c57038f3942292a",
-    "name": "debug 39",
-    "active": false,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "false",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 540,
-    "y": 820,
-    "wires": []
-  },
-  {
-    "id": "8a6a1c999a396dc9",
-    "type": "mqtt out",
-    "z": "294f3520d49a4f00",
-    "g": "5c57038f3942292a",
-    "name": "",
-    "topic": "",
-    "qos": "",
-    "retain": "",
-    "respTopic": "",
-    "contentType": "",
-    "userProps": "",
-    "correl": "",
-    "expiry": "",
-    "broker": "213076b7a395d1a9",
-    "x": 530,
-    "y": 860,
-    "wires": []
-  },
-  {
-    "id": "ed8247496c428ec6",
-    "type": "change",
-    "z": "294f3520d49a4f00",
-    "g": "5c57038f3942292a",
-    "name": "",
-    "rules": [
-      {
-        "t": "set",
-        "p": "topic",
-        "pt": "msg",
-        "to": "$replace(msg.topic, \"ANL/SEP\", \"CIPio/Debbie\")\t",
-        "tot": "jsonata"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 330,
-    "y": 820,
-    "wires": [
-      [
-        "618def1a0f4236f9",
-        "8a6a1c999a396dc9"
       ]
     ]
   },

@@ -2,8 +2,9 @@
   {
     "id": "daf7a59ca2ce18df",
     "type": "tab",
-    "label": "Transactions",
+    "label": "CL_Transactions",
     "disabled": false,
+    "locked": true,
     "info": "",
     "env": []
   },

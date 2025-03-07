@@ -2,8 +2,9 @@
   {
     "id": "c4f677cd277b409d",
     "type": "tab",
-    "label": "Settings",
+    "label": "CL_Settings",
     "disabled": false,
+    "locked": true,
     "info": "",
     "env": []
   },

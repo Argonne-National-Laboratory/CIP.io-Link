@@ -2,8 +2,9 @@
   {
     "id": "55e67bd3e4f94c9a",
     "type": "tab",
-    "label": "TagInfo",
+    "label": "CL_TagInfo",
     "disabled": false,
+    "locked": true,
     "info": "",
     "env": []
   },

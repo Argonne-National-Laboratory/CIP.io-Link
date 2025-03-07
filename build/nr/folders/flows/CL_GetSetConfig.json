@@ -2,8 +2,9 @@
   {
     "id": "68c0944e7f4deca9",
     "type": "tab",
-    "label": "GetSetConfig",
+    "label": "CL_GetSetConfig",
     "disabled": false,
+    "locked": true,
     "info": "",
     "env": []
   },

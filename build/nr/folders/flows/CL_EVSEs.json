@@ -2,8 +2,9 @@
   {
     "id": "217382551c48905d",
     "type": "tab",
-    "label": "EVSEs",
+    "label": "CL_EVSEs",
     "disabled": false,
+    "locked": true,
     "info": "",
     "env": []
   },

@@ -2,8 +2,9 @@
   {
     "id": "bc469b88bbf8641e",
     "type": "tab",
-    "label": "Meters",
+    "label": "CL_Meters",
     "disabled": false,
+    "locked": true,
     "info": "",
     "env": []
   },

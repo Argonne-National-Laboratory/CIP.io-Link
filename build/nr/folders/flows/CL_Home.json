@@ -2,8 +2,9 @@
   {
     "id": "92d055a5ecbac90c",
     "type": "tab",
-    "label": "Home",
+    "label": "CL_Home",
     "disabled": false,
+    "locked": true,
     "info": "",
     "env": []
   },
