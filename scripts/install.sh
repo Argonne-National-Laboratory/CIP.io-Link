@@ -98,4 +98,7 @@ fi
 ./scripts/setup_influx.sh
 ./scripts/setup_nr.sh
 # docker compose --profile grafana up -d
+
+cipiolnk_rev = $(git describe --tags --abbrev=0)
+echo "CIPIO_LINK_VER=${cipiolnk_rev}" >.ver.env
 docker compose up -d

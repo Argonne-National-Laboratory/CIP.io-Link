@@ -11,11 +11,17 @@ services:
     ports:
       - ${CIPIO_CSMS_PORT-8884}:${CIPIO_CSMS_PORT-8884}
       - 1880:1880
+    env_file:
+      - path: ./.env
+        required: true
+      - path: ./ver.env
+        required: false
     environment:
       TZ: ${NODE_RED_TIMEZONE:-America/Chicago}
       NODE_RED_CREDENTIAL_SECRET: ${NODE_RED_CREDENTIAL_SECRET:-false}
       NODE_RED_ENABLE_PROJECTS: false
       DEBUG: "anl:ocpp:*"
+      CIPIO_LINK_VER: ${CIPIO_LINK_VER:-unknown}
       CIPIO_MQTT_USER: ${CIPIO_USER}
       CIPIO_MQTT_PW: ${CIPIO_PW}
       CIPIO_CSMS_PORT: ${CIPIO_CSMS_PORT-8884}
