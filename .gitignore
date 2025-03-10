@@ -1,4 +1,5 @@
 .env
+.ver.env
 **/node-red
 **/influx2
 **/influx
