@@ -101,4 +101,6 @@ fi
 
 cipiolnk_ver=$(git describe --tags --abbrev=0)
 echo "CIPIO_LINK_VER=${cipiolnk_ver}" >.ver.env
+cipiolnk_host=$(hostname -I | awk '{print $1}')
+echo "CIPIO_LINK_HOST=${cipiolnk_host}" >>.ver.env
 docker compose up -d
