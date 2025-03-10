@@ -99,6 +99,6 @@ fi
 ./scripts/setup_nr.sh
 # docker compose --profile grafana up -d
 
-cipiolnk_rev = $(git describe --tags --abbrev=0)
-echo "CIPIO_LINK_VER=${cipiolnk_rev}" >.ver.env
+cipiolnk_ver=$(git describe --tags --abbrev=0)
+echo "CIPIO_LINK_VER=${cipiolnk_ver}" >.ver.env
 docker compose up -d
