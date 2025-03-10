@@ -36,6 +36,15 @@
         "env": []
     },
     {
+        "id": "c40c5bcee8c850c1",
+        "type": "tab",
+        "label": "CL_Info",
+        "disabled": false,
+        "locked": true,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "bc469b88bbf8641e",
         "type": "tab",
         "label": "CL_Meters",
@@ -151,52 +160,31 @@
         "icon": "font-awesome/fa-bolt"
     },
     {
-        "id": "c20c8766fa664d2e",
+        "id": "f6f7b333be6e5917",
         "type": "group",
         "z": "9ca80d42115ee3c3",
-        "name": "Modify StartTx with TxId",
+        "name": "Example OCPP CMD Overrides",
         "style": {
-            "fill": "#b797cf",
+            "fill": "#d1d1d1",
             "label": true,
-            "stroke": "#ffff00",
-            "color": "#001f60"
-        },
-        "nodes": [
-            "c71183f6d99d46ef",
-            "5bb26352bd2d7e5a",
-            "e2a9a4f6ea0938e9",
-            "1b09a234a1e45737",
-            "08c6daf9b344995d",
-            "378785534c46db9b",
-            "3890b31b33998ff0",
-            "9553dfbcb3b284b3",
-            "02e68d94d30084bf"
-        ],
-        "x": 74,
-        "y": 859,
-        "w": 812,
-        "h": 182
-    },
-    {
-        "id": "23d227486f4a19f5",
-        "type": "group",
-        "z": "9ca80d42115ee3c3",
-        "name": "Calculate Charging Profile",
-        "style": {
-            "stroke": "#ff3f3f",
-            "fill": "#ffcf3f",
-            "label": true,
+            "label-position": "n",
             "color": "#000000"
         },
         "nodes": [
-            "25afca3af5d04a0d",
-            "668279fcb445ce5d",
-            "1186737eeaebd401"
+            "1e88d1e2d4dcc7d3",
+            "2b16b2bbbd57fabc",
+            "7283d4e60852fabc",
+            "9298f921e122faa5",
+            "fa1a321403a73088",
+            "056c40eb67d6fe4c",
+            "23d227486f4a19f5",
+            "c20c8766fa664d2e",
+            "4f4c8a9f1f8d9bb4"
         ],
-        "x": 84,
-        "y": 1039,
-        "w": 452,
-        "h": 82
+        "x": 58,
+        "y": 699,
+        "w": 864,
+        "h": 448
     },
     {
         "id": "a0169f65e4967ec2",
@@ -218,8 +206,8 @@
             "d836b12b64275a9d",
             "a1f721f1a03c965a"
         ],
-        "x": 44,
-        "y": 419,
+        "x": 104,
+        "y": 439,
         "w": 1212,
         "h": 82
     },
@@ -310,6 +298,56 @@
         "h": 82
     },
     {
+        "id": "c20c8766fa664d2e",
+        "type": "group",
+        "z": "9ca80d42115ee3c3",
+        "g": "f6f7b333be6e5917",
+        "name": "Modify StartTx with TxId",
+        "style": {
+            "fill": "#b797cf",
+            "label": true,
+            "stroke": "#ffff00",
+            "color": "#001f60"
+        },
+        "nodes": [
+            "c71183f6d99d46ef",
+            "5bb26352bd2d7e5a",
+            "e2a9a4f6ea0938e9",
+            "1b09a234a1e45737",
+            "08c6daf9b344995d",
+            "378785534c46db9b",
+            "3890b31b33998ff0",
+            "9553dfbcb3b284b3",
+            "02e68d94d30084bf"
+        ],
+        "x": 84,
+        "y": 819,
+        "w": 812,
+        "h": 182
+    },
+    {
+        "id": "23d227486f4a19f5",
+        "type": "group",
+        "z": "9ca80d42115ee3c3",
+        "g": "f6f7b333be6e5917",
+        "name": "Calculate Charging Profile",
+        "style": {
+            "stroke": "#ff3f3f",
+            "fill": "#ffcf3f",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "25afca3af5d04a0d",
+            "668279fcb445ce5d",
+            "1186737eeaebd401"
+        ],
+        "x": 84,
+        "y": 1039,
+        "w": 452,
+        "h": 82
+    },
+    {
         "id": "f740792ad0c8f5fd",
         "type": "junction",
         "z": "217382551c48905d",
@@ -349,7 +387,8 @@
                 "9a553400c62662a4",
                 "6bdcde6369d7a4b4",
                 "039d0809d7c54de3",
-                "75b51ecec0628924"
+                "75b51ecec0628924",
+                "fb0a4e143e0f32de"
             ]
         ]
     },
@@ -1233,56 +1272,6 @@
         "groupType": "default"
     },
     {
-        "id": "cf2cafbfdcae6364",
-        "type": "ui-page",
-        "name": "Sandbox",
-        "ui": "8cdc313c9611f13f",
-        "path": "/sandbox",
-        "icon": "tools",
-        "layout": "grid",
-        "theme": "a78a40b473af28cd",
-        "breakpoints": [
-            {
-                "name": "Default",
-                "px": "0",
-                "cols": "3"
-            },
-            {
-                "name": "Tablet",
-                "px": "576",
-                "cols": "6"
-            },
-            {
-                "name": "Small Desktop",
-                "px": "768",
-                "cols": "9"
-            },
-            {
-                "name": "Desktop",
-                "px": "1024",
-                "cols": "12"
-            }
-        ],
-        "order": 9,
-        "className": "",
-        "visible": false,
-        "disabled": "false"
-    },
-    {
-        "id": "c8984401bfe4761a",
-        "type": "ui-group",
-        "name": "Sandbox",
-        "page": "cf2cafbfdcae6364",
-        "width": 6,
-        "height": 1,
-        "order": 1,
-        "showTitle": true,
-        "className": "",
-        "visible": "true",
-        "disabled": "false",
-        "groupType": "default"
-    },
-    {
         "id": "195e75b71683482a",
         "type": "ui-group",
         "name": "Map",
@@ -1317,6 +1306,84 @@
         "name": "",
         "cbId": "evsesim1",
         "ocppver": "1.6j"
+    },
+    {
+        "id": "39c5beabd3f595d6",
+        "type": "ui-page",
+        "name": "Info",
+        "ui": "8cdc313c9611f13f",
+        "path": "/info",
+        "icon": "information-outline",
+        "layout": "notebook",
+        "theme": "0d92c765bfad87e6",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "9"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 9,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "ac3370e3a654aa16",
+        "type": "ui-group",
+        "name": "CSMS URL",
+        "page": "39c5beabd3f595d6",
+        "width": 6,
+        "height": 1,
+        "order": 3,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "605f98a93d6b516d",
+        "type": "ui-group",
+        "name": "Version",
+        "page": "39c5beabd3f595d6",
+        "width": 6,
+        "height": 1,
+        "order": 2,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "2ce6757429420e3d",
+        "type": "ui-group",
+        "name": "About",
+        "page": "39c5beabd3f595d6",
+        "width": 6,
+        "height": 1,
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
     },
     {
         "id": "565b9e3d1ccde32e",
@@ -2394,6 +2461,142 @@
         ]
     },
     {
+        "id": "4f4c8a9f1f8d9bb4",
+        "type": "function",
+        "z": "9ca80d42115ee3c3",
+        "g": "f6f7b333be6e5917",
+        "name": "EXAMPLE: Enable Overrides",
+        "func": "// Global Context ocppCmdTargets is a Map object\n\nlet ctx = 'ocppCmdTargets'\n\n//Get the current map\nlet targetMap = global.get(ctx)\n\n// Set new targets for ocpp commands\ntargetMap.set('BootNotification','EXAMPLE_BootNotification')\ntargetMap.set('Heartbeat','EXAMPLE_Heartbeat')\n\n// Set the map back to the global context so the CMSM subflow can use them\nglobal.set(ctx, targetMap)\nreturn\n\n// As an example to clear out a user defined ocpp function and return to defaults, do:\n// targetMap.delete('BootNotification')",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "056c40eb67d6fe4c",
+        "type": "link in",
+        "z": "9ca80d42115ee3c3",
+        "g": "f6f7b333be6e5917",
+        "name": "EXAMPLE_BootNotification",
+        "links": [],
+        "x": 105,
+        "y": 780,
+        "wires": [
+            [
+                "9298f921e122faa5"
+            ]
+        ]
+    },
+    {
+        "id": "fa1a321403a73088",
+        "type": "link out",
+        "z": "9ca80d42115ee3c3",
+        "g": "f6f7b333be6e5917",
+        "name": "link out 55",
+        "mode": "return",
+        "links": [],
+        "x": 405,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "9298f921e122faa5",
+        "type": "function",
+        "z": "9ca80d42115ee3c3",
+        "g": "f6f7b333be6e5917",
+        "name": "BootNotification",
+        "func": "//Load defaults\nconst interval = global.get(\"CSMS:HeartBeatInterval\") ?? 120\nconst currentTime = new Date().toISOString()\nconst validEVSEs = global.get(\"CSMS:EVSEs\") ?? []\n\nlet status = (validEVSEs.find((cbId) => cbId === msg.ocpp.chargeBoxIdentity.toLowerCase() ) != undefined) ? \"Accepted\" : \"Rejected\"\n\nmsg.payload = {\n    interval,\n    currentTime,\n    status\n}\n\nmsg.ack = true\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 780,
+        "wires": [
+            [
+                "fa1a321403a73088"
+            ]
+        ]
+    },
+    {
+        "id": "7283d4e60852fabc",
+        "type": "change",
+        "z": "9ca80d42115ee3c3",
+        "g": "f6f7b333be6e5917",
+        "name": "Heartbeat",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "payload.currentTime",
+                "pt": "msg",
+                "to": "$now()",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "ack",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 240,
+        "y": 740,
+        "wires": [
+            [
+                "2b16b2bbbd57fabc"
+            ]
+        ]
+    },
+    {
+        "id": "2b16b2bbbd57fabc",
+        "type": "link out",
+        "z": "9ca80d42115ee3c3",
+        "g": "f6f7b333be6e5917",
+        "name": "HB_OUT",
+        "mode": "return",
+        "links": [],
+        "x": 395,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "1e88d1e2d4dcc7d3",
+        "type": "link in",
+        "z": "9ca80d42115ee3c3",
+        "g": "f6f7b333be6e5917",
+        "name": "EXAMPLE_Heartbeat",
+        "links": [],
+        "x": 105,
+        "y": 740,
+        "wires": [
+            [
+                "7283d4e60852fabc"
+            ]
+        ]
+    },
+    {
         "id": "02e68d94d30084bf",
         "type": "debug",
         "z": "9ca80d42115ee3c3",
@@ -2407,8 +2610,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 470,
-        "y": 900,
+        "x": 480,
+        "y": 860,
         "wires": []
     },
     {
@@ -2425,8 +2628,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 440,
-        "y": 1000,
+        "x": 450,
+        "y": 960,
         "wires": []
     },
     {
@@ -2439,8 +2642,8 @@
         "links": [
             "25afca3af5d04a0d"
         ],
-        "x": 845,
-        "y": 940,
+        "x": 855,
+        "y": 900,
         "wires": []
     },
     {
@@ -2456,8 +2659,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 700,
-        "y": 940,
+        "x": 710,
+        "y": 900,
         "wires": [
             [
                 "3890b31b33998ff0"
@@ -2474,8 +2677,8 @@
         "links": [
             "31dee9642ab622cd"
         ],
-        "x": 335,
-        "y": 980,
+        "x": 345,
+        "y": 940,
         "wires": []
     },
     {
@@ -2486,8 +2689,8 @@
         "name": "link out 52",
         "mode": "return",
         "links": [],
-        "x": 325,
-        "y": 920,
+        "x": 335,
+        "y": 880,
         "wires": []
     },
     {
@@ -2508,8 +2711,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 490,
-        "y": 940,
+        "x": 500,
+        "y": 900,
         "wires": [
             [
                 "378785534c46db9b"
@@ -2521,10 +2724,10 @@
         "type": "link in",
         "z": "9ca80d42115ee3c3",
         "g": "c20c8766fa664d2e",
-        "name": "ST_TX_IN",
+        "name": "EXAMPLE_Auth_StartTx",
         "links": [],
-        "x": 115,
-        "y": 960,
+        "x": 125,
+        "y": 920,
         "wires": [
             [
                 "c71183f6d99d46ef"
@@ -2544,8 +2747,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 220,
-        "y": 960,
+        "x": 230,
+        "y": 920,
         "wires": [
             [
                 "e2a9a4f6ea0938e9",
@@ -2620,8 +2823,8 @@
         "links": [
             "19a1d55d0ad937f5"
         ],
-        "x": 1215,
-        "y": 460,
+        "x": 1275,
+        "y": 480,
         "wires": []
     },
     {
@@ -2633,8 +2836,8 @@
         "links": [
             "846c6af009c205bd"
         ],
-        "x": 85,
-        "y": 460,
+        "x": 145,
+        "y": 480,
         "wires": [
             [
                 "868ca4fd5276022e"
@@ -2654,8 +2857,8 @@
         "paramsType": "json",
         "payloadType": "json",
         "block": false,
-        "x": 1100,
-        "y": 460,
+        "x": 1160,
+        "y": 480,
         "wires": [
             [
                 "a1f721f1a03c965a"
@@ -2671,8 +2874,8 @@
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 960,
-        "y": 460,
+        "x": 1020,
+        "y": 480,
         "wires": [
             [
                 "d2d365e869ae5aa3"
@@ -2699,8 +2902,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 820,
-        "y": 460,
+        "x": 880,
+        "y": 480,
         "wires": [
             [
                 "7bc0d39e117db98a"
@@ -2716,8 +2919,8 @@
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 690,
-        "y": 460,
+        "x": 750,
+        "y": 480,
         "wires": [
             [
                 "34b27b38f2e7609a"
@@ -2751,8 +2954,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 400,
-        "y": 460,
+        "x": 460,
+        "y": 480,
         "wires": [
             [
                 "124fa94892413c81"
@@ -2772,8 +2975,8 @@
         "paramsType": "json",
         "payloadType": "json",
         "block": false,
-        "x": 560,
-        "y": 460,
+        "x": 620,
+        "y": 480,
         "wires": [
             [
                 "b952178113645c64"
@@ -2798,8 +3001,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 210,
-        "y": 460,
+        "x": 270,
+        "y": 480,
         "wires": [
             [
                 "e07f99fdfc73cd44"
@@ -2864,7 +3067,7 @@
         "finalize": "",
         "libs": [],
         "x": 340,
-        "y": 360,
+        "y": 220,
         "wires": [
             [
                 "fdaa305606c3401a"
@@ -2880,7 +3083,7 @@
             "40fe4278635a683c"
         ],
         "x": 125,
-        "y": 360,
+        "y": 220,
         "wires": [
             [
                 "44e8fa5ea6d0b7fe"
@@ -2932,35 +3135,6 @@
         "wires": [
             [
                 "ea9c78552e696e47"
-            ]
-        ]
-    },
-    {
-        "id": "45368c33e91f1031",
-        "type": "inject",
-        "z": "9ca80d42115ee3c3",
-        "name": "GetConfig ALL Fractal0014",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "3",
-        "topic": "",
-        "payload": "{\"command\":\"GetConfiguration\",\"cbId\":\"Fractal0014\",\"data\":{\"key\":[]}}",
-        "payloadType": "json",
-        "x": 240,
-        "y": 160,
-        "wires": [
-            [
-                "fdaa305606c3401a"
             ]
         ]
     },
@@ -3185,8 +3359,8 @@
         "topic": "",
         "payload": "{\"type\":99,\"command\":\"LOCAL_GET_ONLINE_LIST\"}",
         "payloadType": "json",
-        "x": 270,
-        "y": 120,
+        "x": 210,
+        "y": 160,
         "wires": [
             [
                 "fdaa305606c3401a"
@@ -3209,65 +3383,6 @@
         "x": 670,
         "y": 20,
         "wires": []
-    },
-    {
-        "id": "b63a8282533b86ac",
-        "type": "inject",
-        "z": "9ca80d42115ee3c3",
-        "name": "GetConfig ALL Fractal0001",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "3",
-        "topic": "",
-        "payload": "{\"command\":\"GetConfiguration\",\"cbId\":\"Fractal0001\",\"data\":{\"key\":[]}}",
-        "payloadType": "json",
-        "x": 240,
-        "y": 200,
-        "wires": [
-            [
-                "fdaa305606c3401a",
-                "c11bcce02b9e6001"
-            ]
-        ]
-    },
-    {
-        "id": "47a91001dbd9f4a4",
-        "type": "inject",
-        "z": "9ca80d42115ee3c3",
-        "name": "GetConfig ALL EVOChargeLab1",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "3",
-        "topic": "",
-        "payload": "{\"command\":\"GetConfiguration\",\"cbId\":\"EVOChargeLab1\",\"data\":{\"key\":[]}}",
-        "payloadType": "json",
-        "x": 260,
-        "y": 240,
-        "wires": [
-            [
-                "fdaa305606c3401a"
-            ]
-        ]
     },
     {
         "id": "e9e2899132889fc9",
@@ -3303,72 +3418,6 @@
         "wires": []
     },
     {
-        "id": "1e88d1e2d4dcc7d3",
-        "type": "link in",
-        "z": "9ca80d42115ee3c3",
-        "name": "HB_IN",
-        "links": [],
-        "x": 105,
-        "y": 760,
-        "wires": [
-            [
-                "7283d4e60852fabc"
-            ]
-        ]
-    },
-    {
-        "id": "2b16b2bbbd57fabc",
-        "type": "link out",
-        "z": "9ca80d42115ee3c3",
-        "name": "HB_OUT",
-        "mode": "return",
-        "links": [],
-        "x": 395,
-        "y": 760,
-        "wires": []
-    },
-    {
-        "id": "7283d4e60852fabc",
-        "type": "change",
-        "z": "9ca80d42115ee3c3",
-        "name": "Heartbeat",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "{}",
-                "tot": "json"
-            },
-            {
-                "t": "set",
-                "p": "payload.currentTime",
-                "pt": "msg",
-                "to": "$now()",
-                "tot": "jsonata"
-            },
-            {
-                "t": "set",
-                "p": "ack",
-                "pt": "msg",
-                "to": "true",
-                "tot": "bool"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 240,
-        "y": 760,
-        "wires": [
-            [
-                "2b16b2bbbd57fabc"
-            ]
-        ]
-    },
-    {
         "id": "f6cabb9b8b83d2ce",
         "type": "debug",
         "z": "9ca80d42115ee3c3",
@@ -3381,25 +3430,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 800,
-        "y": 280,
-        "wires": []
-    },
-    {
-        "id": "c11bcce02b9e6001",
-        "type": "debug",
-        "z": "9ca80d42115ee3c3",
-        "name": "debug 81",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 790,
-        "y": 340,
+        "x": 540,
+        "y": 140,
         "wires": []
     },
     {
@@ -3415,51 +3447,6 @@
         "wires": [
             [
                 "846c6af009c205bd"
-            ]
-        ]
-    },
-    {
-        "id": "9298f921e122faa5",
-        "type": "function",
-        "z": "9ca80d42115ee3c3",
-        "name": "BootNotification",
-        "func": "//Load defaults\nconst interval = global.get(\"CSMS:HeartBeatInterval\") ?? 120\nconst currentTime = new Date().toISOString()\nconst validEVSEs = global.get(\"CSMS:EVSEs\") ?? []\n\nlet status = (validEVSEs.find((cbId) => cbId === msg.ocpp.chargeBoxIdentity.toLowerCase() ) != undefined) ? \"Accepted\" : \"Rejected\"\n\nmsg.payload = {\n    interval,\n    currentTime,\n    status\n}\n\nmsg.ack = true\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 260,
-        "y": 820,
-        "wires": [
-            [
-                "fa1a321403a73088"
-            ]
-        ]
-    },
-    {
-        "id": "fa1a321403a73088",
-        "type": "link out",
-        "z": "9ca80d42115ee3c3",
-        "name": "link out 55",
-        "mode": "return",
-        "links": [],
-        "x": 405,
-        "y": 820,
-        "wires": []
-    },
-    {
-        "id": "056c40eb67d6fe4c",
-        "type": "link in",
-        "z": "9ca80d42115ee3c3",
-        "name": "BN_IN",
-        "links": [],
-        "x": 105,
-        "y": 820,
-        "wires": [
-            [
-                "9298f921e122faa5"
             ]
         ]
     },
@@ -7099,6 +7086,71 @@
         ]
     },
     {
+        "id": "6e251da731f92cf5",
+        "type": "ui-template",
+        "z": "c40c5bcee8c850c1",
+        "group": "605f98a93d6b516d",
+        "page": "",
+        "ui": "",
+        "name": "Version",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "head": "",
+        "format": "<template>\n    <div>\n        <span class=\"xyz\">Version:</span>\n    </div>\n</template>\n\n\n<style>\n    /* define any styles here - supports raw CSS */\n    .xyz {\n        color: red;\n    }\n</style>",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 240,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c9ffbdc573846444",
+        "type": "ui-template",
+        "z": "c40c5bcee8c850c1",
+        "group": "ac3370e3a654aa16",
+        "page": "",
+        "ui": "",
+        "name": "CSMS URL",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "head": "",
+        "format": "<template>\n    <div>\n        <p class=\"my-class\">CSMS URL: {{formattedURL}}</p>\n    </div>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                port: '0000',\n                path: '/',\n                host: '<host ip address>',\n                protocol: 'ws'\n            }\n        },\n        computed: {\n            // automatically compute this variable\n            // whenever VueJS deems appropriate\n            formattedURL: function () {\n                return `${this.protocol}://${this.host}:${this.port}${this.path}`\n            }\n        },\n\n        mounted() {\n            // code here when the component is first loaded\n        },\n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: black;\n        font-weight: bold;\n        font-size: 12pt;\n    }\n</style>",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 250,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "65df7b6a49d5365f",
+        "type": "ui-markdown",
+        "z": "c40c5bcee8c850c1",
+        "group": "2ce6757429420e3d",
+        "name": "",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "content": "# CIPio Link\n",
+        "className": "",
+        "x": 250,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
         "id": "e50b7a84160e1d66",
         "type": "mqtt in",
         "z": "bc469b88bbf8641e",
@@ -7679,6 +7731,64 @@
         "wires": []
     },
     {
+        "id": "b645202acfa17bbe",
+        "type": "mqtt in",
+        "z": "294f3520d49a4f00",
+        "g": "5c57038f3942292a",
+        "name": "",
+        "topic": "ANL/SEP/Meter/#",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "191526b4c53ba7c0",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 820,
+        "wires": [
+            [
+                "ed8247496c428ec6"
+            ]
+        ]
+    },
+    {
+        "id": "618def1a0f4236f9",
+        "type": "debug",
+        "z": "294f3520d49a4f00",
+        "g": "5c57038f3942292a",
+        "name": "debug 39",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 540,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "8a6a1c999a396dc9",
+        "type": "mqtt out",
+        "z": "294f3520d49a4f00",
+        "g": "5c57038f3942292a",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "213076b7a395d1a9",
+        "x": 530,
+        "y": 860,
+        "wires": []
+    },
+    {
         "id": "ed8247496c428ec6",
         "type": "change",
         "z": "294f3520d49a4f00",
@@ -7704,64 +7814,6 @@
             [
                 "618def1a0f4236f9",
                 "8a6a1c999a396dc9"
-            ]
-        ]
-    },
-    {
-        "id": "8a6a1c999a396dc9",
-        "type": "mqtt out",
-        "z": "294f3520d49a4f00",
-        "g": "5c57038f3942292a",
-        "name": "",
-        "topic": "",
-        "qos": "",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "213076b7a395d1a9",
-        "x": 530,
-        "y": 860,
-        "wires": []
-    },
-    {
-        "id": "618def1a0f4236f9",
-        "type": "debug",
-        "z": "294f3520d49a4f00",
-        "g": "5c57038f3942292a",
-        "name": "debug 39",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 540,
-        "y": 820,
-        "wires": []
-    },
-    {
-        "id": "b645202acfa17bbe",
-        "type": "mqtt in",
-        "z": "294f3520d49a4f00",
-        "g": "5c57038f3942292a",
-        "name": "",
-        "topic": "ANL/SEP/Meter/#",
-        "qos": "2",
-        "datatype": "auto-detect",
-        "broker": "191526b4c53ba7c0",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 150,
-        "y": 820,
-        "wires": [
-            [
-                "ed8247496c428ec6"
             ]
         ]
     },
@@ -8719,7 +8771,7 @@
         "group": "c48e064d37e64bbf",
         "name": "Site LoadLimit",
         "label": "Max Load Limit (Amps)",
-        "order": 3,
+        "order": 4,
         "width": 0,
         "height": 0,
         "topic": "heartbeat",
@@ -9100,7 +9152,7 @@
         "type": "ui-switch",
         "z": "c4f677cd277b409d",
         "name": "ShowBanner",
-        "label": "Show Banner",
+        "label": "Show Home Page Banner",
         "group": "c48e064d37e64bbf",
         "order": 1,
         "width": 0,
@@ -9202,7 +9254,7 @@
         "group": "c48e064d37e64bbf",
         "name": "",
         "label": "Banner URL:",
-        "order": 2,
+        "order": 3,
         "width": 0,
         "height": 0,
         "topic": "topic",
@@ -9417,6 +9469,179 @@
         "x": 1075,
         "y": 380,
         "wires": []
+    },
+    {
+        "id": "fb0a4e143e0f32de",
+        "type": "redis-command",
+        "z": "c4f677cd277b409d",
+        "server": "0430675ed6c7cd83",
+        "command": "GET",
+        "name": "get ShowMeters",
+        "topic": "settings:site:show_meters",
+        "params": "[]",
+        "paramsType": "json",
+        "payloadType": "json",
+        "block": false,
+        "x": 280,
+        "y": 520,
+        "wires": [
+            [
+                "f751c51525b9a588"
+            ]
+        ]
+    },
+    {
+        "id": "f751c51525b9a588",
+        "type": "function",
+        "z": "c4f677cd277b409d",
+        "name": "str2bool",
+        "func": "msg.payload = (msg?.payload?.toLowerCase() === 'true');\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 520,
+        "wires": [
+            [
+                "3e51ec5aad79e4b4"
+            ]
+        ]
+    },
+    {
+        "id": "3e51ec5aad79e4b4",
+        "type": "ui-switch",
+        "z": "c4f677cd277b409d",
+        "name": "ShowMeters",
+        "label": "Show Meters Page",
+        "group": "c48e064d37e64bbf",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": false,
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "className": "",
+        "layout": "row-left-swapped",
+        "clickableArea": "line",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 630,
+        "y": 520,
+        "wires": [
+            [
+                "44c6f7b6e8c6c2c0"
+            ]
+        ]
+    },
+    {
+        "id": "44c6f7b6e8c6c2c0",
+        "type": "change",
+        "z": "c4f677cd277b409d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "CSMS:ShowMeters",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 850,
+        "y": 520,
+        "wires": [
+            [
+                "885b6e8bcbe1d24b",
+                "6987223118a808f4"
+            ]
+        ]
+    },
+    {
+        "id": "885b6e8bcbe1d24b",
+        "type": "function",
+        "z": "c4f677cd277b409d",
+        "name": "bool2str",
+        "func": "msg.payload = `${msg.payload}`\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1080,
+        "y": 520,
+        "wires": [
+            [
+                "323c7dc47a709281"
+            ]
+        ]
+    },
+    {
+        "id": "323c7dc47a709281",
+        "type": "redis-command",
+        "z": "c4f677cd277b409d",
+        "server": "0430675ed6c7cd83",
+        "command": "SET",
+        "name": "set ShowMeters",
+        "topic": "settings:site:show_meters",
+        "params": "[]",
+        "paramsType": "json",
+        "payloadType": "json",
+        "block": false,
+        "x": 1260,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6987223118a808f4",
+        "type": "function",
+        "z": "c4f677cd277b409d",
+        "name": "show/hide Meters Page",
+        "func": "let x = msg.payload\n\nmsg = {}\n\nif (x == true){\n    msg.payload = {\n        pages: { show: [\"Meters\"]}\n    }\n}\nelse {\n    msg.payload = {\n        pages: { hide: [\"Meters\"]}\n    }\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1110,
+        "y": 580,
+        "wires": [
+            [
+                "667eb387ade36ccc"
+            ]
+        ]
+    },
+    {
+        "id": "667eb387ade36ccc",
+        "type": "ui-control",
+        "z": "c4f677cd277b409d",
+        "name": "",
+        "ui": "8cdc313c9611f13f",
+        "events": "all",
+        "x": 1300,
+        "y": 580,
+        "wires": [
+            []
+        ]
     },
     {
         "id": "b05ce5e13a571231",
