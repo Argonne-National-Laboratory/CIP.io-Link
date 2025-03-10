@@ -53,6 +53,10 @@ else
   echo "git is installed"
 fi
 
+## Clone the repository
+git clone https://github.com/Argonne-National-Laboratory/CIP.io-Link.git
+cd CIP.io-Link
+
 ## Check for jq installation
 echo "## Checking for jq"
 
@@ -85,13 +89,13 @@ if ! command -v docker &>/dev/null; then
   fi
 else
   echo "Docker is already installed"
+  echo "Stopping any current CIP.io-Link containers"
+  docker compose down
 fi
 
-# git clone git@github.com:bnystrom/cipiotest.git
-git clone https://github.com/bnystrom/cipiotest.git
-cd cipiotest
 ./scripts/setup_env.sh
 ./scripts/setup_mqtt.sh
 ./scripts/setup_influx.sh
 ./scripts/setup_nr.sh
-docker compose --profile grafana up -d
+# docker compose --profile grafana up -d
+docker compose up -d
