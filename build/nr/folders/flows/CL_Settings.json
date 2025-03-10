@@ -21,7 +21,8 @@
         "9a553400c62662a4",
         "6bdcde6369d7a4b4",
         "039d0809d7c54de3",
-        "75b51ecec0628924"
+        "75b51ecec0628924",
+        "fb0a4e143e0f32de"
       ]
     ]
   },
@@ -103,7 +104,7 @@
     "group": "c48e064d37e64bbf",
     "name": "Site LoadLimit",
     "label": "Max Load Limit (Amps)",
-    "order": 3,
+    "order": 4,
     "width": 0,
     "height": 0,
     "topic": "heartbeat",
@@ -484,7 +485,7 @@
     "type": "ui-switch",
     "z": "c4f677cd277b409d",
     "name": "ShowBanner",
-    "label": "Show Banner",
+    "label": "Show Home Page Banner",
     "group": "c48e064d37e64bbf",
     "order": 1,
     "width": 0,
@@ -586,7 +587,7 @@
     "group": "c48e064d37e64bbf",
     "name": "",
     "label": "Banner URL:",
-    "order": 2,
+    "order": 3,
     "width": 0,
     "height": 0,
     "topic": "topic",
@@ -801,5 +802,178 @@
     "x": 1075,
     "y": 380,
     "wires": []
+  },
+  {
+    "id": "fb0a4e143e0f32de",
+    "type": "redis-command",
+    "z": "c4f677cd277b409d",
+    "server": "0430675ed6c7cd83",
+    "command": "GET",
+    "name": "get ShowMeters",
+    "topic": "settings:site:show_meters",
+    "params": "[]",
+    "paramsType": "json",
+    "payloadType": "json",
+    "block": false,
+    "x": 280,
+    "y": 520,
+    "wires": [
+      [
+        "f751c51525b9a588"
+      ]
+    ]
+  },
+  {
+    "id": "f751c51525b9a588",
+    "type": "function",
+    "z": "c4f677cd277b409d",
+    "name": "str2bool",
+    "func": "msg.payload = (msg?.payload?.toLowerCase() === 'true');\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 460,
+    "y": 520,
+    "wires": [
+      [
+        "3e51ec5aad79e4b4"
+      ]
+    ]
+  },
+  {
+    "id": "3e51ec5aad79e4b4",
+    "type": "ui-switch",
+    "z": "c4f677cd277b409d",
+    "name": "ShowMeters",
+    "label": "Show Meters Page",
+    "group": "c48e064d37e64bbf",
+    "order": 2,
+    "width": 0,
+    "height": 0,
+    "passthru": true,
+    "decouple": false,
+    "topic": "topic",
+    "topicType": "msg",
+    "style": "",
+    "className": "",
+    "layout": "row-left-swapped",
+    "clickableArea": "line",
+    "onvalue": "true",
+    "onvalueType": "bool",
+    "onicon": "",
+    "oncolor": "",
+    "offvalue": "false",
+    "offvalueType": "bool",
+    "officon": "",
+    "offcolor": "",
+    "x": 630,
+    "y": 520,
+    "wires": [
+      [
+        "44c6f7b6e8c6c2c0"
+      ]
+    ]
+  },
+  {
+    "id": "44c6f7b6e8c6c2c0",
+    "type": "change",
+    "z": "c4f677cd277b409d",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "CSMS:ShowMeters",
+        "pt": "global",
+        "to": "payload",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 850,
+    "y": 520,
+    "wires": [
+      [
+        "885b6e8bcbe1d24b",
+        "6987223118a808f4"
+      ]
+    ]
+  },
+  {
+    "id": "885b6e8bcbe1d24b",
+    "type": "function",
+    "z": "c4f677cd277b409d",
+    "name": "bool2str",
+    "func": "msg.payload = `${msg.payload}`\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1080,
+    "y": 520,
+    "wires": [
+      [
+        "323c7dc47a709281"
+      ]
+    ]
+  },
+  {
+    "id": "323c7dc47a709281",
+    "type": "redis-command",
+    "z": "c4f677cd277b409d",
+    "server": "0430675ed6c7cd83",
+    "command": "SET",
+    "name": "set ShowMeters",
+    "topic": "settings:site:show_meters",
+    "params": "[]",
+    "paramsType": "json",
+    "payloadType": "json",
+    "block": false,
+    "x": 1260,
+    "y": 520,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "6987223118a808f4",
+    "type": "function",
+    "z": "c4f677cd277b409d",
+    "name": "show/hide Meters Page",
+    "func": "let x = msg.payload\n\nmsg = {}\n\nif (x == true){\n    msg.payload = {\n        pages: { show: [\"Meters\"]}\n    }\n}\nelse {\n    msg.payload = {\n        pages: { hide: [\"Meters\"]}\n    }\n}\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1110,
+    "y": 580,
+    "wires": [
+      [
+        "667eb387ade36ccc"
+      ]
+    ]
+  },
+  {
+    "id": "667eb387ade36ccc",
+    "type": "ui-control",
+    "z": "c4f677cd277b409d",
+    "name": "",
+    "ui": "8cdc313c9611f13f",
+    "events": "all",
+    "x": 1300,
+    "y": 580,
+    "wires": [
+      []
+    ]
   }
 ]

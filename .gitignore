@@ -1,0 +1,8 @@
+.env
+**/node-red
+**/influx2
+**/influx
+**/valkey
+**/redis
+**/mqtt
+**/mosquitto
