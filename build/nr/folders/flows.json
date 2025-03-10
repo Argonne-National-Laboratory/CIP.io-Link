@@ -13,7 +13,6 @@
         "type": "tab",
         "label": "CL_EVSEs",
         "disabled": false,
-        "locked": true,
         "info": "",
         "env": []
     },
@@ -40,6 +39,7 @@
         "type": "tab",
         "label": "CL_Info",
         "disabled": false,
+        "locked": true,
         "info": "",
         "env": []
     },
@@ -7120,7 +7120,7 @@
         "width": "0",
         "height": "0",
         "head": "",
-        "format": "<template>\n    <p> Use the following path information to configure your Charge Point (EVSE) to this CIP.io-Link CSMS.</p>\n\n    <div class=\"url-div\">\n        <span class=\"url_protocol\">{{ protocol }}://</span><span class=\"url_host\">{{ host }}</span><span class=\"url_port\">:{{ port }}</span><span class=\"url_path\">{{ path }}</span>`\n    </div>\n\n    <i>Please Note: Some EVSEs require you manually append the charge point units name to the URL. Some do this for you.\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                port: '0000',\n                path: '/',\n                host: '<host ip address>',\n                protocol: 'ws'\n            }\n        },\n        computed: {\n            // automatically compute this variable\n            // whenever VueJS deems appropriate\n        },\n\n        mounted() {\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n                if (this.msg.payload){\n                let payload = this.msg.payload\n                this.protocol = payload?.protocol\n                this.port = payload?.port\n                this.path = payload?.path\n                this.host = payload?.host\n                }\n                \n            })\n        },\n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: black;\n        font-weight: bold;\n        font-size: 12pt;\n    }\n    .url_port {\n        color: blue;\n        font-weight: bold;\n        font-size: 24pt;\n    }\n    .url_path {\n        color: green;\n        font-weight: bold;\n        font-size: 24pt;\n    }\n    .url_protocol {\n        color: black;\n        font-weight: bold;\n        font-size: 24pt;\n    }\n    .url_host {\n        color: gray;\n        font-weight: bold;\n        font-size: 24pt;\n    }\n    .url-div {\n        border-top: 2px dotted;\n        border-bottom: 2px dotted;\n        margin-bottom: 10px;\n        margin-top: 10px;\n    }\n\n</style>",
+        "format": "<template>\n    <p> Use the following path information to configure your Charge Point (EVSE) to this CIP.io-Link CSMS.</p>\n\n    <div class=\"url-div\">\n        <span class=\"url_protocol\">{{ protocol }}://</span><span class=\"url_host\">{{ host }}</span><span class=\"url_port\">:{{ port }}</span><span class=\"url_path\">{{ path }}</span>`\n    </div>\n\n    <i><span class=\"pn\">NOTE:</span>\n        <div  class=\"note-list\"> \n        <ul>\n            <li>Some EVSEs require that the charge point units name be appended to the URL. Some do this for you.</li>\n            <li>The IP address in the URL above was our best approximation of your host IP address. You may need want to verify the \n            correct IP address that is open to outside clients.</li>\n        </ul>\n        </div>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                port: '0000',\n                path: '/',\n                host: '<host ip address>',\n                protocol: 'ws'\n            }\n        },\n        computed: {\n            // automatically compute this variable\n            // whenever VueJS deems appropriate\n        },\n\n        mounted() {\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n                if (this.msg.payload){\n                let payload = this.msg.payload\n                this.protocol = payload?.protocol\n                this.port = payload?.port\n                this.path = payload?.path\n                this.host = payload?.host\n                }\n                \n            })\n        },\n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: black;\n        font-weight: bold;\n        font-size: 12pt;\n    }\n    .url_port {\n        color: blue;\n        font-weight: bold;\n        font-size: 24pt;\n    }\n    .url_path {\n        color: green;\n        font-weight: bold;\n        font-size: 24pt;\n    }\n    .url_protocol {\n        color: black;\n        font-weight: bold;\n        font-size: 24pt;\n    }\n    .url_host {\n        color: gray;\n        font-weight: bold;\n        font-size: 24pt;\n    }\n    .url-div {\n        border-top: 2px dotted;\n        border-bottom: 2px dotted;\n        margin-bottom: 10px;\n        margin-top: 10px;\n    }\n    .note-list {\n        padding-left: 20px;\n    }\n    .pn {\n        background-color: #dddddd\n    }\n\n</style>",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -7141,10 +7141,10 @@
         "order": 1,
         "width": 0,
         "height": 0,
-        "content": "# CIPio Link\n\n\n## Links\n[CIP.io-Link on Github.com](https://github.com/Argonne-National-Laboratory/CIP.io-Link)\n\n[Argonne National Laboratory](https://www.anl.gov/)\n\n[OCA - Open Charge Alliance](https://openchargealliance.org/)",
+        "content": "# CIPio Link\n\n\n## Helpful Links\n\n[CIP.io-Link on Github.com](https://github.com/Argonne-National-Laboratory/CIP.io-Link)\n\n[Argonne National Laboratory](https://www.anl.gov/)\n\n[OCA - Open Charge Alliance](https://openchargealliance.org/)\n",
         "className": "",
         "x": 610,
-        "y": 100,
+        "y": 80,
         "wires": [
             []
         ]
@@ -7154,7 +7154,7 @@
         "type": "function",
         "z": "c40c5bcee8c850c1",
         "name": "function 2",
-        "func": "msg.payload = {\n    \"port\": env.get(\"CIPIO_CSMS_PORT\"),\n    \"path\": env.get(\"CIPIO_CSMS_PATH\"),\n    \"host\": \"<Host IP Addr>\",\n    \"protocol\": \"ws\"\n}\nreturn msg;",
+        "func": "msg.payload = {\n    \"port\": env.get(\"CIPIO_CSMS_PORT\"),\n    \"path\": env.get(\"CIPIO_CSMS_PATH\"),\n    \"host\": env.get(\"CIPIO_LINK_HOST\"),\n    \"protocol\": \"ws\"\n}\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -7228,6 +7228,74 @@
             ]
         ],
         "l": false
+    },
+    {
+        "id": "2bfb78731c486437",
+        "type": "function",
+        "z": "c40c5bcee8c850c1",
+        "name": "function 4",
+        "func": "let host_ip = env.get(\"CIPIO_LINK_HOST\")\nmsg.payload = host_ip\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 120,
+        "wires": [
+            [
+                "6dc6cfc72601d0ca"
+            ]
+        ]
+    },
+    {
+        "id": "f296120e9fb674ea",
+        "type": "inject",
+        "z": "c40c5bcee8c850c1",
+        "name": "",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 250,
+        "y": 120,
+        "wires": [
+            [
+                "2bfb78731c486437"
+            ]
+        ]
+    },
+    {
+        "id": "6dc6cfc72601d0ca",
+        "type": "ui-template",
+        "z": "c40c5bcee8c850c1",
+        "group": "2ce6757429420e3d",
+        "page": "",
+        "ui": "",
+        "name": "OtherURLs",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "head": "",
+        "format": "<template>\n    <div>\n        <h2>Other useful local links</h2>\n        <a :href=\"getURL(3000)\" target=\"_blank\">Grafana</a></br>\n        <a :href=\"getURL(8086)\" target=\"_blank\">Influx DB2 </a></br>\n        <a :href=\"getURL(9000)\" target=\"_blank\">Portainer</a></br>\n    </div>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                host: \"127.0.0.1\"\n            }\n        },\n        methods: {\n            getURL: function(port){\n                return `http://192.168.1.119:${port}`\n            }\n        },\n        mounted() {\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n                if (this.msg.payload){\n                    this.host = this.msg.payload\n                }\n            })\n        },\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: red;\n    }\n</style>",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 610,
+        "y": 120,
+        "wires": [
+            []
+        ]
     },
     {
         "id": "e50b7a84160e1d66",
