@@ -154,7 +154,7 @@ echo -e "\n"
 ## Username & Password
 echo "Please provide a username and password that CIPio Link will use to configure various"
 echo "applications. To keep things uncomplicated, CIPio Link uses a common user and password"
-echo "where possible. Since various parts of CIPio Link run in conatiners, this isn't a"
+echo "where possible. Since various parts of CIPio Link run in containers, this isn't a"
 echo "security issue."
 echo -e "\n"
 echo "NOTE: This is NOT the same user and password for the system login."
