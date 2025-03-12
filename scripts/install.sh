@@ -12,13 +12,14 @@ CYAN='\033[0;36m'
 BRIGHTWHITE='\33[1;37m'
 NC='\033[0m' # No Color
 
+clear
 echo -e "${GREEN}********************************************${NC}"
 echo -e "${GREEN}* ${CYAN}Starting CIP.io-Link Installation...   ${GREEN} *${NC}"
 echo -e "${GREEN}********************************************${NC}"
 
 echo -e "\n\n${GREEN}This script will install the CIP.io-Link CSMS application on your system.${NC}"
 echo -e "\n"
-echo -e "%{GREEN}PRESS <ENTER> to continue. <Ctrl-c> to exit${NC}"
+echo -e "${GREEN}PRESS <ENTER> to continue. <Ctrl-c> to exit${NC}"
 read
 
 //sudo apt update
