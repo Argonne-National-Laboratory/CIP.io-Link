@@ -8,12 +8,11 @@ services:
     volumes:
       - ./node-red:/data
       - ./node-red/logs:/usr/src/node-red/logs
+      # - ${DEV_FOLDER}node-red-contrib-ocpp:/data/node_modules/node-red-contrib-ocpp
     ports:
       - ${CIPIO_CSMS_PORT-8884}:${CIPIO_CSMS_PORT-8884}
       - 1880:1880
     env_file:
-      - path: ./.env
-        required: true
       - path: ./.ver.env
         required: false
     environment:
@@ -24,8 +23,8 @@ services:
       CIPIO_MQTT_USER: ${CIPIO_USER}
       CIPIO_MQTT_PW: ${CIPIO_PW}
       CIPIO_CSMS_PORT: ${CIPIO_CSMS_PORT-8884}
-      CIPIO_CSMS_PATH: ${CIPIO_CSMS_PATH:-/ocpp}
-      CIPIO_INFLUX_TOKEN: ${CIPIO_INFLUX_TOKEN-TOKENNOTINITIALIZED}
+      CIPIO_CSMS_PATH: ${CIPIO_CSMS_PATH:-/ocpp1.6}
+      CIPIO_INFLUX_TOKEN: ${INFLUX_TOKEN:-TOKENNOTINITIALIZED}
       CIPIO_VALKEY_OPTIONS: >
         {
           "port": 6379,
