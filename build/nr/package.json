@@ -10,16 +10,16 @@
   },
   "dependencies": {
     "node-red": "*",
-    "@flowfuse/node-red-dashboard": "~1.22.1",
-    "@flowfuse/node-red-dashboard-2-ui-iframe": "~1.1.0",
-    "@flowfuse/node-red-dashboard-2-ui-led": "~1.1.0",
-    "node-red-contrib-ocpp": "^1.3.6",
+    "@flowfuse/node-red-dashboard": "^1.22.1",
+    "@flowfuse/node-red-dashboard-2-ui-iframe": "^1.1.0",
+    "@flowfuse/node-red-dashboard-2-ui-led": "^1.1.0",
+    "node-red-contrib-ocpp": "^1.3.8",
     "node-red-contrib-modbustcp": "^1.2.3",
-    "node-red-contrib-influxdb": "~0.7.0",
-    "node-red-contrib-modbus": "~5.43.0",
-    "node-red-contrib-redis": "~1.4.0",
-    "node-red-contrib-web-worldmap": "~5.1.1",
-    "node-red-dashboard": "~3.6.5",
-    "node-red-contrib-flow-manager": "~0.7.4"
+    "node-red-contrib-influxdb": "^0.7.0",
+    "node-red-contrib-modbus": "^5.43.0",
+    "node-red-contrib-redis": "^1.4.0",
+    "node-red-contrib-web-worldmap": "^5.1.1",
+    "node-red-dashboard": "^3.6.5",
+    "node-red-contrib-flow-manager": "^0.7.4"
   }
 }
