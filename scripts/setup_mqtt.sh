@@ -1,5 +1,10 @@
 #!/bin/bash
 
+source ./utils.sh
+
+echo -e "${GREEN}********************************************${NC}"
+echo -e "${GREEN}* ${CYAN}Starting MQTT setup...   ${GREEN}               *${NC}"
+echo -e "${GREEN}********************************************${NC}"
 # Source the .env file
 if [[ -f .env ]]; then
   source .env
@@ -9,8 +14,8 @@ else
 fi
 
 if [ -z "$CIPIO_USER" ] || [ -z "$CIPIO_PW" ]; then
-  echo "Either the cipio user or password is not defined."
-  echo "Exiting setup"
+  echo -e "${RED}Either the cipio user or password is not defined."
+  echo -e "Exiting setup${NC}"
   exit 1
 fi
 
@@ -25,7 +30,7 @@ wait_for_container() {
     local elapsed_time=$((current_time - start_time))
 
     if [[ "$elapsed_time" -gt "$timeout" ]]; then
-      echo "Timeout waiting for container '$container_name'."
+      echo -e "${RED}Timeout waiting for container '$container_name'.${NC}"
       docker logs "$container_name" 2>/dev/null
       return 1 # Indicate failure
     fi
@@ -38,17 +43,17 @@ wait_for_container() {
       echo "Container '$container_name' is running."
       return 0 # Indicate success
     elif [[ "$health" == "unhealthy" ]]; then
-      echo "Container '$container_name' is not yet running. Checking again..."
+      echo -e "${MAGENTA}Container '$container_name' is not yet running. Checking again...${NC}"
       sleep 2
     fi
   done
 }
 
 if [[ "$EUID" != 0 ]]; then
-  echo "We need to elevate you to root level for this installation. Please enter the sudo user password"
+  echo -e "${GREEN}We need to elevate you to root level for this installation. Please enter the sudo user password${NC}"
   sudo -k
   if sudo true; then
-    echo "Good, you are now have sudo level access"
+    echo -e "${GREEN}Good, you are now have sudo level access${NC}"
   else
     error "Incorrect password.. Exiting installation process"
   fi
@@ -80,7 +85,7 @@ if wait_for_container "$container_name"; then
   # Restart mqtt to pick up the users and acls
   docker compose restart mqtt
 else
-  echo "Failed to start container '$container_name' properly."
+  echo -e "${RED}Failed to start container '$container_name' properly.${NC}"
   docker rm -f "$container_name"
   exit 1
 fi

@@ -1,17 +1,22 @@
 #!/bin/bash
 clear
+echo -e "${GREEN}********************************************${NC}"
+echo -e "${GREEN}* ${CYAN}Setting up CIP.io-Link config... ${GREEN} *${NC}"
+echo -e "${GREEN}********************************************${NC}"
 # Default .env file path (make this configurable if needed)
 ENV_FILE=".env"
 
 # Color text escape codes
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m' # Bold yellow
-BLUE='\033[0;34m'
-MAGENTA='\033[0;35m'
-CYAN='\033[0;36m'
-BRIGHTWHITE='\33[1;37m'
-NC='\033[0m' # No Color
+# RED='\033[0;31m'
+# GREEN='\033[0;32m'
+# YELLOW='\033[1;33m' # Bold yellow
+# BLUE='\033[0;34m'
+# MAGENTA='\033[0;35m'
+# CYAN='\033[0;36m'
+# BRIGHTWHITE='\33[1;37m'
+# NC='\033[0m' # No Color
+
+source ./utils.sh
 
 if [ ! -f $ENV_FILE ]; then
   touch $ENV_FILE

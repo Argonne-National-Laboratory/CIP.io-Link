@@ -1,5 +1,10 @@
 #!/bin/bash
 
+source ./utils.sh
+
+echo -e "${GREEN}********************************************${NC}"
+echo -e "${GREEN}* ${CYAN}Starting CIP.io-Link Installation...   ${GREEN} *${NC}"
+echo -e "${GREEN}********************************************${NC}"
 //sudo apt update
 
 function install_docker() {
@@ -34,7 +39,7 @@ function install_docker2() {
 }
 
 ## Check for curl installation
-echo "## Checking for curl"
+echo -e "${GREEN}## Checking for curl${NC}"
 
 if ! command -v curl &>/dev/null; then
   echo "## curl Install #######################################################"
@@ -44,7 +49,7 @@ else
 fi
 
 ## Check for git installation
-echo "## Checking for git"
+echo -e "${GREEN}## Checking for git${NC}"
 
 if ! command -v git &>/dev/null; then
   echo "## git Install #######################################################"
@@ -58,7 +63,7 @@ git clone https://github.com/Argonne-National-Laboratory/CIP.io-Link.git
 cd CIP.io-Link
 
 ## Check for jq installation
-echo "## Checking for jq"
+echo -e "${GREEN}## Checking for jq${NC}"
 
 if ! command -v jq &>/dev/null; then
   echo "## jq Install #######################################################"
@@ -68,13 +73,13 @@ else
 fi
 
 ## Check for Docker installation
-echo "## Checking for Docker"
+echo -e "${GREEN}## Checking for Docker${NC}"
 
 if ! command -v docker &>/dev/null; then
   clear
-  echo "## Docker Install #######################################################"
+  echo -e "${GREEN}## Docker Install #######################################################"
   echo -e "\n"
-  echo "First we need to install Docker on your system. Hit <ENTER> to continue:"
+  echo -e "First we need to install Docker on your system.${CYAN} Hit <ENTER> to continue:${NC}"
   read
 
   install_docker2
@@ -104,3 +109,8 @@ echo "CIPIO_LINK_VER=${cipiolnk_ver}" >.ver.env
 cipiolnk_host=$(hostname -I | awk '{print $1}')
 echo "CIPIO_LINK_HOST=${cipiolnk_host}" >>.ver.env
 docker compose up -d
+
+echo -e "\n\n ${WHITE}Setup Completed${NC}\n\n"
+echo -e "${YELLOW}************************************************************${NC}"
+echo -e "${GREEN} Go to http://localhost:1880/dashboard to see the CIP.io-Link CSMS app${NC}"
+echo -e "${YELLOW}************************************************************${NC}"

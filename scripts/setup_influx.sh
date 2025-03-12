@@ -1,13 +1,19 @@
 #! /bin/bash
 
+source ./utils.sh
+
+echo -e "${GREEN}********************************************${NC}"
+echo -e "${GREEN}* ${CYAN}Starting InfluxDB setup...${GREEN}               *${NC}"
+echo -e "${GREEN}********************************************${NC}"
+
 # Function to check if jq is installed
 check_jq_installed() {
   if ! command -v jq &>/dev/null; then
-    echo "jq is not installed. Installing jq..."
+    echo -e "${MAGENTA}jq is not installed. Installing jq...${NC}"
     sudo apt update
     sudo apt install -y jq
   else
-    echo "jq command is available."
+    echo -e "${MAGENTA}jq command is available.${NC}"
   fi
 }
 
@@ -45,7 +51,7 @@ while [ $status -ne 0 ]; do
 
   # Check if the command succeeded
   if [ $status -ne 0 ]; then
-    echo "Command failed. Retrying..."
+    echo -e "${RED}Command failed. Retrying...${NC}"
     sleep 5 # Wait for 5 seconds before retrying
   fi
 done

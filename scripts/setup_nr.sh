@@ -1,7 +1,15 @@
+#!/bin/bash
+
+source ./utils.sh
+
+echo -e "${GREEN}********************************************${NC}"
+echo -e "${GREEN}* ${CYAN}Starting Node-Red setup...   ${GREEN}            *${NC}"
+echo -e "${GREEN}********************************************${NC}"
+
 folder_path=./node-red
 if [ ! -d "$folder_path" ]; then
   mkdir -p "$folder_path"
-  echo "Folder '$folder_path' created."
+  echo -e "${GREEN}Folder '$folder_path' created.${NC}"
 fi
 
 if [ ! -d "${folder_path}/assets" ]; then
@@ -9,7 +17,7 @@ if [ ! -d "${folder_path}/assets" ]; then
   echo "Folder '${folder_path}/assets' created."
 fi
 
-echo "Updating ownership of $folder_path..."
+echo -e "${GREEN}Updating ownership of $folder_path...${NC}"
 sudo docker stop node-red >/dev/null 2>&1
 sleep 5
 sudo chown -R ${USER}:${USER} $folder_path
