@@ -129,6 +129,6 @@ docker compose up -d
 
 echo -e "\n\n ${WHITE}Setup Completed${NC}\n\n"
 echo -e "${YELLOW}*******************************************************************${NC}"
-echo -e "${GREEN} Go to http://localhost:1880/dashboard to see the CIP.io-Link CSMS app${NC}"
+echo -e "${GREEN} Go to http://${cipiolnk_host}:1880/dashboard to see the CIP.io-Link CSMS app${NC}"
 echo -e "${YELLOW}*******************************************************************${NC}"
 echo -e "\n\n"
