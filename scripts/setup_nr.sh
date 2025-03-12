@@ -1,6 +1,7 @@
 #!/bin/bash
 
-source ./utils.sh
+SCRIPTS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPTS_DIR/utils.sh"
 
 echo -e "${GREEN}********************************************${NC}"
 echo -e "${GREEN}* ${CYAN}Starting Node-Red setup...   ${GREEN}            *${NC}"
