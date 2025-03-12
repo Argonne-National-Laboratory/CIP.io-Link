@@ -15,6 +15,12 @@ NC='\033[0m' # No Color
 echo -e "${GREEN}********************************************${NC}"
 echo -e "${GREEN}* ${CYAN}Starting CIP.io-Link Installation...   ${GREEN} *${NC}"
 echo -e "${GREEN}********************************************${NC}"
+
+echo -e "\n\n${GREEN}This script will install the CIP.io-Link CSMS application on your system.${NC}"
+echo -e "\n"
+echo -e "%{GREEN}PRESS <ENTER> to continue. <Ctrl-c> to exit${NC}"
+read
+
 //sudo apt update
 
 function install_docker() {
@@ -121,6 +127,7 @@ echo "CIPIO_LINK_HOST=${cipiolnk_host}" >>.ver.env
 docker compose up -d
 
 echo -e "\n\n ${WHITE}Setup Completed${NC}\n\n"
-echo -e "${YELLOW}************************************************************${NC}"
+echo -e "${YELLOW}*******************************************************************${NC}"
 echo -e "${GREEN} Go to http://localhost:1880/dashboard to see the CIP.io-Link CSMS app${NC}"
-echo -e "${YELLOW}************************************************************${NC}"
+echo -e "${YELLOW}*******************************************************************${NC}"
+echo -e "\n\n"
