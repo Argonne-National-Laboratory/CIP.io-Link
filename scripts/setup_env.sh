@@ -1,11 +1,8 @@
 #!/bin/bash
 clear
-echo -e "${GREEN}********************************************${NC}"
-echo -e "${GREEN}* ${CYAN}Setting up CIP.io-Link config... ${GREEN} *${NC}"
-echo -e "${GREEN}********************************************${NC}"
 # Default .env file path (make this configurable if needed)
 ENV_FILE=".env"
-
+SCRIPTS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # Color text escape codes
 # RED='\033[0;31m'
 # GREEN='\033[0;32m'
@@ -16,7 +13,11 @@ ENV_FILE=".env"
 # BRIGHTWHITE='\33[1;37m'
 # NC='\033[0m' # No Color
 
-source ./utils.sh
+source "$SCRIPTS_DIR/utils.sh"
+
+echo -e "${GREEN}********************************************${NC}"
+echo -e "${GREEN}* ${CYAN}Setting up CIP.io-Link config... ${GREEN} *${NC}"
+echo -e "${GREEN}********************************************${NC}"
 
 if [ ! -f $ENV_FILE ]; then
   touch $ENV_FILE
