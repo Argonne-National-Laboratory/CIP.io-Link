@@ -4,6 +4,8 @@ CIP.io-Link is a next-generation, user-friendly evolution of [CIP.io](https://gi
 
 CIPio stands for Common Integration Platform. It is a set of open source applications working together in order to provide a basic way of communicating with each other and external hardware such as meters and services.
 
+Its main focus is to act as a easily deployable Charge Station Management System (CSMS) that exists locally on sites where EV charging is taking place. It is designed to be a research platform for site and campus-level energy controls.
+
 ## :link: Quick Links
 
 - [:link: Requirements](https://github.com/Argonne-National-Laboratory/CIP.io-Link?tab=readme-ov-file#requirements)
