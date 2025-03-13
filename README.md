@@ -4,7 +4,7 @@ CIP.io-Link is a next-generation, user-friendly evolution of [CIP.io](https://gi
 
 CIPio stands for Common Integration Platform. It is a set of open source applications working together in order to provide a basic way of communicating with each other and external hardware such as meters and services.
 
-## Qucik Links
+## :link: Quick Links
 
 - [:link: Requirements](https://github.com/Argonne-National-Laboratory/CIP.io-Link?tab=readme-ov-file#requirements)
 - [:link: Installation](https://github.com/Argonne-National-Laboratory/CIP.io-Link?tab=readme-ov-file#scroll-the-install-script)
