@@ -78,7 +78,7 @@ Web Reference | Docker Hub Reference
 
 ## Requirements
 
-### Hardware
+### :computer: Hardware
 
 CIP.io-Link is designed to run on a **local server** or **edge device**. Although it may be possible to deploy
 CIP.io-Link on a single board computer such as a Raspberry-Pi5, all testing has been done on Intel slim platform
@@ -92,7 +92,7 @@ devices such as Dell Optiplex and Lenovo/Intel NUC devices. The following hardwa
   - Mouse and keyboard
   - USB port for initial installation of OS if not already installed
 
-## Operating System
+## :penguin: Operating System
 
 - Linux (Ubuntu 24.04 LTS recommended, desktop works well)
 
