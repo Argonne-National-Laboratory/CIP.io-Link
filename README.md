@@ -10,10 +10,24 @@ CIPio stands for Common Integration Platform. It is a set of open source applica
 
 CIP.io-Link is an **open-source** project, enabling broad community collaboration and extensibility.
 
+### A Research-Driven, Deployment-Ready Platform
+
+- Designed as a plug-and-play platform for easy smart charge management.
+- Functions as a research platform for site and campus-level energy controls.
+- Tailored to support experimental setups and foster innovation in VGI and energy management.
+
+### Vision
+
+CIPio Link bridges the gap between research and real-world application, enabling smoother adoption of modern energy management technologies at scale.
+
 ### CSMS (Charge Station Management System)  
 
 - Provides a **local** CSMS user interface  
-- Includes instructions for integrating **OCPP-compliant** charging stations  
+- Includes instructions for integrating **OCPP-compliant** charging stations (OCPP 1.6j)
+  - Manage multiple EV charging stations
+  - Manage EV drivers and their charging sessions
+  - Track charging transactions and energy consumption
+  - Employ charge manaaement strategies to optimize energy use and prevent overloads
 
 ### Core CIP.io Features  
 
@@ -22,14 +36,6 @@ CIP.io-Link is an **open-source** project, enabling broad community collaboratio
 - **Customizable smart charge management**  
 
 CIP.io-Link brings cutting-edge energy management tools into an **integrated, on-site** platform, enabling **efficient, reliable, and scalable** EV charging solutions.  
-
-```bash
-
-wget -q https://raw.githubusercontent.com/Argonne-National-Laboratory/CIP.io-Link/main/scripts/install.sh -O /tmp/install.sh && \
-    chmod +x /tmp/install.sh && \
-    /tmp/install.sh
-
-```
 
 ## What gets installed?
 
@@ -94,8 +100,12 @@ CIP.io-Link is designed to run headless (no monitor, keyboard, or mouse) and can
 
 Open up a terminal and change directories to the location you downloaded the CIPio install files to. Run the install script
 
-```
-> ./install.sh
+```bash
+
+wget -q https://raw.githubusercontent.com/Argonne-National-Laboratory/CIP.io-Link/main/scripts/install.sh -O /tmp/install.sh && \
+    chmod +x /tmp/install.sh && \
+    /tmp/install.sh
+
 ```
 
 You do not need to initially run the script as root (sudu). The script will prompt you for your root password when it runs.
