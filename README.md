@@ -43,7 +43,7 @@ CIPio Link bridges the gap between research and real-world application, enabling
 
 CIP.io-Link brings cutting-edge energy management tools into an **integrated, on-site** platform, enabling **efficient, reliable, and scalable** EV charging solutions.  
 
-## What gets installed?
+## :construction_worker: What gets installed?
 
 By default, the CIP.io-Link installer installs the following:
 
@@ -111,7 +111,7 @@ Upon execution of the installation script, and new folder will be created name C
 
 You do not need to initially run the script as root (sudu). The script will prompt you for your root password when it runs.
 
-To install, click the "[copy]" button in the following code sample, the paste that into your terminal to execute.
+To install, click the "[copy]" button in the following code sample, then paste that into your terminal to execute.
 
 ---
 
@@ -126,10 +126,10 @@ wget -q https://raw.githubusercontent.com/Argonne-National-Laboratory/CIP.io-Lin
 
 The above lines of code will do the following:
 
-- Download the initial install script to the /tmp folder and run it
+- Download the initial install script to the /tmp folder on your system and run it
 - Verify that git, curl, jq, and Docker are installed
 - Download the remainder of the files needed from this repository
-  - There is no need to manually clone this repository prior to installation. The script will do that for you.
+  - There is no need to manually "**git clone**" this repository prior to installation. The script will do that for you.
 - Prompt you for information needed to run CIP.io-Link
   - Create a default user and password used by the various components/containers
   - Prompt you for the port number you wish to associate with the CSMS URL
