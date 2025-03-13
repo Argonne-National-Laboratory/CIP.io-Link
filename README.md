@@ -6,11 +6,11 @@ CIPio stands for Common Integration Platform. It is a set of open source applica
 
 ## Qucik Links
 
-- [Requirements](https://github.com/Argonne-National-Laboratory/CIP.io-Link?tab=readme-ov-file#requirements)
-- [Installation](https://github.com/Argonne-National-Laboratory/CIP.io-Link?tab=readme-ov-file#scroll-the-install-script)
-- [Documentation/Wiki](https://github.com/Argonne-National-Laboratory/CIP.io-Link/wiki)
+- [:link: Requirements](https://github.com/Argonne-National-Laboratory/CIP.io-Link?tab=readme-ov-file#requirements)
+- [:link: Installation](https://github.com/Argonne-National-Laboratory/CIP.io-Link?tab=readme-ov-file#scroll-the-install-script)
+- [:link: Documentation/Wiki](https://github.com/Argonne-National-Laboratory/CIP.io-Link/wiki)
 
-## Key Features
+## :key: Key Features
 
 ### Open Source Software  
 
@@ -143,7 +143,7 @@ You can find out more about Docker [HERE](https://www.docker.com).
 
 Once installed, your Linux user will also be added to the "docker" user group on your system. This will keep you from having to sudu your account in order to do to certain docker activities (docker pull/up/down/ps). You may have to exit and restart your terminal in order for this to take affect the first time.
 
-### Future Enhancements (OCPP 2.x Version)  
+### :construction: Future Enhancements (OCPP 2.x Version)  
 
 - **ISO-15118 Charge Scheduling Application**  
 - Acts as a **local OCPP node**  
