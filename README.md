@@ -113,12 +113,16 @@ You do not need to initially run the script as root (sudu). The script will prom
 
 To install, click the "[copy]" button in the following code sample, the paste that into your terminal to execute.
 
+---
+
 ```bash
 
 wget -q https://raw.githubusercontent.com/Argonne-National-Laboratory/CIP.io-Link/main/scripts/install.sh -O /tmp/install.sh && \
     chmod +x /tmp/install.sh && \
     /tmp/install.sh
 ```
+
+---
 
 The above lines of code will do the following:
 
@@ -135,7 +139,7 @@ The above lines of code will do the following:
 
 When finished, a URL for accessing the CIP.io-Link dashboard will be displayed. You can enter that into a browser to access the dashboard.
 
-### Docker
+### :whale: Docker
 
 You can find out more about Docker [HERE](https://www.docker.com).
 
