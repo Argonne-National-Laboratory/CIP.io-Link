@@ -759,6 +759,23 @@
             }
         }
     },
+    "node-red-contrib-flow-manager": {
+        "name": "node-red-contrib-flow-manager",
+        "version": "0.7.4",
+        "local": false,
+        "user": false,
+        "nodes": {
+            "flow-manager": {
+                "name": "flow-manager",
+                "types": [],
+                "enabled": true,
+                "local": false,
+                "user": false,
+                "module": "node-red-contrib-flow-manager",
+                "file": "/usr/src/node-red/node_modules/node-red-contrib-flow-manager/flow-manager.js"
+            }
+        }
+    },
     "node-red-contrib-influxdb": {
         "name": "node-red-contrib-influxdb",
         "version": "0.7.0",
@@ -1250,20 +1267,81 @@
             }
         }
     },
-    "node-red-contrib-flow-manager": {
-        "name": "node-red-contrib-flow-manager",
-        "version": "0.7.4",
-        "local": true,
-        "user": true,
+    "node-red-contrib-ocpp": {
+        "name": "node-red-contrib-ocpp",
+        "version": "1.3.8",
+        "local": false,
+        "user": false,
         "nodes": {
-            "flow-manager": {
-                "name": "flow-manager",
-                "types": [],
+            "ocpp-req": {
+                "name": "ocpp-req",
+                "types": [
+                    "CS request SOAP"
+                ],
                 "enabled": true,
-                "local": true,
+                "local": false,
                 "user": false,
-                "module": "node-red-contrib-flow-manager",
-                "file": "/data/node_modules/node-red-contrib-flow-manager/flow-manager.js"
+                "module": "node-red-contrib-ocpp",
+                "file": "/usr/src/node-red/node_modules/node-red-contrib-ocpp/ocpp/ocpp-req.js"
+            },
+            "ocpp-cp-req": {
+                "name": "ocpp-cp-req",
+                "types": [
+                    "CP Request SOAP"
+                ],
+                "enabled": true,
+                "local": false,
+                "user": false,
+                "module": "node-red-contrib-ocpp",
+                "file": "/usr/src/node-red/node_modules/node-red-contrib-ocpp/ocpp/ocpp-cp-req.js"
+            },
+            "ocpp-remote-cp": {
+                "name": "ocpp-remote-cp",
+                "types": [
+                    "ocpp-remote-cp",
+                    "ocpp-remotej-cp"
+                ],
+                "enabled": true,
+                "local": false,
+                "user": false,
+                "module": "node-red-contrib-ocpp",
+                "file": "/usr/src/node-red/node_modules/node-red-contrib-ocpp/ocpp/ocpp-remote-cp.js"
+            },
+            "ocpp-remote-cs": {
+                "name": "ocpp-remote-cs",
+                "types": [
+                    "ocpp-remote-cs"
+                ],
+                "enabled": true,
+                "local": false,
+                "user": false,
+                "module": "node-red-contrib-ocpp",
+                "file": "/usr/src/node-red/node_modules/node-red-contrib-ocpp/ocpp/ocpp-remote-cs.js"
+            },
+            "ocpp-server": {
+                "name": "ocpp-server",
+                "types": [
+                    "CS server",
+                    "server response",
+                    "CP server SOAP",
+                    "CS request JSON"
+                ],
+                "enabled": true,
+                "local": false,
+                "user": false,
+                "module": "node-red-contrib-ocpp",
+                "file": "/usr/src/node-red/node_modules/node-red-contrib-ocpp/ocpp/ocpp-server.js"
+            },
+            "ocpp-cp-json": {
+                "name": "ocpp-cp-json",
+                "types": [
+                    "CP client JSON"
+                ],
+                "enabled": true,
+                "local": false,
+                "user": false,
+                "module": "node-red-contrib-ocpp",
+                "file": "/usr/src/node-red/node_modules/node-red-contrib-ocpp/ocpp/ocpp-cp-json.js"
             }
         }
     }

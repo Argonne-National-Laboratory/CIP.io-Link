@@ -9,28 +9,6 @@
     "env": []
   },
   {
-    "id": "e50b7a84160e1d66",
-    "type": "mqtt in",
-    "z": "bc469b88bbf8641e",
-    "d": true,
-    "name": "",
-    "topic": "CIPio/location/Meter/LVION0987/Power/Active/PowerPTotal",
-    "qos": "2",
-    "datatype": "auto-detect",
-    "broker": "213076b7a395d1a9",
-    "nl": false,
-    "rap": true,
-    "rh": 0,
-    "inputs": 0,
-    "x": 270,
-    "y": 120,
-    "wires": [
-      [
-        "30a87203640f65e9"
-      ]
-    ]
-  },
-  {
     "id": "30a87203640f65e9",
     "type": "change",
     "z": "bc469b88bbf8641e",
@@ -63,8 +41,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 660,
-    "y": 120,
+    "x": 410,
+    "y": 180,
     "wires": [
       [
         "052b63807c6f06f5",
@@ -110,75 +88,9 @@
     "styleRounded": true,
     "styleGlow": false,
     "className": "",
-    "x": 850,
-    "y": 120,
-    "wires": []
-  },
-  {
-    "id": "c043109f793a35ac",
-    "type": "mqtt in",
-    "z": "bc469b88bbf8641e",
-    "d": true,
-    "name": "",
-    "topic": "CIPio/location/Meter/LVION0987/Current/CurrentAvg",
-    "qos": "2",
-    "datatype": "auto-detect",
-    "broker": "213076b7a395d1a9",
-    "nl": false,
-    "rap": true,
-    "rh": 0,
-    "inputs": 0,
-    "x": 250,
+    "x": 600,
     "y": 180,
-    "wires": [
-      [
-        "a23af9c49881279b"
-      ]
-    ]
-  },
-  {
-    "id": "f6ba639e190e28f5",
-    "type": "mqtt in",
-    "z": "bc469b88bbf8641e",
-    "d": true,
-    "name": "",
-    "topic": "CIPio/location/Meter/LVION0987/Energy/Active/EnergyPTotal",
-    "qos": "2",
-    "datatype": "auto-detect",
-    "broker": "213076b7a395d1a9",
-    "nl": false,
-    "rap": true,
-    "rh": 0,
-    "inputs": 0,
-    "x": 280,
-    "y": 320,
-    "wires": [
-      [
-        "6b4469eeb0dfb68f"
-      ]
-    ]
-  },
-  {
-    "id": "37493c1c1e1e41a2",
-    "type": "mqtt in",
-    "z": "bc469b88bbf8641e",
-    "d": true,
-    "name": "",
-    "topic": "CIPio/location/Meter/LVION0987/Voltage/VoltageLLAvg",
-    "qos": "2",
-    "datatype": "auto-detect",
-    "broker": "213076b7a395d1a9",
-    "nl": false,
-    "rap": true,
-    "rh": 0,
-    "inputs": 0,
-    "x": 260,
-    "y": 240,
-    "wires": [
-      [
-        "b73ef1d774d2eacb"
-      ]
-    ]
+    "wires": []
   },
   {
     "id": "a23af9c49881279b",
@@ -213,8 +125,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 660,
-    "y": 180,
+    "x": 410,
+    "y": 240,
     "wires": [
       [
         "5e0ec18b139b701f",
@@ -260,8 +172,8 @@
     "styleRounded": true,
     "styleGlow": false,
     "className": "",
-    "x": 860,
-    "y": 200,
+    "x": 610,
+    "y": 260,
     "wires": []
   },
   {
@@ -297,8 +209,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 660,
-    "y": 320,
+    "x": 410,
+    "y": 360,
     "wires": [
       [
         "28c268ce8dcb9f74"
@@ -338,8 +250,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 660,
-    "y": 240,
+    "x": 410,
+    "y": 300,
     "wires": [
       [
         "ec562e26d7d3039f"
@@ -388,8 +300,8 @@
     "styleRounded": true,
     "styleGlow": false,
     "className": "",
-    "x": 860,
-    "y": 240,
+    "x": 610,
+    "y": 300,
     "wires": []
   },
   {
@@ -448,8 +360,8 @@
     "height": "6",
     "className": "",
     "interpolation": "linear",
-    "x": 860,
-    "y": 320,
+    "x": 610,
+    "y": 360,
     "wires": [
       []
     ]
@@ -510,8 +422,8 @@
     "height": "6",
     "className": "",
     "interpolation": "linear",
-    "x": 850,
-    "y": 80,
+    "x": 600,
+    "y": 140,
     "wires": [
       []
     ]
@@ -572,8 +484,8 @@
     "height": "6",
     "className": "",
     "interpolation": "linear",
-    "x": 860,
-    "y": 160,
+    "x": 610,
+    "y": 220,
     "wires": [
       []
     ]
@@ -582,10 +494,70 @@
     "id": "93a107ec6406b8d5",
     "type": "comment",
     "z": "bc469b88bbf8641e",
-    "name": "Setup Example: Dbl click me",
-    "info": "# This is just an example\n\nThe disabled nodes on this flow are MQTT subscriptions.\nYou will need to double click on the mqtt nodes and change\nthe topics you publish your meter values to. You will also\nneed to click the enable/disable button at the bottom of the\ndialog to re-enable them.",
-    "x": 180,
+    "name": "Click on me and see information in the [i] Info tab on the right",
+    "info": "# Feeding the Meters Graphs \n\nThere are 3 meter graphs: **Power, Current, Voltage, and Energy**\nEach input expects an object that contains:\n```javascript\nmsg.payload = { unit: \"xyz\", value: 123 }\n```\n\nThe link-in nodes are as follows:\n\nPower = **CL_Meters_Power**\n\nEnergy = **CL_Meters_Current**\n\nVoltage = **CL_Meters_Voltage**\n\nEnergy = **CL_Meters_Energy**\n\nFeed the input from a Link-Out node on an editable flow of your own.",
+    "x": 280,
     "y": 60,
     "wires": []
+  },
+  {
+    "id": "9dfc8b6ab6145a89",
+    "type": "link in",
+    "z": "bc469b88bbf8641e",
+    "name": "CL_Meters_Power",
+    "links": [],
+    "x": 170,
+    "y": 180,
+    "wires": [
+      [
+        "30a87203640f65e9"
+      ]
+    ],
+    "l": true
+  },
+  {
+    "id": "cb82afdd25e47653",
+    "type": "link in",
+    "z": "bc469b88bbf8641e",
+    "name": "CL_Meters_Current",
+    "links": [],
+    "x": 170,
+    "y": 240,
+    "wires": [
+      [
+        "a23af9c49881279b"
+      ]
+    ],
+    "l": true
+  },
+  {
+    "id": "1014b40867ed836c",
+    "type": "link in",
+    "z": "bc469b88bbf8641e",
+    "name": "CL_Meters_Voltage",
+    "links": [],
+    "x": 170,
+    "y": 300,
+    "wires": [
+      [
+        "b73ef1d774d2eacb"
+      ]
+    ],
+    "l": true
+  },
+  {
+    "id": "06f8927e12a27f82",
+    "type": "link in",
+    "z": "bc469b88bbf8641e",
+    "name": "CL_Meters_Energy",
+    "links": [],
+    "x": 170,
+    "y": 360,
+    "wires": [
+      [
+        "6b4469eeb0dfb68f"
+      ]
+    ],
+    "l": true
   }
 ]

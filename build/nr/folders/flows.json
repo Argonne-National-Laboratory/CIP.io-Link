@@ -13,6 +13,7 @@
         "type": "tab",
         "label": "CL_EVSEs",
         "disabled": false,
+        "locked": true,
         "info": "",
         "env": []
     },
@@ -183,7 +184,8 @@
         "x": 58,
         "y": 699,
         "w": 864,
-        "h": 448
+        "h": 448,
+        "info": "**This is just an example** of an override\r\nYou can unlock this tab and click on the nodes to see\r\nhow they work. Do not edit this page or \r\nthese examples. Copy them to an editable\r\nflow of your own if you wish to utilize your\r\nown overrides.\r\n\r\n**Remember** to lock the flow again when you are done\r\nsince CL_ flows get overwritten with new\r\nupdates."
     },
     {
         "id": "a0169f65e4967ec2",
@@ -209,25 +211,6 @@
         "y": 439,
         "w": 1212,
         "h": 82
-    },
-    {
-        "id": "5c57038f3942292a",
-        "type": "group",
-        "z": "294f3520d49a4f00",
-        "name": "MQTT",
-        "style": {
-            "label": true
-        },
-        "nodes": [
-            "b645202acfa17bbe",
-            "ed8247496c428ec6",
-            "618def1a0f4236f9",
-            "8a6a1c999a396dc9"
-        ],
-        "x": 34,
-        "y": 779,
-        "w": 612,
-        "h": 122
     },
     {
         "id": "fac4518c226fbf0c",
@@ -561,25 +544,6 @@
         "showDisconnectNotification": false
     },
     {
-        "id": "a78a40b473af28cd",
-        "type": "ui-theme",
-        "name": "Default Theme",
-        "colors": {
-            "surface": "#ffffff",
-            "primary": "#0094CE",
-            "bgPage": "#eeeeee",
-            "groupBg": "#ffffff",
-            "groupOutline": "#cccccc"
-        },
-        "sizes": {
-            "density": "default",
-            "pagePadding": "12px",
-            "groupGap": "12px",
-            "groupBorderRadius": "4px",
-            "widgetGap": "12px"
-        }
-    },
-    {
         "id": "0d92c765bfad87e6",
         "type": "ui-theme",
         "name": "Basic Blue Theme",
@@ -647,31 +611,6 @@
         "visible": "true",
         "disabled": "false",
         "groupType": "default"
-    },
-    {
-        "id": "92124697.6658f",
-        "type": "ocpp-remote-cs",
-        "name": "Localhost:8834/ocpp",
-        "url": "ws://localhost:8834/ocpp"
-    },
-    {
-        "id": "2bafdaab.15b956",
-        "type": "ocpp-remotej-cp",
-        "name": "",
-        "cbId": "evse-001",
-        "ocppver": "1.6j"
-    },
-    {
-        "id": "9193cb43c1fc44ef",
-        "type": "ocpp-remote-cs",
-        "name": "192.168.1.119:8834",
-        "url": "ws://192.168.1.119:8834/ocpp"
-    },
-    {
-        "id": "ec76a27f96b6b92a",
-        "type": "ocpp-remote-cs",
-        "name": "node-red-dev:8834",
-        "url": "ws://node-red-dev:8834/ocpp"
     },
     {
         "id": "7b05d2e15e8fc23c",
@@ -875,38 +814,6 @@
         "groupType": "default"
     },
     {
-        "id": "191526b4c53ba7c0",
-        "type": "mqtt-broker",
-        "name": "",
-        "broker": "iot.ioc.anl.gov",
-        "port": "8883",
-        "tls": "",
-        "clientid": "",
-        "autoConnect": true,
-        "usetls": true,
-        "protocolVersion": "4",
-        "keepalive": "60",
-        "cleansession": true,
-        "autoUnsubscribe": true,
-        "birthTopic": "",
-        "birthQos": "0",
-        "birthRetain": "false",
-        "birthPayload": "",
-        "birthMsg": {},
-        "closeTopic": "",
-        "closeQos": "0",
-        "closeRetain": "false",
-        "closePayload": "",
-        "closeMsg": {},
-        "willTopic": "",
-        "willQos": "0",
-        "willRetain": "false",
-        "willPayload": "",
-        "willMsg": {},
-        "userProps": "",
-        "sessionExpiry": ""
-    },
-    {
         "id": "213076b7a395d1a9",
         "type": "mqtt-broker",
         "name": "CIPio MQTT Broker",
@@ -988,12 +895,6 @@
         "groupType": "default"
     },
     {
-        "id": "c808be4d8b5feb66",
-        "type": "websocket-listener",
-        "path": "/deleteme",
-        "wholemsg": "false"
-    },
-    {
         "id": "0e43d0c136633834",
         "type": "ui-page",
         "name": "Settings",
@@ -1072,113 +973,6 @@
         "groupType": "default"
     },
     {
-        "id": "ad922d352fe06617",
-        "type": "modbus-client",
-        "name": "Flexy",
-        "clienttype": "tcp",
-        "bufferCommands": true,
-        "stateLogEnabled": false,
-        "queueLogEnabled": false,
-        "failureLogEnabled": true,
-        "tcpHost": "127.0.0.1",
-        "tcpPort": "502",
-        "tcpType": "DEFAULT",
-        "serialPort": "/dev/ttyUSB",
-        "serialType": "RTU-BUFFERD",
-        "serialBaudrate": "9600",
-        "serialDatabits": "8",
-        "serialStopbits": "1",
-        "serialParity": "none",
-        "serialConnectionDelay": "100",
-        "serialAsciiResponseStartDelimiter": "0x3A",
-        "unit_id": "1",
-        "commandDelay": "1",
-        "clientTimeout": "1000",
-        "reconnectOnTimeout": true,
-        "reconnectTimeout": "2000",
-        "parallelUnitIdsAllowed": true,
-        "showErrors": false,
-        "showWarnings": true,
-        "showLogs": true
-    },
-    {
-        "id": "a477577e.9e0bc",
-        "type": "modbus-client",
-        "name": "Modbus Switch TCP",
-        "clienttype": "tcp",
-        "bufferCommands": true,
-        "stateLogEnabled": false,
-        "queueLogEnabled": false,
-        "failureLogEnabled": false,
-        "tcpHost": "127.0.0.1",
-        "tcpPort": "10512",
-        "tcpType": "DEFAULT",
-        "serialPort": "/dev/ttyUSB",
-        "serialType": "RTU-BUFFERD",
-        "serialBaudrate": "9600",
-        "serialDatabits": "8",
-        "serialStopbits": "1",
-        "serialParity": "none",
-        "serialConnectionDelay": "100",
-        "serialAsciiResponseStartDelimiter": "",
-        "unit_id": 1,
-        "commandDelay": 1,
-        "clientTimeout": 1000,
-        "reconnectOnTimeout": true,
-        "reconnectTimeout": 2000,
-        "parallelUnitIdsAllowed": true
-    },
-    {
-        "id": "a9050e37.a6f618",
-        "type": "modbus-client",
-        "name": "Modbus Flex Server",
-        "clienttype": "tcp",
-        "bufferCommands": true,
-        "stateLogEnabled": false,
-        "queueLogEnabled": false,
-        "tcpHost": "127.0.0.1",
-        "tcpPort": "15502",
-        "tcpType": "DEFAULT",
-        "serialPort": "/dev/ttyUSB",
-        "serialType": "RTU-BUFFERD",
-        "serialBaudrate": "9600",
-        "serialDatabits": "8",
-        "serialStopbits": "1",
-        "serialParity": "none",
-        "serialConnectionDelay": "100",
-        "unit_id": 1,
-        "commandDelay": 1,
-        "clientTimeout": 1000,
-        "reconnectOnTimeout": true,
-        "reconnectTimeout": 2000,
-        "parallelUnitIdsAllowed": true
-    },
-    {
-        "id": "352955bb.be6e6a",
-        "type": "modbus-client",
-        "name": "Modbus Server",
-        "clienttype": "tcp",
-        "bufferCommands": true,
-        "stateLogEnabled": false,
-        "queueLogEnabled": false,
-        "tcpHost": "127.0.0.1",
-        "tcpPort": "14502",
-        "tcpType": "DEFAULT",
-        "serialPort": "/dev/ttyUSB",
-        "serialType": "RTU-BUFFERD",
-        "serialBaudrate": "9600",
-        "serialDatabits": "8",
-        "serialStopbits": "1",
-        "serialParity": "none",
-        "serialConnectionDelay": "100",
-        "unit_id": "1",
-        "commandDelay": "1",
-        "clientTimeout": "1000",
-        "reconnectOnTimeout": true,
-        "reconnectTimeout": "2000",
-        "parallelUnitIdsAllowed": true
-    },
-    {
         "id": "750f030497b122aa",
         "type": "ui-group",
         "name": "Meter Values",
@@ -1189,20 +983,6 @@
         "showTitle": true,
         "className": "",
         "visible": "true",
-        "disabled": "false",
-        "groupType": "default"
-    },
-    {
-        "id": "3fa519dd01e52d85",
-        "type": "ui-group",
-        "name": "Header",
-        "page": "e4ddc95d1509efab",
-        "width": "6",
-        "height": "1",
-        "order": 1,
-        "showTitle": false,
-        "className": "",
-        "visible": false,
         "disabled": "false",
         "groupType": "default"
     },
@@ -1903,7 +1683,7 @@
         "type": "function",
         "z": "1bbb83617feb5d61",
         "name": "BootNotification",
-        "func": "//Load defaults\nconst interval = global.get(\"CSMS:HeartBeatInterval\") ?? 120\nconst currentTime = new Date().toISOString()\nconst validEVSEs = global.get(\"CSMS:EVSEs\") ?? []\n\nlet status = (validEVSEs.find((cbId) => cbId === msg.ocpp.chargeBoxIdentity.toLowerCase() ) != undefined) ? \"Accepted\" : \"Rejected\"\n\n\nmsg.payload = {\n    interval,\n    currentTime,\n    status\n}\nreturn msg;",
+        "func": "//Load defaults\nconst interval = global.get(\"CSMS:HeartBeatInterval\") ?? 120\nconst currentTime = new Date().toISOString()\nconst validEVSEs = global.get(\"CSMS:EVSEs\") ?? []\n\nlet status = (validEVSEs.find((cbId) => cbId === msg.ocpp.chargeBoxIdentity) != undefined) ? \"Accepted\" : \"Rejected\"\n\n\nmsg.payload = {\n    interval,\n    currentTime,\n    status\n}\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -2511,7 +2291,7 @@
         "z": "9ca80d42115ee3c3",
         "g": "f6f7b333be6e5917",
         "name": "BootNotification",
-        "func": "//Load defaults\nconst interval = global.get(\"CSMS:HeartBeatInterval\") ?? 120\nconst currentTime = new Date().toISOString()\nconst validEVSEs = global.get(\"CSMS:EVSEs\") ?? []\n\nlet status = (validEVSEs.find((cbId) => cbId === msg.ocpp.chargeBoxIdentity.toLowerCase() ) != undefined) ? \"Accepted\" : \"Rejected\"\n\nmsg.payload = {\n    interval,\n    currentTime,\n    status\n}\n\nmsg.ack = true\n\nreturn msg;",
+        "func": "//Load defaults\nconst interval = global.get(\"CSMS:HeartBeatInterval\") ?? 120\nconst currentTime = new Date().toISOString()\nconst validEVSEs = global.get(\"CSMS:EVSEs\") ?? []\n\nlet status = (validEVSEs.find((cbId) => cbId === msg.ocpp.chargeBoxIdentity) != undefined) ? \"Accepted\" : \"Rejected\"\n\nmsg.payload = {\n    interval,\n    currentTime,\n    status\n}\n\nmsg.ack = true\n\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -2937,7 +2717,7 @@
                 "t": "set",
                 "p": "topic",
                 "pt": "msg",
-                "to": "\"evse:\" & $lowercase(msg.cbId)",
+                "to": "\"evse:\" & msg.cbId",
                 "tot": "jsonata"
             },
             {
@@ -3676,7 +3456,7 @@
         "type": "function",
         "z": "217382551c48905d",
         "name": "Create Key",
-        "func": "let key = `evse:${msg.payload.cbId}`\nmsg.topic = key.toLowerCase()\nreturn msg;\n",
+        "func": "let key = `evse:${msg.payload.cbId}`\nmsg.topic = key\nreturn msg\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -4754,7 +4534,7 @@
         "type": "function",
         "z": "217382551c48905d",
         "name": "function 15",
-        "func": "let key = `evse:${msg.payload.cbId.toLowerCase()}`\nmsg = {}\nmsg.topic = key\nreturn msg\n",
+        "func": "let key = `evse:${msg.payload.cbId}`\nmsg = {}\nmsg.topic = key\nreturn msg\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -5528,21 +5308,16 @@
         "name": "",
         "props": [
             {
-                "p": "payload"
-            },
-            {
                 "p": "topic",
                 "vt": "str"
             }
         ],
-        "repeat": "",
+        "repeat": "3",
         "crontab": "",
         "once": true,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 130,
+        "x": 110,
         "y": 400,
         "wires": [
             [
@@ -7298,28 +7073,6 @@
         ]
     },
     {
-        "id": "e50b7a84160e1d66",
-        "type": "mqtt in",
-        "z": "bc469b88bbf8641e",
-        "d": true,
-        "name": "",
-        "topic": "CIPio/location/Meter/LVION0987/Power/Active/PowerPTotal",
-        "qos": "2",
-        "datatype": "auto-detect",
-        "broker": "213076b7a395d1a9",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 270,
-        "y": 120,
-        "wires": [
-            [
-                "30a87203640f65e9"
-            ]
-        ]
-    },
-    {
         "id": "30a87203640f65e9",
         "type": "change",
         "z": "bc469b88bbf8641e",
@@ -7352,8 +7105,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 660,
-        "y": 120,
+        "x": 410,
+        "y": 180,
         "wires": [
             [
                 "052b63807c6f06f5",
@@ -7399,75 +7152,9 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 850,
-        "y": 120,
-        "wires": []
-    },
-    {
-        "id": "c043109f793a35ac",
-        "type": "mqtt in",
-        "z": "bc469b88bbf8641e",
-        "d": true,
-        "name": "",
-        "topic": "CIPio/location/Meter/LVION0987/Current/CurrentAvg",
-        "qos": "2",
-        "datatype": "auto-detect",
-        "broker": "213076b7a395d1a9",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 250,
+        "x": 600,
         "y": 180,
-        "wires": [
-            [
-                "a23af9c49881279b"
-            ]
-        ]
-    },
-    {
-        "id": "f6ba639e190e28f5",
-        "type": "mqtt in",
-        "z": "bc469b88bbf8641e",
-        "d": true,
-        "name": "",
-        "topic": "CIPio/location/Meter/LVION0987/Energy/Active/EnergyPTotal",
-        "qos": "2",
-        "datatype": "auto-detect",
-        "broker": "213076b7a395d1a9",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 280,
-        "y": 320,
-        "wires": [
-            [
-                "6b4469eeb0dfb68f"
-            ]
-        ]
-    },
-    {
-        "id": "37493c1c1e1e41a2",
-        "type": "mqtt in",
-        "z": "bc469b88bbf8641e",
-        "d": true,
-        "name": "",
-        "topic": "CIPio/location/Meter/LVION0987/Voltage/VoltageLLAvg",
-        "qos": "2",
-        "datatype": "auto-detect",
-        "broker": "213076b7a395d1a9",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 260,
-        "y": 240,
-        "wires": [
-            [
-                "b73ef1d774d2eacb"
-            ]
-        ]
+        "wires": []
     },
     {
         "id": "a23af9c49881279b",
@@ -7502,8 +7189,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 660,
-        "y": 180,
+        "x": 410,
+        "y": 240,
         "wires": [
             [
                 "5e0ec18b139b701f",
@@ -7549,8 +7236,8 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 860,
-        "y": 200,
+        "x": 610,
+        "y": 260,
         "wires": []
     },
     {
@@ -7586,8 +7273,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 660,
-        "y": 320,
+        "x": 410,
+        "y": 360,
         "wires": [
             [
                 "28c268ce8dcb9f74"
@@ -7627,8 +7314,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 660,
-        "y": 240,
+        "x": 410,
+        "y": 300,
         "wires": [
             [
                 "ec562e26d7d3039f"
@@ -7677,8 +7364,8 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 860,
-        "y": 240,
+        "x": 610,
+        "y": 300,
         "wires": []
     },
     {
@@ -7737,8 +7424,8 @@
         "height": "6",
         "className": "",
         "interpolation": "linear",
-        "x": 860,
-        "y": 320,
+        "x": 610,
+        "y": 360,
         "wires": [
             []
         ]
@@ -7799,8 +7486,8 @@
         "height": "6",
         "className": "",
         "interpolation": "linear",
-        "x": 850,
-        "y": 80,
+        "x": 600,
+        "y": 140,
         "wires": [
             []
         ]
@@ -7861,8 +7548,8 @@
         "height": "6",
         "className": "",
         "interpolation": "linear",
-        "x": 860,
-        "y": 160,
+        "x": 610,
+        "y": 220,
         "wires": [
             []
         ]
@@ -7871,98 +7558,71 @@
         "id": "93a107ec6406b8d5",
         "type": "comment",
         "z": "bc469b88bbf8641e",
-        "name": "Setup Example: Dbl click me",
-        "info": "# This is just an example\n\nThe disabled nodes on this flow are MQTT subscriptions.\nYou will need to double click on the mqtt nodes and change\nthe topics you publish your meter values to. You will also\nneed to click the enable/disable button at the bottom of the\ndialog to re-enable them.",
-        "x": 180,
+        "name": "Click on me and see information in the [i] Info tab on the right",
+        "info": "# Feeding the Meters Graphs \n\nThere are 3 meter graphs: **Power, Current, Voltage, and Energy**\nEach input expects an object that contains:\n```javascript\nmsg.payload = { unit: \"xyz\", value: 123 }\n```\n\nThe link-in nodes are as follows:\n\nPower = **CL_Meters_Power**\n\nEnergy = **CL_Meters_Current**\n\nVoltage = **CL_Meters_Voltage**\n\nEnergy = **CL_Meters_Energy**\n\nFeed the input from a Link-Out node on an editable flow of your own.",
+        "x": 280,
         "y": 60,
         "wires": []
     },
     {
-        "id": "b645202acfa17bbe",
-        "type": "mqtt in",
-        "z": "294f3520d49a4f00",
-        "g": "5c57038f3942292a",
-        "name": "",
-        "topic": "ANL/SEP/Meter/#",
-        "qos": "2",
-        "datatype": "auto-detect",
-        "broker": "191526b4c53ba7c0",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 150,
-        "y": 820,
+        "id": "9dfc8b6ab6145a89",
+        "type": "link in",
+        "z": "bc469b88bbf8641e",
+        "name": "CL_Meters_Power",
+        "links": [],
+        "x": 170,
+        "y": 180,
         "wires": [
             [
-                "ed8247496c428ec6"
+                "30a87203640f65e9"
             ]
-        ]
-    },
-    {
-        "id": "618def1a0f4236f9",
-        "type": "debug",
-        "z": "294f3520d49a4f00",
-        "g": "5c57038f3942292a",
-        "name": "debug 39",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 540,
-        "y": 820,
-        "wires": []
-    },
-    {
-        "id": "8a6a1c999a396dc9",
-        "type": "mqtt out",
-        "z": "294f3520d49a4f00",
-        "g": "5c57038f3942292a",
-        "name": "",
-        "topic": "",
-        "qos": "",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "213076b7a395d1a9",
-        "x": 530,
-        "y": 860,
-        "wires": []
-    },
-    {
-        "id": "ed8247496c428ec6",
-        "type": "change",
-        "z": "294f3520d49a4f00",
-        "g": "5c57038f3942292a",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "$replace(msg.topic, \"ANL/SEP\", \"CIPio/Debbie\")\t",
-                "tot": "jsonata"
-            }
         ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 330,
-        "y": 820,
+        "l": true
+    },
+    {
+        "id": "cb82afdd25e47653",
+        "type": "link in",
+        "z": "bc469b88bbf8641e",
+        "name": "CL_Meters_Current",
+        "links": [],
+        "x": 170,
+        "y": 240,
         "wires": [
             [
-                "618def1a0f4236f9",
-                "8a6a1c999a396dc9"
+                "a23af9c49881279b"
             ]
-        ]
+        ],
+        "l": true
+    },
+    {
+        "id": "1014b40867ed836c",
+        "type": "link in",
+        "z": "bc469b88bbf8641e",
+        "name": "CL_Meters_Voltage",
+        "links": [],
+        "x": 170,
+        "y": 300,
+        "wires": [
+            [
+                "b73ef1d774d2eacb"
+            ]
+        ],
+        "l": true
+    },
+    {
+        "id": "06f8927e12a27f82",
+        "type": "link in",
+        "z": "bc469b88bbf8641e",
+        "name": "CL_Meters_Energy",
+        "links": [],
+        "x": 170,
+        "y": 360,
+        "wires": [
+            [
+                "6b4469eeb0dfb68f"
+            ]
+        ],
+        "l": true
     },
     {
         "id": "beada0a7e53cb46a",
@@ -10437,7 +10097,7 @@
         "width": "0",
         "height": "0",
         "head": "",
-        "format": "<template>\n    <v-text-field\n        v-model=\"search\"\n        label=\"Search\"\n        prepend-inner-icon=\"mdi-magnify\"\n        variant=\"outlined\"\n        hide-details\n        single-line\n      ></v-text-field>\n\n    <v-data-table  \n            v-model:search=\"search\" \n            :headers=\"headers\"\n            :items=\"msg?.payload\"\n            :filter-keys='[\"transactionId\",\"cbId\",\"_value\"]'\n            >\n      <template v-slot:item.meter=\"{ item }\">\n        <div>\n          <v-text>{{ item.meterStart }}{{item.meterStop}}</v-text>\n      </template>\n        <template v-slot:item._ztime=\"{ item }\">\n            <div>{{ getLocalTimeString(item._time) }}</div>\n        </template>\n      <template v-slot:item.actions=\"{ item }\">\n        <v-icon\n          class=\"me-2\"\n          size=\"small\"\n          @click=\"send({payload: { txId: item.transactionId}})\"\n        >\n          mdi-eye\n        </v-icon>\n      </template>\n            \n    </v-data-table>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                search: '',\n                headers: [\n                    { value: \"_time\", title: \"Time\"},\n                    { value: \"command\", title: \"Command\"},\n                    { value: \"transactionId\", title: \"TxId\"},\n                    { value: \"cbId\", title: \"EVSE\"},\n                    { value: \"connectorId\", title: \"Conn\"},\n                    //{ value: \"meterStart\", title: \"Start\"},\n                    //{ value: \"meterStop\", title: \"Stop\"},\n                    { key: \"meter\", title: \"Meter\"},\n                    { key: \"actions\", title: \"View\", sortable: false},\n                ]\n            }\n        },\n        watch: {\n            // watch for any changes of \"count\"\n\n        },\n        computed: {\n\n        },\n        methods: {\n            // expose a method to our <template> and Vue Application\n            getLocalTimeString: function (isoTime){\n                const date = new Date(isoTime)\n                const options = { \n                    year: '2-digit', \n                    month: '2-digit', \n                    day: '2-digit', \n                    hour: '2-digit', \n                    minute: '2-digit', \n                    second: '2-digit', \n                    millisecond: '3-digit',\n                    hour12: false \n                    }\n                return date.toLocaleString('en-US', options)\n            },\n        },\n        mounted() {\n            // code here when the component is first loaded\n        },\n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: red;\n    }\n    .headers {\n        font-weight: bold;\n    }\n    .ocppMsgReq {\n        color: blue;\n        font-weight: bold;\n    }\n    .ocppMsgRes {\n        color: blue;\n    }\n    .ocppMsgErr {\n        color: red;\n    }\n</style>",
+        "format": "<template>\n    <v-text-field\n        v-model=\"search\"\n        label=\"Search\"\n        prepend-inner-icon=\"mdi-magnify\"\n        variant=\"outlined\"\n        hide-details\n        single-line\n      ></v-text-field>\n\n    <v-data-table  \n            v-model:search=\"search\" \n            :headers=\"headers\"\n            :items=\"msg?.payload\"\n            :filter-keys='[\"transactionId\",\"cbId\",\"_value\"]'\n            >\n      <template v-slot:item.meter=\"{ item }\">\n        <div>\n          <v-text>{{ item.meterStart }}{{item.meterStop}}</v-text>\n      </template>\n        <template v-slot:item._time=\"{ item }\">\n            <div>{{ getLocalTimeString(item._time) }}</div>\n        </template>\n      <template v-slot:item.actions=\"{ item }\">\n        <v-icon\n          class=\"me-2\"\n          size=\"small\"\n          @click=\"send({payload: { txId: item.transactionId}})\"\n        >\n          mdi-eye\n        </v-icon>\n      </template>\n            \n    </v-data-table>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                search: '',\n                headers: [\n                    { value: \"_time\", title: \"Time\"},\n                    { value: \"command\", title: \"Command\"},\n                    { value: \"transactionId\", title: \"TxId\"},\n                    { value: \"cbId\", title: \"EVSE\"},\n                    { value: \"connectorId\", title: \"Conn\"},\n                    //{ value: \"meterStart\", title: \"Start\"},\n                    //{ value: \"meterStop\", title: \"Stop\"},\n                    { key: \"meter\", title: \"Meter\"},\n                    { key: \"actions\", title: \"View\", sortable: false},\n                ]\n            }\n        },\n        watch: {\n            // watch for any changes of \"count\"\n\n        },\n        computed: {\n\n        },\n        methods: {\n            // expose a method to our <template> and Vue Application\n            getLocalTimeString: function (isoTime){\n                const date = new Date(isoTime)\n                const options = { \n                    year: '2-digit', \n                    month: '2-digit', \n                    day: '2-digit', \n                    hour: '2-digit', \n                    minute: '2-digit', \n                    second: '2-digit', \n                    millisecond: '3-digit',\n                    hour12: false \n                    }\n                return date.toLocaleString('en-US', options)\n            },\n        },\n        mounted() {\n            // code here when the component is first loaded\n        },\n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: red;\n    }\n    .headers {\n        font-weight: bold;\n    }\n    .ocppMsgReq {\n        color: blue;\n        font-weight: bold;\n    }\n    .ocppMsgRes {\n        color: blue;\n    }\n    .ocppMsgErr {\n        color: red;\n    }\n</style>",
         "storeOutMessages": true,
         "passthru": false,
         "resendOnRefresh": true,
@@ -10709,7 +10369,7 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n    <v-text-field\n        v-model=\"search\"\n        label=\"Search\"\n        prepend-inner-icon=\"mdi-magnify\"\n        variant=\"outlined\"\n        hide-details\n        single-line\n      ></v-text-field>\n\n    <v-data-table  \n            v-model:search=\"search\" \n            :items=\"msg?.payload\"\n            :filter-keys='[\"command\",\"msgFrom\",\"cbId\",\"_value\"]'\n            >\n        <template v-slot:header._time>\n            <div class=\"headers\">Time</div>\n        </template>\n        <template v-slot:header.cbId>\n            <div class=\"headers\">EVSE</div>\n        </template>\n        <template v-slot:header.msgFrom>\n            <div class=\"headers\">Origin</div>\n        </template>\n        <template v-slot:header.command>\n            <div class=\"text-center headers\">CMD</div>\n        </template>\n        <template v-slot:header._value>\n            <div class=\"text-center headers\">OCPP Message</div>\n        </template>\n        <template v-slot:item._time=\"{ item }\">\n            <div>{{ getLocalTimeString(item._time) }}</div>\n        </template>\n    </v-data-table>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                search: ''\n            }\n        },\n        watch: {\n            // watch for any changes of \"count\"\n\n        },\n        computed: {\n\n        },\n        methods: {\n            // expose a method to our <template> and Vue Application\n            getLocalTimeString: function (isoTime){\n                const date = new Date(isoTime)\n                const options = { \n                    year: '2-digit', \n                    month: '2-digit', \n                    day: '2-digit', \n                    hour: '2-digit', \n                    minute: '2-digit', \n                    second: '2-digit', \n                    millisecond: '3-digit',\n                    hour12: false \n                    }\n                return date.toLocaleString('en-US', options)\n            },\n        },\n        mounted() {\n            // code here when the component is first loaded\n        },\n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: red;\n    }\n    .headers {\n        font-weight: bold;\n    }\n    .ocppMsgReq {\n        color: blue;\n        font-weight: bold;\n    }\n    .ocppMsgRes {\n        color: blue;\n    }\n    .ocppMsgErr {\n        color: red;\n    }\n</style>",
+        "format": "<template>\n    <v-text-field\n        v-model=\"search\"\n        label=\"Search\"\n        prepend-inner-icon=\"mdi-magnify\"\n        variant=\"outlined\"\n        hide-details\n        single-line\n      ></v-text-field>\n\n    <v-data-table  \n        v-model:search=\"search\" \n        :headers=\"headers\"\n        :items=\"msg.payload\"\n        :filter-keys='[\"CurrentA\",\"VoltageV\",\"EnergykWh\"]'\n    >\n        <template v-slot:header._time>\n            <div class=\"headers\">Time</div>\n        </template>\n        <template v-slot:header.VoltageV>\n            <div class=\"headers\">Volts</div>\n        </template>\n\n        <template v-slot:item._time=\"{ item }\">\n            <div>{{ getLocalTimeString(item._time) }}</div>\n        </template>\n    </v-data-table>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                search: '',\n                headers: [\n                    { title: \"Time\", key: \"_time\"},\n                    { title: \"Current(A)\", key: \"CurrentA\", value: item => this.getTruncated(item.CurrentA, 3)},\n                    { title: \"Volts(V)\", key: \"VoltageV\", value: item => this.getTruncated(item.VoltageV, 3)},\n                    { title: \"Power(kW)\", key: \"PowerkW\", value: item => this.getTruncated(item.PowerkW, 3)},\n                    { title: \"Energy(kWh)\", key: \"EnergykWh\", value: item => this.getTruncated(item.EnergykWh, 3)},\n                    { title: \"SoC (%)\", key: \"SoC\"}\n                ]\n\n            }\n        },\n        watch: {\n            // watch for any changes of \"count\"\n\n        },\n        computed: {\n\n        },\n        methods: {\n            // expose a method to our <template> and Vue Application\n            getLocalTimeString: function (isoTime){\n                const date = new Date(isoTime)\n                const options = { \n                    year: '2-digit', \n                    month: '2-digit', \n                    day: '2-digit', \n                    hour: '2-digit', \n                    minute: '2-digit', \n                    second: '2-digit', \n                    millisecond: '3-digit',\n                    hour12: false \n                    }\n                return date.toLocaleString('en-US', options)\n            },\n            getTruncated: function(value,decimals){\n                const factor = Math.pow(10, decimals);\n                return Math.floor(value * factor) / factor;\n            }\n        },\n        mounted() {\n            // code here when the component is first loaded\n        },\n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .headers {\n        font-weight: bold;\n        color: green;\n    }\n\n</style>",
         "storeOutMessages": true,
         "passthru": false,
         "resendOnRefresh": true,
@@ -10759,64 +10419,6 @@
                 "70f90fb397f12726",
                 "32233b212a66cfcb",
                 "bb739222584f69de"
-            ]
-        ]
-    },
-    {
-        "id": "74e8ab5325f7b4d5",
-        "type": "inject",
-        "z": "daf7a59ca2ce18df",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "{\"txId\":\"1736225603483323\"}",
-        "payloadType": "json",
-        "x": 380,
-        "y": 360,
-        "wires": [
-            [
-                "c4b73cd2d6f1efbb"
-            ]
-        ]
-    },
-    {
-        "id": "e4a883d2e16e1a3f",
-        "type": "inject",
-        "z": "daf7a59ca2ce18df",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "{\"txId\": \"1736225122964380\"}",
-        "payloadType": "json",
-        "x": 380,
-        "y": 404,
-        "wires": [
-            [
-                "c4b73cd2d6f1efbb"
             ]
         ]
     },
@@ -11220,7 +10822,7 @@
         "type": "debug",
         "z": "daf7a59ca2ce18df",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -11228,8 +10830,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1385,
-        "y": 380,
+        "x": 1055,
+        "y": 360,
         "wires": [],
         "l": false
     },
@@ -11464,8 +11066,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1370,
-        "y": 700,
+        "x": 1200,
+        "y": 580,
         "wires": []
     },
     {
@@ -11645,7 +11247,7 @@
         "type": "debug",
         "z": "daf7a59ca2ce18df",
         "name": "debug 68",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
