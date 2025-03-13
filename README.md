@@ -51,11 +51,13 @@ By default, the CIP.io-Link installer installs the following:
     - [Dashboard2 nodes](https://www.npmjs.com/package/@flowfuse/node-red-dashboard)
     - [InfluxDb nodes](https://www.npmjs.com/package/node-red-contrib-influxdb)
     - [Redis nodes](https://www.npmjs.com/package/node-red-contrib-redis)
+    - [Flow-Manager](https://www.npmjs.com/package/node-red-contrib-flow-manager)
   - InfluxDb (v2)
   - ValKey (Redis fork)
   - Grafana
   - Mosquitto MQTT broker
   - Portainer container manager
+  - git, crul, and jq (if not already installed)
 
 ### Application and Docker Hub references
 
@@ -96,29 +98,44 @@ CIP.io-Link is designed to run headless (no monitor, keyboard, or mouse) and can
 
 ## :scroll: The Install script
 
-*[ :point_right: You may want to read this entire README file prior to running the install script to determine if you would like to make modifications to the installation first. Custom settings can be made in the **.env** environment file or the **docker-compose.yaml** files listed below]*
+*[ :point_right: You may wish to read this entire README file and [Wiki](https://github.com/Argonne-National-Laboratory/CIP.io-Link/wiki) prior to running the install script]*
 
-Open up a terminal and change directories to the location you downloaded the CIPio install files to. Run the install script
+Open up a command line terminal and change directories to the location you wish to install CIP.io-Link. You must have permissions in this folder to create files and folders.
+Upon execution of the installation script, and new folder will be created name CIP.io-Link. This is where everything is installed and run from.
+
+You do not need to initially run the script as root (sudu). The script will prompt you for your root password when it runs.
+
+To install, click the "[copy]" button in the following code sample, the paste that into your terminal to execute.
 
 ```bash
 
 wget -q https://raw.githubusercontent.com/Argonne-National-Laboratory/CIP.io-Link/main/scripts/install.sh -O /tmp/install.sh && \
     chmod +x /tmp/install.sh && \
     /tmp/install.sh
-
 ```
 
-You do not need to initially run the script as root (sudu). The script will prompt you for your root password when it runs.
+The above lines of code will do the following:
 
-The first thing that the script does is try to determine if you have Docker installed on your system. If not, it will download and install Docker for you. If you are not familiar with docker, it is an application used to create and run containerized apps on your system. You can find out more about Docker [HERE](https://www.docker.com).
+- Download the initial install script to the /tmp folder and run it
+- Verify that git, curl, jq, and Docker are installed
+- Download the remainder of the files needed from this repository
+  - There is no need to manually clone this repository prior to installation. The script will do that for you.
+- Prompt you for information needed to run CIP.io-Link
+  - Create a default user and password used by the various components/containers
+  - Prompt you for the port number you wish to associate with the CSMS URL
+  - Prompt you for a route (or path) to associate with the CSMS URL
+  - It will create a random password used by ValKey (Redis). Taking the default is recommended.
+- Setup and configure various docker containers and run them
 
-*[ :point_right: In the future, the CIPio isntallations may branch out into other container system such as [Podman](https://podman.io) which does not require the need to run at elevated/root levels in order to support containers, and [Kubernetes](https://kubernetes.io)]*
+When finished, a URL for accessing the CIP.io-Link dashboard will be displayed. You can enter that into a browser to access the dashboard.
 
 ### Docker
 
-### Adding you to the docker group
+You can find out more about Docker [HERE](https://www.docker.com).
 
-Once installed, your user will also be added to the "docker" user group on your system. This will keep you from having to sudu your account in order to do to certain docker activities (docker pull/up/down/ps). You may have to exit and restart your terminal in order for this to take affect the first time.
+### Adding your linux account to the docker group
+
+Once installed, your Linux user will also be added to the "docker" user group on your system. This will keep you from having to sudu your account in order to do to certain docker activities (docker pull/up/down/ps). You may have to exit and restart your terminal in order for this to take affect the first time.
 
 ### Future Enhancements (OCPP 2.x Version)  
 
