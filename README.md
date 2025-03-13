@@ -1,8 +1,26 @@
-# This is a CIPio Link install test
+# CIP.io-Link
 
-Nothing to see here. I will be removed in the next 48hrs anyway.
+CIP.io-Link is a next-generation, user-friendly evolution of [CIP.io](https://github.com/Argonne-National-Laboratory/CIP.io), designed for **local site deployment** of energy management and EV charging solutions. Developed as part of the **EVs@Scale** initiative, funded by the **U.S. Department of Energy**, CIP.io-Link leverages **Commercial Off-The-Shelf (COTS) hardware** to provide a flexible and scalable platform for managing EV charging infrastructure.
 
-Copy and paste the following command to install this package using CIPio:
+## Key Features
+
+### Open Source Software  
+CIP.io-Link is an **open-source** project, enabling broad community collaboration and extensibility.
+
+### CSMS (Charge Station Management System)  
+- Provides a **local** CSMS user interface  
+- Includes instructions for integrating **OCPP-compliant** charging stations  
+
+### Core CIP.io Features  
+- **Time-series database** for data storage and analysis  
+- **MQTT broker** for efficient site-level messaging  
+- **Customizable smart charge management**  
+
+### Future Enhancements (OCPP 2.x Version)  
+- **ISO-15118 Charge Scheduling Application**  
+- Acts as a **local OCPP node**  
+
+CIP.io-Link brings cutting-edge energy management tools into an **integrated, on-site** platform, enabling **efficient, reliable, and scalable** EV charging solutions.  
 
 ```bash
 
