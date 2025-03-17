@@ -22,7 +22,8 @@
         "6bdcde6369d7a4b4",
         "039d0809d7c54de3",
         "75b51ecec0628924",
-        "fb0a4e143e0f32de"
+        "fb0a4e143e0f32de",
+        "dfe32902741b4462"
       ]
     ]
   },
@@ -104,7 +105,7 @@
     "group": "c48e064d37e64bbf",
     "name": "Site LoadLimit",
     "label": "Max Load Limit (Amps)",
-    "order": 4,
+    "order": 5,
     "width": 0,
     "height": 0,
     "topic": "heartbeat",
@@ -587,7 +588,7 @@
     "group": "c48e064d37e64bbf",
     "name": "",
     "label": "Banner URL:",
-    "order": 3,
+    "order": 4,
     "width": 0,
     "height": 0,
     "topic": "topic",
@@ -850,7 +851,7 @@
     "name": "ShowMeters",
     "label": "Show Meters Page",
     "group": "c48e064d37e64bbf",
-    "order": 2,
+    "order": 3,
     "width": 0,
     "height": 0,
     "passthru": true,
@@ -972,6 +973,146 @@
     "events": "all",
     "x": 1300,
     "y": 580,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "dfe32902741b4462",
+    "type": "redis-command",
+    "z": "c4f677cd277b409d",
+    "server": "0430675ed6c7cd83",
+    "command": "GET",
+    "name": "get ShowMap",
+    "topic": "settings:site:show_map",
+    "params": "[]",
+    "paramsType": "json",
+    "payloadType": "json",
+    "block": false,
+    "x": 300,
+    "y": 660,
+    "wires": [
+      [
+        "1b555c160e8aa0eb"
+      ]
+    ]
+  },
+  {
+    "id": "1b555c160e8aa0eb",
+    "type": "function",
+    "z": "c4f677cd277b409d",
+    "name": "str2bool",
+    "func": "msg.payload = (msg?.payload?.toLowerCase() === 'true');\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 480,
+    "y": 660,
+    "wires": [
+      [
+        "2d740621d91ae205"
+      ]
+    ]
+  },
+  {
+    "id": "2d740621d91ae205",
+    "type": "ui-switch",
+    "z": "c4f677cd277b409d",
+    "name": "ShowMap",
+    "label": "Show Home Page Map",
+    "group": "c48e064d37e64bbf",
+    "order": 2,
+    "width": 0,
+    "height": 0,
+    "passthru": true,
+    "decouple": false,
+    "topic": "topic",
+    "topicType": "msg",
+    "style": "",
+    "className": "",
+    "layout": "row-left-swapped",
+    "clickableArea": "line",
+    "onvalue": "true",
+    "onvalueType": "bool",
+    "onicon": "",
+    "oncolor": "",
+    "offvalue": "false",
+    "offvalueType": "bool",
+    "officon": "",
+    "offcolor": "",
+    "x": 640,
+    "y": 660,
+    "wires": [
+      [
+        "c30ab1f3c6b40614"
+      ]
+    ]
+  },
+  {
+    "id": "c30ab1f3c6b40614",
+    "type": "change",
+    "z": "c4f677cd277b409d",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "CSMS:ShowMap",
+        "pt": "global",
+        "to": "payload",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 860,
+    "y": 660,
+    "wires": [
+      [
+        "a34826a6ffc61fbc",
+        "4f2eb882456520c0"
+      ]
+    ]
+  },
+  {
+    "id": "a34826a6ffc61fbc",
+    "type": "function",
+    "z": "c4f677cd277b409d",
+    "name": "bool2str",
+    "func": "msg.payload = `${msg.payload}`\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1100,
+    "y": 660,
+    "wires": [
+      [
+        "fee4aff2afcaa058"
+      ]
+    ]
+  },
+  {
+    "id": "fee4aff2afcaa058",
+    "type": "redis-command",
+    "z": "c4f677cd277b409d",
+    "server": "0430675ed6c7cd83",
+    "command": "SET",
+    "name": "set ShowMap",
+    "topic": "settings:site:show_map",
+    "params": "[]",
+    "paramsType": "json",
+    "payloadType": "json",
+    "block": false,
+    "x": 1280,
+    "y": 660,
     "wires": [
       []
     ]

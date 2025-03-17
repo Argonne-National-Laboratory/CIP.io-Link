@@ -380,7 +380,8 @@
                 "6bdcde6369d7a4b4",
                 "039d0809d7c54de3",
                 "75b51ecec0628924",
-                "fb0a4e143e0f32de"
+                "fb0a4e143e0f32de",
+                "dfe32902741b4462"
             ]
         ]
     },
@@ -1169,7 +1170,6 @@
         "g": "f6e1783b4f8d6029",
         "name": "CL_SetTxDefaultProfile",
         "links": [
-            "0d628f0894098128",
             "8c66713b1e35e58f"
         ],
         "x": 835,
@@ -1299,8 +1299,7 @@
         "g": "adad8cfed89e9a2e",
         "name": "CL_SCM",
         "links": [
-            "03a8715970d7a77d",
-            "885f7019dc576089"
+            "03a8715970d7a77d"
         ],
         "x": 825,
         "y": 860,
@@ -1585,7 +1584,6 @@
         "name": "Server Response Node",
         "links": [
             "d363a59df51b1603",
-            "0974c9afbf6425e2",
             "fb6d59603b2b3beb"
         ],
         "x": 825,
@@ -1742,9 +1740,7 @@
         "type": "link in",
         "z": "1bbb83617feb5d61",
         "name": "HeartBeat",
-        "links": [
-            "1920fd977adf99ce"
-        ],
+        "links": [],
         "x": 285,
         "y": 600,
         "wires": [
@@ -1819,9 +1815,7 @@
         "type": "link in",
         "z": "1bbb83617feb5d61",
         "name": "CL_StopTransaction",
-        "links": [
-            "9b51587a3c6a0b45"
-        ],
+        "links": [],
         "x": 275,
         "y": 700,
         "wires": [
@@ -1870,10 +1864,7 @@
         "type": "link in",
         "z": "1bbb83617feb5d61",
         "name": "CL_Generic",
-        "links": [
-            "8491c20b715112f4",
-            "9b51587a3c6a0b45"
-        ],
+        "links": [],
         "x": 285,
         "y": 480,
         "wires": [
@@ -4241,68 +4232,6 @@
         "wires": []
     },
     {
-        "id": "25588a53fed4f232",
-        "type": "redis-command",
-        "z": "217382551c48905d",
-        "server": "0430675ed6c7cd83",
-        "command": "KEYS",
-        "name": "",
-        "topic": "evse:*",
-        "params": "[]",
-        "paramsType": "json",
-        "payloadType": "json",
-        "block": false,
-        "x": 350,
-        "y": 940,
-        "wires": [
-            [
-                "eceaa7b18c62ab6e"
-            ]
-        ]
-    },
-    {
-        "id": "121272e1c2db07c3",
-        "type": "inject",
-        "z": "217382551c48905d",
-        "name": "",
-        "props": [
-            {
-                "p": "payload2",
-                "v": "{\"cbid\":\"test\"}",
-                "vt": "json"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 170,
-        "y": 940,
-        "wires": [
-            [
-                "25588a53fed4f232"
-            ]
-        ]
-    },
-    {
-        "id": "eceaa7b18c62ab6e",
-        "type": "debug",
-        "z": "217382551c48905d",
-        "name": "debug 44",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 560,
-        "y": 940,
-        "wires": []
-    },
-    {
         "id": "78ba51776812da90",
         "type": "redis-command",
         "z": "217382551c48905d",
@@ -4784,7 +4713,7 @@
         "type": "debug",
         "z": "217382551c48905d",
         "name": "debug 65",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -4808,23 +4737,6 @@
         ],
         "x": 1349,
         "y": 258,
-        "wires": []
-    },
-    {
-        "id": "4bfdf6dac88ec5ca",
-        "type": "debug",
-        "z": "217382551c48905d",
-        "name": "debug 82",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1010,
-        "y": 540,
         "wires": []
     },
     {
@@ -5508,8 +5420,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 340,
-        "y": 1020,
+        "x": 420,
+        "y": 940,
         "wires": [
             [
                 "d1bc1b3ba06b799a"
@@ -5537,8 +5449,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 130,
-        "y": 1020,
+        "x": 210,
+        "y": 940,
         "wires": [
             [
                 "39f51e38c8ce88f2",
@@ -5557,8 +5469,8 @@
         "precision": "",
         "retentionPolicy": "",
         "org": "cipio",
-        "x": 580,
-        "y": 1060,
+        "x": 660,
+        "y": 980,
         "wires": [
             [
                 "0f02c20fb2330f7a",
@@ -5579,8 +5491,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 370,
-        "y": 1060,
+        "x": 450,
+        "y": 980,
         "wires": [
             [
                 "f3b30d3612e48f36"
@@ -5599,8 +5511,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 840,
-        "y": 1040,
+        "x": 920,
+        "y": 960,
         "wires": [
             []
         ]
@@ -5618,8 +5530,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 800,
-        "y": 1000,
+        "x": 880,
+        "y": 920,
         "wires": []
     },
     {
@@ -5635,8 +5547,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 520,
-        "y": 1020,
+        "x": 600,
+        "y": 940,
         "wires": []
     },
     {
@@ -5652,8 +5564,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 940,
-        "y": 1080,
+        "x": 1020,
+        "y": 1000,
         "wires": []
     },
     {
@@ -5674,8 +5586,8 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 800,
-        "y": 1080,
+        "x": 880,
+        "y": 1000,
         "wires": [
             [
                 "9ccf03b5bb8eecc2"
@@ -5742,13 +5654,14 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 140,
+        "x": 165,
         "y": 440,
         "wires": [
             [
                 "4e88cb3fee82d891"
             ]
-        ]
+        ],
+        "l": false
     },
     {
         "id": "632ee4461df6dec4",
@@ -6138,16 +6051,6 @@
         ]
     },
     {
-        "id": "055e1f42c0a62ef4",
-        "type": "comment",
-        "z": "92d055a5ecbac90c",
-        "name": "",
-        "info": "https://github.com/bnystrom/stuff/blob/main/cipiologo.png?raw=true",
-        "x": 360,
-        "y": 180,
-        "wires": []
-    },
-    {
         "id": "a96ec32fd158cdc3",
         "type": "inject",
         "z": "92d055a5ecbac90c",
@@ -6163,7 +6066,7 @@
         "once": true,
         "onceDelay": "0.5",
         "topic": "",
-        "x": 185,
+        "x": 165,
         "y": 240,
         "wires": [
             [
@@ -6242,7 +6145,8 @@
         "y": 180,
         "wires": [
             [
-                "445e1fd97be6944e"
+                "445e1fd97be6944e",
+                "082f57bbbfa35a38"
             ]
         ]
     },
@@ -6301,8 +6205,7 @@
         "y": 620,
         "wires": [
             [
-                "9cb30a86aa7a3db5",
-                "aa44370d62643c3d"
+                "9cb30a86aa7a3db5"
             ]
         ]
     },
@@ -6479,8 +6382,7 @@
         "y": 840,
         "wires": [
             [
-                "bac3ee121d202814",
-                "9a5b84aed1918012"
+                "bac3ee121d202814"
             ]
         ]
     },
@@ -6500,43 +6402,9 @@
         "y": 840,
         "wires": [
             [
-                "5b67ef06c0cafdd5",
-                "9a5b84aed1918012"
+                "5b67ef06c0cafdd5"
             ]
         ]
-    },
-    {
-        "id": "aa44370d62643c3d",
-        "type": "debug",
-        "z": "92d055a5ecbac90c",
-        "name": "debug 88",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 810,
-        "y": 540,
-        "wires": []
-    },
-    {
-        "id": "9a5b84aed1918012",
-        "type": "debug",
-        "z": "92d055a5ecbac90c",
-        "name": "debug 89",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1260,
-        "y": 720,
-        "wires": []
     },
     {
         "id": "58602cbda0a10753",
@@ -6589,26 +6457,22 @@
         "name": "",
         "ui": "8cdc313c9611f13f",
         "events": "all",
-        "x": 580,
-        "y": 340,
+        "x": 720,
+        "y": 180,
         "wires": [
             []
         ]
     },
     {
-        "id": "05af92729c0b7aca",
-        "type": "function",
+        "id": "be8623c98e1d303d",
+        "type": "link in",
         "z": "92d055a5ecbac90c",
-        "name": "hide map",
-        "func": "msg.payload = {\n    \"groups\": {\n        \"hide\": [\n            \"Home:Map\",\n            \"Home:Banner\"\n        ],\n        \"show\": [\n            \"Home:Summary\"\n        ]\n    }\n}\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 280,
-        "y": 300,
+        "name": "CL_Home_UIControl",
+        "links": [
+            "f9d9242f3c2bf8b4"
+        ],
+        "x": 605,
+        "y": 180,
         "wires": [
             [
                 "f15e121d9ddb12b7"
@@ -6616,82 +6480,37 @@
         ]
     },
     {
-        "id": "06f255386238e0c2",
+        "id": "082f57bbbfa35a38",
         "type": "function",
         "z": "92d055a5ecbac90c",
-        "name": "function 3",
-        "func": "msg.payload = {\n    \"groups\": {\n        \"show\": [\n            \"Home:Map\",\n            \"Home:Banner\"\n        ],\n    }\n}\nreturn msg;\n",
+        "name": "Show/Hide Map/Banner",
+        "func": "let showMap = global.get(\"CSMS:ShowMap\")\nlet showBanner = global.get(\"CSMS:ShowBanner\")\n\n// This set a boolean default if global context is undefined\nshowMap = (showMap === undefined) ? true : showMap\nshowBanner = (showBanner === undefined) ? true : showBanner\n\nlet display = {\n    \"groups\": {\n        \"hide\": [\n        ],\n        \"show\": [\n        ]\n    }\n}\n\nif (showMap) {\n    display.groups.show.push(\"Home:Map\")\n}\nelse {\n    display.groups.hide.push(\"Home:Map\")\n}\n\nif (showBanner) {\n    display.groups.show.push(\"Home:Banner\")\n}\nelse {\n    display.groups.hide.push(\"Home:Banner\")\n}\nmsg = {}\nmsg.payload = display\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 280,
-        "y": 360,
+        "x": 390,
+        "y": 180,
         "wires": [
             [
-                "f15e121d9ddb12b7"
+                "f9d9242f3c2bf8b4"
             ]
         ]
     },
     {
-        "id": "01ae528e56c53daf",
-        "type": "inject",
+        "id": "f9d9242f3c2bf8b4",
+        "type": "link out",
         "z": "92d055a5ecbac90c",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
+        "name": "link out 40",
+        "mode": "link",
+        "links": [
+            "be8623c98e1d303d"
         ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 130,
-        "y": 300,
-        "wires": [
-            [
-                "05af92729c0b7aca"
-            ]
-        ]
-    },
-    {
-        "id": "4819717198a80156",
-        "type": "inject",
-        "z": "92d055a5ecbac90c",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 90,
-        "y": 360,
-        "wires": [
-            [
-                "06f255386238e0c2"
-            ]
-        ]
+        "x": 545,
+        "y": 180,
+        "wires": []
     },
     {
         "id": "6e251da731f92cf5",
@@ -8412,7 +8231,7 @@
         "group": "c48e064d37e64bbf",
         "name": "Site LoadLimit",
         "label": "Max Load Limit (Amps)",
-        "order": 4,
+        "order": 5,
         "width": 0,
         "height": 0,
         "topic": "heartbeat",
@@ -8895,7 +8714,7 @@
         "group": "c48e064d37e64bbf",
         "name": "",
         "label": "Banner URL:",
-        "order": 3,
+        "order": 4,
         "width": 0,
         "height": 0,
         "topic": "topic",
@@ -9158,7 +8977,7 @@
         "name": "ShowMeters",
         "label": "Show Meters Page",
         "group": "c48e064d37e64bbf",
-        "order": 2,
+        "order": 3,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -9280,6 +9099,146 @@
         "events": "all",
         "x": 1300,
         "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dfe32902741b4462",
+        "type": "redis-command",
+        "z": "c4f677cd277b409d",
+        "server": "0430675ed6c7cd83",
+        "command": "GET",
+        "name": "get ShowMap",
+        "topic": "settings:site:show_map",
+        "params": "[]",
+        "paramsType": "json",
+        "payloadType": "json",
+        "block": false,
+        "x": 300,
+        "y": 660,
+        "wires": [
+            [
+                "1b555c160e8aa0eb"
+            ]
+        ]
+    },
+    {
+        "id": "1b555c160e8aa0eb",
+        "type": "function",
+        "z": "c4f677cd277b409d",
+        "name": "str2bool",
+        "func": "msg.payload = (msg?.payload?.toLowerCase() === 'true');\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 660,
+        "wires": [
+            [
+                "2d740621d91ae205"
+            ]
+        ]
+    },
+    {
+        "id": "2d740621d91ae205",
+        "type": "ui-switch",
+        "z": "c4f677cd277b409d",
+        "name": "ShowMap",
+        "label": "Show Home Page Map",
+        "group": "c48e064d37e64bbf",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": false,
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "className": "",
+        "layout": "row-left-swapped",
+        "clickableArea": "line",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 640,
+        "y": 660,
+        "wires": [
+            [
+                "c30ab1f3c6b40614"
+            ]
+        ]
+    },
+    {
+        "id": "c30ab1f3c6b40614",
+        "type": "change",
+        "z": "c4f677cd277b409d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "CSMS:ShowMap",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 660,
+        "wires": [
+            [
+                "a34826a6ffc61fbc",
+                "4f2eb882456520c0"
+            ]
+        ]
+    },
+    {
+        "id": "a34826a6ffc61fbc",
+        "type": "function",
+        "z": "c4f677cd277b409d",
+        "name": "bool2str",
+        "func": "msg.payload = `${msg.payload}`\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1100,
+        "y": 660,
+        "wires": [
+            [
+                "fee4aff2afcaa058"
+            ]
+        ]
+    },
+    {
+        "id": "fee4aff2afcaa058",
+        "type": "redis-command",
+        "z": "c4f677cd277b409d",
+        "server": "0430675ed6c7cd83",
+        "command": "SET",
+        "name": "set ShowMap",
+        "topic": "settings:site:show_map",
+        "params": "[]",
+        "paramsType": "json",
+        "payloadType": "json",
+        "block": false,
+        "x": 1280,
+        "y": 660,
         "wires": [
             []
         ]
@@ -11413,5 +11372,70 @@
                 "d0442b95274fec7a"
             ]
         ]
+    },
+    {
+        "id": "76a58e8ba333a291",
+        "type": "function",
+        "z": "b1b7a058b11c0e42",
+        "name": "function 9",
+        "func": "let x = global.get(\"nonexist\")\nmsg.payload = x\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 500,
+        "wires": [
+            [
+                "de9955b5b134c893"
+            ]
+        ]
+    },
+    {
+        "id": "993425256aa52d05",
+        "type": "inject",
+        "z": "b1b7a058b11c0e42",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 280,
+        "y": 500,
+        "wires": [
+            [
+                "76a58e8ba333a291"
+            ]
+        ]
+    },
+    {
+        "id": "de9955b5b134c893",
+        "type": "debug",
+        "z": "b1b7a058b11c0e42",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 500,
+        "wires": []
     }
 ]

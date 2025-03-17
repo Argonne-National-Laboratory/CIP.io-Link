@@ -1154,68 +1154,6 @@
     "wires": []
   },
   {
-    "id": "25588a53fed4f232",
-    "type": "redis-command",
-    "z": "217382551c48905d",
-    "server": "0430675ed6c7cd83",
-    "command": "KEYS",
-    "name": "",
-    "topic": "evse:*",
-    "params": "[]",
-    "paramsType": "json",
-    "payloadType": "json",
-    "block": false,
-    "x": 350,
-    "y": 940,
-    "wires": [
-      [
-        "eceaa7b18c62ab6e"
-      ]
-    ]
-  },
-  {
-    "id": "121272e1c2db07c3",
-    "type": "inject",
-    "z": "217382551c48905d",
-    "name": "",
-    "props": [
-      {
-        "p": "payload2",
-        "v": "{\"cbid\":\"test\"}",
-        "vt": "json"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "x": 170,
-    "y": 940,
-    "wires": [
-      [
-        "25588a53fed4f232"
-      ]
-    ]
-  },
-  {
-    "id": "eceaa7b18c62ab6e",
-    "type": "debug",
-    "z": "217382551c48905d",
-    "name": "debug 44",
-    "active": false,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 560,
-    "y": 940,
-    "wires": []
-  },
-  {
     "id": "78ba51776812da90",
     "type": "redis-command",
     "z": "217382551c48905d",
@@ -1697,7 +1635,7 @@
     "type": "debug",
     "z": "217382551c48905d",
     "name": "debug 65",
-    "active": true,
+    "active": false,
     "tosidebar": true,
     "console": false,
     "tostatus": false,
@@ -1721,23 +1659,6 @@
     ],
     "x": 1349,
     "y": 258,
-    "wires": []
-  },
-  {
-    "id": "4bfdf6dac88ec5ca",
-    "type": "debug",
-    "z": "217382551c48905d",
-    "name": "debug 82",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 1010,
-    "y": 540,
     "wires": []
   }
 ]

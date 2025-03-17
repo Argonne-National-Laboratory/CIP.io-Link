@@ -140,8 +140,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 340,
-    "y": 1020,
+    "x": 420,
+    "y": 940,
     "wires": [
       [
         "d1bc1b3ba06b799a"
@@ -169,8 +169,8 @@
     "topic": "",
     "payload": "",
     "payloadType": "date",
-    "x": 130,
-    "y": 1020,
+    "x": 210,
+    "y": 940,
     "wires": [
       [
         "39f51e38c8ce88f2",
@@ -189,8 +189,8 @@
     "precision": "",
     "retentionPolicy": "",
     "org": "cipio",
-    "x": 580,
-    "y": 1060,
+    "x": 660,
+    "y": 980,
     "wires": [
       [
         "0f02c20fb2330f7a",
@@ -211,8 +211,8 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 370,
-    "y": 1060,
+    "x": 450,
+    "y": 980,
     "wires": [
       [
         "f3b30d3612e48f36"
@@ -231,8 +231,8 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 840,
-    "y": 1040,
+    "x": 920,
+    "y": 960,
     "wires": [
       []
     ]
@@ -250,8 +250,8 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 800,
-    "y": 1000,
+    "x": 880,
+    "y": 920,
     "wires": []
   },
   {
@@ -267,8 +267,8 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 520,
-    "y": 1020,
+    "x": 600,
+    "y": 940,
     "wires": []
   },
   {
@@ -284,8 +284,8 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 940,
-    "y": 1080,
+    "x": 1020,
+    "y": 1000,
     "wires": []
   },
   {
@@ -306,8 +306,8 @@
     "resendOnRefresh": true,
     "templateScope": "local",
     "className": "",
-    "x": 800,
-    "y": 1080,
+    "x": 880,
+    "y": 1000,
     "wires": [
       [
         "9ccf03b5bb8eecc2"
@@ -374,13 +374,14 @@
     "topic": "",
     "payload": "",
     "payloadType": "date",
-    "x": 140,
+    "x": 165,
     "y": 440,
     "wires": [
       [
         "4e88cb3fee82d891"
       ]
-    ]
+    ],
+    "l": false
   },
   {
     "id": "632ee4461df6dec4",
@@ -770,16 +771,6 @@
     ]
   },
   {
-    "id": "055e1f42c0a62ef4",
-    "type": "comment",
-    "z": "92d055a5ecbac90c",
-    "name": "",
-    "info": "https://github.com/bnystrom/stuff/blob/main/cipiologo.png?raw=true",
-    "x": 360,
-    "y": 180,
-    "wires": []
-  },
-  {
     "id": "a96ec32fd158cdc3",
     "type": "inject",
     "z": "92d055a5ecbac90c",
@@ -795,7 +786,7 @@
     "once": true,
     "onceDelay": "0.5",
     "topic": "",
-    "x": 185,
+    "x": 165,
     "y": 240,
     "wires": [
       [
@@ -874,7 +865,8 @@
     "y": 180,
     "wires": [
       [
-        "445e1fd97be6944e"
+        "445e1fd97be6944e",
+        "082f57bbbfa35a38"
       ]
     ]
   },
@@ -933,8 +925,7 @@
     "y": 620,
     "wires": [
       [
-        "9cb30a86aa7a3db5",
-        "aa44370d62643c3d"
+        "9cb30a86aa7a3db5"
       ]
     ]
   },
@@ -1111,8 +1102,7 @@
     "y": 840,
     "wires": [
       [
-        "bac3ee121d202814",
-        "9a5b84aed1918012"
+        "bac3ee121d202814"
       ]
     ]
   },
@@ -1132,43 +1122,9 @@
     "y": 840,
     "wires": [
       [
-        "5b67ef06c0cafdd5",
-        "9a5b84aed1918012"
+        "5b67ef06c0cafdd5"
       ]
     ]
-  },
-  {
-    "id": "aa44370d62643c3d",
-    "type": "debug",
-    "z": "92d055a5ecbac90c",
-    "name": "debug 88",
-    "active": false,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "false",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 810,
-    "y": 540,
-    "wires": []
-  },
-  {
-    "id": "9a5b84aed1918012",
-    "type": "debug",
-    "z": "92d055a5ecbac90c",
-    "name": "debug 89",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 1260,
-    "y": 720,
-    "wires": []
   },
   {
     "id": "58602cbda0a10753",
@@ -1221,26 +1177,22 @@
     "name": "",
     "ui": "8cdc313c9611f13f",
     "events": "all",
-    "x": 580,
-    "y": 340,
+    "x": 720,
+    "y": 180,
     "wires": [
       []
     ]
   },
   {
-    "id": "05af92729c0b7aca",
-    "type": "function",
+    "id": "be8623c98e1d303d",
+    "type": "link in",
     "z": "92d055a5ecbac90c",
-    "name": "hide map",
-    "func": "msg.payload = {\n    \"groups\": {\n        \"hide\": [\n            \"Home:Map\",\n            \"Home:Banner\"\n        ],\n        \"show\": [\n            \"Home:Summary\"\n        ]\n    }\n}\nreturn msg;\n",
-    "outputs": 1,
-    "timeout": 0,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 280,
-    "y": 300,
+    "name": "CL_Home_UIControl",
+    "links": [
+      "f9d9242f3c2bf8b4"
+    ],
+    "x": 605,
+    "y": 180,
     "wires": [
       [
         "f15e121d9ddb12b7"
@@ -1248,81 +1200,36 @@
     ]
   },
   {
-    "id": "06f255386238e0c2",
+    "id": "082f57bbbfa35a38",
     "type": "function",
     "z": "92d055a5ecbac90c",
-    "name": "function 3",
-    "func": "msg.payload = {\n    \"groups\": {\n        \"show\": [\n            \"Home:Map\",\n            \"Home:Banner\"\n        ],\n    }\n}\nreturn msg;\n",
+    "name": "Show/Hide Map/Banner",
+    "func": "let showMap = global.get(\"CSMS:ShowMap\")\nlet showBanner = global.get(\"CSMS:ShowBanner\")\n\n// This set a boolean default if global context is undefined\nshowMap = (showMap === undefined) ? true : showMap\nshowBanner = (showBanner === undefined) ? true : showBanner\n\nlet display = {\n    \"groups\": {\n        \"hide\": [\n        ],\n        \"show\": [\n        ]\n    }\n}\n\nif (showMap) {\n    display.groups.show.push(\"Home:Map\")\n}\nelse {\n    display.groups.hide.push(\"Home:Map\")\n}\n\nif (showBanner) {\n    display.groups.show.push(\"Home:Banner\")\n}\nelse {\n    display.groups.hide.push(\"Home:Banner\")\n}\nmsg = {}\nmsg.payload = display\n\nreturn msg;",
     "outputs": 1,
     "timeout": 0,
     "noerr": 0,
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 280,
-    "y": 360,
+    "x": 390,
+    "y": 180,
     "wires": [
       [
-        "f15e121d9ddb12b7"
+        "f9d9242f3c2bf8b4"
       ]
     ]
   },
   {
-    "id": "01ae528e56c53daf",
-    "type": "inject",
+    "id": "f9d9242f3c2bf8b4",
+    "type": "link out",
     "z": "92d055a5ecbac90c",
-    "name": "",
-    "props": [
-      {
-        "p": "payload"
-      },
-      {
-        "p": "topic",
-        "vt": "str"
-      }
+    "name": "link out 40",
+    "mode": "link",
+    "links": [
+      "be8623c98e1d303d"
     ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "",
-    "payloadType": "date",
-    "x": 130,
-    "y": 300,
-    "wires": [
-      [
-        "05af92729c0b7aca"
-      ]
-    ]
-  },
-  {
-    "id": "4819717198a80156",
-    "type": "inject",
-    "z": "92d055a5ecbac90c",
-    "name": "",
-    "props": [
-      {
-        "p": "payload"
-      },
-      {
-        "p": "topic",
-        "vt": "str"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "",
-    "payloadType": "date",
-    "x": 90,
-    "y": 360,
-    "wires": [
-      [
-        "06f255386238e0c2"
-      ]
-    ]
+    "x": 545,
+    "y": 180,
+    "wires": []
   }
 ]
