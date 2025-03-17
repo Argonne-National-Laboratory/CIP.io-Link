@@ -90,6 +90,14 @@
         "env": []
     },
     {
+        "id": "b1b7a058b11c0e42",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "1bbb83617feb5d61",
         "type": "subflow",
         "name": "CSMS 1.6",
@@ -108,8 +116,8 @@
         ],
         "out": [
             {
-                "x": 1550,
-                "y": 240,
+                "x": 980,
+                "y": 100,
                 "wires": [
                     {
                         "id": "0508b4312099eed7",
@@ -118,8 +126,8 @@
                 ]
             },
             {
-                "x": 1560,
-                "y": 300,
+                "x": 980,
+                "y": 160,
                 "wires": [
                     {
                         "id": "f5e6a6b98ad89c35",
@@ -128,8 +136,8 @@
                 ]
             },
             {
-                "x": 1560,
-                "y": 360,
+                "x": 990,
+                "y": 220,
                 "wires": [
                     {
                         "id": "8bd502e33fe2ee01",
@@ -230,12 +238,13 @@
             "7085c4e9b54ca5e5",
             "81b335ea88991f47",
             "05dc69bf9c191b85",
-            "885f7019dc576089"
+            "bc558f4221526ddb",
+            "1a959d6556da3c19"
         ],
         "x": 784,
         "y": 659,
-        "w": 812,
-        "h": 142
+        "w": 982,
+        "h": 162
     },
     {
         "id": "f6e1783b4f8d6029",
@@ -272,12 +281,13 @@
         "nodes": [
             "31cbb896896da083",
             "74558ab2bc828dd9",
-            "277e1a6705982260"
+            "277e1a6705982260",
+            "317d216b8fa4f66a"
         ],
-        "x": 794,
+        "x": 784,
         "y": 819,
-        "w": 452,
-        "h": 82
+        "w": 462,
+        "h": 122
     },
     {
         "id": "c20c8766fa664d2e",
@@ -404,18 +414,6 @@
                 "e5e3bc3824864970",
                 "4a191fd359629475",
                 "a6948cd72ae1a796"
-            ]
-        ]
-    },
-    {
-        "id": "1bf93bafdbd51e89",
-        "type": "junction",
-        "z": "1bbb83617feb5d61",
-        "x": 720,
-        "y": 200,
-        "wires": [
-            [
-                "e890b864470860a3"
             ]
         ]
     },
@@ -720,7 +718,7 @@
         "page": "e4ddc95d1509efab",
         "width": "6",
         "height": "1",
-        "order": 2,
+        "order": 1,
         "showTitle": true,
         "className": "",
         "visible": "true",
@@ -979,7 +977,7 @@
         "page": "e4ddc95d1509efab",
         "width": "6",
         "height": "1",
-        "order": 3,
+        "order": 2,
         "showTitle": true,
         "className": "",
         "visible": "true",
@@ -1169,9 +1167,10 @@
         "type": "link in",
         "z": "1bbb83617feb5d61",
         "g": "f6e1783b4f8d6029",
-        "name": "StatusNotification",
+        "name": "CL_SetTxDefaultProfile",
         "links": [
-            "0d628f0894098128"
+            "0d628f0894098128",
+            "8c66713b1e35e58f"
         ],
         "x": 835,
         "y": 580,
@@ -1186,10 +1185,8 @@
         "type": "link in",
         "z": "1bbb83617feb5d61",
         "g": "fac4518c226fbf0c",
-        "name": "StartTransaction",
-        "links": [
-            "d0719425702055f4"
-        ],
+        "name": "CL_Auth_StartTx",
+        "links": [],
         "x": 825,
         "y": 740,
         "wires": [
@@ -1209,7 +1206,7 @@
             "f5e6a6b98ad89c35"
         ],
         "x": 1045,
-        "y": 760,
+        "y": 780,
         "wires": []
     },
     {
@@ -1218,10 +1215,8 @@
         "z": "1bbb83617feb5d61",
         "g": "fac4518c226fbf0c",
         "name": "link out 31",
-        "mode": "link",
-        "links": [
-            "041c7cd4a35efa4d"
-        ],
+        "mode": "return",
+        "links": [],
         "x": 1035,
         "y": 700,
         "wires": []
@@ -1239,11 +1234,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1460,
-        "y": 720,
+        "x": 1360,
+        "y": 740,
         "wires": [
             [
-                "885f7019dc576089"
+                "bc558f4221526ddb"
             ]
         ]
     },
@@ -1302,32 +1297,19 @@
         "type": "link in",
         "z": "1bbb83617feb5d61",
         "g": "adad8cfed89e9a2e",
-        "name": "Generate ChargeProfiles",
+        "name": "CL_SCM",
         "links": [
-            "885f7019dc576089",
-            "03a8715970d7a77d"
+            "03a8715970d7a77d",
+            "885f7019dc576089"
         ],
-        "x": 835,
+        "x": 825,
         "y": 860,
         "wires": [
             [
-                "74558ab2bc828dd9"
+                "74558ab2bc828dd9",
+                "317d216b8fa4f66a"
             ]
         ]
-    },
-    {
-        "id": "885f7019dc576089",
-        "type": "link out",
-        "z": "1bbb83617feb5d61",
-        "g": "fac4518c226fbf0c",
-        "name": "link out 26",
-        "mode": "link",
-        "links": [
-            "31cbb896896da083"
-        ],
-        "x": 1555,
-        "y": 760,
-        "wires": []
     },
     {
         "id": "20e60ae443b8c057",
@@ -1347,8 +1329,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 1190,
-        "y": 720,
+        "x": 1150,
+        "y": 740,
         "wires": [
             [
                 "05dc69bf9c191b85"
@@ -1479,8 +1461,8 @@
         "y": 280,
         "wires": [
             [
-                "20ceb4322d5e497f",
-                "29ecf3de64707bd2"
+                "29ecf3de64707bd2",
+                "7b10cc4aa964564d"
             ],
             [
                 "b53020c58b6c45a9"
@@ -1488,114 +1470,12 @@
         ]
     },
     {
-        "id": "20ceb4322d5e497f",
-        "type": "switch",
-        "z": "1bbb83617feb5d61",
-        "name": "OCPP CS Command Switch",
-        "property": "payload.command",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "BootNotification",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "Heartbeat",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "Authorize",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "StartTransaction",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "StatusNotification",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "MeterValues",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "StopTransaction",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "DataTransfer",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "FirmwareStatusNotification",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "DiagnosticsStatusNotification",
-                "vt": "str"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 11,
-        "x": 440,
-        "y": 280,
-        "wires": [
-            [
-                "aa596f86a457bf40"
-            ],
-            [
-                "0526edd563f82711"
-            ],
-            [
-                "1bf93bafdbd51e89"
-            ],
-            [
-                "1bf93bafdbd51e89"
-            ],
-            [
-                "8491c20b715112f4",
-                "0d628f0894098128"
-            ],
-            [
-                "8491c20b715112f4"
-            ],
-            [
-                "9b51587a3c6a0b45"
-            ],
-            [
-                "0b39aae32daacd88"
-            ],
-            [
-                "8491c20b715112f4"
-            ],
-            [
-                "8491c20b715112f4"
-            ],
-            []
-        ]
-    },
-    {
         "id": "fb654b19a6a965cd",
         "type": "server response",
         "z": "1bbb83617feb5d61",
         "name": "",
-        "x": 1550,
-        "y": 420,
+        "x": 980,
+        "y": 280,
         "wires": []
     },
     {
@@ -1672,8 +1552,8 @@
             "277e1a6705982260",
             "03a8715970d7a77d"
         ],
-        "x": 1395,
-        "y": 360,
+        "x": 825,
+        "y": 220,
         "wires": [
             []
         ]
@@ -1704,15 +1584,12 @@
         "z": "1bbb83617feb5d61",
         "name": "Server Response Node",
         "links": [
-            "e09d8995ecbe67f7",
-            "7085c4e9b54ca5e5",
             "d363a59df51b1603",
-            "f15df67d396f9ee3",
-            "d822835855e62f28",
-            "0974c9afbf6425e2"
+            "0974c9afbf6425e2",
+            "fb6d59603b2b3beb"
         ],
-        "x": 1395,
-        "y": 420,
+        "x": 825,
+        "y": 280,
         "wires": [
             [
                 "fb654b19a6a965cd"
@@ -1724,10 +1601,8 @@
         "type": "link out",
         "z": "1bbb83617feb5d61",
         "name": "link out 30",
-        "mode": "link",
-        "links": [
-            "041c7cd4a35efa4d"
-        ],
+        "mode": "return",
+        "links": [],
         "x": 585,
         "y": 540,
         "wires": []
@@ -1741,8 +1616,8 @@
             "81b335ea88991f47",
             "b53020c58b6c45a9"
         ],
-        "x": 1395,
-        "y": 300,
+        "x": 825,
+        "y": 160,
         "wires": [
             []
         ]
@@ -1769,8 +1644,8 @@
             "29ecf3de64707bd2",
             "4a497f3abebf77a4"
         ],
-        "x": 1395,
-        "y": 240,
+        "x": 825,
+        "y": 100,
         "wires": [
             []
         ]
@@ -1805,10 +1680,8 @@
         "id": "50d2e6f3bb1e94f5",
         "type": "link in",
         "z": "1bbb83617feb5d61",
-        "name": "BootNotification",
-        "links": [
-            "90ba72aed925161f"
-        ],
+        "name": "CL_BootNotification",
+        "links": [],
         "x": 285,
         "y": 540,
         "wires": [
@@ -1816,19 +1689,6 @@
                 "29b7e74ff8279110"
             ]
         ]
-    },
-    {
-        "id": "90ba72aed925161f",
-        "type": "link out",
-        "z": "1bbb83617feb5d61",
-        "name": "BootNotification Out",
-        "mode": "link",
-        "links": [
-            "50d2e6f3bb1e94f5"
-        ],
-        "x": 835,
-        "y": 20,
-        "wires": []
     },
     {
         "id": "58a508d07089ac02",
@@ -1894,23 +1754,10 @@
         ]
     },
     {
-        "id": "1920fd977adf99ce",
-        "type": "link out",
-        "z": "1bbb83617feb5d61",
-        "name": "link out 38",
-        "mode": "link",
-        "links": [
-            "26c6df27758d1898"
-        ],
-        "x": 1035,
-        "y": 140,
-        "wires": []
-    },
-    {
         "id": "b109c9e3b6b4ef7a",
         "type": "change",
         "z": "1bbb83617feb5d61",
-        "name": "Generic Status=Accepted",
+        "name": "StopTransaction",
         "rules": [
             {
                 "t": "set",
@@ -1925,42 +1772,13 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 470,
+        "x": 440,
         "y": 660,
         "wires": [
             [
                 "d822835855e62f28"
             ]
         ]
-    },
-    {
-        "id": "fff32048857b249d",
-        "type": "link in",
-        "z": "1bbb83617feb5d61",
-        "name": "Generic Status Accepted",
-        "links": [
-            "0b39aae32daacd88"
-        ],
-        "x": 285,
-        "y": 660,
-        "wires": [
-            [
-                "b109c9e3b6b4ef7a"
-            ]
-        ]
-    },
-    {
-        "id": "0b39aae32daacd88",
-        "type": "link out",
-        "z": "1bbb83617feb5d61",
-        "name": "Data Transfer Out",
-        "mode": "link",
-        "links": [
-            "fff32048857b249d"
-        ],
-        "x": 715,
-        "y": 480,
-        "wires": []
     },
     {
         "id": "c65873db62d0456e",
@@ -1997,29 +1815,15 @@
         "wires": []
     },
     {
-        "id": "9b51587a3c6a0b45",
-        "type": "link out",
-        "z": "1bbb83617feb5d61",
-        "name": "Stop Transaction Out",
-        "mode": "link",
-        "links": [
-            "20e77c4a2c2e1bc8",
-            "98a99004fba3ce97"
-        ],
-        "x": 685,
-        "y": 380,
-        "wires": []
-    },
-    {
         "id": "98a99004fba3ce97",
         "type": "link in",
         "z": "1bbb83617feb5d61",
-        "name": "StopTransaction",
+        "name": "CL_StopTransaction",
         "links": [
             "9b51587a3c6a0b45"
         ],
-        "x": 285,
-        "y": 720,
+        "x": 275,
+        "y": 700,
         "wires": [
             [
                 "c65873db62d0456e",
@@ -2065,7 +1869,7 @@
         "id": "20e77c4a2c2e1bc8",
         "type": "link in",
         "z": "1bbb83617feb5d61",
-        "name": "link in 2",
+        "name": "CL_Generic",
         "links": [
             "8491c20b715112f4",
             "9b51587a3c6a0b45"
@@ -2083,51 +1887,10 @@
         "type": "link out",
         "z": "1bbb83617feb5d61",
         "name": "link out 41",
-        "mode": "link",
-        "links": [
-            "041c7cd4a35efa4d"
-        ],
+        "mode": "return",
+        "links": [],
         "x": 585,
         "y": 480,
-        "wires": []
-    },
-    {
-        "id": "8491c20b715112f4",
-        "type": "link out",
-        "z": "1bbb83617feb5d61",
-        "name": "Generic Out",
-        "mode": "link",
-        "links": [
-            "20e77c4a2c2e1bc8"
-        ],
-        "x": 705,
-        "y": 300,
-        "wires": []
-    },
-    {
-        "id": "d0719425702055f4",
-        "type": "link out",
-        "z": "1bbb83617feb5d61",
-        "name": "Auth / Start Tx Out",
-        "mode": "link",
-        "links": [
-            "d5ea45e6cb0d7090"
-        ],
-        "x": 735,
-        "y": 340,
-        "wires": []
-    },
-    {
-        "id": "0d628f0894098128",
-        "type": "link out",
-        "z": "1bbb83617feb5d61",
-        "name": "StatusNotification Out",
-        "mode": "link",
-        "links": [
-            "565b9e3d1ccde32e"
-        ],
-        "x": 685,
-        "y": 260,
         "wires": []
     },
     {
@@ -2135,109 +1898,224 @@
         "type": "link out",
         "z": "1bbb83617feb5d61",
         "name": "link out 45",
-        "mode": "link",
-        "links": [
-            "041c7cd4a35efa4d"
-        ],
+        "mode": "return",
+        "links": [],
         "x": 625,
         "y": 660,
         "wires": []
     },
     {
-        "id": "0526edd563f82711",
-        "type": "link call",
+        "id": "7b10cc4aa964564d",
+        "type": "function",
         "z": "1bbb83617feb5d61",
-        "name": "",
-        "links": [
-            "1e88d1e2d4dcc7d3"
-        ],
-        "linkType": "static",
-        "timeout": "30",
-        "x": 790,
-        "y": 120,
+        "name": "Map Commands",
+        "func": "if (msg?.payload?.command){\n    const reqMap = global.get(\"CSMS:Req_Map\");\n    const command = msg.payload.command\n\n    if (reqMap.has(command)){\n        msg.target = reqMap.get(command)\n    }\n    else {\n        msg.target = `CL_${command}`\n        switch(msg.payload.command){\n            case \"BootNotification\":\n                break;\n            case \"StatusNotification\":\n                break;\n            case \"Authorize\":\n            case \"StartTransaction\":\n                msg.target = \"CL_Auth_StartTx\"\n                break;\n            case \"StopTransaction\":\n                break;\n            case \"DataTransfer\":\n                break;\n            case \"Heartbeat\":\n                break;\n            case \"MeterValues\":\n            case \"FirmwareStatusNotification\":\n            case \"DiagnosticsStatusNotification\":\n                msg.target = \"CL_Generic\";\n                break;\n            default:\n                return;\n            break;\n        }\n    }\n    return msg;\n}\nelse {\n    return;\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nconst reqMap = new Map()\nglobal.set(\"CSMS:Req_Map\",reqMap)",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 280,
         "wires": [
             [
-                "bbcc0456033e143b"
+                "54b69c32249426ce"
             ]
         ]
     },
     {
-        "id": "0974c9afbf6425e2",
+        "id": "54b69c32249426ce",
+        "type": "link call",
+        "z": "1bbb83617feb5d61",
+        "name": "",
+        "links": [],
+        "linkType": "dynamic",
+        "timeout": "30",
+        "x": 560,
+        "y": 280,
+        "wires": [
+            [
+                "fb6d59603b2b3beb"
+            ]
+        ]
+    },
+    {
+        "id": "fb6d59603b2b3beb",
         "type": "link out",
         "z": "1bbb83617feb5d61",
-        "name": "link out 47",
+        "name": "link out 16",
         "mode": "link",
         "links": [
             "041c7cd4a35efa4d"
         ],
-        "x": 1235,
-        "y": 120,
+        "x": 685,
+        "y": 280,
         "wires": []
     },
     {
-        "id": "e890b864470860a3",
-        "type": "link call",
+        "id": "120b3e12226d45fa",
+        "type": "link in",
         "z": "1bbb83617feb5d61",
-        "name": "",
-        "links": [
-            "5bb26352bd2d7e5a"
-        ],
-        "linkType": "static",
-        "timeout": "30",
-        "x": 810,
-        "y": 200,
+        "name": "CL_DataTransfer",
+        "links": [],
+        "x": 275,
+        "y": 780,
         "wires": [
             [
-                "0974c9afbf6425e2"
+                "bb8501896177294a"
             ]
         ]
     },
     {
-        "id": "aa596f86a457bf40",
-        "type": "link call",
+        "id": "841bf57c5d32ad57",
+        "type": "link out",
         "z": "1bbb83617feb5d61",
-        "name": "",
-        "links": [
-            "056c40eb67d6fe4c"
-        ],
-        "linkType": "static",
-        "timeout": "30",
-        "x": 790,
-        "y": 60,
-        "wires": [
-            [
-                "0974c9afbf6425e2"
-            ]
-        ]
+        "name": "link out 36",
+        "mode": "return",
+        "links": [],
+        "x": 635,
+        "y": 780,
+        "wires": []
     },
     {
-        "id": "bbcc0456033e143b",
-        "type": "switch",
+        "id": "bb8501896177294a",
+        "type": "change",
         "z": "1bbb83617feb5d61",
-        "name": "",
-        "property": "ack",
-        "propertyType": "msg",
+        "name": "DataTransfer",
         "rules": [
             {
-                "t": "true"
-            },
-            {
-                "t": "else"
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"status\":\"Accepted\"}",
+                "tot": "json"
             }
         ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 930,
-        "y": 120,
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 780,
         "wires": [
             [
-                "0974c9afbf6425e2"
-            ],
-            [
-                "1920fd977adf99ce"
+                "841bf57c5d32ad57"
             ]
         ]
+    },
+    {
+        "id": "bc558f4221526ddb",
+        "type": "function",
+        "z": "1bbb83617feb5d61",
+        "g": "fac4518c226fbf0c",
+        "name": "function 6",
+        "func": "const command = \"SCM\"\nconst reqMap = global.get(\"CMSM:Req_Map\");\n\n//default target\nmsg.target = \"CL_SCM\"\n\n// Override target\nif (reqMap.has(command)){\n    msg.target = reqMap.get(command)\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1560,
+        "y": 740,
+        "wires": [
+            [
+                "1a959d6556da3c19"
+            ]
+        ]
+    },
+    {
+        "id": "1a959d6556da3c19",
+        "type": "link call",
+        "z": "1bbb83617feb5d61",
+        "g": "fac4518c226fbf0c",
+        "name": "SCM",
+        "links": [],
+        "linkType": "dynamic",
+        "timeout": "30",
+        "x": 1690,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "317d216b8fa4f66a",
+        "type": "link out",
+        "z": "1bbb83617feb5d61",
+        "g": "adad8cfed89e9a2e",
+        "name": "link out 26",
+        "mode": "return",
+        "links": [],
+        "x": 885,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "d8c533dd612d0df0",
+        "type": "link in",
+        "z": "1bbb83617feb5d61",
+        "name": "CL_StatusNotification",
+        "links": [],
+        "x": 275,
+        "y": 880,
+        "wires": [
+            [
+                "75db728ca44e6f0c",
+                "8c66713b1e35e58f"
+            ]
+        ]
+    },
+    {
+        "id": "8c66713b1e35e58f",
+        "type": "link out",
+        "z": "1bbb83617feb5d61",
+        "name": "link out 39",
+        "mode": "link",
+        "links": [
+            "565b9e3d1ccde32e"
+        ],
+        "x": 355,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "75db728ca44e6f0c",
+        "type": "link call",
+        "z": "1bbb83617feb5d61",
+        "name": "",
+        "links": [
+            "20e77c4a2c2e1bc8"
+        ],
+        "linkType": "static",
+        "timeout": "30",
+        "x": 410,
+        "y": 860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e855a16be03e78b3",
+        "type": "comment",
+        "z": "1bbb83617feb5d61",
+        "name": "StatusNotification",
+        "info": "",
+        "x": 160,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "b19a54056e36c12d",
+        "type": "comment",
+        "z": "1bbb83617feb5d61",
+        "name": "Outputs",
+        "info": "",
+        "x": 850,
+        "y": 60,
+        "wires": []
     },
     {
         "id": "4f4c8a9f1f8d9bb4",
@@ -2245,7 +2123,7 @@
         "z": "9ca80d42115ee3c3",
         "g": "f6f7b333be6e5917",
         "name": "EXAMPLE: Enable Overrides",
-        "func": "// Global Context ocppCmdTargets is a Map object\n\nlet ctx = 'ocppCmdTargets'\n\n//Get the current map\nlet targetMap = global.get(ctx)\n\n// Set new targets for ocpp commands\ntargetMap.set('BootNotification','EXAMPLE_BootNotification')\ntargetMap.set('Heartbeat','EXAMPLE_Heartbeat')\n\n// Set the map back to the global context so the CMSM subflow can use them\nglobal.set(ctx, targetMap)\nreturn\n\n// As an example to clear out a user defined ocpp function and return to defaults, do:\n// targetMap.delete('BootNotification')",
+        "func": "// Global Context ocppCmdTargets is a Map object\n\nlet ctx = 'ocppCmdTargets'\n\n//Get the current map\nlet targetMap = global.get(ctx)\n\n// Set new targets for ocpp commands\ntargetMap.set('BootNotification','EXAMPLE_BootNotification')\ntargetMap.set('Heartbeat','EXAMPLE_Heartbeat')\n\n\n// As an example to clear out a user defined ocpp function and return to defaults, do:\n// targetMap.delete('BootNotification')\n\n\n// Set the map back to the global context so the CSMS subflow can use them\nglobal.set(ctx, targetMap)\nreturn\n\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -3433,7 +3311,7 @@
         "type": "function",
         "z": "217382551c48905d",
         "name": "function 1",
-        "func": "let evse\nlet evse_str\nlet evses = []\n\nmsg.payload.splice(0,1)\n\nmsg.payload.forEach(function(evse_str) {\n    evse = JSON.parse(evse_str)\n    evses.push(evse)\n})\nmsg.headers = [\n    { key: 'cbId', title: 'ChargeBox ID', align: 'start'},\n    { key: 'type', title: 'Type'},\n    { key: 'amps', title: 'Amps'},\n    { key: 'ports', title: 'Ports'},\n    { key: 'password', title: 'P/W'},\n    { key: 'lat', title: 'lat'},\n    { key: 'lon', title: 'lon'},\n    { key: 'group', title: 'Group'},\n    { key: 'lastcommtime'},\n    { key: 'actions', title: 'Action',align: 'end', sortable: false} \n]\nmsg.payload = evses\nreturn msg;",
+        "func": "let evse\nlet evse_str\nlet evses = []\n\nmsg.payload.splice(0,1)\n\nmsg.payload.forEach(function(evse_str) {\n    evse = JSON.parse(evse_str)\n    evses.push(evse)\n})\nmsg.headers = [\n    { key: 'cbId', title: 'ChargeBox ID', align: 'start'},\n    { key: 'type', title: 'Type'},\n    { key: 'amps', title: 'Amps'},\n    { key: 'ports', title: 'Ports', align: 'center'},\n    { key: 'password', title: 'P/W', align: 'center'},\n    { key: 'lat', title: 'lat', align: 'center'},\n    { key: 'lon', title: 'lon', align: 'center'},\n    //{ key: 'group', title: 'Group'},\n    { key: 'lastcommtime'},\n    { key: 'actions', title: 'Action',align: 'end', sortable: false} \n]\nmsg.payload = evses\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -3483,7 +3361,7 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n    <v-toolbar flat>\n      <v-toolbar-title class=\"text-grey\">\n        Actions\n      </v-toolbar-title>\n\n      <v-spacer></v-spacer>\n\n      <v-tooltip text=\"Refresh\" location=\"bottom\">\n        <template v-slot:activator=\"{ props }\">\n          <v-btn icon v-bind=\"props\" @click=\"refresh\">\n            <v-icon>mdi-refresh</v-icon>\n          </v-btn>\n        </template>\n      </v-tooltip>\n\n      <v-tooltip text=\"New\" location=\"bottom\">\n        <template v-slot:activator=\"{ props }\">\n          <v-btn icon v-bind=\"props\" @click=\"addNew\">\n            <v-icon>mdi-ev-station</v-icon>\n          </v-btn>\n        </template>\n      </v-tooltip>\n\n    </v-toolbar>\n\n\n      <v-text-field\n        v-model=\"search\"\n        label=\"Search\"\n        prepend-inner-icon=\"mdi-magnify\"\n        variant=\"outlined\"\n        hide-details\n        single-line\n      ></v-text-field>\n\n    \n    <v-data-table  \n        :search=\"search\" \n        :items=\"msg?.payload\"\n        :headers=\"msg?.headers\"\n        v-model=\"selected\"\n        item-selectable=\"selectable\"\n        select-strategy=\"all\"\n        hide-select    \n        return-object>\n      <template v-slot:loading>\n        <v-skeleton-loader type=\"table-row@10\"></v-skeleton-loader>\n      </template>\n\n      <template v-slot:header.lastcommtime>\n        <div><v-icon icon=\"mdi-heart\" class=\"text-center\"></div>\n      </template>\n\n      <template v-slot:header.password>\n        <div class=\"text-center\">p/w</div>\n      </template>\n      <template v-slot:header.ports>\n        <div class=\"text-center\">Ports</div>\n      </template>\n      \n      <template v-slot:item.ports=\"{ item }\">\n        <div class=\"text-center header1\">\n          <v-text>{{ item.ports }}</v-text>\n        </div>\n      </template>\n      \n      <template v-slot:item.cbId=\"{ item }\">\n        <div>\n          <v-text>{{ item.cbId }} xyz</v-text>\n        </div>\n      </template>\n      <template v-slot:item.lat=\"{ item }\">\n        <div class=\"text-center\">\n          <v-text >{{ getShortLatLon(item.lat) }}</v-text>\n        </div>\n      </template>\n      <template v-slot:item.lon=\"{ item }\">\n        <div class=\"text-center\">\n          <v-text >{{ getShortLatLon(item.lon) }}</v-text>\n        </div>\n      </template>      \n\n      <template v-slot:item.password=\"{ item }\">\n        <div class=\"text-center\">\n          <v-icon v-if=\"item.password.length > 0\" color=\"green\" icon=\"mdi-checkbox-outline\"></v-icon>\n        </div>\n      </template>\n\n      <template v-slot:item.lastcommtime=\"{ item }\">\n        <div class=\"text-center\">\n          <v-icon :icon=\"getLastCommIcon(item)\" :color=\"getLastCommColor(item)\"></v-icon>\n        </div>\n      </template>\n      <template v-slot:item.amps=\"{ item }\">\n        <v-text>{{ item.amps }}A</v-chip>\n      </template>\n\n      <template v-slot:item.type=\"{ item }\">\n        <v-chip :color=\"getTypeColor(item)\">{{ item.type }}</v-chip>\n      </template>\n\n      <template v-slot:item.actions=\"{ item }\">\n        <v-icon v-if=\"getIsOnline(item)\"\n          class=\"me-2\"\n          size=\"small\"\n          @click=\"send({action: 'command', payload: [item]})\"\n        >\n          mdi-apps\n        </v-icon>\n        <v-icon\n          class=\"me-2\"\n          size=\"small\"\n          @click=\"send({action: 'edit', payload: [item]})\"\n        >\n          mdi-pencil\n        </v-icon>\n        <v-icon\n          size=\"small\"\n          @click=\"send({action: 'delete', payload: [item]})\"\n        >\n          mdi-delete\n        </v-icon>\n      </template>\n\n    </v-data-table>\n</template>\n\n<script>\n    export default {\n    data () {\n      return {\n        selected: [],\n        search: '',\n        multiSelected: 0,\n        heartbeat: 120,\n      }\n    },\n    watch: {\n        selected: function() {\n          this.multiSelected = this.selected.length\n        }\n    },\n    mounted() {\n      this.refresh()\n    },\n    methods: {\n      addNew() {\n        this.send({action: 'add', payload: [{ cbId: ''}]});\n        this.selected = [];\n        this.multiSelected = 0;\n      },\n      refresh() {\n        this.send({action: 'refresh', payload: [{}]});\n        this.selected = []\n        this.multiSelected = 0;\n      },\n      // expose a method to our <template> and Vue Application\n      getTypeColor: function(item) {\n        switch(item.type.toLowerCase()) {\n          case 'l1':\n          case 'level1':\n          case 'level 1':\n            return 'gray';\n            break;\n          case 'l2':\n          case 'level2':\n          case 'level 2':\n            return 'purple';\n            break;\n          case 'dcfc':\n          case 'dc':\n            return 'green';\n            break;\n          case 'xfc':\n          case 'hpc':\n            return 'blue';\n            break;\n          default:\n            return 'cyan';\n            break;\n        }\n      },\n\n      getLastCommIcon: function(item) {\n        if (Math.floor((Date.now() - item.lastcommtime) / 1000) > this.heartbeat ){\n          return \"mdi-heart-broken\"\n        }\n        else return \"mdi-heart-flash\"\n      },\n      getLastCommColor: function(item) {\n        if (Math.floor((Date.now() - item.lastcommtime) / 1000) > this.heartbeat ){\n          return \"grey\"\n        }\n        else return \"green\"\n      },\n      getLastCommClass: function(item) {\n        if (Math.floor((Date.now() - item.lastcommtime) / 1000) > this.heartbeat ){\n          return \"offline\"\n        }\n        else return \"online\"\n      },\n      getIsOnline: function(item) {\n        return (Math.floor((Date.now() - item.lastcommtime) / 1000) <= this.heartbeat)\n      },\n      getShortLatLon: function(latlon){\n        if (latlon){\n          return (Math.floor(Number(latlon) * 100)/ 100)\n        }\n      }\n    }  \n  }\n</script>\n\n<style>\n\n  .online {\n    font-weight: bold;\n    color: green;\n  }\n  .offline {\n    color: grey;\n  }\n  .header1 {\n    font-weight: bolder;\n  }\n</style>",
+        "format": "<template>\n    <v-toolbar flat>\n      <v-toolbar-title class=\"text-grey\">\n        Actions\n      </v-toolbar-title>\n\n      <v-spacer></v-spacer>\n\n      <v-tooltip text=\"Refresh\" location=\"bottom\">\n        <template v-slot:activator=\"{ props }\">\n          <v-btn icon v-bind=\"props\" @click=\"refresh\">\n            <v-icon>mdi-refresh</v-icon>\n          </v-btn>\n        </template>\n      </v-tooltip>\n\n      <v-tooltip text=\"New\" location=\"bottom\">\n        <template v-slot:activator=\"{ props }\">\n          <v-btn icon v-bind=\"props\" @click=\"addNew\">\n            <v-icon>mdi-ev-station</v-icon>\n          </v-btn>\n        </template>\n      </v-tooltip>\n\n    </v-toolbar>\n\n\n      <v-text-field\n        v-model=\"search\"\n        label=\"Search\"\n        prepend-inner-icon=\"mdi-magnify\"\n        variant=\"outlined\"\n        hide-details\n        single-line\n      ></v-text-field>\n\n    \n    <v-data-table  \n        :search=\"search\" \n        :items=\"msg?.payload\"\n        :headers=\"msg?.headers\"\n        v-model=\"selected\"\n        item-selectable=\"selectable\"\n        select-strategy=\"all\"\n        hide-select    \n        return-object>\n      <template v-slot:loading>\n        <v-skeleton-loader type=\"table-row@10\"></v-skeleton-loader>\n      </template>\n\n      <template v-slot:header.lastcommtime>\n        <div><v-icon icon=\"mdi-heart\" class=\"text-center\"></div>\n      </template>\n\n      <template v-slot:header.password>\n        <div class=\"text-center\">p/w</div>\n      </template>\n      <template v-slot:header.ports>\n        <div class=\"text-center\">Ports</div>\n      </template>\n      \n      <template v-slot:item.ports=\"{ item }\">\n        <div class=\"text-center header1\">\n          <v-text>{{ item.ports }}</v-text>\n        </div>\n      </template>\n      \n      <template v-slot:item.cbId=\"{ item }\">\n        <div>\n          <v-text>{{ item.cbId }} xyz</v-text>\n        </div>\n      </template>\n      <template v-slot:item.lat=\"{ item }\">\n        <div class=\"text-center\">\n          <v-text >{{ getShortLatLon(item.lat) }}</v-text>\n        </div>\n      </template>\n      <template v-slot:item.lon=\"{ item }\">\n        <div class=\"text-center\">\n          <v-text >{{ getShortLatLon(item.lon) }}</v-text>\n        </div>\n      </template>      \n\n      <template v-slot:item.password=\"{ item }\">\n        <div class=\"text-center\">\n          <v-icon v-if=\"item.password\" color=\"green\" icon=\"mdi-checkbox-outline\"></v-icon>\n        </div>\n      </template>\n\n      <template v-slot:item.lastcommtime=\"{ item }\">\n        <div class=\"text-center\">\n          <v-icon :icon=\"getLastCommIcon(item)\" :color=\"getLastCommColor(item)\"></v-icon>\n        </div>\n      </template>\n      <template v-slot:item.amps=\"{ item }\">\n        <v-text>{{ item.amps }}A</v-chip>\n      </template>\n\n      <template v-slot:item.type=\"{ item }\">\n        <v-chip :color=\"getTypeColor(item)\">{{ item.type }}</v-chip>\n      </template>\n\n      <template v-slot:item.actions=\"{ item }\">\n        <v-icon v-if=\"getIsOnline(item)\"\n          class=\"me-2\"\n          size=\"small\"\n          @click=\"send({action: 'command', payload: [item]})\"\n        >\n          mdi-apps\n        </v-icon>\n        <v-icon\n          class=\"me-2\"\n          size=\"small\"\n          @click=\"send({action: 'edit', payload: [item]})\"\n        >\n          mdi-pencil\n        </v-icon>\n        <v-icon\n          size=\"small\"\n          @click=\"send({action: 'delete', payload: [item]})\"\n        >\n          mdi-delete\n        </v-icon>\n      </template>\n\n    </v-data-table>\n</template>\n\n<script>\n    export default {\n    data () {\n      return {\n        selected: [],\n        search: '',\n        multiSelected: 0,\n        heartbeat: 120,\n      }\n    },\n    watch: {\n        selected: function() {\n          this.multiSelected = this.selected.length\n        }\n    },\n    mounted() {\n      this.refresh()\n    },\n    methods: {\n      addNew() {\n        this.send({action: 'add', payload: [{ cbId: ''}]});\n        this.selected = [];\n        this.multiSelected = 0;\n      },\n      refresh() {\n        this.send({action: 'refresh', payload: [{}]});\n        this.selected = []\n        this.multiSelected = 0;\n      },\n      // expose a method to our <template> and Vue Application\n      getTypeColor: function(item) {\n        switch(item.type.toLowerCase()) {\n          case 'l1':\n          case 'level1':\n          case 'level 1':\n            return 'gray';\n            break;\n          case 'l2':\n          case 'level2':\n          case 'level 2':\n            return 'purple';\n            break;\n          case 'dcfc':\n          case 'dc':\n            return 'green';\n            break;\n          case 'xfc':\n          case 'hpc':\n            return 'blue';\n            break;\n          default:\n            return 'cyan';\n            break;\n        }\n      },\n\n      getLastCommIcon: function(item) {\n        if (Math.floor((Date.now() - item.lastcommtime) / 1000) > this.heartbeat ){\n          return \"mdi-heart-broken\"\n        }\n        else return \"mdi-heart-flash\"\n      },\n      getLastCommColor: function(item) {\n        if (Math.floor((Date.now() - item.lastcommtime) / 1000) > this.heartbeat ){\n          return \"grey\"\n        }\n        else return \"green\"\n      },\n      getLastCommClass: function(item) {\n        if (Math.floor((Date.now() - item.lastcommtime) / 1000) > this.heartbeat ){\n          return \"offline\"\n        }\n        else return \"online\"\n      },\n      getIsOnline: function(item) {\n        return (Math.floor((Date.now() - item.lastcommtime) / 1000) <= this.heartbeat)\n      },\n      getShortLatLon: function(latlon){\n        if (latlon){\n          return (Math.floor(Number(latlon) * 1000)/ 1000)\n        }\n      }\n    }  \n  }\n</script>\n\n<style>\n\n  .online {\n    font-weight: bold;\n    color: green;\n  }\n  .offline {\n    color: grey;\n  }\n  .header1 {\n    font-weight: bolder;\n  }\n</style>",
         "storeOutMessages": true,
         "passthru": false,
         "resendOnRefresh": true,
@@ -5326,50 +5204,6 @@
         ]
     },
     {
-        "id": "cd1d1bb073f40edd",
-        "type": "debug",
-        "z": "68c0944e7f4deca9",
-        "name": "debug 57",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1540,
-        "y": 300,
-        "wires": []
-    },
-    {
-        "id": "effdcd024fba93d3",
-        "type": "change",
-        "z": "68c0944e7f4deca9",
-        "name": "tags",
-        "rules": [
-            {
-                "t": "set",
-                "p": "ui_update.options",
-                "pt": "msg",
-                "to": "$map(payload,function($v,$i,$a){ $substringAfter($v, \":\")})",
-                "tot": "jsonata"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1390,
-        "y": 300,
-        "wires": [
-            [
-                "cd1d1bb073f40edd"
-            ]
-        ]
-    },
-    {
         "id": "572385ddb0a2b809",
         "type": "function",
         "z": "68c0944e7f4deca9",
@@ -5440,7 +5274,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1200,
+        "x": 1040,
         "y": 400,
         "wires": []
     },
@@ -5471,7 +5305,7 @@
         "z": "68c0944e7f4deca9",
         "group": "c04aff20955da79f",
         "name": "",
-        "label": "Select Option:",
+        "label": "Select EVSE",
         "tooltip": "",
         "order": 1,
         "width": 0,
@@ -5493,7 +5327,7 @@
         "className": "",
         "typeIsComboBox": true,
         "msgTrigger": "onChange",
-        "x": 400,
+        "x": 390,
         "y": 260,
         "wires": [
             [
@@ -11447,6 +11281,136 @@
         "wires": [
             [
                 "5aed68d7dac2c043"
+            ]
+        ]
+    },
+    {
+        "id": "f17dfa020227a2b2",
+        "type": "function",
+        "z": "b1b7a058b11c0e42",
+        "name": "function 8",
+        "func": "let x = global.get(\"CSMS:Req_Map\")\n\nx.set(\"Heartbeat\", \"My_HB\")\nglobal.set(\"CSMS:Req_Map\",x)\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ce765a8efc824240",
+        "type": "inject",
+        "z": "b1b7a058b11c0e42",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 100,
+        "wires": [
+            [
+                "f17dfa020227a2b2"
+            ]
+        ]
+    },
+    {
+        "id": "08e2245402d1c22d",
+        "type": "link in",
+        "z": "b1b7a058b11c0e42",
+        "name": "My_HB",
+        "links": [],
+        "x": 85,
+        "y": 160,
+        "wires": [
+            [
+                "1cb993c798e9d469"
+            ]
+        ]
+    },
+    {
+        "id": "563a5df628249ea4",
+        "type": "link out",
+        "z": "b1b7a058b11c0e42",
+        "name": "link out 38",
+        "mode": "return",
+        "links": [],
+        "x": 305,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "d0442b95274fec7a",
+        "type": "debug",
+        "z": "b1b7a058b11c0e42",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 380,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "1cb993c798e9d469",
+        "type": "change",
+        "z": "b1b7a058b11c0e42",
+        "name": "Heartbeat",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "payload.currentTime",
+                "pt": "msg",
+                "to": "$now()",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "ack",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 200,
+        "y": 160,
+        "wires": [
+            [
+                "563a5df628249ea4",
+                "d0442b95274fec7a"
             ]
         ]
     }

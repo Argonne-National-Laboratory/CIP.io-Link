@@ -117,7 +117,7 @@
     "z": "9ca80d42115ee3c3",
     "g": "f6f7b333be6e5917",
     "name": "EXAMPLE: Enable Overrides",
-    "func": "// Global Context ocppCmdTargets is a Map object\n\nlet ctx = 'ocppCmdTargets'\n\n//Get the current map\nlet targetMap = global.get(ctx)\n\n// Set new targets for ocpp commands\ntargetMap.set('BootNotification','EXAMPLE_BootNotification')\ntargetMap.set('Heartbeat','EXAMPLE_Heartbeat')\n\n// Set the map back to the global context so the CMSM subflow can use them\nglobal.set(ctx, targetMap)\nreturn\n\n// As an example to clear out a user defined ocpp function and return to defaults, do:\n// targetMap.delete('BootNotification')",
+    "func": "// Global Context ocppCmdTargets is a Map object\n\nlet ctx = 'ocppCmdTargets'\n\n//Get the current map\nlet targetMap = global.get(ctx)\n\n// Set new targets for ocpp commands\ntargetMap.set('BootNotification','EXAMPLE_BootNotification')\ntargetMap.set('Heartbeat','EXAMPLE_Heartbeat')\n\n\n// As an example to clear out a user defined ocpp function and return to defaults, do:\n// targetMap.delete('BootNotification')\n\n\n// Set the map back to the global context so the CSMS subflow can use them\nglobal.set(ctx, targetMap)\nreturn\n\n",
     "outputs": 1,
     "timeout": 0,
     "noerr": 0,

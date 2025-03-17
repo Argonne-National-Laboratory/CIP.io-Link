@@ -385,50 +385,6 @@
     ]
   },
   {
-    "id": "cd1d1bb073f40edd",
-    "type": "debug",
-    "z": "68c0944e7f4deca9",
-    "name": "debug 57",
-    "active": false,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 1540,
-    "y": 300,
-    "wires": []
-  },
-  {
-    "id": "effdcd024fba93d3",
-    "type": "change",
-    "z": "68c0944e7f4deca9",
-    "name": "tags",
-    "rules": [
-      {
-        "t": "set",
-        "p": "ui_update.options",
-        "pt": "msg",
-        "to": "$map(payload,function($v,$i,$a){ $substringAfter($v, \":\")})",
-        "tot": "jsonata"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 1390,
-    "y": 300,
-    "wires": [
-      [
-        "cd1d1bb073f40edd"
-      ]
-    ]
-  },
-  {
     "id": "572385ddb0a2b809",
     "type": "function",
     "z": "68c0944e7f4deca9",
@@ -499,7 +455,7 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 1200,
+    "x": 1040,
     "y": 400,
     "wires": []
   },
@@ -530,7 +486,7 @@
     "z": "68c0944e7f4deca9",
     "group": "c04aff20955da79f",
     "name": "",
-    "label": "Select Option:",
+    "label": "Select EVSE",
     "tooltip": "",
     "order": 1,
     "width": 0,
@@ -552,7 +508,7 @@
     "className": "",
     "typeIsComboBox": true,
     "msgTrigger": "onChange",
-    "x": 400,
+    "x": 390,
     "y": 260,
     "wires": [
       [
