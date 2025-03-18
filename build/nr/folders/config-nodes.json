@@ -145,7 +145,7 @@
   {
     "id": "0a8c3bb3babc19a4",
     "type": "ui-page",
-    "name": "Drivers",
+    "name": "Drivers / TagID",
     "ui": "8cdc313c9611f13f",
     "path": "/drivers",
     "icon": "mdi-card-account-details-outline",
@@ -175,8 +175,8 @@
     ],
     "order": 3,
     "className": "",
-    "visible": true,
-    "disabled": false
+    "visible": "true",
+    "disabled": "false"
   },
   {
     "id": "447b58f3ddb86ab6",
@@ -735,5 +735,14 @@
     "visible": "true",
     "disabled": "false",
     "groupType": "default"
+  },
+  {
+    "id": "b10ea7d6e2aa85b8",
+    "type": "modbustcp-server",
+    "name": "",
+    "host": "127.0.0.1",
+    "port": 502,
+    "unit_id": 1,
+    "reconnecttimeout": ""
   }
 ]

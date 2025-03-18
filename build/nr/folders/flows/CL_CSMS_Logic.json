@@ -418,10 +418,8 @@
     "z": "9ca80d42115ee3c3",
     "g": "23d227486f4a19f5",
     "name": "link out 51",
-    "mode": "link",
-    "links": [
-      "6ea73070a96d4eeb"
-    ],
+    "mode": "return",
+    "links": [],
     "x": 495,
     "y": 1080,
     "wires": []
@@ -876,8 +874,7 @@
     "name": "ocppReqs",
     "links": [
       "9061953296c99fc7",
-      "bf301b6e3cd5b7f3",
-      "1186737eeaebd401"
+      "bf301b6e3cd5b7f3"
     ],
     "x": 145,
     "y": 80,

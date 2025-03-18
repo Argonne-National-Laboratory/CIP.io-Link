@@ -90,8 +90,8 @@
       "bc558f4221526ddb",
       "1a959d6556da3c19"
     ],
-    "x": 784,
-    "y": 659,
+    "x": 624,
+    "y": 579,
     "w": 982,
     "h": 162
   },
@@ -111,8 +111,8 @@
       "3d9889d0e7face61",
       "565b9e3d1ccde32e"
     ],
-    "x": 794,
-    "y": 519,
+    "x": 634,
+    "y": 439,
     "w": 592,
     "h": 122
   },
@@ -133,8 +133,8 @@
       "277e1a6705982260",
       "317d216b8fa4f66a"
     ],
-    "x": 784,
-    "y": 819,
+    "x": 624,
+    "y": 739,
     "w": 462,
     "h": 122
   },
@@ -153,11 +153,11 @@
     "g": "f6e1783b4f8d6029",
     "name": "CL_SetTxDefaultProfile",
     "links": [
-      "0d628f0894098128",
-      "8c66713b1e35e58f"
+      "8c66713b1e35e58f",
+      "dec2c34e2f47883d"
     ],
-    "x": 835,
-    "y": 580,
+    "x": 675,
+    "y": 500,
     "wires": [
       [
         "dcc4d675cbe95527"
@@ -171,8 +171,8 @@
     "g": "fac4518c226fbf0c",
     "name": "CL_Auth_StartTx",
     "links": [],
-    "x": 825,
-    "y": 740,
+    "x": 665,
+    "y": 660,
     "wires": [
       [
         "e930a4053f3ebf38"
@@ -189,8 +189,8 @@
     "links": [
       "f5e6a6b98ad89c35"
     ],
-    "x": 1045,
-    "y": 780,
+    "x": 885,
+    "y": 700,
     "wires": []
   },
   {
@@ -201,8 +201,8 @@
     "name": "link out 31",
     "mode": "return",
     "links": [],
-    "x": 1035,
-    "y": 700,
+    "x": 875,
+    "y": 620,
     "wires": []
   },
   {
@@ -218,8 +218,8 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 1360,
-    "y": 740,
+    "x": 1200,
+    "y": 660,
     "wires": [
       [
         "bc558f4221526ddb"
@@ -237,8 +237,8 @@
       "8eb3b8e8db8b77c7",
       "8bd502e33fe2ee01"
     ],
-    "x": 1205,
-    "y": 860,
+    "x": 1045,
+    "y": 780,
     "wires": []
   },
   {
@@ -254,8 +254,8 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 1020,
-    "y": 860,
+    "x": 860,
+    "y": 780,
     "wires": [
       [
         "277e1a6705982260"
@@ -272,8 +272,8 @@
     "links": [
       "8eb3b8e8db8b77c7"
     ],
-    "x": 1345,
-    "y": 560,
+    "x": 1185,
+    "y": 480,
     "wires": []
   },
   {
@@ -283,11 +283,10 @@
     "g": "adad8cfed89e9a2e",
     "name": "CL_SCM",
     "links": [
-      "03a8715970d7a77d",
-      "885f7019dc576089"
+      "03a8715970d7a77d"
     ],
-    "x": 825,
-    "y": 860,
+    "x": 665,
+    "y": 780,
     "wires": [
       [
         "74558ab2bc828dd9",
@@ -313,8 +312,8 @@
     "checkall": "true",
     "repair": false,
     "outputs": 1,
-    "x": 1150,
-    "y": 740,
+    "x": 990,
+    "y": 660,
     "wires": [
       [
         "05dc69bf9c191b85"
@@ -334,8 +333,8 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 1270,
-    "y": 600,
+    "x": 1110,
+    "y": 520,
     "wires": [
       []
     ]
@@ -353,8 +352,8 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 1250,
-    "y": 560,
+    "x": 1090,
+    "y": 480,
     "wires": [
       [
         "3d9889d0e7face61"
@@ -387,8 +386,8 @@
     "checkall": "true",
     "repair": false,
     "outputs": 3,
-    "x": 1010,
-    "y": 580,
+    "x": 850,
+    "y": 500,
     "wires": [
       [
         "b348b5858bbb69e9"
@@ -414,8 +413,8 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 930,
-    "y": 740,
+    "x": 770,
+    "y": 660,
     "wires": [
       [
         "20e60ae443b8c057",
@@ -554,8 +553,8 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 440,
-    "y": 540,
+    "x": 180,
+    "y": 520,
     "wires": [
       [
         "e09d8995ecbe67f7"
@@ -568,8 +567,6 @@
     "z": "1bbb83617feb5d61",
     "name": "Server Response Node",
     "links": [
-      "d363a59df51b1603",
-      "0974c9afbf6425e2",
       "fb6d59603b2b3beb"
     ],
     "x": 825,
@@ -587,8 +584,8 @@
     "name": "link out 30",
     "mode": "return",
     "links": [],
-    "x": 585,
-    "y": 540,
+    "x": 285,
+    "y": 520,
     "wires": []
   },
   {
@@ -666,8 +663,8 @@
     "z": "1bbb83617feb5d61",
     "name": "CL_BootNotification",
     "links": [],
-    "x": 285,
-    "y": 540,
+    "x": 55,
+    "y": 520,
     "wires": [
       [
         "29b7e74ff8279110"
@@ -700,8 +697,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 420,
-    "y": 600,
+    "x": 160,
+    "y": 560,
     "wires": [
       [
         "d363a59df51b1603"
@@ -713,24 +710,20 @@
     "type": "link out",
     "z": "1bbb83617feb5d61",
     "name": "link out 37",
-    "mode": "link",
-    "links": [
-      "041c7cd4a35efa4d"
-    ],
-    "x": 585,
-    "y": 600,
+    "mode": "return",
+    "links": [],
+    "x": 285,
+    "y": 560,
     "wires": []
   },
   {
     "id": "26c6df27758d1898",
     "type": "link in",
     "z": "1bbb83617feb5d61",
-    "name": "HeartBeat",
-    "links": [
-      "1920fd977adf99ce"
-    ],
-    "x": 285,
-    "y": 600,
+    "name": "CL_Heartbeat",
+    "links": [],
+    "x": 55,
+    "y": 560,
     "wires": [
       [
         "58a508d07089ac02"
@@ -756,8 +749,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 440,
-    "y": 660,
+    "x": 180,
+    "y": 620,
     "wires": [
       [
         "d822835855e62f28"
@@ -776,38 +769,22 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 480,
-    "y": 720,
+    "x": 220,
+    "y": 660,
     "wires": [
       [
-        "03a8715970d7a77d"
+        "bbed1bd5b44c8a60"
       ]
     ]
-  },
-  {
-    "id": "03a8715970d7a77d",
-    "type": "link out",
-    "z": "1bbb83617feb5d61",
-    "name": "link out 29",
-    "mode": "link",
-    "links": [
-      "31cbb896896da083",
-      "8bd502e33fe2ee01"
-    ],
-    "x": 635,
-    "y": 720,
-    "wires": []
   },
   {
     "id": "98a99004fba3ce97",
     "type": "link in",
     "z": "1bbb83617feb5d61",
     "name": "CL_StopTransaction",
-    "links": [
-      "9b51587a3c6a0b45"
-    ],
-    "x": 275,
-    "y": 700,
+    "links": [],
+    "x": 55,
+    "y": 660,
     "wires": [
       [
         "c65873db62d0456e",
@@ -841,7 +818,7 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 440,
+    "x": 180,
     "y": 480,
     "wires": [
       [
@@ -855,10 +832,9 @@
     "z": "1bbb83617feb5d61",
     "name": "CL_Generic",
     "links": [
-      "8491c20b715112f4",
-      "9b51587a3c6a0b45"
+      "dec2c34e2f47883d"
     ],
-    "x": 285,
+    "x": 55,
     "y": 480,
     "wires": [
       [
@@ -873,7 +849,7 @@
     "name": "link out 41",
     "mode": "return",
     "links": [],
-    "x": 585,
+    "x": 285,
     "y": 480,
     "wires": []
   },
@@ -884,8 +860,8 @@
     "name": "link out 45",
     "mode": "return",
     "links": [],
-    "x": 625,
-    "y": 660,
+    "x": 295,
+    "y": 620,
     "wires": []
   },
   {
@@ -943,8 +919,8 @@
     "z": "1bbb83617feb5d61",
     "name": "CL_DataTransfer",
     "links": [],
-    "x": 275,
-    "y": 780,
+    "x": 55,
+    "y": 440,
     "wires": [
       [
         "bb8501896177294a"
@@ -958,8 +934,8 @@
     "name": "link out 36",
     "mode": "return",
     "links": [],
-    "x": 635,
-    "y": 780,
+    "x": 285,
+    "y": 440,
     "wires": []
   },
   {
@@ -981,8 +957,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 430,
-    "y": 780,
+    "x": 170,
+    "y": 440,
     "wires": [
       [
         "841bf57c5d32ad57"
@@ -1002,8 +978,8 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 1560,
-    "y": 740,
+    "x": 1400,
+    "y": 660,
     "wires": [
       [
         "1a959d6556da3c19"
@@ -1019,8 +995,8 @@
     "links": [],
     "linkType": "dynamic",
     "timeout": "30",
-    "x": 1690,
-    "y": 740,
+    "x": 1530,
+    "y": 660,
     "wires": [
       []
     ]
@@ -1033,8 +1009,8 @@
     "name": "link out 26",
     "mode": "return",
     "links": [],
-    "x": 885,
-    "y": 900,
+    "x": 725,
+    "y": 820,
     "wires": []
   },
   {
@@ -1043,42 +1019,12 @@
     "z": "1bbb83617feb5d61",
     "name": "CL_StatusNotification",
     "links": [],
-    "x": 275,
-    "y": 880,
+    "x": 65,
+    "y": 720,
     "wires": [
       [
-        "75db728ca44e6f0c",
-        "8c66713b1e35e58f"
+        "dec2c34e2f47883d"
       ]
-    ]
-  },
-  {
-    "id": "8c66713b1e35e58f",
-    "type": "link out",
-    "z": "1bbb83617feb5d61",
-    "name": "link out 39",
-    "mode": "link",
-    "links": [
-      "565b9e3d1ccde32e"
-    ],
-    "x": 355,
-    "y": 920,
-    "wires": []
-  },
-  {
-    "id": "75db728ca44e6f0c",
-    "type": "link call",
-    "z": "1bbb83617feb5d61",
-    "name": "",
-    "links": [
-      "20e77c4a2c2e1bc8"
-    ],
-    "linkType": "static",
-    "timeout": "30",
-    "x": 410,
-    "y": 860,
-    "wires": [
-      []
     ]
   },
   {
@@ -1099,6 +1045,64 @@
     "info": "",
     "x": 850,
     "y": 60,
+    "wires": []
+  },
+  {
+    "id": "bbed1bd5b44c8a60",
+    "type": "function",
+    "z": "1bbb83617feb5d61",
+    "name": "function 3",
+    "func": "const command = \"SCM\"\nconst reqMap = global.get(\"CMSM:Req_Map\");\n\n//default target\nmsg.target = \"CL_SCM\"\n\n// Override target\nif (reqMap.has(command)){\n    msg.target = reqMap.get(command)\n}\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 420,
+    "y": 660,
+    "wires": [
+      [
+        "f6128d47522c0a77"
+      ]
+    ]
+  },
+  {
+    "id": "f6128d47522c0a77",
+    "type": "link call",
+    "z": "1bbb83617feb5d61",
+    "name": "SCM",
+    "links": [],
+    "linkType": "dynamic",
+    "timeout": "30",
+    "x": 550,
+    "y": 660,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "80a77a8a82c0f361",
+    "type": "comment",
+    "z": "1bbb83617feb5d61",
+    "name": "Default Request Responses",
+    "info": "",
+    "x": 160,
+    "y": 400,
+    "wires": []
+  },
+  {
+    "id": "dec2c34e2f47883d",
+    "type": "link out",
+    "z": "1bbb83617feb5d61",
+    "name": "link out 29",
+    "mode": "link",
+    "links": [
+      "20e77c4a2c2e1bc8",
+      "565b9e3d1ccde32e"
+    ],
+    "x": 145,
+    "y": 720,
     "wires": []
   }
 ]
