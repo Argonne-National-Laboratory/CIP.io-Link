@@ -890,7 +890,7 @@
     "type": "debug",
     "z": "9ca80d42115ee3c3",
     "name": "debug 51",
-    "active": false,
+    "active": true,
     "tosidebar": true,
     "console": false,
     "tostatus": false,

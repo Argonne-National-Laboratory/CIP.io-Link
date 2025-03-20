@@ -44,6 +44,14 @@
           {
             "id": "8bd502e33fe2ee01",
             "port": 0
+          },
+          {
+            "id": "36d20d6f10701b5e",
+            "port": 0
+          },
+          {
+            "id": "ba2cbe8ea7210112",
+            "port": 0
           }
         ]
       }
@@ -88,11 +96,17 @@
       "81b335ea88991f47",
       "05dc69bf9c191b85",
       "bc558f4221526ddb",
-      "1a959d6556da3c19"
+      "1a959d6556da3c19",
+      "2b61a29bf378cb19",
+      "0cf0b97d82a84f68",
+      "36d20d6f10701b5e",
+      "aa717d0237b2f9f2",
+      "ba2cbe8ea7210112",
+      "8dd31db647e97e9a"
     ],
     "x": 644,
     "y": 579,
-    "w": 982,
+    "w": 1152,
     "h": 162
   },
   {
@@ -210,15 +224,15 @@
     "z": "1bbb83617feb5d61",
     "g": "fac4518c226fbf0c",
     "name": "Save sessions context",
-    "func": "if (msg.ocpp.command === \"StartTransaction\"){\n    let session = {}\n    session.cbId = msg.ocpp.chargeBoxIdentity\n    session.connectorId = msg.ocpp.connectorId\n    session.transactionId = msg.payload.transactionId\n    session.amps = (session.cbId == \"EVOChargeLab1\") ? 32 : 40\n    let sessions = global.get(\"CSMS:SESSIONS\") || []\n    sessions.push(session)\n    global.set(\"CSMS:SESSIONS\",sessions)\n    return msg;\n}",
+    "func": "if (msg.ocpp.command === \"StartTransaction\"){\n    let session = {}\n    session.cbId = msg.ocpp.chargeBoxIdentity\n    session.connectorId = msg.ocpp.connectorId\n    session.transactionId = msg.payload.transactionId\n    session.amps = msg.evse.amps\n    let sessions = global.get(\"CSMS:SESSIONS\") || []\n    sessions.push(session)\n    global.set(\"CSMS:SESSIONS\",sessions)\n    return msg;\n}",
     "outputs": 1,
     "timeout": 0,
     "noerr": 0,
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 1220,
-    "y": 660,
+    "x": 1240,
+    "y": 700,
     "wires": [
       [
         "bc558f4221526ddb"
@@ -309,11 +323,11 @@
     "checkall": "true",
     "repair": false,
     "outputs": 1,
-    "x": 1010,
+    "x": 990,
     "y": 660,
     "wires": [
       [
-        "05dc69bf9c191b85"
+        "0cf0b97d82a84f68"
       ]
     ]
   },
@@ -975,7 +989,7 @@
     "finalize": "",
     "libs": [],
     "x": 1420,
-    "y": 660,
+    "y": 700,
     "wires": [
       [
         "1a959d6556da3c19"
@@ -992,7 +1006,7 @@
     "linkType": "dynamic",
     "timeout": "30",
     "x": 1550,
-    "y": 660,
+    "y": 700,
     "wires": [
       []
     ]
@@ -1099,6 +1113,158 @@
     ],
     "x": 145,
     "y": 720,
+    "wires": []
+  },
+  {
+    "id": "2b61a29bf378cb19",
+    "type": "link in",
+    "z": "1bbb83617feb5d61",
+    "g": "fac4518c226fbf0c",
+    "name": "link in 2",
+    "links": [
+      "42695be3f2d49cd6",
+      "8dd31db647e97e9a"
+    ],
+    "x": 1115,
+    "y": 700,
+    "wires": [
+      [
+        "05dc69bf9c191b85"
+      ]
+    ]
+  },
+  {
+    "id": "0cf0b97d82a84f68",
+    "type": "change",
+    "z": "1bbb83617feb5d61",
+    "g": "fac4518c226fbf0c",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload2",
+        "pt": "msg",
+        "to": "payload",
+        "tot": "msg"
+      },
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "$join([\"evse:\",ocpp.chargeBoxIdentity])",
+        "tot": "jsonata"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1200,
+    "y": 660,
+    "wires": [
+      [
+        "36d20d6f10701b5e"
+      ]
+    ]
+  },
+  {
+    "id": "36d20d6f10701b5e",
+    "type": "redis-command",
+    "z": "1bbb83617feb5d61",
+    "g": "fac4518c226fbf0c",
+    "server": "0430675ed6c7cd83",
+    "command": "GET",
+    "name": "",
+    "topic": "",
+    "params": "[]",
+    "paramsType": "json",
+    "payloadType": "json",
+    "block": false,
+    "x": 1360,
+    "y": 660,
+    "wires": [
+      [
+        "aa717d0237b2f9f2"
+      ]
+    ]
+  },
+  {
+    "id": "aa717d0237b2f9f2",
+    "type": "json",
+    "z": "1bbb83617feb5d61",
+    "g": "fac4518c226fbf0c",
+    "name": "",
+    "property": "payload",
+    "action": "",
+    "pretty": false,
+    "x": 1490,
+    "y": 660,
+    "wires": [
+      [
+        "ba2cbe8ea7210112"
+      ]
+    ]
+  },
+  {
+    "id": "ba2cbe8ea7210112",
+    "type": "change",
+    "z": "1bbb83617feb5d61",
+    "g": "fac4518c226fbf0c",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "evse",
+        "pt": "msg",
+        "to": "{}",
+        "tot": "json"
+      },
+      {
+        "t": "set",
+        "p": "evse.amps",
+        "pt": "msg",
+        "to": "$number(payload.amps)",
+        "tot": "jsonata"
+      },
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "payload2",
+        "tot": "msg"
+      },
+      {
+        "t": "delete",
+        "p": "payload2",
+        "pt": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1640,
+    "y": 660,
+    "wires": [
+      [
+        "8dd31db647e97e9a"
+      ]
+    ]
+  },
+  {
+    "id": "8dd31db647e97e9a",
+    "type": "link out",
+    "z": "1bbb83617feb5d61",
+    "g": "fac4518c226fbf0c",
+    "name": "link out 39",
+    "mode": "link",
+    "links": [
+      "2b61a29bf378cb19"
+    ],
+    "x": 1755,
+    "y": 660,
     "wires": []
   }
 ]
