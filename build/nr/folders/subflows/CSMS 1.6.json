@@ -90,7 +90,7 @@
       "bc558f4221526ddb",
       "1a959d6556da3c19"
     ],
-    "x": 624,
+    "x": 644,
     "y": 579,
     "w": 982,
     "h": 162
@@ -111,7 +111,7 @@
       "3d9889d0e7face61",
       "565b9e3d1ccde32e"
     ],
-    "x": 634,
+    "x": 654,
     "y": 439,
     "w": 592,
     "h": 122
@@ -133,7 +133,7 @@
       "277e1a6705982260",
       "317d216b8fa4f66a"
     ],
-    "x": 624,
+    "x": 644,
     "y": 739,
     "w": 462,
     "h": 122
@@ -153,10 +153,9 @@
     "g": "f6e1783b4f8d6029",
     "name": "CL_SetTxDefaultProfile",
     "links": [
-      "8c66713b1e35e58f",
       "dec2c34e2f47883d"
     ],
-    "x": 675,
+    "x": 695,
     "y": 500,
     "wires": [
       [
@@ -171,7 +170,7 @@
     "g": "fac4518c226fbf0c",
     "name": "CL_Auth_StartTx",
     "links": [],
-    "x": 665,
+    "x": 685,
     "y": 660,
     "wires": [
       [
@@ -189,7 +188,7 @@
     "links": [
       "f5e6a6b98ad89c35"
     ],
-    "x": 885,
+    "x": 905,
     "y": 700,
     "wires": []
   },
@@ -201,7 +200,7 @@
     "name": "link out 31",
     "mode": "return",
     "links": [],
-    "x": 875,
+    "x": 895,
     "y": 620,
     "wires": []
   },
@@ -218,7 +217,7 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 1200,
+    "x": 1220,
     "y": 660,
     "wires": [
       [
@@ -237,7 +236,7 @@
       "8eb3b8e8db8b77c7",
       "8bd502e33fe2ee01"
     ],
-    "x": 1045,
+    "x": 1065,
     "y": 780,
     "wires": []
   },
@@ -254,7 +253,7 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 860,
+    "x": 880,
     "y": 780,
     "wires": [
       [
@@ -272,7 +271,7 @@
     "links": [
       "8eb3b8e8db8b77c7"
     ],
-    "x": 1185,
+    "x": 1205,
     "y": 480,
     "wires": []
   },
@@ -282,10 +281,8 @@
     "z": "1bbb83617feb5d61",
     "g": "adad8cfed89e9a2e",
     "name": "CL_SCM",
-    "links": [
-      "03a8715970d7a77d"
-    ],
-    "x": 665,
+    "links": [],
+    "x": 685,
     "y": 780,
     "wires": [
       [
@@ -312,7 +309,7 @@
     "checkall": "true",
     "repair": false,
     "outputs": 1,
-    "x": 990,
+    "x": 1010,
     "y": 660,
     "wires": [
       [
@@ -333,7 +330,7 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 1110,
+    "x": 1130,
     "y": 520,
     "wires": [
       []
@@ -352,7 +349,7 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 1090,
+    "x": 1110,
     "y": 480,
     "wires": [
       [
@@ -386,7 +383,7 @@
     "checkall": "true",
     "repair": false,
     "outputs": 3,
-    "x": 850,
+    "x": 870,
     "y": 500,
     "wires": [
       [
@@ -413,7 +410,7 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 770,
+    "x": 790,
     "y": 660,
     "wires": [
       [
@@ -532,8 +529,7 @@
     "z": "1bbb83617feb5d61",
     "name": "Send Debug Output",
     "links": [
-      "277e1a6705982260",
-      "03a8715970d7a77d"
+      "277e1a6705982260"
     ],
     "x": 825,
     "y": 220,
@@ -971,14 +967,14 @@
     "z": "1bbb83617feb5d61",
     "g": "fac4518c226fbf0c",
     "name": "function 6",
-    "func": "const command = \"SCM\"\nconst reqMap = global.get(\"CMSM:Req_Map\");\n\n//default target\nmsg.target = \"CL_SCM\"\n\n// Override target\nif (reqMap.has(command)){\n    msg.target = reqMap.get(command)\n}\nreturn msg;",
+    "func": "const command = \"SCM\"\nconst reqMap = global.get(\"CSMS:Req_Map\");\n\n//default target\nmsg.target = \"CL_SCM\"\n\n// Override target\nif (reqMap.has(command)){\n    msg.target = reqMap.get(command)\n}\nreturn msg;",
     "outputs": 1,
     "timeout": 0,
     "noerr": 0,
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 1400,
+    "x": 1420,
     "y": 660,
     "wires": [
       [
@@ -995,7 +991,7 @@
     "links": [],
     "linkType": "dynamic",
     "timeout": "30",
-    "x": 1530,
+    "x": 1550,
     "y": 660,
     "wires": [
       []
@@ -1009,7 +1005,7 @@
     "name": "link out 26",
     "mode": "return",
     "links": [],
-    "x": 725,
+    "x": 745,
     "y": 820,
     "wires": []
   },
@@ -1051,15 +1047,15 @@
     "id": "bbed1bd5b44c8a60",
     "type": "function",
     "z": "1bbb83617feb5d61",
-    "name": "function 3",
-    "func": "const command = \"SCM\"\nconst reqMap = global.get(\"CMSM:Req_Map\");\n\n//default target\nmsg.target = \"CL_SCM\"\n\n// Override target\nif (reqMap.has(command)){\n    msg.target = reqMap.get(command)\n}\nreturn msg;",
+    "name": "Get SCM node",
+    "func": "const command = \"SCM\"\nconst reqMap = global.get(\"CSMS:Req_Map\") || new Map();\n\n//default target\nmsg.target = \"CL_SCM\"\n\n// Override target\nif (reqMap.has(command)){\n    msg.target = reqMap.get(command)\n}\nreturn msg;",
     "outputs": 1,
     "timeout": 0,
     "noerr": 0,
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 420,
+    "x": 440,
     "y": 660,
     "wires": [
       [
@@ -1075,7 +1071,7 @@
     "links": [],
     "linkType": "dynamic",
     "timeout": "30",
-    "x": 550,
+    "x": 590,
     "y": 660,
     "wires": [
       []
