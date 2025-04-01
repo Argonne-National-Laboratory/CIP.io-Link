@@ -5385,11 +5385,11 @@
         "paramsType": "json",
         "payloadType": "json",
         "block": false,
-        "x": 490,
+        "x": 470,
         "y": 400,
         "wires": [
             [
-                "8bf08fe2bc5b95ca"
+                "be36cf15b35bb259"
             ]
         ]
     },
@@ -5487,7 +5487,7 @@
         "paramsType": "json",
         "payloadType": "json",
         "block": false,
-        "x": 670,
+        "x": 810,
         "y": 400,
         "wires": [
             [
@@ -5508,7 +5508,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1040,
+        "x": 1160,
         "y": 400,
         "wires": []
     },
@@ -5524,7 +5524,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 850,
+        "x": 970,
         "y": 400,
         "wires": [
             [
@@ -5611,6 +5611,26 @@
         "wires": []
     },
     {
+        "id": "be36cf15b35bb259",
+        "type": "function",
+        "z": "68c0944e7f4deca9",
+        "name": "Check Empty",
+        "func": "if ( msg?.payload.length != 0 ){\n    return msg;\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 400,
+        "wires": [
+            [
+                "8bf08fe2bc5b95ca"
+            ]
+        ]
+    },
+    {
         "id": "49370f62ef275c28",
         "type": "function",
         "z": "92d055a5ecbac90c",
@@ -5690,7 +5710,7 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n    <container>\n        <v-img \n            src=\"/assets/cl3.png\"\n            lazy-src=\"/assets/blue.png\"\n            max-height=\"500\">\n        </v-img>\n    </container>\n</template>\n\n<script>\n    export default {\n\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                url: \"\",\n                show: false,\n                showx: true\n            }\n        },\n        \n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        },\n        mounted() {\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n                if (this.msg.payload){\n                    let payload = this.msg.payload\n                    this.url = payload.banner_url\n                    this.show = payload.show || true\n                }\n            })\n            this.refresh()\n        },      \n        methods: {\n        },\n    }\n</script>",
+        "format": "<template>\n    <container>\n        <v-img \n            :src=\"this.url\"\n            lazy-src=\"/assets/blue.png\"\n            max-height=\"500\">\n        </v-img>\n    </container>\n</template>\n\n<script>\n    export default {\n\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                url: \"\",\n                show: false,\n                showx: true\n            }\n        },\n        \n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        },\n        mounted() {\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n                if (this.msg.payload){\n                    let payload = this.msg.payload\n                    this.url = payload.banner_url\n                    this.show = payload.show || true\n                }\n            })\n            this.refresh()\n        },      \n        methods: {\n        },\n    }\n</script>",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -6445,7 +6465,7 @@
         "type": "debug",
         "z": "92d055a5ecbac90c",
         "name": "debug 75",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -9242,7 +9262,7 @@
         "y": 400,
         "wires": [
             [
-                "effb1e3caf4af0f1"
+                "3be95eeae5f0a952"
             ]
         ]
     },
@@ -9285,7 +9305,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 840,
+        "x": 1040,
         "y": 400,
         "wires": [
             [
@@ -9432,8 +9452,8 @@
         "links": [
             "f4cb836a36b77b75"
         ],
-        "x": 1075,
-        "y": 380,
+        "x": 1525,
+        "y": 400,
         "wires": []
     },
     {
@@ -10027,6 +10047,26 @@
         "y": 780,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "3be95eeae5f0a952",
+        "type": "function",
+        "z": "c4f677cd277b409d",
+        "name": "function 8",
+        "func": "if (!msg?.payload) msg.payload = \"/assets/cl3.png\"\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 800,
+        "y": 400,
+        "wires": [
+            [
+                "effb1e3caf4af0f1"
+            ]
         ]
     },
     {

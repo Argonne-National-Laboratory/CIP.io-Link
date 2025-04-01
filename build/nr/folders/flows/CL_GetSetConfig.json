@@ -332,11 +332,11 @@
     "paramsType": "json",
     "payloadType": "json",
     "block": false,
-    "x": 490,
+    "x": 470,
     "y": 400,
     "wires": [
       [
-        "8bf08fe2bc5b95ca"
+        "be36cf15b35bb259"
       ]
     ]
   },
@@ -434,7 +434,7 @@
     "paramsType": "json",
     "payloadType": "json",
     "block": false,
-    "x": 670,
+    "x": 810,
     "y": 400,
     "wires": [
       [
@@ -455,7 +455,7 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 1040,
+    "x": 1160,
     "y": 400,
     "wires": []
   },
@@ -471,7 +471,7 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 850,
+    "x": 970,
     "y": 400,
     "wires": [
       [
@@ -556,5 +556,25 @@
     "x": 825,
     "y": 240,
     "wires": []
+  },
+  {
+    "id": "be36cf15b35bb259",
+    "type": "function",
+    "z": "68c0944e7f4deca9",
+    "name": "Check Empty",
+    "func": "if ( msg?.payload.length != 0 ){\n    return msg;\n}",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 650,
+    "y": 400,
+    "wires": [
+      [
+        "8bf08fe2bc5b95ca"
+      ]
+    ]
   }
 ]

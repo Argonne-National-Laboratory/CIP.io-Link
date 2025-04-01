@@ -612,7 +612,7 @@
     "y": 400,
     "wires": [
       [
-        "effb1e3caf4af0f1"
+        "3be95eeae5f0a952"
       ]
     ]
   },
@@ -655,7 +655,7 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 840,
+    "x": 1040,
     "y": 400,
     "wires": [
       [
@@ -802,8 +802,8 @@
     "links": [
       "f4cb836a36b77b75"
     ],
-    "x": 1075,
-    "y": 380,
+    "x": 1525,
+    "y": 400,
     "wires": []
   },
   {
@@ -1397,6 +1397,26 @@
     "y": 780,
     "wires": [
       []
+    ]
+  },
+  {
+    "id": "3be95eeae5f0a952",
+    "type": "function",
+    "z": "c4f677cd277b409d",
+    "name": "function 8",
+    "func": "if (!msg?.payload) msg.payload = \"/assets/cl3.png\"\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 800,
+    "y": 400,
+    "wires": [
+      [
+        "effb1e3caf4af0f1"
+      ]
     ]
   }
 ]
