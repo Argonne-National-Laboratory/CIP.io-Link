@@ -23,7 +23,9 @@
         "039d0809d7c54de3",
         "75b51ecec0628924",
         "fb0a4e143e0f32de",
-        "dfe32902741b4462"
+        "dfe32902741b4462",
+        "18e6c9e77140a8fc",
+        "c10702a72a0cb5b0"
       ]
     ]
   },
@@ -105,7 +107,7 @@
     "group": "c48e064d37e64bbf",
     "name": "Site LoadLimit",
     "label": "Max Load Limit (Amps)",
-    "order": 5,
+    "order": 7,
     "width": 0,
     "height": 0,
     "topic": "heartbeat",
@@ -588,7 +590,7 @@
     "group": "c48e064d37e64bbf",
     "name": "",
     "label": "Banner URL:",
-    "order": 4,
+    "order": 6,
     "width": 0,
     "height": 0,
     "topic": "topic",
@@ -851,7 +853,7 @@
     "name": "ShowMeters",
     "label": "Show Meters Page",
     "group": "c48e064d37e64bbf",
-    "order": 3,
+    "order": 5,
     "width": 0,
     "height": 0,
     "passthru": true,
@@ -1024,7 +1026,7 @@
     "name": "ShowMap",
     "label": "Show Home Page Map",
     "group": "c48e064d37e64bbf",
-    "order": 2,
+    "order": 4,
     "width": 0,
     "height": 0,
     "passthru": true,
@@ -1113,6 +1115,286 @@
     "block": false,
     "x": 1280,
     "y": 660,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "18e6c9e77140a8fc",
+    "type": "redis-command",
+    "z": "c4f677cd277b409d",
+    "server": "0430675ed6c7cd83",
+    "command": "GET",
+    "name": "get ShowGraphCnt",
+    "topic": "settings:site:show_graph_cnt",
+    "params": "[]",
+    "paramsType": "json",
+    "payloadType": "json",
+    "block": false,
+    "x": 310,
+    "y": 720,
+    "wires": [
+      [
+        "edfdfd830d98ce95"
+      ]
+    ]
+  },
+  {
+    "id": "edfdfd830d98ce95",
+    "type": "function",
+    "z": "c4f677cd277b409d",
+    "name": "str2bool",
+    "func": "msg.payload = (msg?.payload?.toLowerCase() === 'true');\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 480,
+    "y": 720,
+    "wires": [
+      [
+        "8ee3142b6bad2847"
+      ]
+    ]
+  },
+  {
+    "id": "8ee3142b6bad2847",
+    "type": "ui-switch",
+    "z": "c4f677cd277b409d",
+    "name": "ShowCurrentGraph",
+    "label": "Show Home Page Current Graph",
+    "group": "c48e064d37e64bbf",
+    "order": 2,
+    "width": 0,
+    "height": 0,
+    "passthru": true,
+    "decouple": false,
+    "topic": "topic",
+    "topicType": "msg",
+    "style": "",
+    "className": "",
+    "layout": "row-left-swapped",
+    "clickableArea": "line",
+    "onvalue": "true",
+    "onvalueType": "bool",
+    "onicon": "",
+    "oncolor": "",
+    "offvalue": "false",
+    "offvalueType": "bool",
+    "officon": "",
+    "offcolor": "",
+    "x": 650,
+    "y": 720,
+    "wires": [
+      [
+        "53c569268ad4fd09"
+      ]
+    ]
+  },
+  {
+    "id": "53c569268ad4fd09",
+    "type": "change",
+    "z": "c4f677cd277b409d",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "CSMS:ShowCurrentGraph",
+        "pt": "global",
+        "to": "payload",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 910,
+    "y": 720,
+    "wires": [
+      [
+        "142237413ab57822",
+        "4f2eb882456520c0"
+      ]
+    ]
+  },
+  {
+    "id": "142237413ab57822",
+    "type": "function",
+    "z": "c4f677cd277b409d",
+    "name": "bool2str",
+    "func": "msg.payload = `${msg.payload}`\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1140,
+    "y": 720,
+    "wires": [
+      [
+        "4994f3046c39b821"
+      ]
+    ]
+  },
+  {
+    "id": "4994f3046c39b821",
+    "type": "redis-command",
+    "z": "c4f677cd277b409d",
+    "server": "0430675ed6c7cd83",
+    "command": "SET",
+    "name": "set ShowGraphCnt",
+    "topic": "settings:site:show_graph_cnt",
+    "params": "[]",
+    "paramsType": "json",
+    "payloadType": "json",
+    "block": false,
+    "x": 1310,
+    "y": 720,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "c10702a72a0cb5b0",
+    "type": "redis-command",
+    "z": "c4f677cd277b409d",
+    "server": "0430675ed6c7cd83",
+    "command": "GET",
+    "name": "get ShowGraphCnt",
+    "topic": "settings:site:show_graph_pwr",
+    "params": "[]",
+    "paramsType": "json",
+    "payloadType": "json",
+    "block": false,
+    "x": 310,
+    "y": 780,
+    "wires": [
+      [
+        "16163f173f4ddae5"
+      ]
+    ]
+  },
+  {
+    "id": "16163f173f4ddae5",
+    "type": "function",
+    "z": "c4f677cd277b409d",
+    "name": "str2bool",
+    "func": "msg.payload = (msg?.payload?.toLowerCase() === 'true');\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 480,
+    "y": 780,
+    "wires": [
+      [
+        "0ebeed67fd27c4bf"
+      ]
+    ]
+  },
+  {
+    "id": "0ebeed67fd27c4bf",
+    "type": "ui-switch",
+    "z": "c4f677cd277b409d",
+    "name": "ShowPowerGraph",
+    "label": "Show Home Page Power Graph",
+    "group": "c48e064d37e64bbf",
+    "order": 3,
+    "width": 0,
+    "height": 0,
+    "passthru": true,
+    "decouple": false,
+    "topic": "topic",
+    "topicType": "msg",
+    "style": "",
+    "className": "",
+    "layout": "row-left-swapped",
+    "clickableArea": "line",
+    "onvalue": "true",
+    "onvalueType": "bool",
+    "onicon": "",
+    "oncolor": "",
+    "offvalue": "false",
+    "offvalueType": "bool",
+    "officon": "",
+    "offcolor": "",
+    "x": 650,
+    "y": 780,
+    "wires": [
+      [
+        "d7d6bc36a2c985ee"
+      ]
+    ]
+  },
+  {
+    "id": "d7d6bc36a2c985ee",
+    "type": "change",
+    "z": "c4f677cd277b409d",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "CSMS:ShowPowerGraph",
+        "pt": "global",
+        "to": "payload",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 900,
+    "y": 780,
+    "wires": [
+      [
+        "45a7caf34a0aa0a9",
+        "4f2eb882456520c0"
+      ]
+    ]
+  },
+  {
+    "id": "45a7caf34a0aa0a9",
+    "type": "function",
+    "z": "c4f677cd277b409d",
+    "name": "bool2str",
+    "func": "msg.payload = `${msg.payload}`\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1120,
+    "y": 780,
+    "wires": [
+      [
+        "72b9e3775f903266"
+      ]
+    ]
+  },
+  {
+    "id": "72b9e3775f903266",
+    "type": "redis-command",
+    "z": "c4f677cd277b409d",
+    "server": "0430675ed6c7cd83",
+    "command": "SET",
+    "name": "set ShowGraphCnt",
+    "topic": "settings:site:show_graph_pwr",
+    "params": "[]",
+    "paramsType": "json",
+    "payloadType": "json",
+    "block": false,
+    "x": 1310,
+    "y": 780,
     "wires": [
       []
     ]

@@ -186,7 +186,7 @@
     "width": "6",
     "height": "1",
     "order": 1,
-    "showTitle": true,
+    "showTitle": false,
     "className": "",
     "visible": "true",
     "disabled": "false",
@@ -376,8 +376,8 @@
     ],
     "order": 6,
     "className": "",
-    "visible": "true",
-    "disabled": "false"
+    "visible": true,
+    "disabled": false
   },
   {
     "id": "c04aff20955da79f",
@@ -610,7 +610,7 @@
     "width": "6",
     "height": "1",
     "order": 1,
-    "showTitle": true,
+    "showTitle": false,
     "className": "",
     "visible": "true",
     "disabled": "false",
@@ -637,7 +637,7 @@
     "page": "a7002ddddf5f5b3b",
     "width": 6,
     "height": 1,
-    "order": 3,
+    "order": 5,
     "showTitle": true,
     "className": "",
     "visible": "true",
@@ -744,5 +744,33 @@
     "port": 502,
     "unit_id": 1,
     "reconnecttimeout": ""
+  },
+  {
+    "id": "dbf0d787ce369418",
+    "type": "ui-group",
+    "name": "Current Graph",
+    "page": "a7002ddddf5f5b3b",
+    "width": 6,
+    "height": 1,
+    "order": 3,
+    "showTitle": true,
+    "className": "",
+    "visible": "true",
+    "disabled": "false",
+    "groupType": "default"
+  },
+  {
+    "id": "588463f4dbc60e20",
+    "type": "ui-group",
+    "name": "Power Graph",
+    "page": "a7002ddddf5f5b3b",
+    "width": 6,
+    "height": 1,
+    "order": 4,
+    "showTitle": true,
+    "className": "",
+    "visible": "true",
+    "disabled": "false",
+    "groupType": "default"
   }
 ]

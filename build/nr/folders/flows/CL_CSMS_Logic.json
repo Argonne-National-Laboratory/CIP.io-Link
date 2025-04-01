@@ -776,8 +776,7 @@
     "z": "9ca80d42115ee3c3",
     "name": "Trigger Reqs",
     "links": [
-      "82c7dc438bcf613e",
-      "485897ecb288f5b2"
+      "82c7dc438bcf613e"
     ],
     "x": 145,
     "y": 20,
@@ -874,7 +873,10 @@
     "name": "ocppReqs",
     "links": [
       "9061953296c99fc7",
-      "bf301b6e3cd5b7f3"
+      "bf301b6e3cd5b7f3",
+      "647ae537e6cb80bc",
+      "e762dccd76164608",
+      "485897ecb288f5b2"
     ],
     "x": 145,
     "y": 80,

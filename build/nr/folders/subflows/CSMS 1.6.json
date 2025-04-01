@@ -106,7 +106,7 @@
     ],
     "x": 644,
     "y": 579,
-    "w": 1152,
+    "w": 1162,
     "h": 162
   },
   {
@@ -417,7 +417,7 @@
     "z": "1bbb83617feb5d61",
     "g": "fac4518c226fbf0c",
     "name": "Auth/Start Tx",
-    "func": "// function handles both Authorize and StartTransaction\n// This generate a unique TxId, as long as the function doesn't get called twice\n// within the same millisecond\n\n\n// defaults\nconst ACCEPTED = \"Accepted\"\nlet status = ACCEPTED\nlet tags = []\n\n// copy message for the enhanced message with TxId\nlet msg2 = RED.util.cloneMessage(msg)\n\nmsg2.payload = {\n    idTagInfo: {\n        status\n    }\n}\n\nif (msg.ocpp.command === \"StartTransaction\"){\n    msg2.payload.transactionId = generateUniqueId()\n    msg.ocpp.command = 'StartTransactionEnhanced'\n    msg.payload.command = msg.ocpp.command\n    msg2.ocpp.connectorId = msg.payload.data.connectorId || 1\n}\n\n\nlet freeVend = global.get(\"CSMS:FreeVend\") \n    \nif (! freeVend ){\n    tags = global.get(\"CSMS:Tags\")\n\n    const result = tags.find((tag) => tag.tagId === msg.payload.data.idTag)\n\n    if (result){\n        if (!result.enabled){\n            msg2.payload.idTagInfo.status = \"Blocked\"\n        }\n        else if (result.expdate){\n            let expDate = new Date(result.expdate)\n            expDate.setHours(23, 59, 59, 999); // Set to the end of the day\n            let currentDate = new Date()\n\n            if (currentDate > expDate){\n                msg2.payload.idTagInfo.status = \"Expired\"\n            }\n            else {\n                msg2.payload.idTagInfo.expiryDate = expDate.toISOString()\n            }\n        } \n    }\n    else {\n        msg2.payload.idTagInfo.status = \"Invalid\"\n    }\n\n    if (msg2.payload.idTagInfo.status !== ACCEPTED){\n        msg2.payload.transactionId = 0\n    }\n\n}\n\nlet data\n\nif(msg.ocpp.command == \"StartTransaction\"){\n    data = msg.payload.data\n    data.transactionId = msg2.payload.transactionId\n    data.status = msg2.payload.idTagInfo.status\n    const ts = new Date(data.timestamp)\n    msg.timestamp = ts.getTime()\n    msg.cbId = msg2.ocpp.chargeBoxIdentity\n    msg.msgFrom = \"CS\"\n    msg.payload = [2,msg2.ocpp.MessageId,\"StartTransactionEnhanced\",data]\n} else {\n    msg = null\n} \n\nreturn [msg2,msg];\n\n\nfunction generateUniqueId() {\n    // Return a positive 32bit Int as a random TxId\n    const isoTimestamp = new Date().toISOString();\n    // Create a Date object from the ISO timestamp string\n    const date = new Date(isoTimestamp);\n\n    // Get the timestamp in seconds since the Unix epoch\n    const timestampInSeconds = Math.floor(date.getTime() / 1000);\n\n    // Calculate offset to ensure positive value within 32-bit signed range\n    const offset = timestampInSeconds < 0 ? 2147483648 : 0;\n\n    // Convert to 32-bit signed integer and apply offset\n    const int32Timestamp = (timestampInSeconds + offset) | 0;\n\n    return int32Timestamp;\n}\n",
+    "func": "// function handles both Authorize and StartTransaction\n// This generate a unique TxId, as long as the function doesn't get called twice\n// within the same millisecond\n\n\n// defaults\nconst ACCEPTED = \"Accepted\"\nlet status = ACCEPTED\nlet tags = []\n\n// copy message for the enhanced message with TxId\nlet msg2 = RED.util.cloneMessage(msg)\n\nmsg2.payload = {\n    idTagInfo: {\n        status\n    }\n}\n\nif (msg.ocpp.command === \"StartTransaction\"){\n    msg2.payload.transactionId = generateUniqueId()\n    //msg.ocpp.command = 'StartTransactionEnhanced'\n    //msg.payload.command = msg.ocpp.command\n    msg2.ocpp.connectorId = msg.payload.data.connectorId || 1\n}\n\n\nlet freeVend = global.get(\"CSMS:FreeVend\") \n    \nif (! freeVend ){\n    tags = global.get(\"CSMS:Tags\")\n\n    const result = tags.find((tag) => tag.tagId === msg.payload.data.idTag)\n\n    if (result){\n        if (!result.enabled){\n            msg2.payload.idTagInfo.status = \"Blocked\"\n        }\n        else if (result.expdate){\n            let expDate = new Date(result.expdate)\n            expDate.setHours(23, 59, 59, 999); // Set to the end of the day\n            let currentDate = new Date()\n\n            if (currentDate > expDate){\n                msg2.payload.idTagInfo.status = \"Expired\"\n            }\n            else {\n                msg2.payload.idTagInfo.expiryDate = expDate.toISOString()\n            }\n        } \n    }\n    else {\n        msg2.payload.idTagInfo.status = \"Invalid\"\n    }\n\n    if (msg2.payload.idTagInfo.status !== ACCEPTED){\n        msg2.payload.transactionId = 0\n    }\n\n}\n\nlet data\n\nif(msg.ocpp.command == \"StartTransaction\"){\n    data = msg.payload.data\n    data.transactionId = msg2.payload.transactionId\n    data.status = msg2.payload.idTagInfo.status\n    const ts = new Date(data.timestamp)\n    msg.timestamp = ts.getTime()\n    msg.cbId = msg2.ocpp.chargeBoxIdentity\n    msg.msgFrom = \"CS\"\n    msg.payload = [2,msg2.ocpp.MessageId,\"StartTransactionEnhanced\",data]\n} else {\n    msg = null\n} \n\nreturn [msg2,msg];\n\n\nfunction generateUniqueId() {\n    // Return a positive 32bit Int as a random TxId\n    const isoTimestamp = new Date().toISOString();\n    // Create a Date object from the ISO timestamp string\n    const date = new Date(isoTimestamp);\n\n    // Get the timestamp in seconds since the Unix epoch\n    const timestampInSeconds = Math.floor(date.getTime() / 1000);\n\n    // Calculate offset to ensure positive value within 32-bit signed range\n    const offset = timestampInSeconds < 0 ? 2147483648 : 0;\n\n    // Convert to 32-bit signed integer and apply offset\n    const int32Timestamp = (timestampInSeconds + offset) | 0;\n\n    return int32Timestamp;\n}\n",
     "outputs": 2,
     "timeout": "",
     "noerr": 0,
@@ -527,7 +527,8 @@
     "name": "Send OCPP CMD",
     "links": [
       "3d9889d0e7face61",
-      "277e1a6705982260"
+      "277e1a6705982260",
+      "999d9205e0499c3c"
     ],
     "x": 125,
     "y": 80,
@@ -567,7 +568,8 @@
     "y": 520,
     "wires": [
       [
-        "e09d8995ecbe67f7"
+        "e09d8995ecbe67f7",
+        "a3ed9085610d4b68"
       ]
     ]
   },
@@ -1122,7 +1124,6 @@
     "g": "fac4518c226fbf0c",
     "name": "link in 2",
     "links": [
-      "42695be3f2d49cd6",
       "8dd31db647e97e9a"
     ],
     "x": 1115,
@@ -1263,8 +1264,67 @@
     "links": [
       "2b61a29bf378cb19"
     ],
-    "x": 1755,
-    "y": 660,
+    "x": 1765,
+    "y": 680,
+    "wires": []
+  },
+  {
+    "id": "a3ed9085610d4b68",
+    "type": "delay",
+    "z": "1bbb83617feb5d61",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "5",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 325,
+    "y": 520,
+    "wires": [
+      [
+        "ed4a4b99e2a754d0"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "ed4a4b99e2a754d0",
+    "type": "function",
+    "z": "1bbb83617feb5d61",
+    "name": "Chg Config MVInterval",
+    "func": "let mvint = global.get(\"CSMS:MVSampleInterval\") || 61\n\nlet payload = {\n    cbId: msg.ocpp.chargeBoxIdentity,\n    command: \"ChangeConfiguration\",\n    data: {\n        key: \"MeterValueSampleInterval\",\n        value: `${mvint}`\n    }\n}\nmsg = { payload }\n\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 460,
+    "y": 520,
+    "wires": [
+      [
+        "999d9205e0499c3c"
+      ]
+    ]
+  },
+  {
+    "id": "999d9205e0499c3c",
+    "type": "link out",
+    "z": "1bbb83617feb5d61",
+    "name": "link out 56",
+    "mode": "link",
+    "links": [
+      "8eb3b8e8db8b77c7"
+    ],
+    "x": 595,
+    "y": 520,
     "wires": []
   }
 ]

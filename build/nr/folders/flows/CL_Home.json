@@ -88,7 +88,7 @@
     "width": 0,
     "height": 0,
     "head": "",
-    "format": "<template>\n    <container>\n        <v-img v-if=\"showx\" :src=\"this.url\"><v-img>\n    </container>\n</template>\n\n<script>\n    export default {\n\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                url: \"\",\n                show: false,\n                showx: true\n            }\n        },\n        \n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        },\n        mounted() {\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n                if (this.msg.payload){\n                    let payload = this.msg.payload\n                    this.url = payload.banner_url\n                    this.show = payload.show || true\n                }\n            })\n            this.refresh()\n        },      \n        methods: {\n        },\n    }\n</script>",
+    "format": "<template>\n    <container>\n        <v-img \n            src=\"/assets/cl3.png\"\n            lazy-src=\"/assets/blue.png\"\n            max-height=\"500\">\n        </v-img>\n    </container>\n</template>\n\n<script>\n    export default {\n\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                url: \"\",\n                show: false,\n                showx: true\n            }\n        },\n        \n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        },\n        mounted() {\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n                if (this.msg.payload){\n                    let payload = this.msg.payload\n                    this.url = payload.banner_url\n                    this.show = payload.show || true\n                }\n            })\n            this.refresh()\n        },      \n        methods: {\n        },\n    }\n</script>",
     "storeOutMessages": true,
     "passthru": true,
     "resendOnRefresh": true,
@@ -169,14 +169,15 @@
     "topic": "",
     "payload": "",
     "payloadType": "date",
-    "x": 210,
+    "x": 145,
     "y": 940,
     "wires": [
       [
         "39f51e38c8ce88f2",
-        "f18b9979d2212d1b"
+        "d8769e54fee991f9"
       ]
-    ]
+    ],
+    "l": false
   },
   {
     "id": "f3b30d3612e48f36",
@@ -204,7 +205,7 @@
     "type": "function",
     "z": "92d055a5ecbac90c",
     "name": "FLUX Get raw MV OCPP",
-    "func": "// clear out any incoming message for now.\nlet filter_by_tx = \"\";\nlet topic = \"00000000\"\n\n/*\nif (msg.payload.txId) {\n  filter_by_tx = `|> filter(fn: (r) => r[\"transactionId\"] == \"${msg.payload.txId}\")`\n  topic = msg.payload.txId\n}\n*/\n\nmsg = {}\n\nmsg.topic = topic\n\nmsg.query = \n  `from(bucket: \"OCPP\") \n    |> range(start: -1h) \n    |> filter(fn: (r) => r[\"_measurement\"] == \"MeterValues\") \n    |> filter(fn: (r) => r[\"_field\"] == \"CurrentA\")\n    |> drop(columns: [\"_start\",\"_stop\",\"_measurement\",\"transactionId\"])\n    |> sort(columns: [\"_time\"])`\nreturn msg;",
+    "func": "// clear out any incoming message for now.\nlet filter_by_tx = \"\";\nlet topic = \"00000000\"\n\n/*\nif (msg.payload.txId) {\n  filter_by_tx = `|> filter(fn: (r) => r[\"transactionId\"] == \"${msg.payload.txId}\")`\n  topic = msg.payload.txId\n}\n*/\n\nmsg = {}\n\nmsg.topic = topic\n\nlet window = global.get(\"CSMS:MVSampleInterval\") || 60\n\nlet measurand = \"CurrentA\"\n\nmsg.query = \n  `from(bucket: \"OCPP\") \n    |> range(start: -1h) \n    |> filter(fn: (r) => r[\"_measurement\"] == \"MeterValues\") \n    |> filter(fn: (r) => r[\"_field\"] == \"${measurand}\")\n    |> aggregateWindow(every: ${window}s, createEmpty: true, fn: mean)\n    |> sort(columns: [\"_time\"])`\nreturn msg;",
     "outputs": 1,
     "timeout": 0,
     "noerr": 0,
@@ -284,7 +285,7 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 1020,
+    "x": 1080,
     "y": 1000,
     "wires": []
   },
@@ -292,21 +293,21 @@
     "id": "19926af6f970a4b9",
     "type": "ui-template",
     "z": "92d055a5ecbac90c",
-    "group": "530fe8d240942ac0",
+    "group": "dbf0d787ce369418",
     "page": "",
     "ui": "",
-    "name": "ChartJS",
-    "order": 8,
+    "name": "ChartJS Current",
+    "order": 1,
     "width": 0,
     "height": 0,
     "head": "",
-    "format": "<template>\n    <canvas ref=\"chart\" />\n</template>\n\n<script src=\"https://cdn.jsdelivr.net/npm/chart.js\"></script>\n\n<script>\n    export default {\n        mounted() {\n            // register a listener for incoming data\n            this.$socket.on('msg-input:' + this.id, this.onInput)\n\n            // check with ChartJS has loaded\n            let interval = setInterval(() => {\n                if (window.Chart) {\n                    // clear the check for ChartJS\n                    clearInterval(interval);\n                    // draw our initial chart\n                    this.draw()\n                }\n            }, 100);\n        },\n        methods: {\n            draw () {\n                // get reference to the <canvas /> element\n                const ctx = this.$refs.chart\n                \n                // Render the chart\n                const chart = new Chart(ctx, {\n                    type: 'line',\n                    data: {\n                        datasets: [{\n                            label: \"\",  // label for the single line we'll render\n                            data: [\n                            ],            // start with no data\n                            fill: 1\n                        }]\n                    },\n                    options: {\n                        animation: false, // don't run the animation for incoming data\n                        responsive: true, // ensure we auto-resize the content\n                        scales: {\n                            x: {\n                                type: 'time' // in this example, we're rendering timestamps\n                            },\n                            y: {\n                                stacked: true\n                            }\n                        },\n                        parsing: {\n                            xAxisKey: 'time', // the property to render on the x-axis\n                            yAxisKey: 'value' // the property to render on the y-axis\n                        },\n                        plugins: {\n                            legend: {\n                                position: 'top',\n                            },\n                            title: {\n                                display: true,\n                                text: 'EVSE Load (Amps)'\n                            }\n                        }   \n                    },\n                });\n                // make this available to all elements of the component\n                this.chart = chart\n            },\n            onInput (msg) {\n                this.chart.data.datasets = []\n                // this.chart.data.datasets[0].data = []\n                this.chart.update()\n             \n\n\n                msg.payload.forEach( ( mvItem ) => {\n                    let label = `${mvItem.cbId}:P${mvItem.connectorId}`\n                    let idx = this.chart.data.datasets.findIndex( (ds) => ds.label == label )\n\n                    if (idx == -1) { \n                        idx = this.chart.data.datasets.push( {label: label, data: [] } ) - 1\n                    }\n                    \n                    this.chart.data.datasets[idx].data.push({time: mvItem._time, value: mvItem._value}) \n                })\n                this.chart.update()  \n            }    \n            \n        }\n    }\n\n</script>",
+    "format": "<template>\n    <canvas ref=\"chart\" />\n</template>\n\n<script src=\"https://cdn.jsdelivr.net/npm/chart.js\"></script>\n\n<script>\n    export default {\n        mounted() {\n            // register a listener for incoming data\n            this.$socket.on('msg-input:' + this.id, this.onInput)\n\n            // check with ChartJS has loaded\n            let interval = setInterval(() => {\n                if (window.Chart) {\n                    // clear the check for ChartJS\n                    clearInterval(interval);\n                    // draw our initial chart\n                    this.draw()\n                }\n            }, 100);\n        },\n        methods: {\n            draw () {\n                // get reference to the <canvas /> element\n                const ctx = this.$refs.chart\n                \n                // Render the chart\n                const chart = new Chart(ctx, {\n                    type: 'line',\n                    data: {\n                        datasets: [{\n                            label: \"\",  // label for the single line we'll render\n                            data: [\n                            ],            // start with no data\n                            fill: 1\n                        }]\n                    },\n                    options: {\n                        animation: false, // don't run the animation for incoming data\n                        responsive: true, // ensure we auto-resize the content\n                        scales: {\n                            x: {\n                                type: 'time' // in this example, we're rendering timestamps\n                            },\n                            y: {\n                                stacked: true\n                            }\n                        },\n                        parsing: {\n                            xAxisKey: 'time', // the property to render on the x-axis\n                            yAxisKey: 'value' // the property to render on the y-axis\n                        },\n                        plugins: {\n                            legend: {\n                                position: 'top',\n                            },\n                            title: {\n                                display: true,\n                                text: 'EVSE Current (Amps)'\n                            }\n                        }   \n                    },\n                });\n                // make this available to all elements of the component\n                this.chart = chart\n            },\n            onInput (msg) {\n                this.chart.data.datasets = []\n                // this.chart.data.datasets[0].data = []\n                this.chart.update()\n             \n\n\n                msg.payload.forEach( ( mvItem ) => {\n                    let label = `${mvItem.cbId}:P${mvItem.connectorId}`\n                    let idx = this.chart.data.datasets.findIndex( (ds) => ds.label == label )\n\n                    if (idx == -1) { \n                        idx = this.chart.data.datasets.push( {label: label, data: [] } ) - 1\n                    }\n                    \n                    this.chart.data.datasets[idx].data.push({time: mvItem._time, value: mvItem._value}) \n                })\n                this.chart.update()  \n            }    \n            \n        }\n    }\n\n</script>",
     "storeOutMessages": true,
     "passthru": true,
     "resendOnRefresh": true,
     "templateScope": "local",
     "className": "",
-    "x": 880,
+    "x": 900,
     "y": 1000,
     "wires": [
       [
@@ -697,14 +698,14 @@
         "vt": "str"
       }
     ],
-    "repeat": "5",
+    "repeat": "",
     "crontab": "",
-    "once": true,
+    "once": false,
     "onceDelay": 0.1,
     "topic": "",
     "payload": "3200 kWh",
     "payloadType": "str",
-    "x": 210,
+    "x": 200,
     "y": 840,
     "wires": [
       [
@@ -1204,7 +1205,7 @@
     "type": "function",
     "z": "92d055a5ecbac90c",
     "name": "Show/Hide Map/Banner",
-    "func": "let showMap = global.get(\"CSMS:ShowMap\")\nlet showBanner = global.get(\"CSMS:ShowBanner\")\n\n// This set a boolean default if global context is undefined\nshowMap = (showMap === undefined) ? true : showMap\nshowBanner = (showBanner === undefined) ? true : showBanner\n\nlet display = {\n    \"groups\": {\n        \"hide\": [\n        ],\n        \"show\": [\n        ]\n    }\n}\n\nif (showMap) {\n    display.groups.show.push(\"Home:Map\")\n}\nelse {\n    display.groups.hide.push(\"Home:Map\")\n}\n\nif (showBanner) {\n    display.groups.show.push(\"Home:Banner\")\n}\nelse {\n    display.groups.hide.push(\"Home:Banner\")\n}\nmsg = {}\nmsg.payload = display\n\nreturn msg;",
+    "func": "let showMap = global.get(\"CSMS:ShowMap\")\nlet showBanner = global.get(\"CSMS:ShowBanner\")\nlet showPwrGraph = global.get(\"CSMS:ShowPowerGraph\")\nlet showCntGraph = global.get(\"CSMS:ShowCurrentGraph\")\n\n// This set a boolean default if global context is undefined\nshowMap = (showMap === undefined) ? true : showMap\nshowBanner = (showBanner === undefined) ? true : showBanner\nshowPwrGraph = (showPwrGraph === undefined) ? true : showPwrGraph\nshowCntGraph = (showCntGraph === undefined) ? true : showCntGraph\n\nlet display = {\n    \"groups\": {\n        \"hide\": [\n        ],\n        \"show\": [\n        ]\n    }\n}\n\nif (showMap) {\n    display.groups.show.push(\"Home:Map\")\n}\nelse {\n    display.groups.hide.push(\"Home:Map\")\n}\n\nif (showBanner) {\n    display.groups.show.push(\"Home:Banner\")\n}\nelse {\n    display.groups.hide.push(\"Home:Banner\")\n}\n\nif (showCntGraph) {\n    display.groups.show.push(\"Home:Current Graph\")\n}\nelse {\n    display.groups.hide.push(\"Home:Current Graph\")\n}\n\nif (showPwrGraph) {\n    display.groups.show.push(\"Home:Power Graph\")\n}\nelse {\n    display.groups.hide.push(\"Home:Power Graph\")\n}\nmsg = {}\nmsg.payload = display\n\nreturn msg;",
     "outputs": 1,
     "timeout": 0,
     "noerr": 0,
@@ -1215,7 +1216,8 @@
     "y": 180,
     "wires": [
       [
-        "f9d9242f3c2bf8b4"
+        "f9d9242f3c2bf8b4",
+        "219975580bbca010"
       ]
     ]
   },
@@ -1231,5 +1233,187 @@
     "x": 545,
     "y": 180,
     "wires": []
+  },
+  {
+    "id": "eae926fb8f46e23c",
+    "type": "inject",
+    "z": "92d055a5ecbac90c",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "3",
+    "crontab": "",
+    "once": true,
+    "onceDelay": "0.5",
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 155,
+    "y": 1100,
+    "wires": [
+      [
+        "a6e5cdd91da413a1"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "b1d8871ec67a310f",
+    "type": "influxdb in",
+    "z": "92d055a5ecbac90c",
+    "influxdb": "7cb40fcee206391e",
+    "name": "",
+    "query": "",
+    "rawOutput": false,
+    "precision": "",
+    "retentionPolicy": "",
+    "org": "cipio",
+    "x": 640,
+    "y": 1100,
+    "wires": [
+      [
+        "25ff9cd1197d0a85"
+      ]
+    ]
+  },
+  {
+    "id": "89ae70ba92a6beec",
+    "type": "function",
+    "z": "92d055a5ecbac90c",
+    "name": "FLUX Get raw MV OCPP",
+    "func": "// clear out any incoming message for now.\nlet filter_by_tx = \"\";\nlet topic = \"00000000\"\n\n/*\nif (msg.payload.txId) {\n  filter_by_tx = `|> filter(fn: (r) => r[\"transactionId\"] == \"${msg.payload.txId}\")`\n  topic = msg.payload.txId\n}\n*/\n\nmsg = {}\n\nmsg.topic = topic\n\nlet window = global.get(\"CSMS:MVSampleInterval\") || 60\nlet measurand = \"PowerkW\"\n\nmsg.query = \n  `from(bucket: \"OCPP\") \n    |> range(start: -1h) \n    |> filter(fn: (r) => r[\"_measurement\"] == \"MeterValues\") \n    |> filter(fn: (r) => r[\"_field\"] == \"${measurand}\")\n    |> aggregateWindow(every: ${window}s, createEmpty: true, fn: mean)\n    |> sort(columns: [\"_time\"])`\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 430,
+    "y": 1100,
+    "wires": [
+      [
+        "b1d8871ec67a310f"
+      ]
+    ]
+  },
+  {
+    "id": "0e5f5ef4d59a290f",
+    "type": "debug",
+    "z": "92d055a5ecbac90c",
+    "name": "debug 5",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1000,
+    "y": 1100,
+    "wires": []
+  },
+  {
+    "id": "25ff9cd1197d0a85",
+    "type": "ui-template",
+    "z": "92d055a5ecbac90c",
+    "group": "588463f4dbc60e20",
+    "page": "",
+    "ui": "",
+    "name": "ChartJS Power",
+    "order": 1,
+    "width": 0,
+    "height": 0,
+    "head": "",
+    "format": "<template>\n    <canvas ref=\"chart\" />\n</template>\n\n<script src=\"https://cdn.jsdelivr.net/npm/chart.js\"></script>\n\n<script>\n    export default {\n        mounted() {\n            // register a listener for incoming data\n            this.$socket.on('msg-input:' + this.id, this.onInput)\n\n            // check with ChartJS has loaded\n            let interval = setInterval(() => {\n                if (window.Chart) {\n                    // clear the check for ChartJS\n                    clearInterval(interval);\n                    // draw our initial chart\n                    this.draw()\n                }\n            }, 100);\n        },\n        methods: {\n            draw () {\n                // get reference to the <canvas /> element\n                const ctx = this.$refs.chart\n                \n                // Render the chart\n                const chart = new Chart(ctx, {\n                    type: 'line',\n                    data: {\n                        datasets: [{\n                            label: \"\",  // label for the single line we'll render\n                            data: [\n                            ],            // start with no data\n                            fill: 1\n                        }]\n                    },\n                    options: {\n                        animation: false, // don't run the animation for incoming data\n                        responsive: true, // ensure we auto-resize the content\n                        scales: {\n                            x: {\n                                type: 'time' // in this example, we're rendering timestamps\n                            },\n                            y: {\n                                stacked: true\n                            }\n                        },\n                        parsing: {\n                            xAxisKey: 'time', // the property to render on the x-axis\n                            yAxisKey: 'value' // the property to render on the y-axis\n                        },\n                        plugins: {\n                            legend: {\n                                position: 'top',\n                            },\n                            title: {\n                                display: true,\n                                text: 'EVSE Power (kW)'\n                            }\n                        }   \n                    },\n                });\n                // make this available to all elements of the component\n                this.chart = chart\n            },\n            onInput (msg) {\n                this.chart.data.datasets = []\n                // this.chart.data.datasets[0].data = []\n                this.chart.update()\n             \n\n\n                msg.payload.forEach( ( mvItem ) => {\n                    let label = `${mvItem.cbId}:P${mvItem.connectorId}`\n                    let idx = this.chart.data.datasets.findIndex( (ds) => ds.label == label )\n\n                    if (idx == -1) { \n                        idx = this.chart.data.datasets.push( {label: label, data: [] } ) - 1\n                    }\n                    \n                    this.chart.data.datasets[idx].data.push({time: mvItem._time, value: mvItem._value}) \n                })\n                this.chart.update()  \n            }    \n            \n        }\n    }\n\n</script>",
+    "storeOutMessages": true,
+    "passthru": true,
+    "resendOnRefresh": true,
+    "templateScope": "local",
+    "className": "",
+    "x": 820,
+    "y": 1100,
+    "wires": [
+      [
+        "0e5f5ef4d59a290f"
+      ]
+    ]
+  },
+  {
+    "id": "219975580bbca010",
+    "type": "debug",
+    "z": "92d055a5ecbac90c",
+    "name": "debug 3",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 570,
+    "y": 140,
+    "wires": []
+  },
+  {
+    "id": "d8769e54fee991f9",
+    "type": "switch",
+    "z": "92d055a5ecbac90c",
+    "name": "",
+    "property": "CSMS:ShowCurrentGraph",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "false"
+      },
+      {
+        "t": "else"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 250,
+    "y": 980,
+    "wires": [
+      [],
+      [
+        "f18b9979d2212d1b"
+      ]
+    ]
+  },
+  {
+    "id": "a6e5cdd91da413a1",
+    "type": "switch",
+    "z": "92d055a5ecbac90c",
+    "name": "",
+    "property": "CSMS:ShowPowerGraph",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "false"
+      },
+      {
+        "t": "else"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 250,
+    "y": 1100,
+    "wires": [
+      [],
+      [
+        "89ae70ba92a6beec"
+      ]
+    ]
   }
 ]
