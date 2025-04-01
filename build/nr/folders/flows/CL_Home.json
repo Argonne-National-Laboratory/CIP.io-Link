@@ -4,7 +4,6 @@
     "type": "tab",
     "label": "CL_Home",
     "disabled": false,
-    "locked": true,
     "info": "",
     "env": []
   },
@@ -698,14 +697,14 @@
         "vt": "str"
       }
     ],
-    "repeat": "",
+    "repeat": "10",
     "crontab": "",
-    "once": false,
+    "once": true,
     "onceDelay": 0.1,
     "topic": "",
     "payload": "3200 kWh",
     "payloadType": "str",
-    "x": 200,
+    "x": 210,
     "y": 840,
     "wires": [
       [
@@ -1112,18 +1111,19 @@
     "type": "function",
     "z": "92d055a5ecbac90c",
     "name": "function 35",
-    "func": "const sum = msg.payload.reduce((accumulator, currentValue) => {\n  return accumulator + currentValue.meter;\n}, 0); // 0 is the initial value of the accumulator\n\n\n//let count = 0\n//count = msg?.payload[0]?._value || 0\n\nmsg = {\n    payload: `${sum} Wh`\n}\nreturn msg;",
+    "func": "let sum = msg.payload.reduce((accumulator, currentValue) => {\n  return accumulator + currentValue.meter;\n}, 0); // 0 is the initial value of the accumulator\n\n\n//let count = 0\n//count = msg?.payload[0]?._value || 0\nlet label = 'Wh'\n\n\nif (sum > 1000){\n  sum = (sum / 1000)\n  sum = Math.floor( sum * 100) / 100\n  label = 'kWh'\n}\n\nmsg = {\n    payload: `${sum} ${label}`\n}\nreturn msg;",
     "outputs": 1,
     "timeout": 0,
     "noerr": 0,
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 870,
+    "x": 810,
     "y": 840,
     "wires": [
       [
-        "5b67ef06c0cafdd5"
+        "5b67ef06c0cafdd5",
+        "54698fd5ceb58aad"
       ]
     ]
   },
@@ -1415,5 +1415,21 @@
         "89ae70ba92a6beec"
       ]
     ]
+  },
+  {
+    "id": "54698fd5ceb58aad",
+    "type": "debug",
+    "z": "92d055a5ecbac90c",
+    "name": "debug 4",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1170,
+    "y": 900,
+    "wires": []
   }
 ]
