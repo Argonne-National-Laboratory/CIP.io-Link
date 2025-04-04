@@ -83,7 +83,7 @@ fi
 # Update the INFLUX_TOKEN in the .env file or add it if it doesn't exist
 if grep -q "CIPIO_INFLUX_TOKEN=" .env; then
   # If INFLUX_TOKEN exists, replace its value
-  sed -i "s/^CIPIO_INFLUX_TOKEN=.*/INFLUX_TOKEN=$INFLUX_TOKEN/" .env
+  sed -i "s/^CIPIO_INFLUX_TOKEN=.*/CIPIO_INFLUX_TOKEN=$INFLUX_TOKEN/" .env
 else
   # If INFLUX_TOKEN does not exist, append it to the file
   echo "CIPIO_INFLUX_TOKEN=$INFLUX_TOKEN" >>.env
