@@ -30,5 +30,6 @@ cp ./build/nr/settings.js $folder_path
 
 # echo "Restarting node-red container..."
 
-sudo chown -R ${USER}:${USER} $folder_path
+# sudo chown -R ${USER}:${USER} $folder_path
+sudo chown -R 1000:1000 $folder_path
 sudo docker restart node-red >/dev/null 2>&1
