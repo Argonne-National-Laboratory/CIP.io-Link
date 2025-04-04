@@ -4,6 +4,7 @@
     "type": "tab",
     "label": "CL_Transactions",
     "disabled": false,
+    "locked": true,
     "info": "",
     "env": []
   },

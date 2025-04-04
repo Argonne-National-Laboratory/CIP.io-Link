@@ -85,6 +85,7 @@
         "type": "tab",
         "label": "CL_Transactions",
         "disabled": false,
+        "locked": true,
         "info": "",
         "env": []
     },
@@ -92,7 +93,7 @@
         "id": "be6953c0e3c70845",
         "type": "tab",
         "label": "Flow 1",
-        "disabled": false,
+        "disabled": true,
         "info": "",
         "env": []
     },
@@ -1204,7 +1205,7 @@
         "width": 6,
         "height": 1,
         "order": 1,
-        "showTitle": true,
+        "showTitle": false,
         "className": "",
         "visible": "true",
         "disabled": "false",
@@ -5672,8 +5673,8 @@
         "showruler": "false",
         "allowFileDrop": "false",
         "path": "/worldmap",
-        "overlist": "DR,CO,TL",
-        "maplist": "OSMG,OSMC,EsriC,EsriS,UKOS",
+        "overlist": "",
+        "maplist": "OSMG,OSMC,OSMH,EsriC,EsriS,EsriT,EsriDG,NatGeo,UKOS,SW",
         "mapname": "",
         "mapurl": "",
         "mapopt": "",
@@ -5710,7 +5711,7 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n    <container>\n        <v-img \n            :src=\"this.url\"\n            lazy-src=\"/assets/blue.png\"\n            max-height=\"500\">\n        </v-img>\n    </container>\n</template>\n\n<script>\n    export default {\n\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                url: \"\",\n                show: false,\n                showx: true\n            }\n        },\n        \n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        },\n        mounted() {\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n                if (this.msg.payload){\n                    let payload = this.msg.payload\n                    this.url = payload.banner_url\n                    this.show = payload.show || true\n                }\n            })\n            this.refresh()\n        },      \n        methods: {\n        },\n    }\n</script>",
+        "format": "<template>\n    <container>\n        <v-img \n            :src=\"this.url\"\n            lazy-src=\"/assets/blue.png\"\n            max-height=\"500\">\n        </v-img>\n    </container>\n</template>\n\n<script>\n    export default {\n\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                url: \"\",\n                show: false,\n                showx: true\n            }\n        },\n        \n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        },\n        mounted() {\n            this.send(\"loaded\")\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n                if (this.msg.payload){\n                    let payload = this.msg.payload\n                    this.url = payload.banner_url\n                    this.show = payload.show || true\n                }\n            })\n            this.refresh()\n        },      \n        methods: {\n        },\n    }\n</script>",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -5719,7 +5720,9 @@
         "x": 600,
         "y": 240,
         "wires": [
-            []
+            [
+                "445e1fd97be6944e"
+            ]
         ]
     },
     {
@@ -6320,14 +6323,14 @@
                 "vt": "str"
             }
         ],
-        "repeat": "",
+        "repeat": "10",
         "crontab": "",
-        "once": false,
+        "once": true,
         "onceDelay": 0.1,
         "topic": "",
         "payload": "3200 kWh",
         "payloadType": "str",
-        "x": 200,
+        "x": 210,
         "y": 840,
         "wires": [
             [
@@ -6394,31 +6397,6 @@
         ]
     },
     {
-        "id": "a96ec32fd158cdc3",
-        "type": "inject",
-        "z": "92d055a5ecbac90c",
-        "name": "",
-        "props": [
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "5",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "0.5",
-        "topic": "",
-        "x": 165,
-        "y": 240,
-        "wires": [
-            [
-                "445e1fd97be6944e"
-            ]
-        ],
-        "l": false
-    },
-    {
         "id": "445e1fd97be6944e",
         "type": "change",
         "z": "92d055a5ecbac90c",
@@ -6455,26 +6433,9 @@
         "y": 240,
         "wires": [
             [
-                "af38625e0eb46e1a",
-                "b63fd5d1f402a2bf"
+                "af38625e0eb46e1a"
             ]
         ]
-    },
-    {
-        "id": "b63fd5d1f402a2bf",
-        "type": "debug",
-        "z": "92d055a5ecbac90c",
-        "name": "debug 75",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 580,
-        "y": 280,
-        "wires": []
     },
     {
         "id": "f4cb836a36b77b75",
@@ -6734,18 +6695,19 @@
         "type": "function",
         "z": "92d055a5ecbac90c",
         "name": "function 35",
-        "func": "const sum = msg.payload.reduce((accumulator, currentValue) => {\n  return accumulator + currentValue.meter;\n}, 0); // 0 is the initial value of the accumulator\n\n\n//let count = 0\n//count = msg?.payload[0]?._value || 0\n\nmsg = {\n    payload: `${sum} Wh`\n}\nreturn msg;",
+        "func": "let sum = msg.payload.reduce((accumulator, currentValue) => {\n  return accumulator + currentValue.meter;\n}, 0); // 0 is the initial value of the accumulator\n\n\n//let count = 0\n//count = msg?.payload[0]?._value || 0\nlet label = 'Wh'\n\n\nif (sum > 1000){\n  sum = (sum / 1000)\n  sum = Math.floor( sum * 100) / 100\n  label = 'kWh'\n}\n\nmsg = {\n    payload: `${sum} ${label}`\n}\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 870,
+        "x": 810,
         "y": 840,
         "wires": [
             [
-                "5b67ef06c0cafdd5"
+                "5b67ef06c0cafdd5",
+                "54698fd5ceb58aad"
             ]
         ]
     },
@@ -6787,8 +6749,8 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 540,
-        "y": 100,
+        "x": 680,
+        "y": 40,
         "wires": [
             []
         ]
@@ -6973,14 +6935,14 @@
         "type": "debug",
         "z": "92d055a5ecbac90c",
         "name": "debug 3",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 570,
+        "x": 620,
         "y": 140,
         "wires": []
     },
@@ -7039,6 +7001,59 @@
         ]
     },
     {
+        "id": "54698fd5ceb58aad",
+        "type": "debug",
+        "z": "92d055a5ecbac90c",
+        "name": "debug 4",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1170,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "fc3d7d788482727f",
+        "type": "function",
+        "z": "92d055a5ecbac90c",
+        "name": "Center Map",
+        "func": "\nlet coords = []\n\nmsg.payload.forEach(function(evse) {\n    if (evse.lat && evse.lon){\n\n        coords.push(\n            {\n                lat: evse.lat,\n                lon: evse.lon\n            }\n        )\n        \n        if (coords.length > 0){\n            let command = calculateGeographicCenter(coords)\n            msg= {\n                payload: { command, zoom: 10 }\n            }\n            node.send( msg )\n        }\n    }\n});\n\nfunction calculateGeographicCenter(coords) {\n    if (coords.length === 0) return null;\n\n    let x = 0, y = 0, z = 0;\n\n    coords.forEach(({ lat, lon }) => {\n        // Convert degrees to radians\n        let latRad = lat * Math.PI / 180;\n        let lonRad = lon * Math.PI / 180;\n\n        // Convert to Cartesian coordinates\n        x += Math.cos(latRad) * Math.cos(lonRad);\n        y += Math.cos(latRad) * Math.sin(lonRad);\n        z += Math.sin(latRad);\n    });\n\n    let total = coords.length;\n    x /= total;\n    y /= total;\n    z /= total;\n\n    // Convert back to latitude/longitude\n    let lon = Math.atan2(y, x) * 180 / Math.PI;\n    let hyp = Math.sqrt(x * x + y * y);\n    let lat = Math.atan2(z, hyp) * 180 / Math.PI;\n\n    return { lat, lon };\n}\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 290,
+        "y": 100,
+        "wires": [
+            [
+                "089bf4f30ca18408",
+                "a9bdca78dc7e975b"
+            ]
+        ]
+    },
+    {
+        "id": "a9bdca78dc7e975b",
+        "type": "debug",
+        "z": "92d055a5ecbac90c",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 440,
+        "y": 140,
+        "wires": []
+    },
+    {
         "id": "6e251da731f92cf5",
         "type": "ui-template",
         "z": "c40c5bcee8c850c1",
@@ -7052,12 +7067,12 @@
         "head": "",
         "format": "<template>\n    <div>\n        <span class=\"ver\">{{ msg.payload }}</span>\n    </div>\n    \n</template>\n\n\n<style>\n    /* define any styles here - supports raw CSS */\n    .ver {\n        color: black;\n        font-size: 24pt;\n        font-weight: bold;\n    }\n</style>",
         "storeOutMessages": true,
-        "passthru": true,
+        "passthru": false,
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 600,
-        "y": 160,
+        "x": 660,
+        "y": 100,
         "wires": [
             []
         ]
@@ -7074,14 +7089,14 @@
         "width": "0",
         "height": "0",
         "head": "",
-        "format": "<template>\n    <p> Use the following path information to configure your Charge Point (EVSE) to this CIP.io-Link CSMS.</p>\n\n    <div class=\"url-div\">\n        <span class=\"url_protocol\">{{ protocol }}://</span><span class=\"url_host\">{{ host }}</span><span class=\"url_port\">:{{ port }}</span><span class=\"url_path\">{{ path }}</span>`\n    </div>\n\n    <i><span class=\"pn\">NOTE:</span>\n        <div  class=\"note-list\"> \n        <ul>\n            <li>Some EVSEs require that the charge point units name be appended to the URL. Some do this for you.</li>\n            <li>The IP address in the URL above was our best approximation of your host IP address. You may need want to verify the \n            correct IP address that is open to outside clients.</li>\n        </ul>\n        </div>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                port: '0000',\n                path: '/',\n                host: '<host ip address>',\n                protocol: 'ws'\n            }\n        },\n        computed: {\n            // automatically compute this variable\n            // whenever VueJS deems appropriate\n        },\n\n        mounted() {\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n                if (this.msg.payload){\n                let payload = this.msg.payload\n                this.protocol = payload?.protocol\n                this.port = payload?.port\n                this.path = payload?.path\n                this.host = payload?.host\n                }\n                \n            })\n        },\n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: black;\n        font-weight: bold;\n        font-size: 12pt;\n    }\n    .url_port {\n        color: blue;\n        font-weight: bold;\n        font-size: 24pt;\n    }\n    .url_path {\n        color: green;\n        font-weight: bold;\n        font-size: 24pt;\n    }\n    .url_protocol {\n        color: black;\n        font-weight: bold;\n        font-size: 24pt;\n    }\n    .url_host {\n        color: gray;\n        font-weight: bold;\n        font-size: 24pt;\n    }\n    .url-div {\n        border-top: 2px dotted;\n        border-bottom: 2px dotted;\n        margin-bottom: 10px;\n        margin-top: 10px;\n    }\n    .note-list {\n        padding-left: 20px;\n    }\n    .pn {\n        background-color: #dddddd\n    }\n\n</style>",
+        "format": "<template>\n    <p> Use the following path information to configure your Charge Point (EVSE) to this CIP.io-Link CSMS.</p>\n\n    <div class=\"url-div\">\n        <span class=\"url_protocol\">{{ protocol }}://</span><span class=\"url_host\">{{ host }}</span><span class=\"url_port\">:{{ port }}</span><span class=\"url_path\">{{ path }}</span>`\n    </div>\n\n    <i><span class=\"pn\">NOTE:</span>\n        <div  class=\"note-list\"> \n        <ul>\n            <li>Some EVSEs require that the charge point units name be appended to the URL. Some do this for you.</li>\n            <li>The IP address in the URL above was our best approximation of your host IP address. You may need want to verify the \n            correct IP address that is open to outside clients.</li>\n        </ul>\n        </div>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                port: '0000',\n                path: '/',\n                host: '<host ip address>',\n                protocol: 'ws'\n            }\n        },\n        computed: {\n            // automatically compute this variable\n            // whenever VueJS deems appropriate\n        },\n\n        mounted() {\n            this.send(\"x\")\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n                \n                if (this.msg.payload){\n                let payload = this.msg.payload\n                this.protocol = payload?.protocol\n                this.port = payload?.port\n                this.path = payload?.path\n                this.host = payload?.host\n                }\n                \n            })\n        },\n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: black;\n        font-weight: bold;\n        font-size: 12pt;\n    }\n    .url_port {\n        color: blue;\n        font-weight: bold;\n        font-size: 24pt;\n    }\n    .url_path {\n        color: green;\n        font-weight: bold;\n        font-size: 24pt;\n    }\n    .url_protocol {\n        color: black;\n        font-weight: bold;\n        font-size: 24pt;\n    }\n    .url_host {\n        color: gray;\n        font-weight: bold;\n        font-size: 24pt;\n    }\n    .url-div {\n        border-top: 2px dotted;\n        border-bottom: 2px dotted;\n        margin-bottom: 10px;\n        margin-top: 10px;\n    }\n    .note-list {\n        padding-left: 20px;\n    }\n    .pn {\n        background-color: #dddddd\n    }\n\n</style>",
         "storeOutMessages": true,
-        "passthru": true,
+        "passthru": false,
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 610,
-        "y": 220,
+        "x": 650,
+        "y": 140,
         "wires": [
             []
         ]
@@ -7095,9 +7110,9 @@
         "order": 1,
         "width": 0,
         "height": 0,
-        "content": "# CIPio Link\n\n\n## Helpful Links\n\n[CIP.io-Link on Github.com](https://github.com/Argonne-National-Laboratory/CIP.io-Link)\n\n[Argonne National Laboratory](https://www.anl.gov/)\n\n[OCA - Open Charge Alliance](https://openchargealliance.org/)\n",
+        "content": "# About CIPio Link\n\n## Helpful Links\n\n[CIP.io-Link on Github.com](https://github.com/Argonne-National-Laboratory/CIP.io-Link)\n\n[Argonne National Laboratory](https://www.anl.gov/)\n\n[OCA - Open Charge Alliance](https://openchargealliance.org/)\n",
         "className": "",
-        "x": 610,
+        "x": 270,
         "y": 80,
         "wires": [
             []
@@ -7107,7 +7122,7 @@
         "id": "fc0e5b809ecb5458",
         "type": "function",
         "z": "c40c5bcee8c850c1",
-        "name": "function 2",
+        "name": "Get Path Env",
         "func": "msg.payload = {\n    \"port\": env.get(\"CIPIO_CSMS_PORT\"),\n    \"path\": env.get(\"CIPIO_CSMS_PATH\"),\n    \"host\": env.get(\"CIPIO_LINK_HOST\"),\n    \"protocol\": \"ws\"\n}\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
@@ -7115,8 +7130,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 340,
-        "y": 220,
+        "x": 490,
+        "y": 140,
         "wires": [
             [
                 "c9ffbdc573846444"
@@ -7124,70 +7139,10 @@
         ]
     },
     {
-        "id": "c288d79126df3afb",
-        "type": "inject",
-        "z": "c40c5bcee8c850c1",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "5",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "1",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 215,
-        "y": 220,
-        "wires": [
-            [
-                "fc0e5b809ecb5458"
-            ]
-        ],
-        "l": false
-    },
-    {
-        "id": "a6dfb0b3e19d4835",
-        "type": "inject",
-        "z": "c40c5bcee8c850c1",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "CIPIO_LINK_VER",
-        "payloadType": "env",
-        "x": 215,
-        "y": 160,
-        "wires": [
-            [
-                "6e251da731f92cf5"
-            ]
-        ],
-        "l": false
-    },
-    {
         "id": "2bfb78731c486437",
         "type": "function",
         "z": "c40c5bcee8c850c1",
-        "name": "function 4",
+        "name": "Get Host Env",
         "func": "let host_ip = env.get(\"CIPIO_LINK_HOST\")\nmsg.payload = host_ip\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
@@ -7195,35 +7150,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 440,
+        "x": 110,
         "y": 120,
         "wires": [
             [
                 "6dc6cfc72601d0ca"
-            ]
-        ]
-    },
-    {
-        "id": "f296120e9fb674ea",
-        "type": "inject",
-        "z": "c40c5bcee8c850c1",
-        "name": "",
-        "props": [
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 250,
-        "y": 120,
-        "wires": [
-            [
-                "2bfb78731c486437"
             ]
         ]
     },
@@ -7239,17 +7170,93 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n    <div>\n        <h2>Other useful local links</h2>\n        <a :href=\"getURL(3000)\" target=\"_blank\">Grafana</a></br>\n        <a :href=\"getURL(8086)\" target=\"_blank\">Influx DB2 </a></br>\n        <a :href=\"getURL(9000)\" target=\"_blank\">Portainer</a></br>\n    </div>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                host: \"127.0.0.1\"\n            }\n        },\n        methods: {\n            getURL: function(port){\n                return `http://192.168.1.119:${port}`\n            }\n        },\n        mounted() {\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n                if (this.msg.payload){\n                    this.host = this.msg.payload\n                }\n            })\n        },\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: red;\n    }\n</style>",
+        "format": "<template>\n    <div>\n        <h2>Other useful local links</h2>\n        <a :href=\"getURL(3000)\" target=\"_blank\">Grafana</a></br>\n        <a :href=\"getURL(8086)\" target=\"_blank\">Influx DB2 </a></br>\n        <a :href=\"getURL(9000)\" target=\"_blank\">Portainer</a></br>\n    </div>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                host: \"127.0.0.1\"\n            }\n        },\n        methods: {\n            getURL: function(port){\n                return `http://192.168.1.119:${port}`\n            }\n        },\n        mounted() {\n            this.send(\"loaded\")\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n                if (this.msg.payload){\n                    this.host = this.msg.payload\n                }\n            })\n        },\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: red;\n    }\n</style>",
         "storeOutMessages": true,
-        "passthru": true,
+        "passthru": false,
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 610,
+        "x": 270,
         "y": 120,
         "wires": [
-            []
+            [
+                "fc0e5b809ecb5458",
+                "7440ce2bd967d620",
+                "9b526f7cf21dda25"
+            ]
         ]
+    },
+    {
+        "id": "7440ce2bd967d620",
+        "type": "change",
+        "z": "c40c5bcee8c850c1",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "CIPIO_LINK_VER",
+                "tot": "env"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 490,
+        "y": 100,
+        "wires": [
+            [
+                "6e251da731f92cf5"
+            ]
+        ]
+    },
+    {
+        "id": "f9c2ee945e5ec301",
+        "type": "inject",
+        "z": "c40c5bcee8c850c1",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 260,
+        "wires": [
+            [
+                "2bfb78731c486437"
+            ]
+        ]
+    },
+    {
+        "id": "9b526f7cf21dda25",
+        "type": "debug",
+        "z": "c40c5bcee8c850c1",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 480,
+        "y": 180,
+        "wires": []
     },
     {
         "id": "30a87203640f65e9",
@@ -8458,7 +8465,7 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n\n      <v-toolbar flat>\n        \n        <v-toolbar-title class=\"text-grey\">\n            Options\n        </v-toolbar-title>\n\n        <v-spacer></v-spacer>\n            <v-template>\n            <v-switch \n                v-model=\"showResp\" \n                label=\"Responses\" \n                color=\"primary\"\n                >\n            </v-switch>\n            </v-template>\n            <v-spacer></v-spacer>\n            <v-template>\n            <v-switch \n                v-model=\"showHB\" \n                label=\"Heartbeats\" \n                color=\"primary\"\n                >\n            </v-switch>\n            </v-template>\n            <v-spacer></v-spacer>\n            <v-template>\n            <v-select\n                v-model=\"select\"\n                :items=\"startTimes\"\n                item-title=\"title\"\n                item-value=\"value\"\n                >\n            </v-select>\n            </v-template>\n\n      </v-toolbar>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                showResp: true,\n                showHB: true,\n                select: { title: \"past 5m\", value: '-5m'},\n                startTimes: [\n                    { title: \"past 1m\", value: '-1m'},\n                    { title: \"past 5m\", value: '-5m'},\n                    { title: \"past 15m\", value: '-15m'},\n                    { title: \"past 1h\", value: '-1h'},\n                    { title: \"past 3h\", value: '-3h'},\n                    { title: \"past 6h\", value: '-6h'},\n                    { title: \"past 12h\", value: '-12h'},\n                    { title: \"past 24h\", value: '-24h'},\n                    { title: \"past 2d\", value: '-2d'},\n                    { title: \"past 7d\", value: '-7d'},\n                    { title: \"past 30d\", value: '-30d'},\n                    { title: \"custom\", value: 'custom'}\n                    ]\n            }\n        },\n        watch: {\n            showHB(newValue) {\n                this.sendOptions()\n            },\n            showResp(newValue) {\n                this.sendOptions()\n            },\n            select(newValue) {\n                this.sendOptions()\n            }\n        },\n        methods: {\n            // expose a method to our <template> and Vue Application\n            sendOptions: function() {\n                this.send({ \n                    options: {\n                        showResp: this.showResp, \n                        showHB: this.showHB,\n                        start: this.select \n                    }\n                })\n            }\n        },\n        mounted() {\n            // code here when the component is first loaded\n        },\n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: red;\n    }\n</style>",
+        "format": "<template>\n\n      <v-toolbar flat>\n        \n        <v-toolbar-title class=\"text-grey\">\n            Options\n        </v-toolbar-title>\n\n        <v-spacer></v-spacer>\n            <v-template>\n            <v-switch \n                v-model=\"showResp\" \n                label=\"Responses\" \n                color=\"primary\"\n                >\n            </v-switch>\n            </v-template>\n            <v-spacer></v-spacer>\n            <v-template>\n            <v-switch \n                v-model=\"showHB\" \n                label=\"Heartbeats\" \n                color=\"primary\"\n                >\n            </v-switch>\n            </v-template>\n            <v-spacer></v-spacer>\n            <v-template>\n            <v-select\n                v-model=\"select\"\n                :items=\"startTimes\"\n                item-title=\"title\"\n                item-value=\"value\"\n                >\n            </v-select>\n            </v-template>\n\n      </v-toolbar>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                showResp: true,\n                showHB: true,\n                select: { title: \"past 5m\", value: '-5m'},\n                startTimes: [\n                    { title: \"past 1m\", value: '-1m'},\n                    { title: \"past 5m\", value: '-5m'},\n                    { title: \"past 15m\", value: '-15m'},\n                    { title: \"past 1h\", value: '-1h'},\n                    { title: \"past 3h\", value: '-3h'},\n                    { title: \"past 6h\", value: '-6h'},\n                    { title: \"past 12h\", value: '-12h'},\n                    { title: \"past 24h\", value: '-24h'},\n                    { title: \"past 2d\", value: '-2d'},\n                    { title: \"past 7d\", value: '-7d'},\n                    { title: \"past 30d\", value: '-30d'},\n//                    { title: \"custom\", value: 'custom'}\n                    ]\n            }\n        },\n        watch: {\n            showHB(newValue) {\n                this.sendOptions()\n            },\n            showResp(newValue) {\n                this.sendOptions()\n            },\n            select(newValue) {\n                this.sendOptions()\n            }\n        },\n        methods: {\n            // expose a method to our <template> and Vue Application\n            sendOptions: function() {\n                this.send({ \n                    options: {\n                        showResp: this.showResp, \n                        showHB: this.showHB,\n                        start: this.select \n                    }\n                })\n            }\n        },\n        mounted() {\n            // code here when the component is first loaded\n        },\n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: red;\n    }\n</style>",
         "storeOutMessages": true,
         "passthru": false,
         "resendOnRefresh": true,
