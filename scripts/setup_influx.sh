@@ -73,7 +73,7 @@ docker exec influx2 influx bucket list
 docker exec influx2 influx auth create --all-access -d $INFLUX_DESC >/dev/null 2>&1
 
 # Save that token to our .env file so that it can be used by Node-Red or other CIPIO Link  containers
-export INFLUX_TOKEN=$(docker exec influx2 influx auth list --json | jq -r --arg desc "$INFLUX_DESC" '.[] | select(.description == $desc) | .token')
+# export INFLUX_TOKEN=$(docker exec influx2 influx auth list --json | jq -r --arg desc "$INFLUX_DESC" '.[] | select(.description == $desc) | .token')
 echo $INFLUX_TOKEN
 # Check if the .env file exists, if not create it
 if [ ! -f .env ]; then
