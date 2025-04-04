@@ -22,8 +22,6 @@ echo -e "\n"
 echo -e "${GREEN}PRESS <ENTER> to continue. <Ctrl-c> to exit${NC}"
 read
 
-//sudo apt update
-
 function install_docker() {
   curl -fsSL https://get.docker.com -o get-docker.sh
   sudo sh get-docker.sh
@@ -115,17 +113,17 @@ else
   docker compose down
 fi
 
-./scripts/setup_env.sh
-./scripts/setup_mqtt.sh
-./scripts/setup_influx.sh
-./scripts/setup_nr.sh
+sudo ./scripts/setup_env.sh
+sudo ./scripts/setup_mqtt.sh
+sudo ./scripts/setup_influx.sh
+sudo ./scripts/setup_nr.sh
 # docker compose --profile grafana up -d
 
 cipiolnk_ver=$(git describe --tags --abbrev=0)
 echo "CIPIO_LINK_VER=${cipiolnk_ver}" >.ver.env
 cipiolnk_host=$(hostname -I | awk '{print $1}')
 echo "CIPIO_LINK_HOST=${cipiolnk_host}" >>.ver.env
-docker compose up -d
+sudo docker compose up -d
 
 echo -e "\n\n ${WHITE}Setup Completed${NC}\n\n"
 echo -e "${YELLOW}*******************************************************************${NC}"
