@@ -300,7 +300,7 @@
     "width": "0",
     "height": "0",
     "head": "",
-    "format": "<template>\n    <v-dialog width=\"50%\" v-model=\"showDialog\">\n        <v-card color=\"white\" v-click-outside=\"{handler: onClickOutside}\">\n            <v-toolbar color=\"primary\">\n                <v-card-title>\n                    <span>{{ title }}</span>\n                </v-card-title>\n            </v-toolbar>\n            <v-container>\n                <v-text-field\n                    v-model=\"cbid\"\n                    label=\"Chargebox ID\"\n                    type=\"text\"\n                    :readonly=\"getReadOnly()\"\n                    hint=\"Provide a unique chargebox name\"\n                ></v-text-field>\n                <v-text-field\n                    v-model=\"evseType\"\n                    label=\"Type\"\n                    type=\"text\"\n                    hint=\"example: L2 or DCFC\"\n                ></v-text-field>\n                <v-text-field\n                    v-model=\"ports\"\n                    label=\"Connectors\"\n                    type=\"number\"\n                    hint=\"Number of connectors/ports\"\n                ></v-text-field>\n                <v-text-field\n                    v-model=\"amps\"\n                    label=\"Amperage\"\n                    type=\"number\"\n                    suffix=\"Amps\"\n                    hint=\"Example: 40\"\n                ></v-text-field>\n                <v-text-field\n                    v-model=\"password\"\n                    label=\"Password\"\n                    type=\"password\"\n                    placeholder=\"<optional>\"\n                    hint=\"Enter a password if using basic auth\"\n                ></v-text-field>\n                <v-text-field\n                    v-model=\"lat\"\n                    label=\"latitude\"\n                    type=\"number\"\n                    placeholder=\"<optional>\"\n                    hint=\"Enter location latiitude\"\n                ></v-text-field>\n               <v-text-field\n                    v-model=\"lon\"\n                    label=\"longitude\"\n                    type=\"number\"\n                    placeholder=\"<optional>\"\n                    hint=\"Enter location longitude\"\n                ></v-text-field>               <v-text-field\n                    v-model=\"group\"\n                    label=\"Group\"\n                    type=\"number\"\n                    placeholder=\"<optional>\"\n                    hint=\"Enter EVSE group\"\n                ></v-text-field>\n                <v-card-actions class=\"justify-end\">\n                    <v-btn variant=\"elevated\" @click=\"okDialog\">{{ okText }}</v-btn>\n                    <v-btn variant=\"elevated\" @click=\"cancelDialog\">{{ cancelText }}</v-btn>\n                </v-card-actions>\n            </v-container>\n        </v-card>\n    </v-dialog>\n</template>\n\n<script>\n    export default {\n        data() {\n            return {\n                cbid: '',\n                ports: 1,\n                amps: 30,\n                evseType: 'L2',\n                password: '',\n                lat: '',\n                lon: '',\n                group: '',\n                lastcommtime: '',\n                newEdit: \"New\",\n                title: \"\",\n                showDialog: false,\n                okText: \"OK\",\n                cancelText: \"Cancel\"\n            }\n        },\n        watch: {\n            \n\n        },\n\n        computed: {\n            // automatically compute this variable\n            // whenever VueJS deems appropriate\n            \n        },\n        mounted: {\n            //this.showDialog = false\n        },\n        unmounted: {\n            //this.showDialog = false\n        },\n        methods: {\n            // expose a method to our <template> and Vue Application\n            sendevsedata: function() {\n                this.send({\n                    payload: {\n                        cbId: this.cbid,\n                        type: this.evseType,\n                        amps: this.amps,\n                        ports: this.ports,\n                        password: this.password,\n                        lat: this.lat,\n                        lon: this.lon,\n                        group: this.group,\n                        lastcommtime: this.lastcommtime || Math.floor(Date.now() / 1000)\n                    }\n                })\n            },\n            okDialog: function() {\n                this.sendevsedata()\n                this.showDialog = false\n            },\n            cancelDialog: function() {\n                this.msg.payload = {}\n                this.showDialog = false\n            },\n            onClickOutside: function() {\n                this.msg.payload = {}\n                this.showDialog = false\n            },\n            getReadOnly: function() {\n                return (this.newEdit == \"New\") ? false : true\n            }\n\n        },\n        mounted() {\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n            // do stuff with msg\n            // runs only when messages are received\n                if (this.msg.payload){\n                    let payload = this.msg.payload\n                    this.ports = payload.ports\n                    this.cbid = payload.cbId\n                    this.amps = payload.amps\n                    this.evseType = payload.type\n                    this.password = payload.password\n                    this.lat = payload.lat\n                    this.lon = payload.lon\n                    this.group = payload.group\n                    this.lastcommtime = payload.lastcommtime ?? Math.floor(Date.now() / 1000);\n                }\n                if (this.msg.dialog){\n                    let dialog = this.msg.dialog\n                    this.showDialog = dialog.showDialog\n                    this.okText = dialog.okText ?? \"OK\"\n                    this.cancelText = dialog.cancelText ?? \"Cancel\"\n                    this.showDialog = dialog.showDialog ?? false\n                    this.title = dialog.title ?? \"EVSE\"\n                    this.newEdit = dialog.newEdit ?? \"New\"\n                }\n            })\n        },\n   }\n</script>\n",
+    "format": "<template>\n    <v-dialog width=\"50%\" v-model=\"showDialog\">\n        <v-card color=\"white\" v-click-outside=\"{handler: onClickOutside}\">\n            <v-toolbar color=\"primary\">\n                <v-card-title>\n                    <span>{{ title }}</span>\n                </v-card-title>\n            </v-toolbar>\n            <v-container>\n                <v-text-field\n                    v-model=\"cbid\"\n                    label=\"Chargebox ID\"\n                    type=\"text\"\n                    :readonly=\"getReadOnly()\"\n                    hint=\"Provide a unique chargebox name\"\n                ></v-text-field>\n                <v-text-field\n                    v-model=\"evseType\"\n                    label=\"Type\"\n                    type=\"text\"\n                    hint=\"example: L2 or DCFC\"\n                ></v-text-field>\n                <v-text-field\n                    v-model=\"ports\"\n                    label=\"Connectors\"\n                    type=\"number\"\n                    hint=\"Number of connectors/ports\"\n                ></v-text-field>\n                <v-text-field\n                    v-model=\"amps\"\n                    label=\"Amperage\"\n                    type=\"number\"\n                    suffix=\"Amps\"\n                    hint=\"Example: 40\"\n                ></v-text-field>\n                <v-text-field\n                    v-model=\"password\"\n                    label=\"Password\"\n                    type=\"password\"\n                    placeholder=\"<optional>\"\n                    hint=\"Enter a password if using basic auth\"\n                ></v-text-field>\n                <v-text-field\n                    v-model=\"lat\"\n                    label=\"latitude\"\n                    type=\"number\"\n                    placeholder=\"<optional>\"\n                    hint=\"Enter location latiitude\"\n                ></v-text-field>\n               <v-text-field\n                    v-model=\"lon\"\n                    label=\"longitude\"\n                    type=\"number\"\n                    placeholder=\"<optional>\"\n                    hint=\"Enter location longitude\"\n                ></v-text-field>               <v-text-field\n                    v-model=\"group\"\n                    label=\"Group\"\n                    type=\"number\"\n                    placeholder=\"<optional>\"\n                    hint=\"Enter EVSE group\"\n                ></v-text-field>\n                <v-card-actions class=\"justify-end\">\n                    <v-btn variant=\"elevated\" @click=\"okDialog\">{{ okText }}</v-btn>\n                    <v-btn variant=\"elevated\" @click=\"cancelDialog\">{{ cancelText }}</v-btn>\n                </v-card-actions>\n            </v-container>\n        </v-card>\n    </v-dialog>\n</template>\n\n<script>\n    export default {\n        data() {\n            return {\n                cbid: '',\n                ports: 1,\n                amps: 30,\n                evseType: 'L2',\n                password: '',\n                lat: '',\n                lon: '',\n                group: '',\n                lastcommtime: '',\n                newEdit: \"New\",\n                title: \"\",\n                showDialog: false,\n                okText: \"OK\",\n                cancelText: \"Cancel\"\n            }\n        },\n        watch: {\n            \n\n        },\n\n        computed: {\n            // automatically compute this variable\n            // whenever VueJS deems appropriate\n            \n        },\n        mounted: {\n            //this.showDialog = false\n        },\n        unmounted: {\n            //this.showDialog = false\n        },\n        methods: {\n            // expose a method to our <template> and Vue Application\n            sendevsedata: function() {\n                this.send({\n                    payload: {\n                        cbId: this.cbid,\n                        type: this.evseType,\n                        amps: this.amps,\n                        ports: this.ports,\n                        password: this.password,\n                        lat: this.lat,\n                        lon: this.lon,\n                        group: this.group,\n                        lastcommtime: this.lastcommtime || Math.floor(Date.now() / 1000)\n                    }\n                })\n            },\n            okDialog: function() {\n                this.sendevsedata()\n                this.showDialog = false\n            },\n            cancelDialog: function() {\n                this.msg.payload = {}\n                this.send({})\n                this.showDialog = false\n            },\n            onClickOutside: function() {\n                this.msg.payload = {}\n                this.send({})\n                this.showDialog = false\n            },\n            getReadOnly: function() {\n                return (this.newEdit == \"New\") ? false : true\n            }\n\n        },\n        mounted() {\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n            // do stuff with msg\n            // runs only when messages are received\n                if (this.msg.payload){\n                    let payload = this.msg.payload\n                    this.ports = payload.ports\n                    this.cbid = payload.cbId\n                    this.amps = payload.amps\n                    this.evseType = payload.type\n                    this.password = payload.password\n                    this.lat = payload.lat\n                    this.lon = payload.lon\n                    this.group = payload.group\n                    this.lastcommtime = payload.lastcommtime ?? Math.floor(Date.now() / 1000);\n                }\n                if (this.msg.dialog){\n                    let dialog = this.msg.dialog\n                    this.showDialog = dialog.showDialog\n                    this.okText = dialog.okText ?? \"OK\"\n                    this.cancelText = dialog.cancelText ?? \"Cancel\"\n                    this.showDialog = dialog.showDialog ?? false\n                    this.title = dialog.title ?? \"EVSE\"\n                    this.newEdit = dialog.newEdit ?? \"New\"\n                }\n            })\n        },\n   }\n</script>\n",
     "storeOutMessages": true,
     "passthru": false,
     "resendOnRefresh": true,
@@ -311,7 +311,7 @@
     "wires": [
       [
         "f02867b7f09b0ad1",
-        "c1ed374a1bace4de"
+        "517081b0e57f1720"
       ]
     ]
   },
@@ -326,8 +326,8 @@
       "9405f117efca5faf",
       "19a1d55d0ad937f5"
     ],
-    "x": 455,
-    "y": 140,
+    "x": 605,
+    "y": 100,
     "wires": []
   },
   {
@@ -521,7 +521,7 @@
     "width": 0,
     "height": 0,
     "head": "",
-    "format": "<template>\n    <v-dialog width=\"auto\" v-model=\"showDialog\">\n        <v-card color=\"white\" v-click-outside=\"{handler: onClickOutside}\" >\n            <v-toolbar color=\"primary\">\n                <v-card-title>\n                    <span>{{ title }}</span>\n                </v-card-title>\n            </v-toolbar>\n            <v-container>\n                                <v-row>\n                <v-col cols=\"12\">\n                    <v-card \n                        :title=\"this.cbId\"\n                        prepend-icon=\"mdi-ev-station\"\n                        subtitle=\"Commands will be sent to this EVSE\">\n                    </v-card>\n                </v-col>\n                </v-row>\n                                <v-row>\n                <v-col cols=\"6\">\n                    <v-btn block \n                        prepend-icon=\"mdi-lock-open\" \n                        color=\"primary\" \n                        @click=\"sendCmd('UnlockConnector')\"\n                        >\n                        Unlock Connector\n                    </v-btn>\n                </v-col>\n                <v-col cols=\"6\">\n                    <v-btn block \n                        prepend-icon=\"mdi-pause-octagon-outline\" \n                        color=\"primary\" \n                        @click=\"sendCmd('ChangeAvailability')\"\n                        >\n                        Change Availability\n                    </v-btn>\n                </v-col>\n                </v-row>\n                <v-row>\n                <v-col cols=\"6\">\n                    <v-btn block prepend-icon=\"mdi-play-circle-outline\" color=\"primary\" @click=\"sendCmd('RemoteStartTransaction')\">Remote Start Transaction</v-btn>\n                </v-col>\n                <v-col cols=\"6\">\n                    <v-btn block prepend-icon=\"mdi-stop-circle-outline\" color=\"primary\" @click=\"sendCmd('RemoteStopTransaction')\">Remote Stop Transaction</v-btn>\n                </v-col>\n                </v-row>\n                <v-row>\n                <v-col cols=\"6\">\n                    <v-btn block prepend-icon=\"mdi-hammer-screwdriver\" color=\"primary\" @click=\"sendCmd('TriggerMessage')\">Trigger Message</v-btn>\n                </v-col>\n                <v-col cols=\"6\">\n                    <v-btn block prepend-icon=\"mdi-cog-counterclockwise\" color=\"primary\" @click=\"sendCmd('ClearCache',{})\">Clear Cache</v-btn>\n                </v-col>\n                </v-row>                                        \n                <v-row>\n                <v-col cols=\"6\">\n                    <v-btn block prepend-icon=\"mdi-power-plug-outline\" color=\"primary\" @click=\"sendCmd('Reset',{ type: 'Soft'})\">Soft Reset</v-btn>\n                </v-col>\n                <v-col cols=\"6\">\n                    <v-btn block prepend-icon=\"mdi-power-plug\" color=\"primary\" @click=\"sendCmd('Reset',{ type: 'Hard'} )\">Hard Reset</v-btn>\n                </v-col>\n                </v-row>\n                <v-row>\n                    <v-col cols=\"12\">\n                    <v-btn block variant=\"elevated\" color=\"secondary\" @click=\"closeDialog()\">Close</v-btn>\n                </v-col>                                        \n\n            </v-container>\n        </v-card>\n    </v-dialog>                \n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                cbId: '',\n                ports: 1,\n                showDialog: false,\n                title: 'Send OCPP Commands'\n            }\n        },\n        watch: {  \n        },\n\n        computed: {\n            // automatically compute this variable\n            // whenever VueJS deems appropriate\n\n        },\n        methods: {\n            // expose a method to our <template> and Vue Application\n\n            sendCmd: function(command, data=0){\n                let payload = {\n                    cbId: this.cbId,\n                    command: command\n                }\n\n                if (data != 0) {\n                    payload.data = data\n                }\n\n                this.send({\n                    payload\n                })\n            },\n            closeDialog: function() {\n                let payload = {\n                    command: \"closeDialog\"\n                }\n                this.send({payload})\n                this.showDialog = false\n            }\n\n        },\n        mounted() {\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n                if (this.msg.payload){\n                let payload = this.msg.payload\n                this.cbId = payload.cbId\n                this.ports = payload.ports\n                }\n                \n                if (this.msg.dialog) {\n                let dialog = this.msg.dialog\n                this.showDialog = dialog.showDialog\n                this.closeText = dialog.closeText\n                this.title = dialog.title ?? 'Send OCPP Commands'\n                }\n            })\n        },\n   }\n</script>\n",
+    "format": "<template>\n    <v-dialog width=\"auto\" v-model=\"showDialog\">\n        <v-card color=\"white\" v-click-outside=\"{handler: onClickOutside}\" >\n            <v-toolbar color=\"primary\">\n                <v-card-title>\n                    <span>{{ title }}</span>\n                </v-card-title>\n            </v-toolbar>\n            <v-container>\n                                <v-row>\n                <v-col cols=\"12\">\n                    <v-card \n                        :title=\"this.cbId\"\n                        prepend-icon=\"mdi-ev-station\"\n                        subtitle=\"Commands will be sent to this EVSE\">\n                    </v-card>\n                </v-col>\n                </v-row>\n                                <v-row>\n                <v-col cols=\"6\">\n                    <v-btn block \n                        prepend-icon=\"mdi-lock-open\" \n                        color=\"primary\" \n                        @click=\"sendCmd('UnlockConnector')\"\n                        >\n                        Unlock Connector\n                    </v-btn>\n                </v-col>\n                <v-col cols=\"6\">\n                    <v-btn block \n                        prepend-icon=\"mdi-pause-octagon-outline\" \n                        color=\"primary\" \n                        @click=\"sendCmd('ChangeAvailability')\"\n                        >\n                        Change Availability\n                    </v-btn>\n                </v-col>\n                </v-row>\n                <v-row>\n                <v-col cols=\"6\">\n                    <v-btn block prepend-icon=\"mdi-play-circle-outline\" color=\"primary\" @click=\"sendCmd('RemoteStartTransaction')\">Remote Start Transaction</v-btn>\n                </v-col>\n                <v-col cols=\"6\">\n                    <v-btn block prepend-icon=\"mdi-stop-circle-outline\" color=\"primary\" @click=\"sendCmd('RemoteStopTransaction')\">Remote Stop Transaction</v-btn>\n                </v-col>\n                </v-row>\n                <v-row>\n                <v-col cols=\"6\">\n                    <v-btn block prepend-icon=\"mdi-hammer-screwdriver\" color=\"primary\" @click=\"sendCmd('TriggerMessage')\">Trigger Message</v-btn>\n                </v-col>\n                <v-col cols=\"6\">\n                    <v-btn block prepend-icon=\"mdi-cog-counterclockwise\" color=\"primary\" @click=\"sendCmd('ClearCache',{})\">Clear Cache</v-btn>\n                </v-col>\n                </v-row>                                        \n                <v-row>\n                <v-col cols=\"6\">\n                    <v-btn block prepend-icon=\"mdi-power-plug-outline\" color=\"primary\" @click=\"sendCmd('Reset',{ type: 'Soft'})\">Soft Reset</v-btn>\n                </v-col>\n                <v-col cols=\"6\">\n                    <v-btn block prepend-icon=\"mdi-power-plug\" color=\"primary\" @click=\"sendCmd('Reset',{ type: 'Hard'} )\">Hard Reset</v-btn>\n                </v-col>\n                </v-row>\n                <v-row>\n                    <v-col cols=\"12\">\n                    <v-btn block variant=\"elevated\" color=\"secondary\" @click=\"closeDialog()\">Close</v-btn>\n                </v-col>                                        \n\n            </v-container>\n        </v-card>\n    </v-dialog>                \n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                cbId: '',\n                ports: 1,\n                showDialog: false,\n                title: 'Send OCPP Commands'\n            }\n        },\n        watch: {  \n        },\n\n        computed: {\n            // automatically compute this variable\n            // whenever VueJS deems appropriate\n\n        },\n        methods: {\n            // expose a method to our <template> and Vue Application\n\n            sendCmd: function(command, data=0){\n                let payload = {\n                    cbId: this.cbId,\n                    command: command\n                }\n\n                if (data != 0) {\n                    payload.data = data\n                }\n\n                this.send({\n                    payload\n                })\n            },\n            closeDialog: function() {\n                let payload = {\n                    command: \"closeDialog\"\n                }\n                this.send({payload})\n                this.showDialog = false\n            },\n            onClickOutside: function() {\n                this.msg.payload = {}\n                this.send({})\n                this.showDialog = false\n            },\n\n        },\n        mounted() {\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n                if (this.msg.payload){\n                let payload = this.msg.payload\n                this.cbId = payload.cbId\n                this.ports = payload.ports\n                }\n                \n                if (this.msg.dialog) {\n                let dialog = this.msg.dialog\n                this.showDialog = dialog.showDialog\n                this.closeText = dialog.closeText\n                this.title = dialog.title ?? 'Send OCPP Commands'\n                }\n            })\n        },\n   }\n</script>\n",
     "storeOutMessages": true,
     "passthru": false,
     "resendOnRefresh": true,
@@ -532,7 +532,7 @@
     "wires": [
       [
         "abdf3b3fe821405d",
-        "b89d3bee61c371a8"
+        "594c08cebacdee85"
       ]
     ]
   },
@@ -929,7 +929,7 @@
     "checkall": "true",
     "repair": false,
     "outputs": 6,
-    "x": 810,
+    "x": 970,
     "y": 220,
     "wires": [
       [
@@ -998,8 +998,8 @@
     "resendOnRefresh": true,
     "templateScope": "local",
     "className": "",
-    "x": 1500,
-    "y": 220,
+    "x": 1708,
+    "y": 226,
     "wires": [
       [
         "3303c9688b7cce62",
@@ -1053,7 +1053,7 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 610,
+    "x": 790,
     "y": 220,
     "wires": [
       [
@@ -1166,8 +1166,8 @@
     "paramsType": "json",
     "payloadType": "json",
     "block": false,
-    "x": 1210,
-    "y": 220,
+    "x": 1418,
+    "y": 226,
     "wires": [
       [
         "dee9becc2f4f6552"
@@ -1193,8 +1193,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 1040,
-    "y": 220,
+    "x": 1248,
+    "y": 226,
     "wires": [
       [
         "78ba51776812da90"
@@ -1234,8 +1234,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 1350,
-    "y": 220,
+    "x": 1558,
+    "y": 226,
     "wires": [
       [
         "f4550ea4a5f41146"
@@ -1255,8 +1255,8 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 1720,
-    "y": 220,
+    "x": 1928,
+    "y": 226,
     "wires": []
   },
   {
@@ -1499,7 +1499,8 @@
       "9061953296c99fc7",
       "82c7dc438bcf613e",
       "c1ed374a1bace4de",
-      "485897ecb288f5b2"
+      "485897ecb288f5b2",
+      "b5a35872c6a2a30c"
     ],
     "x": 105,
     "y": 320,
@@ -1677,5 +1678,76 @@
     "x": 1470,
     "y": 280,
     "wires": []
+  },
+  {
+    "id": "517081b0e57f1720",
+    "type": "switch",
+    "z": "217382551c48905d",
+    "name": "",
+    "property": "payload",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "nnull"
+      },
+      {
+        "t": "else"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 470,
+    "y": 140,
+    "wires": [
+      [
+        "c1ed374a1bace4de"
+      ],
+      [
+        "b5a35872c6a2a30c"
+      ]
+    ]
+  },
+  {
+    "id": "b5a35872c6a2a30c",
+    "type": "link out",
+    "z": "217382551c48905d",
+    "name": "link out 57",
+    "mode": "link",
+    "links": [
+      "9405f117efca5faf"
+    ],
+    "x": 605,
+    "y": 160,
+    "wires": []
+  },
+  {
+    "id": "594c08cebacdee85",
+    "type": "switch",
+    "z": "217382551c48905d",
+    "name": "",
+    "property": "payload",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "nnull"
+      },
+      {
+        "t": "else"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 610,
+    "y": 220,
+    "wires": [
+      [
+        "b89d3bee61c371a8"
+      ],
+      [
+        "b5a35872c6a2a30c"
+      ]
+    ]
   }
 ]
