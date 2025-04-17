@@ -9,7 +9,7 @@
     "start2": "node $NODE-OPTIONS node_modules/node-red/red.js --userDir ./data --settings ./data/settings.js"
   },
   "dependencies": {
-    "node-red": "*",
+    "node-red": ">=4.0",
     "@flowfuse/node-red-dashboard": "^1.22.1",
     "@flowfuse/node-red-dashboard-2-ui-iframe": "^1.1.0",
     "@flowfuse/node-red-dashboard-2-ui-led": "^1.1.0",
