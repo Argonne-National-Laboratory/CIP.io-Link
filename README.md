@@ -119,7 +119,7 @@ To install, click the "[copy]" button in the following code sample, then paste t
 
 ```bash
 
-wget -q https://raw.githubusercontent.com/Argonne-National-Laboratory/CIP.io-Link/main/scripts/install.sh -O /tmp/install.sh && \
+wget -q https://raw.githubusercontent.com/Argonne-VCI/CIP.io-Link/main/scripts/install.sh -O /tmp/install.sh && \
     chmod +x /tmp/install.sh && \
     /tmp/install.sh
 ```
