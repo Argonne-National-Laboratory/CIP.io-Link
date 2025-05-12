@@ -35,7 +35,7 @@ CIP.io Link bridges the gap between research and real-world application, enablin
   - Manage multiple EV charging stations
   - Manage EV drivers and their charging sessions
   - Track charging transactions and energy consumption
-  - Employ charge manaaement strategies to optimize energy use and prevent overloads
+  - Employ charge management strategies to optimize energy use and prevent overloads
 
 ### Core CIP.io Link Features  
 
@@ -49,7 +49,7 @@ CIP.io Link brings cutting-edge energy management tools into an **integrated, on
 
 By default, the CIP.io Link installer installs the following:
 
-- Docker (if not already isntalled)
+- Docker (if not already installed)
 - The following containerized apps
   - Node-Red
     - [OCPP nodes](https://www.npmjs.com/package/node-red-contrib-ocpp)
@@ -89,8 +89,8 @@ devices such as Dell Optiplex and Lenovo/Intel NUC devices. The following hardwa
 - Minimum 8GB RAM
 - Minimum 128GB SSD/HDD
 - i5 or equivalent processor
-- Hardwired ethernet or Wi-Fi connection
-- OS installtaion:
+- Hardwired Ethernet or Wi-Fi connection
+- OS installation:
   - Mouse and keyboard
   - USB port for initial installation of OS if not already installed
 
@@ -119,7 +119,7 @@ To install, click the "[copy]" button in the following code sample, then paste t
 
 ```bash
 
-wget -q https://raw.githubusercontent.com/Argonne-VCI/CIP.io Link/main/scripts/install.sh -O /tmp/install.sh && \
+wget -q https://raw.githubusercontent.com/Argonne-VCI/CIP.io-Link/main/scripts/install.sh -O /tmp/install.sh && \
     chmod +x /tmp/install.sh && \
     /tmp/install.sh
 ```
@@ -145,7 +145,7 @@ When finished, a URL for accessing the CIP.io Link dashboard will be displayed. 
 
 You can find out more about Docker [HERE](https://www.docker.com).
 
-### Adding your linux account to the docker group
+### Adding your Linux account to the docker group
 
 Once installed, your Linux user will also be added to the "docker" user group on your system. This will keep you from having to sudu your account in order to do to certain docker activities (docker pull/up/down/ps). You may have to exit and restart your terminal in order for this to take affect the first time.
 
