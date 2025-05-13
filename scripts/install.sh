@@ -12,6 +12,13 @@ CYAN='\033[0;36m'
 BRIGHTWHITE='\33[1;37m'
 NC='\033[0m' # No Color
 
+#
+# Repo info
+#
+REPO_NAME="CIP.io-Link"
+REPO_URL="https://github.com/Argonne-VCI/${REPO_NAME}.git"
+BRANCH="main" # or "development"
+
 clear
 echo -e "${GREEN}********************************************${NC}"
 echo -e "${GREEN}* ${CYAN}Starting CIP.io-Link Installation...   ${GREEN} *${NC}"
@@ -63,6 +70,13 @@ else
   echo "curl is installed"
 fi
 
+if ! command -v mkpasswd &>/dev/null; then
+  echo "## whois Install #######################################################"
+  sudo apt-get install whois
+else
+  echo "whois is installed"
+fi
+
 ## Check for git installation
 echo -e "${GREEN}## Checking for git${NC}"
 
@@ -74,8 +88,17 @@ else
 fi
 
 ## Clone the repository
-git clone https://github.com/Argonne-National-Laboratory/CIP.io-Link.git
-cd CIP.io-Link
+# git clone https://github.com/Argonne-National-Laboratory/CIP.io-Link.git
+
+if [ ! -d "$REPO_NAME/.git" ]; then
+  echo "Cloning repository..."
+  git clone --branch "$BRANCH" "$REPO_URL" "$REPO_NAME"
+else
+  echo "Updating existing setup..."
+  cd "$REPO_NAME" || exit 1
+  git fetch origin
+  git reset --hard "origin/$BRANCH"
+fi
 
 ## Check for jq installation
 echo -e "${GREEN}## Checking for jq${NC}"

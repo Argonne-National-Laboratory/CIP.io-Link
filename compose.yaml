@@ -32,6 +32,10 @@ services:
           "username": "default",
           "password": "${CIPIO_VALKEY_PASSWORD}"
         }
+      CIPIO_adminUser: ${CIPIO_USER}
+      CIPIO_adminPW: ${CIPIO_ADMIN_PW}
+      CIPIO_uiUser: ${CIPIO_USER}
+      CIPIO_uiPW: ${CIPIO_UI_PW}
 
   valkey:
     container_name: valkey

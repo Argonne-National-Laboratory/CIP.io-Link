@@ -1,18 +1,27 @@
 #!/bin/bash
+
 # Default .env file path (make this configurable if needed)
 ENV_FILE=".env"
 
 SCRIPTS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPTS_DIR/utils.sh"
 
-clear
-echo -e "${GREEN}********************************************${NC}"
-echo -e "${GREEN}* ${CYAN}Setting up CIP.io-Link config... ${GREEN} *${NC}"
-echo -e "${GREEN}********************************************${NC}"
+banner() {
+  clear
+  echo -e "${CYAN}"
+  echo "   ______________    _          __    _       __      "
+  echo "  / ____/  _/ __ \  (_)___     / /   (_)___  / /__    "
+  echo " / /    / // /_/ / / / __ \   / /   / / __ \/ //_/    "
+  echo "/ /____/ // ____/ / / /_/ /  / /___/ / / / / ,<       "
+  echo "\____/___/_/   (_)_/\____/  /_____/_/_/ /_/_/|_|      "
+  echo -e "\n"
+}
 
+# Create the environment file if it doesn't exist
 if [ ! -f $ENV_FILE ]; then
   touch $ENV_FILE
 fi
+
 # Function to display current .env settings (optional but helpful)
 display_env_settings() {
   if [ ! -f $ENV_FILE ]; then
@@ -94,6 +103,58 @@ update_env_variable() {
   # echo "$variable_name updated to: $new_value"
 }
 
+prompt_for_secret() {
+  local variable_name="$1"
+  local prompt_message="$2"
+  # local ENV_FILE=".env2"
+
+  # Load existing value if present
+  local current_value
+  if [[ -f "$ENV_FILE" ]]; then
+    current_value=$(grep "^${variable_name}=" "$ENV_FILE" | sed -E "s/^${variable_name}=\"?([^\"]*)\"?/\1/")
+  fi
+
+  # Loop until the user enters matching passwords or cancels
+  while true; do
+    if [[ -n "$current_value" ]]; then
+      echo -n "${prompt_message} [Leave empty to keep current value]: "
+      read -s first
+      if [[ -z "$first" ]]; then
+        return 0
+      fi
+    else
+      echo -n "${prompt_message}: "
+      read -s first
+    fi
+    echo
+    echo -n "Confirm new password: "
+    read -s second
+    echo
+
+    if [[ "$first" != "$second" ]]; then
+      echo "Values do not match. Try again or press Ctrl+C to cancel."
+    else
+      # Encrypt the value
+      if ! command -v mkpasswd &>/dev/null; then
+        echo "mkpasswd not found. Please install 'whois' or the required package."
+        exit 1
+      fi
+      encrypted=$(mkpasswd -m bcrypt "$first")
+
+      # Escape slashes in the new value for sed
+      escaped_new_value=$(printf '%s\n' "$encrypted" | sed 's|/|\\/|g')
+
+      if grep -q "^${variable_name}=" "$ENV_FILE"; then
+        # Use a different delimiter in sed (e.g., '|') to avoid escaping
+        sed -i "s|^${variable_name}=.*|${variable_name}=${escaped_new_value}|" "$ENV_FILE"
+      else
+        echo "${variable_name}=$new_value" >>"$ENV_FILE"
+      fi
+      return 0
+    fi
+  done
+}
+
 # Function to prompt for and update a variable if it doesn't exist
 update_env_if_not_exists() {
   local variable_name="$1"
@@ -138,43 +199,55 @@ password=$(tr -dc 'A-Za-z0-9!@#$%^&*_+' </dev/urandom | head -c "$length")
 
 # Main script logic
 # display_env_settings # Optional: Show current settings
-
-echo -e "\n"
-echo -e "\n"
-echo -e "${YELLOW}===================CIPio Link Setup====================================================${NC}"
-echo "To initially set up CIPio Link, please provide input to the following prompts."
+banner
+echo -e "${GREEN}===================CIP.io Link Setup====================================================${NC}"
+echo "To set up CIP.io Link, please provide input to the following prompts."
 echo "If a value is already set, it will be shown as \"Current\" and you can just hit return"
-echo "to accept the exiting value."
-echo -e "${YELLOW}=======================================================================================${NC}"
+echo "to keep the exiting value."
+echo -e "${GREEN}=======================================================================================${NC}"
 echo -e "\n"
+read -p "Hit Enter to continue: " xyz
 
 ## Username & Password
-echo "Please provide a username and password that CIPio Link will use to configure various"
-echo "applications. To keep things uncomplicated, CIPio Link uses a common user and password"
-echo "where possible. Since various parts of CIPio Link run in containers, this isn't a"
+banner
+echo -e "${YELLOW}==| ${CYAN}CIP.io Link Admin Info${YELLOW} |=================================================================${NC}"
+echo "Please provide a username and password that CIP.io Link will use to configure various"
+echo "applications. To keep things uncomplicated, CIP.io Link uses a common user and password"
+echo "where possible. Since various parts of CIP.io Link run in containers, this isn't a"
 echo "security issue."
+echo -e "\n${RED}NOTE:${NC} This is NOT the Linux system username and password."
+echo "      This is used for logging into the Node-Red programming interface and for any containers"
+echo "      that expect a username and password for security reasons."
+echo -e "\n   ${CYAN}(You will be prompted for a user login info in the next section)${NC}\n"
+update_env_variable "CIPIO_USER" "Enter Admin Username"
+# update_env_variable "CIPIO_PW" "Enter Admin password:"
+prompt_for_secret "CIPIO_PW" "Enter Admin Password"
+
+# Username and Password for the CSMS Web user
+banner
+echo -e "${YELLOW}==| ${CYAN}CIP.io Link User Info${YELLOW} |=================================================================${NC}"
+echo "Please provide a username and password that will be used to access the CSMS web interface"
 echo -e "\n"
-echo "NOTE: This is NOT the same user and password for the system login."
-echo -e "\n"
-update_env_variable "CIPIO_USER" "Enter the user name for CIPio Link"
-update_env_variable "CIPIO_PW" "Enter the user password"
+update_env_variable "CIPIO_UI_USER" "Enter Username"
+prompt_for_secret "CIPIO_UI_PW" "Enter User Password"
 
 # CSMS Port and route
+banner
 echo -e "\n"
-echo -e "${YELLOW}=======================================================================================${NC}"
-echo "We will now set up the port number and path that the CSMS will operate on."
+echo -e "${YELLOW}==| ${CYAN}CSMS Port and Route${YELLOW} |==================================================================${NC}"
+echo "We will now set up the port number and path that the CSMS will listen on."
+echo -e "\n"
 echo "For example: "
-echo -e "\n"
 echo -e "     a port number of ${GREEN}8822${NC}"
 echo -e "     and a path of ${GREEN}\"/ocpp\"${NC} "
 echo -e "\n"
 echo "...will set up the CSMS to accept incoming EVSE connections on:"
 echo -e "\n"
-echo -e "${CYAN}     \"ws://<host_ip>:8822/ocpp\".${NC} "
+echo -e "${CYAN}     \"ws://<host_ip>:${GREEN}8822/ocpp${NC}\".${NC} "
 echo -e "\n"
 echo "You will need to provide that URL to your EVSE."
-echo "PLEASE NOTE: Refer to your EVSE operations manual to determine if the URL you"
-echo "provide on the EVSE requires you to also append the station name. Many EVSEs"
+echo -e "\n${RED}NOTE:${NC} Refer to your EVSE operations manual to determine if the URL you"
+echo "provide to the EVSE requires you to also append the station name. Many EVSEs"
 echo "do that automatically for you when they connect."
 echo -e "\n"
 update_env_variable "CIPIO_CSMS_PORT" "Enter the port number you want your EVSEs to connect on"
@@ -196,8 +269,9 @@ if [[ "$currpath" != "$CIPIO_CSMS_PATH" ]]; then
   update_or_add_env_variable "CIPIO_CSMS_PATH" $CIPIO_CSMS_PATH
 fi
 
-echo -e "\n"
-echo -e "${YELLOW}=======================================================================================${NC}"
+# Prompt for ValKey Token
+banner
+echo -e "${YELLOW}==| ${CYAN}VALKEY Token${YELLOW} |===========================================================================${NC}"
 echo "We've generated a random password for our in-memory database to use."
 echo "If we have previously done this on an earlier setup, this will be skipped."
 echo "You can accept the random password if prompted (recommended), or change it."
@@ -210,3 +284,5 @@ update_env_if_not_exists_with_default "CIPIO_VALKEY_PASSWORD" "Enter a random pa
 
 # Update the valkey.conf file with the password
 update_valkey_conf
+
+echo -e "${GREEN}Finished! ${NC}"
