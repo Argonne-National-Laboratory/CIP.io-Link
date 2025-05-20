@@ -4,6 +4,7 @@
     "type": "tab",
     "label": "CL_Home",
     "disabled": false,
+    "locked": true,
     "info": "",
     "env": []
   },
@@ -22,42 +23,8 @@
     "x": 290,
     "y": 40,
     "wires": [
-      [
-        "089bf4f30ca18408"
-      ]
+      []
     ]
-  },
-  {
-    "id": "089bf4f30ca18408",
-    "type": "worldmap",
-    "z": "92d055a5ecbac90c",
-    "name": "",
-    "lat": "",
-    "lon": "",
-    "zoom": "",
-    "layer": "OSMG",
-    "cluster": "",
-    "maxage": "",
-    "usermenu": "show",
-    "layers": "show",
-    "panit": "false",
-    "panlock": "false",
-    "zoomlock": "false",
-    "hiderightclick": "false",
-    "coords": "deg",
-    "showgrid": "false",
-    "showruler": "false",
-    "allowFileDrop": "false",
-    "path": "/worldmap",
-    "overlist": "DR,CO,TL",
-    "maplist": "OSMG,OSMC,EsriC,EsriS,UKOS",
-    "mapname": "",
-    "mapurl": "",
-    "mapopt": "",
-    "mapwms": false,
-    "x": 540,
-    "y": 40,
-    "wires": []
   },
   {
     "id": "fd0ce11a6c04c0f3",
@@ -1145,30 +1112,6 @@
       [
         "3c5eb5272e0500f6"
       ]
-    ]
-  },
-  {
-    "id": "c32e966c78977a1f",
-    "type": "ui-template",
-    "z": "92d055a5ecbac90c",
-    "group": "195e75b71683482a",
-    "page": "",
-    "ui": "",
-    "name": "",
-    "order": 1,
-    "width": "6",
-    "height": "8",
-    "head": "",
-    "format": "<template>\n\n    <div>\n        <iframe src=\"/worldmap\" height=\"100%\" width=\"100%\"></iframe>\n    </div>\n \n</template>\n\n",
-    "storeOutMessages": true,
-    "passthru": true,
-    "resendOnRefresh": true,
-    "templateScope": "local",
-    "className": "",
-    "x": 540,
-    "y": 100,
-    "wires": [
-      []
     ]
   },
   {

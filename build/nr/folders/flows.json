@@ -90,14 +90,6 @@
         "env": []
     },
     {
-        "id": "be6953c0e3c70845",
-        "type": "tab",
-        "label": "Flow 1",
-        "disabled": true,
-        "info": "",
-        "env": []
-    },
-    {
         "id": "1bbb83617feb5d61",
         "type": "subflow",
         "name": "CSMS 1.6",
@@ -176,6 +168,31 @@
         "icon": "font-awesome/fa-bolt"
     },
     {
+        "id": "a0169f65e4967ec2",
+        "type": "group",
+        "z": "9ca80d42115ee3c3",
+        "name": "Update Last Comm Timestamp",
+        "style": {
+            "fill": "#ffff7f",
+            "label": true
+        },
+        "nodes": [
+            "868ca4fd5276022e",
+            "e07f99fdfc73cd44",
+            "124fa94892413c81",
+            "b952178113645c64",
+            "34b27b38f2e7609a",
+            "7bc0d39e117db98a",
+            "d2d365e869ae5aa3",
+            "d836b12b64275a9d",
+            "a1f721f1a03c965a"
+        ],
+        "x": 104,
+        "y": 439,
+        "w": 1212,
+        "h": 82
+    },
+    {
         "id": "f6f7b333be6e5917",
         "type": "group",
         "z": "9ca80d42115ee3c3",
@@ -204,29 +221,47 @@
         "info": "**This is just an example** of an override\r\nYou can unlock this tab and click on the nodes to see\r\nhow they work. Do not edit this page or \r\nthese examples. Copy them to an editable\r\nflow of your own if you wish to utilize your\r\nown overrides.\r\n\r\n**Remember** to lock the flow again when you are done\r\nsince CL_ flows get overwritten with new\r\nupdates."
     },
     {
-        "id": "a0169f65e4967ec2",
+        "id": "adad8cfed89e9a2e",
         "type": "group",
-        "z": "9ca80d42115ee3c3",
-        "name": "Update Last Comm Timestamp",
+        "z": "1bbb83617feb5d61",
+        "name": "Calculate Charging Profile",
         "style": {
-            "fill": "#ffff7f",
+            "stroke": "#ff3f3f",
+            "fill": "#ffcf3f",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "31cbb896896da083",
+            "74558ab2bc828dd9",
+            "277e1a6705982260",
+            "317d216b8fa4f66a"
+        ],
+        "x": 644,
+        "y": 739,
+        "w": 462,
+        "h": 122
+    },
+    {
+        "id": "f6e1783b4f8d6029",
+        "type": "group",
+        "z": "1bbb83617feb5d61",
+        "name": "",
+        "style": {
+            "fill": "#c8e7a7",
             "label": true
         },
         "nodes": [
-            "868ca4fd5276022e",
-            "e07f99fdfc73cd44",
-            "124fa94892413c81",
-            "b952178113645c64",
-            "34b27b38f2e7609a",
-            "7bc0d39e117db98a",
-            "d2d365e869ae5aa3",
-            "d836b12b64275a9d",
-            "a1f721f1a03c965a"
+            "dcc4d675cbe95527",
+            "b348b5858bbb69e9",
+            "e892b41d16a803e6",
+            "3d9889d0e7face61",
+            "565b9e3d1ccde32e"
         ],
-        "x": 104,
+        "x": 654,
         "y": 439,
-        "w": 1212,
-        "h": 82
+        "w": 592,
+        "h": 122
     },
     {
         "id": "fac4518c226fbf0c",
@@ -261,30 +296,10 @@
         "h": 162
     },
     {
-        "id": "f6e1783b4f8d6029",
+        "id": "23d227486f4a19f5",
         "type": "group",
-        "z": "1bbb83617feb5d61",
-        "name": "",
-        "style": {
-            "fill": "#c8e7a7",
-            "label": true
-        },
-        "nodes": [
-            "dcc4d675cbe95527",
-            "b348b5858bbb69e9",
-            "e892b41d16a803e6",
-            "3d9889d0e7face61",
-            "565b9e3d1ccde32e"
-        ],
-        "x": 654,
-        "y": 439,
-        "w": 592,
-        "h": 122
-    },
-    {
-        "id": "adad8cfed89e9a2e",
-        "type": "group",
-        "z": "1bbb83617feb5d61",
+        "z": "9ca80d42115ee3c3",
+        "g": "f6f7b333be6e5917",
         "name": "Calculate Charging Profile",
         "style": {
             "stroke": "#ff3f3f",
@@ -293,47 +308,14 @@
             "color": "#000000"
         },
         "nodes": [
-            "31cbb896896da083",
-            "74558ab2bc828dd9",
-            "277e1a6705982260",
-            "317d216b8fa4f66a"
+            "25afca3af5d04a0d",
+            "668279fcb445ce5d",
+            "1186737eeaebd401"
         ],
-        "x": 644,
-        "y": 739,
-        "w": 462,
-        "h": 122
-    },
-    {
-        "id": "ceb6cf36b4dceec8",
-        "type": "group",
-        "z": "be6953c0e3c70845",
-        "name": "Modify StartTx with TxId",
-        "style": {
-            "fill": "#b797cf",
-            "label": true,
-            "stroke": "#ffff00",
-            "color": "#001f60"
-        },
-        "nodes": [
-            "d87d1230d7f4c458",
-            "cc759bb71f06debd",
-            "6aa282ae0b36247d",
-            "23ade09a61f9015c",
-            "cb1919cea557885d",
-            "12b8bd9cfdff38db",
-            "fa6e94f405122a1c",
-            "42125ce42a18f3dc",
-            "d293d37b2e3f30f5",
-            "7010f322a6ca6ae5",
-            "38b195bac085b028",
-            "939509d1bcb662e4",
-            "c8f1b5fdb61f41a7",
-            "0bb0a06fe83260c3"
-        ],
-        "x": 484,
-        "y": 819,
-        "w": 1162,
-        "h": 162
+        "x": 84,
+        "y": 1039,
+        "w": 452,
+        "h": 82
     },
     {
         "id": "c20c8766fa664d2e",
@@ -362,28 +344,6 @@
         "y": 819,
         "w": 812,
         "h": 182
-    },
-    {
-        "id": "23d227486f4a19f5",
-        "type": "group",
-        "z": "9ca80d42115ee3c3",
-        "g": "f6f7b333be6e5917",
-        "name": "Calculate Charging Profile",
-        "style": {
-            "stroke": "#ff3f3f",
-            "fill": "#ffcf3f",
-            "label": true,
-            "color": "#000000"
-        },
-        "nodes": [
-            "25afca3af5d04a0d",
-            "668279fcb445ce5d",
-            "1186737eeaebd401"
-        ],
-        "x": 84,
-        "y": 1039,
-        "w": 452,
-        "h": 82
     },
     {
         "id": "f740792ad0c8f5fd",
@@ -463,6 +423,20 @@
                 "e5e3bc3824864970",
                 "4a191fd359629475",
                 "a6948cd72ae1a796"
+            ]
+        ]
+    },
+    {
+        "id": "cf7b88020b745f6a",
+        "type": "junction",
+        "z": "daf7a59ca2ce18df",
+        "x": 1420,
+        "y": 520,
+        "wires": [
+            [
+                "c006c2c3567e7ee6",
+                "2807de6096eb9e1f",
+                "c4b73cd2d6f1efbb"
             ]
         ]
     },
@@ -574,7 +548,7 @@
     {
         "id": "8cdc313c9611f13f",
         "type": "ui-base",
-        "name": "My Dashboard",
+        "name": "CIP.io Link",
         "path": "/dashboard",
         "appIcon": "",
         "includeClientData": true,
@@ -588,7 +562,8 @@
         "titleBarStyle": "default",
         "showReconnectNotification": false,
         "notificationDisplayTime": "5",
-        "showDisconnectNotification": false
+        "showDisconnectNotification": false,
+        "allowInstall": true
     },
     {
         "id": "0d92c765bfad87e6",
@@ -718,7 +693,7 @@
         "width": "6",
         "height": "1",
         "order": 1,
-        "showTitle": true,
+        "showTitle": false,
         "className": "",
         "visible": "true",
         "disabled": "false",
@@ -758,7 +733,7 @@
         "order": 4,
         "className": "",
         "visible": true,
-        "disabled": "false"
+        "disabled": false
     },
     {
         "id": "17fb40c0e949759b",
@@ -768,7 +743,7 @@
         "width": "6",
         "height": "1",
         "order": 1,
-        "showTitle": true,
+        "showTitle": false,
         "className": "",
         "visible": "true",
         "disabled": "false",
@@ -807,8 +782,8 @@
         ],
         "order": 1,
         "className": "",
-        "visible": true,
-        "disabled": false
+        "visible": "true",
+        "disabled": "false"
     },
     {
         "id": "01bc43f19d1edf0a",
@@ -1126,14 +1101,6 @@
         "groupType": "default"
     },
     {
-        "id": "e254737171de6271",
-        "type": "ocpp-remotej-cp",
-        "z": "1bbb83617feb5d61",
-        "name": "",
-        "cbId": "evsesim1",
-        "ocppver": "1.6j"
-    },
-    {
         "id": "39c5beabd3f595d6",
         "type": "ui-page",
         "name": "Info",
@@ -1249,213 +1216,234 @@
         "groupType": "default"
     },
     {
-        "id": "565b9e3d1ccde32e",
-        "type": "link in",
+        "id": "e254737171de6271",
+        "type": "ocpp-remotej-cp",
         "z": "1bbb83617feb5d61",
-        "g": "f6e1783b4f8d6029",
-        "name": "CL_SetTxDefaultProfile",
-        "links": [
-            "dec2c34e2f47883d"
-        ],
-        "x": 695,
-        "y": 500,
-        "wires": [
-            [
-                "dcc4d675cbe95527"
-            ]
-        ]
+        "name": "",
+        "cbId": "evsesim1",
+        "ocppver": "1.6j"
     },
     {
-        "id": "d5ea45e6cb0d7090",
-        "type": "link in",
-        "z": "1bbb83617feb5d61",
-        "g": "fac4518c226fbf0c",
-        "name": "CL_Auth_StartTx",
-        "links": [],
-        "x": 685,
-        "y": 660,
-        "wires": [
-            [
-                "e930a4053f3ebf38"
-            ]
-        ]
-    },
-    {
-        "id": "81b335ea88991f47",
+        "id": "8dd31db647e97e9a",
         "type": "link out",
         "z": "1bbb83617feb5d61",
         "g": "fac4518c226fbf0c",
-        "name": "link out 33",
+        "name": "link out 39",
         "mode": "link",
         "links": [
-            "f5e6a6b98ad89c35"
+            "2b61a29bf378cb19"
         ],
-        "x": 905,
-        "y": 700,
+        "x": 1765,
+        "y": 680,
         "wires": []
     },
     {
-        "id": "7085c4e9b54ca5e5",
-        "type": "link out",
+        "id": "ba2cbe8ea7210112",
+        "type": "change",
         "z": "1bbb83617feb5d61",
         "g": "fac4518c226fbf0c",
-        "name": "link out 31",
-        "mode": "return",
-        "links": [],
-        "x": 895,
-        "y": 620,
-        "wires": []
-    },
-    {
-        "id": "05dc69bf9c191b85",
-        "type": "function",
-        "z": "1bbb83617feb5d61",
-        "g": "fac4518c226fbf0c",
-        "name": "Save sessions context",
-        "func": "if (msg.ocpp.command === \"StartTransaction\"){\n    let session = {}\n    session.cbId = msg.ocpp.chargeBoxIdentity\n    session.connectorId = msg.ocpp.connectorId\n    session.transactionId = msg.payload.transactionId\n    session.amps = msg.evse.amps\n    let sessions = global.get(\"CSMS:SESSIONS\") || []\n    sessions.push(session)\n    global.set(\"CSMS:SESSIONS\",sessions)\n    return msg;\n}",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1240,
-        "y": 700,
-        "wires": [
-            [
-                "bc558f4221526ddb"
-            ]
-        ]
-    },
-    {
-        "id": "277e1a6705982260",
-        "type": "link out",
-        "z": "1bbb83617feb5d61",
-        "g": "adad8cfed89e9a2e",
-        "name": "link out 28",
-        "mode": "link",
-        "links": [
-            "8eb3b8e8db8b77c7",
-            "8bd502e33fe2ee01"
-        ],
-        "x": 1065,
-        "y": 780,
-        "wires": []
-    },
-    {
-        "id": "74558ab2bc828dd9",
-        "type": "function",
-        "z": "1bbb83617feb5d61",
-        "g": "adad8cfed89e9a2e",
-        "name": "Smart Charge Management Algorithm",
-        "func": "const currentTx = global.get(\"CSMS:SESSIONS\") || []\nconst loadLimit = global.get(\"SITE:LoadLimit\")\nlet adjustment = 1\n\nlet potential = 0\n\ncurrentTx.forEach(function(sess) {\n    potential += sess.amps\n})\n\nif (potential > loadLimit){\n    // Calculate an adjustment %\n    adjustment = 1 - ((( (potential - loadLimit ) / potential ) * 100) / 100)\n}\n\ncurrentTx.forEach(function(sess) {\n    msg = {}\n    msg.payload = {\n        command: \"SetChargingProfile\",\n        cbId: sess.cbId,\n        data: {\n            connectorId: sess.connectorId,\n            csChargingProfiles: {\n              chargingProfileId: 1,\n              transactionId: sess.transactionId,\n              stackLevel: 1,\n              chargingProfilePurpose: \"TxProfile\",\n              chargingProfileKind: \"Absolute\",\n              chargingSchedule: {\n                startSchedule: new Date().toISOString(),\n                chargingRateUnit: \"A\",\n                chargingSchedulePeriod: [\n                    {\n                        startPeriod: 0,\n                        limit: sess.amps * adjustment,\n                        numberPhases: 1\n                    }\n                ]\n              }  \n            }\n        }\n    }\n    msg.potential = potential\n    msg.adjustment = adjustment\n    msg.loadLimit = loadLimit\n    node.send(msg)\n});\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 880,
-        "y": 780,
-        "wires": [
-            [
-                "277e1a6705982260"
-            ]
-        ]
-    },
-    {
-        "id": "3d9889d0e7face61",
-        "type": "link out",
-        "z": "1bbb83617feb5d61",
-        "g": "f6e1783b4f8d6029",
-        "name": "link out 27",
-        "mode": "link",
-        "links": [
-            "8eb3b8e8db8b77c7"
-        ],
-        "x": 1205,
-        "y": 480,
-        "wires": []
-    },
-    {
-        "id": "31cbb896896da083",
-        "type": "link in",
-        "z": "1bbb83617feb5d61",
-        "g": "adad8cfed89e9a2e",
-        "name": "CL_SCM",
-        "links": [],
-        "x": 685,
-        "y": 780,
-        "wires": [
-            [
-                "74558ab2bc828dd9",
-                "317d216b8fa4f66a"
-            ]
-        ]
-    },
-    {
-        "id": "20e60ae443b8c057",
-        "type": "switch",
-        "z": "1bbb83617feb5d61",
-        "g": "fac4518c226fbf0c",
-        "name": "StartTx Accepted",
-        "property": "payload.idTagInfo.status",
-        "propertyType": "msg",
+        "name": "",
         "rules": [
             {
-                "t": "eq",
-                "v": "Accepted",
-                "vt": "str"
+                "t": "set",
+                "p": "evse",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "evse.amps",
+                "pt": "msg",
+                "to": "$number(payload.amps)",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload2",
+                "tot": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "payload2",
+                "pt": "msg"
             }
         ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 990,
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1640,
         "y": 660,
         "wires": [
             [
-                "0cf0b97d82a84f68"
+                "8dd31db647e97e9a"
             ]
         ]
     },
     {
-        "id": "e892b41d16a803e6",
-        "type": "function",
+        "id": "aa717d0237b2f9f2",
+        "type": "json",
         "z": "1bbb83617feb5d61",
-        "g": "f6e1783b4f8d6029",
-        "name": "Do Nothing",
-        "func": "msg.payload = `Got a status of ${msg.payload.data.status}`\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1130,
-        "y": 520,
+        "g": "fac4518c226fbf0c",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 1490,
+        "y": 660,
+        "wires": [
+            [
+                "ba2cbe8ea7210112"
+            ]
+        ]
+    },
+    {
+        "id": "36d20d6f10701b5e",
+        "type": "redis-command",
+        "z": "1bbb83617feb5d61",
+        "g": "fac4518c226fbf0c",
+        "server": "0430675ed6c7cd83",
+        "command": "GET",
+        "name": "",
+        "topic": "",
+        "params": "[]",
+        "paramsType": "json",
+        "payloadType": "json",
+        "block": false,
+        "x": 1360,
+        "y": 660,
+        "wires": [
+            [
+                "aa717d0237b2f9f2"
+            ]
+        ]
+    },
+    {
+        "id": "0cf0b97d82a84f68",
+        "type": "change",
+        "z": "1bbb83617feb5d61",
+        "g": "fac4518c226fbf0c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload2",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$join([\"evse:\",ocpp.chargeBoxIdentity])",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1200,
+        "y": 660,
+        "wires": [
+            [
+                "36d20d6f10701b5e"
+            ]
+        ]
+    },
+    {
+        "id": "2b61a29bf378cb19",
+        "type": "link in",
+        "z": "1bbb83617feb5d61",
+        "g": "fac4518c226fbf0c",
+        "name": "link in 2",
+        "links": [
+            "8dd31db647e97e9a"
+        ],
+        "x": 1115,
+        "y": 700,
+        "wires": [
+            [
+                "05dc69bf9c191b85"
+            ]
+        ]
+    },
+    {
+        "id": "317d216b8fa4f66a",
+        "type": "link out",
+        "z": "1bbb83617feb5d61",
+        "g": "adad8cfed89e9a2e",
+        "name": "link out 26",
+        "mode": "return",
+        "links": [],
+        "x": 745,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "1a959d6556da3c19",
+        "type": "link call",
+        "z": "1bbb83617feb5d61",
+        "g": "fac4518c226fbf0c",
+        "name": "SCM",
+        "links": [],
+        "linkType": "dynamic",
+        "timeout": "30",
+        "x": 1550,
+        "y": 700,
         "wires": [
             []
         ]
     },
     {
-        "id": "b348b5858bbb69e9",
+        "id": "bc558f4221526ddb",
         "type": "function",
         "z": "1bbb83617feb5d61",
-        "g": "f6e1783b4f8d6029",
-        "name": "Reset",
-        "func": "let connectorId = 0\nlet cbId = msg.ocpp.chargeBoxIdentity\nlet amps = 6\n\nif (msg.payload.data.connectorId > 0){\n    connectorId = msg.payload.data.connectorId\n    msg.payload = {\n        command: \"SetChargingProfile\",\n        cbId,\n        data: {\n            connectorId,\n            csChargingProfiles: {\n              chargingProfileId: 1,\n              stackLevel: 1,\n              chargingProfilePurpose: \"TxDefaultProfile\",\n              chargingProfileKind: \"Absolute\",\n              chargingSchedule: {\n                chargingRateUnit: \"A\",\n                chargingSchedulePeriod: [\n                    {\n                        startPeriod: 0,\n                        limit: amps,\n                        numberPhases: 1\n                    }\n                ]\n              }  \n            }\n        }\n    }\n\n    return msg\n\n}\n",
+        "g": "fac4518c226fbf0c",
+        "name": "function 6",
+        "func": "const command = \"SCM\"\nconst reqMap = global.get(\"CSMS:Req_Map\");\n\n//default target\nmsg.target = \"CL_SCM\"\n\n// Override target\nif (reqMap.has(command)){\n    msg.target = reqMap.get(command)\n}\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1110,
-        "y": 480,
+        "x": 1420,
+        "y": 700,
         "wires": [
             [
-                "3d9889d0e7face61"
+                "1a959d6556da3c19"
+            ]
+        ]
+    },
+    {
+        "id": "e930a4053f3ebf38",
+        "type": "function",
+        "z": "1bbb83617feb5d61",
+        "g": "fac4518c226fbf0c",
+        "name": "Auth/Start Tx",
+        "func": "// function handles both Authorize and StartTransaction\n// This generate a unique TxId, as long as the function doesn't get called twice\n// within the same millisecond\n\n\n// defaults\nconst ACCEPTED = \"Accepted\"\nlet status = ACCEPTED\nlet tags = []\n\n// copy message for the enhanced message with TxId\nlet msg2 = RED.util.cloneMessage(msg)\n\nmsg2.payload = {\n    idTagInfo: {\n        status\n    }\n}\n\nif (msg.ocpp.command === \"StartTransaction\"){\n    msg2.payload.transactionId = generateUniqueId()\n    //msg.ocpp.command = 'StartTransactionEnhanced'\n    //msg.payload.command = msg.ocpp.command\n    msg2.ocpp.connectorId = msg.payload.data.connectorId || 1\n}\n\n\nlet freeVend = global.get(\"CSMS:FreeVend\") \n    \nif (! freeVend ){\n    tags = global.get(\"CSMS:Tags\")\n\n    const result = tags.find((tag) => tag.tagId === msg.payload.data.idTag)\n\n    if (result){\n        if (!result.enabled){\n            msg2.payload.idTagInfo.status = \"Blocked\"\n        }\n        else if (result.expdate){\n            let expDate = new Date(result.expdate)\n            expDate.setHours(23, 59, 59, 999); // Set to the end of the day\n            let currentDate = new Date()\n\n            if (currentDate > expDate){\n                msg2.payload.idTagInfo.status = \"Expired\"\n            }\n            else {\n                msg2.payload.idTagInfo.expiryDate = expDate.toISOString()\n            }\n        } \n    }\n    else {\n        msg2.payload.idTagInfo.status = \"Invalid\"\n    }\n\n    if (msg2.payload.idTagInfo.status !== ACCEPTED){\n        msg2.payload.transactionId = 0\n    }\n\n}\n\nlet data\n\nif(msg.ocpp.command == \"StartTransaction\"){\n    data = msg.payload.data\n    data.transactionId = msg2.payload.transactionId\n    data.status = msg2.payload.idTagInfo.status\n    const ts = new Date(data.timestamp)\n    msg.timestamp = ts.getTime()\n    msg.cbId = msg2.ocpp.chargeBoxIdentity\n    msg.msgFrom = \"CS\"\n    msg.payload = [2,msg2.ocpp.MessageId,\"StartTransactionEnhanced\",data]\n} else {\n    msg = null\n} \n\nreturn [msg2,msg];\n\n\nfunction generateUniqueId() {\n    // Return a positive 32bit Int as a random TxId\n    const isoTimestamp = new Date().toISOString();\n    // Create a Date object from the ISO timestamp string\n    const date = new Date(isoTimestamp);\n\n    // Get the timestamp in seconds since the Unix epoch\n    const timestampInSeconds = Math.floor(date.getTime() / 1000);\n\n    // Calculate offset to ensure positive value within 32-bit signed range\n    const offset = timestampInSeconds < 0 ? 2147483648 : 0;\n\n    // Convert to 32-bit signed integer and apply offset\n    const int32Timestamp = (timestampInSeconds + offset) | 0;\n\n    return int32Timestamp;\n}\n",
+        "outputs": 2,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 790,
+        "y": 660,
+        "wires": [
+            [
+                "20e60ae443b8c057",
+                "7085c4e9b54ca5e5"
+            ],
+            [
+                "81b335ea88991f47"
             ]
         ]
     },
@@ -1500,27 +1488,213 @@
         ]
     },
     {
-        "id": "e930a4053f3ebf38",
+        "id": "b348b5858bbb69e9",
         "type": "function",
         "z": "1bbb83617feb5d61",
-        "g": "fac4518c226fbf0c",
-        "name": "Auth/Start Tx",
-        "func": "// function handles both Authorize and StartTransaction\n// This generate a unique TxId, as long as the function doesn't get called twice\n// within the same millisecond\n\n\n// defaults\nconst ACCEPTED = \"Accepted\"\nlet status = ACCEPTED\nlet tags = []\n\n// copy message for the enhanced message with TxId\nlet msg2 = RED.util.cloneMessage(msg)\n\nmsg2.payload = {\n    idTagInfo: {\n        status\n    }\n}\n\nif (msg.ocpp.command === \"StartTransaction\"){\n    msg2.payload.transactionId = generateUniqueId()\n    //msg.ocpp.command = 'StartTransactionEnhanced'\n    //msg.payload.command = msg.ocpp.command\n    msg2.ocpp.connectorId = msg.payload.data.connectorId || 1\n}\n\n\nlet freeVend = global.get(\"CSMS:FreeVend\") \n    \nif (! freeVend ){\n    tags = global.get(\"CSMS:Tags\")\n\n    const result = tags.find((tag) => tag.tagId === msg.payload.data.idTag)\n\n    if (result){\n        if (!result.enabled){\n            msg2.payload.idTagInfo.status = \"Blocked\"\n        }\n        else if (result.expdate){\n            let expDate = new Date(result.expdate)\n            expDate.setHours(23, 59, 59, 999); // Set to the end of the day\n            let currentDate = new Date()\n\n            if (currentDate > expDate){\n                msg2.payload.idTagInfo.status = \"Expired\"\n            }\n            else {\n                msg2.payload.idTagInfo.expiryDate = expDate.toISOString()\n            }\n        } \n    }\n    else {\n        msg2.payload.idTagInfo.status = \"Invalid\"\n    }\n\n    if (msg2.payload.idTagInfo.status !== ACCEPTED){\n        msg2.payload.transactionId = 0\n    }\n\n}\n\nlet data\n\nif(msg.ocpp.command == \"StartTransaction\"){\n    data = msg.payload.data\n    data.transactionId = msg2.payload.transactionId\n    data.status = msg2.payload.idTagInfo.status\n    const ts = new Date(data.timestamp)\n    msg.timestamp = ts.getTime()\n    msg.cbId = msg2.ocpp.chargeBoxIdentity\n    msg.msgFrom = \"CS\"\n    msg.payload = [2,msg2.ocpp.MessageId,\"StartTransactionEnhanced\",data]\n} else {\n    msg = null\n} \n\nreturn [msg2,msg];\n\n\nfunction generateUniqueId() {\n    // Return a positive 32bit Int as a random TxId\n    const isoTimestamp = new Date().toISOString();\n    // Create a Date object from the ISO timestamp string\n    const date = new Date(isoTimestamp);\n\n    // Get the timestamp in seconds since the Unix epoch\n    const timestampInSeconds = Math.floor(date.getTime() / 1000);\n\n    // Calculate offset to ensure positive value within 32-bit signed range\n    const offset = timestampInSeconds < 0 ? 2147483648 : 0;\n\n    // Convert to 32-bit signed integer and apply offset\n    const int32Timestamp = (timestampInSeconds + offset) | 0;\n\n    return int32Timestamp;\n}\n",
-        "outputs": 2,
-        "timeout": "",
+        "g": "f6e1783b4f8d6029",
+        "name": "Reset",
+        "func": "let connectorId = 0\nlet cbId = msg.ocpp.chargeBoxIdentity\nlet amps = 6\n\nif (msg.payload.data.connectorId > 0){\n    connectorId = msg.payload.data.connectorId\n    msg.payload = {\n        command: \"SetChargingProfile\",\n        cbId,\n        data: {\n            connectorId,\n            csChargingProfiles: {\n              chargingProfileId: 1,\n              stackLevel: 1,\n              chargingProfilePurpose: \"TxDefaultProfile\",\n              chargingProfileKind: \"Absolute\",\n              chargingSchedule: {\n                chargingRateUnit: \"A\",\n                chargingSchedulePeriod: [\n                    {\n                        startPeriod: 0,\n                        limit: amps,\n                        numberPhases: 1\n                    }\n                ]\n              }  \n            }\n        }\n    }\n\n    return msg\n\n}\n",
+        "outputs": 1,
+        "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 790,
+        "x": 1110,
+        "y": 480,
+        "wires": [
+            [
+                "3d9889d0e7face61"
+            ]
+        ]
+    },
+    {
+        "id": "e892b41d16a803e6",
+        "type": "function",
+        "z": "1bbb83617feb5d61",
+        "g": "f6e1783b4f8d6029",
+        "name": "Do Nothing",
+        "func": "msg.payload = `Got a status of ${msg.payload.data.status}`\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1130,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "20e60ae443b8c057",
+        "type": "switch",
+        "z": "1bbb83617feb5d61",
+        "g": "fac4518c226fbf0c",
+        "name": "StartTx Accepted",
+        "property": "payload.idTagInfo.status",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Accepted",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 990,
         "y": 660,
         "wires": [
             [
-                "20e60ae443b8c057",
-                "7085c4e9b54ca5e5"
-            ],
+                "0cf0b97d82a84f68"
+            ]
+        ]
+    },
+    {
+        "id": "31cbb896896da083",
+        "type": "link in",
+        "z": "1bbb83617feb5d61",
+        "g": "adad8cfed89e9a2e",
+        "name": "CL_SCM",
+        "links": [],
+        "x": 685,
+        "y": 780,
+        "wires": [
             [
-                "81b335ea88991f47"
+                "74558ab2bc828dd9",
+                "317d216b8fa4f66a"
+            ]
+        ]
+    },
+    {
+        "id": "3d9889d0e7face61",
+        "type": "link out",
+        "z": "1bbb83617feb5d61",
+        "g": "f6e1783b4f8d6029",
+        "name": "link out 27",
+        "mode": "link",
+        "links": [
+            "8eb3b8e8db8b77c7"
+        ],
+        "x": 1205,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "74558ab2bc828dd9",
+        "type": "function",
+        "z": "1bbb83617feb5d61",
+        "g": "adad8cfed89e9a2e",
+        "name": "Smart Charge Management Algorithm",
+        "func": "const currentTx = global.get(\"CSMS:SESSIONS\") || []\nconst loadLimit = global.get(\"SITE:LoadLimit\")\nlet adjustment = 1\n\nlet potential = 0\n\ncurrentTx.forEach(function(sess) {\n    potential += sess.amps\n})\n\nif (potential > loadLimit){\n    // Calculate an adjustment %\n    adjustment = 1 - ((( (potential - loadLimit ) / potential ) * 100) / 100)\n}\n\ncurrentTx.forEach(function(sess) {\n    msg = {}\n    msg.payload = {\n        command: \"SetChargingProfile\",\n        cbId: sess.cbId,\n        data: {\n            connectorId: sess.connectorId,\n            csChargingProfiles: {\n              chargingProfileId: 1,\n              transactionId: sess.transactionId,\n              stackLevel: 1,\n              chargingProfilePurpose: \"TxProfile\",\n              chargingProfileKind: \"Absolute\",\n              chargingSchedule: {\n                startSchedule: new Date().toISOString(),\n                chargingRateUnit: \"A\",\n                chargingSchedulePeriod: [\n                    {\n                        startPeriod: 0,\n                        limit: sess.amps * adjustment,\n                        numberPhases: 1\n                    }\n                ]\n              }  \n            }\n        }\n    }\n    msg.potential = potential\n    msg.adjustment = adjustment\n    msg.loadLimit = loadLimit\n    node.send(msg)\n});\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 780,
+        "wires": [
+            [
+                "277e1a6705982260"
+            ]
+        ]
+    },
+    {
+        "id": "277e1a6705982260",
+        "type": "link out",
+        "z": "1bbb83617feb5d61",
+        "g": "adad8cfed89e9a2e",
+        "name": "link out 28",
+        "mode": "link",
+        "links": [
+            "8eb3b8e8db8b77c7",
+            "8bd502e33fe2ee01"
+        ],
+        "x": 1065,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "05dc69bf9c191b85",
+        "type": "function",
+        "z": "1bbb83617feb5d61",
+        "g": "fac4518c226fbf0c",
+        "name": "Save sessions context",
+        "func": "if (msg.ocpp.command === \"StartTransaction\"){\n    let session = {}\n    session.cbId = msg.ocpp.chargeBoxIdentity\n    session.connectorId = msg.ocpp.connectorId\n    session.transactionId = msg.payload.transactionId\n    session.amps = msg.evse.amps\n    let sessions = global.get(\"CSMS:SESSIONS\") || []\n    sessions.push(session)\n    global.set(\"CSMS:SESSIONS\",sessions)\n    return msg;\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1240,
+        "y": 700,
+        "wires": [
+            [
+                "bc558f4221526ddb"
+            ]
+        ]
+    },
+    {
+        "id": "7085c4e9b54ca5e5",
+        "type": "link out",
+        "z": "1bbb83617feb5d61",
+        "g": "fac4518c226fbf0c",
+        "name": "link out 31",
+        "mode": "return",
+        "links": [],
+        "x": 895,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "81b335ea88991f47",
+        "type": "link out",
+        "z": "1bbb83617feb5d61",
+        "g": "fac4518c226fbf0c",
+        "name": "link out 33",
+        "mode": "link",
+        "links": [
+            "f5e6a6b98ad89c35"
+        ],
+        "x": 905,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "d5ea45e6cb0d7090",
+        "type": "link in",
+        "z": "1bbb83617feb5d61",
+        "g": "fac4518c226fbf0c",
+        "name": "CL_Auth_StartTx",
+        "links": [],
+        "x": 685,
+        "y": 660,
+        "wires": [
+            [
+                "e930a4053f3ebf38"
+            ]
+        ]
+    },
+    {
+        "id": "565b9e3d1ccde32e",
+        "type": "link in",
+        "z": "1bbb83617feb5d61",
+        "g": "f6e1783b4f8d6029",
+        "name": "CL_SetTxDefaultProfile",
+        "links": [
+            "dec2c34e2f47883d"
+        ],
+        "x": 695,
+        "y": 500,
+        "wires": [
+            [
+                "dcc4d675cbe95527"
             ]
         ]
     },
@@ -2066,54 +2240,6 @@
         ]
     },
     {
-        "id": "bc558f4221526ddb",
-        "type": "function",
-        "z": "1bbb83617feb5d61",
-        "g": "fac4518c226fbf0c",
-        "name": "function 6",
-        "func": "const command = \"SCM\"\nconst reqMap = global.get(\"CSMS:Req_Map\");\n\n//default target\nmsg.target = \"CL_SCM\"\n\n// Override target\nif (reqMap.has(command)){\n    msg.target = reqMap.get(command)\n}\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1420,
-        "y": 700,
-        "wires": [
-            [
-                "1a959d6556da3c19"
-            ]
-        ]
-    },
-    {
-        "id": "1a959d6556da3c19",
-        "type": "link call",
-        "z": "1bbb83617feb5d61",
-        "g": "fac4518c226fbf0c",
-        "name": "SCM",
-        "links": [],
-        "linkType": "dynamic",
-        "timeout": "30",
-        "x": 1550,
-        "y": 700,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "317d216b8fa4f66a",
-        "type": "link out",
-        "z": "1bbb83617feb5d61",
-        "g": "adad8cfed89e9a2e",
-        "name": "link out 26",
-        "mode": "return",
-        "links": [],
-        "x": 745,
-        "y": 820,
-        "wires": []
-    },
-    {
         "id": "d8c533dd612d0df0",
         "type": "link in",
         "z": "1bbb83617feb5d61",
@@ -2206,157 +2332,6 @@
         "wires": []
     },
     {
-        "id": "2b61a29bf378cb19",
-        "type": "link in",
-        "z": "1bbb83617feb5d61",
-        "g": "fac4518c226fbf0c",
-        "name": "link in 2",
-        "links": [
-            "8dd31db647e97e9a"
-        ],
-        "x": 1115,
-        "y": 700,
-        "wires": [
-            [
-                "05dc69bf9c191b85"
-            ]
-        ]
-    },
-    {
-        "id": "0cf0b97d82a84f68",
-        "type": "change",
-        "z": "1bbb83617feb5d61",
-        "g": "fac4518c226fbf0c",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload2",
-                "pt": "msg",
-                "to": "payload",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "$join([\"evse:\",ocpp.chargeBoxIdentity])",
-                "tot": "jsonata"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1200,
-        "y": 660,
-        "wires": [
-            [
-                "36d20d6f10701b5e"
-            ]
-        ]
-    },
-    {
-        "id": "36d20d6f10701b5e",
-        "type": "redis-command",
-        "z": "1bbb83617feb5d61",
-        "g": "fac4518c226fbf0c",
-        "server": "0430675ed6c7cd83",
-        "command": "GET",
-        "name": "",
-        "topic": "",
-        "params": "[]",
-        "paramsType": "json",
-        "payloadType": "json",
-        "block": false,
-        "x": 1360,
-        "y": 660,
-        "wires": [
-            [
-                "aa717d0237b2f9f2"
-            ]
-        ]
-    },
-    {
-        "id": "aa717d0237b2f9f2",
-        "type": "json",
-        "z": "1bbb83617feb5d61",
-        "g": "fac4518c226fbf0c",
-        "name": "",
-        "property": "payload",
-        "action": "",
-        "pretty": false,
-        "x": 1490,
-        "y": 660,
-        "wires": [
-            [
-                "ba2cbe8ea7210112"
-            ]
-        ]
-    },
-    {
-        "id": "ba2cbe8ea7210112",
-        "type": "change",
-        "z": "1bbb83617feb5d61",
-        "g": "fac4518c226fbf0c",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "evse",
-                "pt": "msg",
-                "to": "{}",
-                "tot": "json"
-            },
-            {
-                "t": "set",
-                "p": "evse.amps",
-                "pt": "msg",
-                "to": "$number(payload.amps)",
-                "tot": "jsonata"
-            },
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload2",
-                "tot": "msg"
-            },
-            {
-                "t": "delete",
-                "p": "payload2",
-                "pt": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1640,
-        "y": 660,
-        "wires": [
-            [
-                "8dd31db647e97e9a"
-            ]
-        ]
-    },
-    {
-        "id": "8dd31db647e97e9a",
-        "type": "link out",
-        "z": "1bbb83617feb5d61",
-        "g": "fac4518c226fbf0c",
-        "name": "link out 39",
-        "mode": "link",
-        "links": [
-            "2b61a29bf378cb19"
-        ],
-        "x": 1765,
-        "y": 680,
-        "wires": []
-    },
-    {
         "id": "a3ed9085610d4b68",
         "type": "delay",
         "z": "1bbb83617feb5d61",
@@ -2416,71 +2391,442 @@
         "wires": []
     },
     {
-        "id": "4f4c8a9f1f8d9bb4",
+        "id": "868ca4fd5276022e",
+        "type": "switch",
+        "z": "9ca80d42115ee3c3",
+        "g": "a0169f65e4967ec2",
+        "name": "Filter from CS only",
+        "property": "msgFrom",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "CS",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 270,
+        "y": 480,
+        "wires": [
+            [
+                "e07f99fdfc73cd44"
+            ]
+        ]
+    },
+    {
+        "id": "124fa94892413c81",
+        "type": "redis-command",
+        "z": "9ca80d42115ee3c3",
+        "g": "a0169f65e4967ec2",
+        "server": "0430675ed6c7cd83",
+        "command": "GET",
+        "name": "",
+        "topic": "",
+        "params": "[]",
+        "paramsType": "json",
+        "payloadType": "json",
+        "block": false,
+        "x": 620,
+        "y": 480,
+        "wires": [
+            [
+                "b952178113645c64"
+            ]
+        ]
+    },
+    {
+        "id": "e07f99fdfc73cd44",
+        "type": "change",
+        "z": "9ca80d42115ee3c3",
+        "g": "a0169f65e4967ec2",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "\"evse:\" & msg.cbId",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 460,
+        "y": 480,
+        "wires": [
+            [
+                "124fa94892413c81"
+            ]
+        ]
+    },
+    {
+        "id": "b952178113645c64",
+        "type": "json",
+        "z": "9ca80d42115ee3c3",
+        "g": "a0169f65e4967ec2",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 750,
+        "y": 480,
+        "wires": [
+            [
+                "34b27b38f2e7609a"
+            ]
+        ]
+    },
+    {
+        "id": "34b27b38f2e7609a",
+        "type": "change",
+        "z": "9ca80d42115ee3c3",
+        "g": "a0169f65e4967ec2",
+        "name": "Update TS",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.lastcommtime",
+                "pt": "msg",
+                "to": "timestamp",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 880,
+        "y": 480,
+        "wires": [
+            [
+                "7bc0d39e117db98a"
+            ]
+        ]
+    },
+    {
+        "id": "7bc0d39e117db98a",
+        "type": "json",
+        "z": "9ca80d42115ee3c3",
+        "g": "a0169f65e4967ec2",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 1020,
+        "y": 480,
+        "wires": [
+            [
+                "d2d365e869ae5aa3"
+            ]
+        ]
+    },
+    {
+        "id": "d2d365e869ae5aa3",
+        "type": "redis-command",
+        "z": "9ca80d42115ee3c3",
+        "g": "a0169f65e4967ec2",
+        "server": "0430675ed6c7cd83",
+        "command": "SET",
+        "name": "",
+        "topic": "",
+        "params": "[]",
+        "paramsType": "json",
+        "payloadType": "json",
+        "block": false,
+        "x": 1160,
+        "y": 480,
+        "wires": [
+            [
+                "a1f721f1a03c965a"
+            ]
+        ]
+    },
+    {
+        "id": "d836b12b64275a9d",
+        "type": "link in",
+        "z": "9ca80d42115ee3c3",
+        "g": "a0169f65e4967ec2",
+        "name": "Update TS",
+        "links": [
+            "846c6af009c205bd"
+        ],
+        "x": 145,
+        "y": 480,
+        "wires": [
+            [
+                "868ca4fd5276022e"
+            ]
+        ]
+    },
+    {
+        "id": "a1f721f1a03c965a",
+        "type": "link out",
+        "z": "9ca80d42115ee3c3",
+        "g": "a0169f65e4967ec2",
+        "name": "link out 17",
+        "mode": "link",
+        "links": [
+            "19a1d55d0ad937f5"
+        ],
+        "x": 1275,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "25afca3af5d04a0d",
+        "type": "link in",
+        "z": "9ca80d42115ee3c3",
+        "g": "23d227486f4a19f5",
+        "name": "Generate ChargeProfiles",
+        "links": [
+            "3890b31b33998ff0"
+        ],
+        "x": 125,
+        "y": 1080,
+        "wires": [
+            [
+                "668279fcb445ce5d"
+            ]
+        ]
+    },
+    {
+        "id": "668279fcb445ce5d",
         "type": "function",
         "z": "9ca80d42115ee3c3",
-        "g": "f6f7b333be6e5917",
-        "name": "EXAMPLE: Enable Overrides",
-        "func": "// Global Context ocppCmdTargets is a Map object\n\nlet ctx = 'ocppCmdTargets'\n\n//Get the current map\nlet targetMap = global.get(ctx)\n\n// Set new targets for ocpp commands\ntargetMap.set('BootNotification','EXAMPLE_BootNotification')\ntargetMap.set('Heartbeat','EXAMPLE_Heartbeat')\n\n\n// As an example to clear out a user defined ocpp function and return to defaults, do:\n// targetMap.delete('BootNotification')\n\n\n// Set the map back to the global context so the CSMS subflow can use them\nglobal.set(ctx, targetMap)\nreturn\n\n",
+        "g": "23d227486f4a19f5",
+        "name": "Smart Charge Management Algorithm",
+        "func": "const currentTx = global.get(\"CSMS:SESSIONS\") || []\nconst loadLimit = global.get(\"SITE:LoadLimit\")\nlet adjustment = 1\n\nlet potential = 0\n\ncurrentTx.forEach(function(sess) {\n    potential += sess.amps\n})\n\nif (potential > loadLimit){\n    // Calculate an adjustment %\n    adjustment = 1 - ((( (potential - loadLimit ) / potential ) * 100) / 100)\n}\n\ncurrentTx.forEach(function(sess) {\n    msg = {}\n    msg.payload = {\n        command: \"SetChargingProfile\",\n        cbId: sess.cbId,\n        data: {\n            connectorId: sess.connectorId,\n            csChargingProfiles: {\n              chargingProfileId: 1,\n              transactionId: sess.transactionId,\n              stackLevel: 1,\n              chargingProfilePurpose: \"TxProfile\",\n              chargingProfileKind: \"Absolute\",\n              chargingSchedule: {\n                startSchedule: new Date().toISOString(),\n                chargingRateUnit: \"A\",\n                chargingSchedulePeriod: [\n                    {\n                        startPeriod: 0,\n                        limit: sess.amps * adjustment,\n                        numberPhases: 1\n                    }\n                ]\n              }  \n            }\n        }\n    }\n    msg.potential = potential\n    msg.adjustment = adjustment\n    msg.loadLimit = loadLimit\n    node.send(msg)\n});\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 660,
-        "y": 760,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "056c40eb67d6fe4c",
-        "type": "link in",
-        "z": "9ca80d42115ee3c3",
-        "g": "f6f7b333be6e5917",
-        "name": "EXAMPLE_BootNotification",
-        "links": [],
-        "x": 105,
-        "y": 780,
+        "x": 310,
+        "y": 1080,
         "wires": [
             [
-                "9298f921e122faa5"
+                "1186737eeaebd401"
             ]
         ]
     },
     {
-        "id": "fa1a321403a73088",
+        "id": "1186737eeaebd401",
         "type": "link out",
         "z": "9ca80d42115ee3c3",
-        "g": "f6f7b333be6e5917",
-        "name": "link out 55",
+        "g": "23d227486f4a19f5",
+        "name": "link out 51",
         "mode": "return",
         "links": [],
-        "x": 405,
-        "y": 780,
+        "x": 495,
+        "y": 1080,
         "wires": []
     },
     {
-        "id": "9298f921e122faa5",
+        "id": "c71183f6d99d46ef",
         "type": "function",
         "z": "9ca80d42115ee3c3",
-        "g": "f6f7b333be6e5917",
-        "name": "BootNotification",
-        "func": "//Load defaults\nconst interval = global.get(\"CSMS:HeartBeatInterval\") ?? 120\nconst currentTime = new Date().toISOString()\nconst validEVSEs = global.get(\"CSMS:EVSEs\") ?? []\n\nlet status = (validEVSEs.find((cbId) => cbId === msg.ocpp.chargeBoxIdentity) != undefined) ? \"Accepted\" : \"Rejected\"\n\nmsg.payload = {\n    interval,\n    currentTime,\n    status\n}\n\nmsg.ack = true\n\nreturn msg;",
-        "outputs": 1,
+        "g": "c20c8766fa664d2e",
+        "name": "Auth/Start Tx",
+        "func": "// function handles both Authorize and StartTransaction\n// This generate a unique TxId, as long as the function doesn't get called twice\n// within the same millisecond\n\n\n// defaults\nconst ACCEPTED = \"Accepted\"\nlet status = ACCEPTED\nlet tags = []\n\n// copy message for the enhanced message with TxId\nlet msg2 = RED.util.cloneMessage(msg)\n\nmsg2.payload = {\n    idTagInfo: {\n        status\n    }\n}\n\nif (msg.ocpp.command === \"StartTransaction\"){\n    msg2.payload.transactionId = generateUniqueId()\n    msg.ocpp.command = 'StartTransactionEnhanced'\n    msg.payload.command = msg.ocpp.command\n    msg2.ocpp.connectorId = msg.payload.data.connectorId || 1\n}\n\nlet freeVend = global.get(\"CSMS:FreeVend\") \n    \nif (! freeVend ){\n    tags = global.get(\"CSMS:Tags\")\n\n    const result = tags.find((tag) => tag.tagId === msg.payload.data.idTag)\n\n    if (result){\n        if (!result.enabled){\n            msg2.payload.idTagInfo.status = \"Blocked\"\n        }\n        else if (result.expdate){\n            let expDate = new Date(result.expdate)\n            expDate.setHours(23, 59, 59, 999); // Set to the end of the day\n            let currentDate = new Date()\n\n            if (currentDate > expDate){\n                msg2.payload.idTagInfo.status = \"Expired\"\n            }\n            else {\n                msg2.payload.idTagInfo.expiryDate = expDate.toISOString()\n            }\n        } \n    }\n    else {\n        msg2.payload.idTagInfo.status = \"Invalid\"\n    }\n\n    if (msg2.payload.idTagInfo.status !== ACCEPTED){\n        msg2.payload.transactionId = 0\n    }\n\n}\n\nlet data\n\nif(msg.ocpp.command == \"StartTransactionEnhanced\"){\n    data = msg.payload.data\n    data.transactionId = msg2.payload.transactionId\n    data.status = msg2.payload.idTagInfo.status\n    const ts = new Date(data.timestamp)\n    msg.timestamp = ts.getTime()\n    msg.cbId = msg2.ocpp.chargeBoxIdentity\n    msg.msgFrom = \"CS\"\n    msg.payload = [2,msg2.ocpp.MessageId,\"StartTransactionEnhanced\",data]\n} else {\n    msg = null\n}\n\nmsg2.ack = true\n\nreturn [msg2,msg];\n\n\nfunction generateUniqueId() {\n    // Return a positive 32bit Int as a random TxId\n    const isoTimestamp = new Date().toISOString();\n    // Create a Date object from the ISO timestamp string\n    const date = new Date(isoTimestamp);\n\n    // Get the timestamp in seconds since the Unix epoch\n    const timestampInSeconds = Math.floor(date.getTime() / 1000);\n\n    // Calculate offset to ensure positive value within 32-bit signed range\n    const offset = timestampInSeconds < 0 ? 2147483648 : 0;\n\n    // Convert to 32-bit signed integer and apply offset\n    const int32Timestamp = (timestampInSeconds + offset) | 0;\n\n    return int32Timestamp;\n}\n\n/*\n// msg format\n//\n{\n    \"timestamp\":1735842833857,\n    \"cbId\":\"evsesim1\",\n    \"msgFrom\":\"CS\",\n    \"payload\":\n        [\n            2,\n            \"d5f3026e-d602-4ab8-a009-bcdef17932e3\",\n            \"StartTransaction\",\n            {\"connectorId\":1,\"idTag\":\"ccc\",\"meterStart\":2004,\"timestamp\":\"2025-01-02T18:33:53.856Z\"}\n         ],\n         \"_msgid\":\"6dc75f6161d5a70b\"\n}\n*/",
+        "outputs": 2,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 260,
-        "y": 780,
+        "x": 230,
+        "y": 920,
         "wires": [
             [
-                "fa1a321403a73088"
+                "e2a9a4f6ea0938e9",
+                "1b09a234a1e45737",
+                "02e68d94d30084bf"
+            ],
+            [
+                "08c6daf9b344995d",
+                "9553dfbcb3b284b3"
             ]
         ]
+    },
+    {
+        "id": "5bb26352bd2d7e5a",
+        "type": "link in",
+        "z": "9ca80d42115ee3c3",
+        "g": "c20c8766fa664d2e",
+        "name": "EXAMPLE_Auth_StartTx",
+        "links": [],
+        "x": 125,
+        "y": 920,
+        "wires": [
+            [
+                "c71183f6d99d46ef"
+            ]
+        ]
+    },
+    {
+        "id": "e2a9a4f6ea0938e9",
+        "type": "switch",
+        "z": "9ca80d42115ee3c3",
+        "g": "c20c8766fa664d2e",
+        "name": "StartTx Accepted",
+        "property": "payload.idTagInfo.status",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Accepted",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 500,
+        "y": 900,
+        "wires": [
+            [
+                "378785534c46db9b"
+            ]
+        ]
+    },
+    {
+        "id": "1b09a234a1e45737",
+        "type": "link out",
+        "z": "9ca80d42115ee3c3",
+        "g": "c20c8766fa664d2e",
+        "name": "link out 52",
+        "mode": "return",
+        "links": [],
+        "x": 335,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "08c6daf9b344995d",
+        "type": "link out",
+        "z": "9ca80d42115ee3c3",
+        "g": "c20c8766fa664d2e",
+        "name": "link out 53",
+        "mode": "link",
+        "links": [
+            "31dee9642ab622cd"
+        ],
+        "x": 345,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "378785534c46db9b",
+        "type": "function",
+        "z": "9ca80d42115ee3c3",
+        "g": "c20c8766fa664d2e",
+        "name": "Save sessions context",
+        "func": "if (msg.ocpp.command === \"StartTransaction\"){\n    let session = {}\n    session.cbId = msg.ocpp.chargeBoxIdentity\n    session.connectorId = msg.ocpp.connectorId\n    session.transactionId = msg.payload.transactionId\n    session.amps = (session.cbId == \"EVOChargeLab1\") ? 32 : 40\n    let sessions = global.get(\"CSMS:SESSIONS\") || []\n    sessions.push(session)\n    global.set(\"CSMS:SESSIONS\",sessions)\n    return msg;\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 710,
+        "y": 900,
+        "wires": [
+            [
+                "3890b31b33998ff0"
+            ]
+        ]
+    },
+    {
+        "id": "3890b31b33998ff0",
+        "type": "link out",
+        "z": "9ca80d42115ee3c3",
+        "g": "c20c8766fa664d2e",
+        "name": "link out 54",
+        "mode": "link",
+        "links": [
+            "25afca3af5d04a0d"
+        ],
+        "x": 855,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "9553dfbcb3b284b3",
+        "type": "debug",
+        "z": "9ca80d42115ee3c3",
+        "g": "c20c8766fa664d2e",
+        "name": "MSG",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 450,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "02e68d94d30084bf",
+        "type": "debug",
+        "z": "9ca80d42115ee3c3",
+        "g": "c20c8766fa664d2e",
+        "name": "MSG 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 480,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "1e88d1e2d4dcc7d3",
+        "type": "link in",
+        "z": "9ca80d42115ee3c3",
+        "g": "f6f7b333be6e5917",
+        "name": "EXAMPLE_Heartbeat",
+        "links": [],
+        "x": 105,
+        "y": 740,
+        "wires": [
+            [
+                "7283d4e60852fabc"
+            ]
+        ]
+    },
+    {
+        "id": "2b16b2bbbd57fabc",
+        "type": "link out",
+        "z": "9ca80d42115ee3c3",
+        "g": "f6f7b333be6e5917",
+        "name": "HB_OUT",
+        "mode": "return",
+        "links": [],
+        "x": 395,
+        "y": 740,
+        "wires": []
     },
     {
         "id": "7283d4e60852fabc",
@@ -2525,441 +2871,70 @@
         ]
     },
     {
-        "id": "2b16b2bbbd57fabc",
-        "type": "link out",
-        "z": "9ca80d42115ee3c3",
-        "g": "f6f7b333be6e5917",
-        "name": "HB_OUT",
-        "mode": "return",
-        "links": [],
-        "x": 395,
-        "y": 740,
-        "wires": []
-    },
-    {
-        "id": "1e88d1e2d4dcc7d3",
-        "type": "link in",
-        "z": "9ca80d42115ee3c3",
-        "g": "f6f7b333be6e5917",
-        "name": "EXAMPLE_Heartbeat",
-        "links": [],
-        "x": 105,
-        "y": 740,
-        "wires": [
-            [
-                "7283d4e60852fabc"
-            ]
-        ]
-    },
-    {
-        "id": "02e68d94d30084bf",
-        "type": "debug",
-        "z": "9ca80d42115ee3c3",
-        "g": "c20c8766fa664d2e",
-        "name": "MSG 2",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 480,
-        "y": 860,
-        "wires": []
-    },
-    {
-        "id": "9553dfbcb3b284b3",
-        "type": "debug",
-        "z": "9ca80d42115ee3c3",
-        "g": "c20c8766fa664d2e",
-        "name": "MSG",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 450,
-        "y": 960,
-        "wires": []
-    },
-    {
-        "id": "3890b31b33998ff0",
-        "type": "link out",
-        "z": "9ca80d42115ee3c3",
-        "g": "c20c8766fa664d2e",
-        "name": "link out 54",
-        "mode": "link",
-        "links": [
-            "25afca3af5d04a0d"
-        ],
-        "x": 855,
-        "y": 900,
-        "wires": []
-    },
-    {
-        "id": "378785534c46db9b",
+        "id": "9298f921e122faa5",
         "type": "function",
         "z": "9ca80d42115ee3c3",
-        "g": "c20c8766fa664d2e",
-        "name": "Save sessions context",
-        "func": "if (msg.ocpp.command === \"StartTransaction\"){\n    let session = {}\n    session.cbId = msg.ocpp.chargeBoxIdentity\n    session.connectorId = msg.ocpp.connectorId\n    session.transactionId = msg.payload.transactionId\n    session.amps = (session.cbId == \"EVOChargeLab1\") ? 32 : 40\n    let sessions = global.get(\"CSMS:SESSIONS\") || []\n    sessions.push(session)\n    global.set(\"CSMS:SESSIONS\",sessions)\n    return msg;\n}",
+        "g": "f6f7b333be6e5917",
+        "name": "BootNotification",
+        "func": "//Load defaults\nconst interval = global.get(\"CSMS:HeartBeatInterval\") ?? 120\nconst currentTime = new Date().toISOString()\nconst validEVSEs = global.get(\"CSMS:EVSEs\") ?? []\n\nlet status = (validEVSEs.find((cbId) => cbId === msg.ocpp.chargeBoxIdentity) != undefined) ? \"Accepted\" : \"Rejected\"\n\nmsg.payload = {\n    interval,\n    currentTime,\n    status\n}\n\nmsg.ack = true\n\nreturn msg;",
         "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 710,
-        "y": 900,
-        "wires": [
-            [
-                "3890b31b33998ff0"
-            ]
-        ]
-    },
-    {
-        "id": "08c6daf9b344995d",
-        "type": "link out",
-        "z": "9ca80d42115ee3c3",
-        "g": "c20c8766fa664d2e",
-        "name": "link out 53",
-        "mode": "link",
-        "links": [
-            "31dee9642ab622cd"
-        ],
-        "x": 345,
-        "y": 940,
-        "wires": []
-    },
-    {
-        "id": "1b09a234a1e45737",
-        "type": "link out",
-        "z": "9ca80d42115ee3c3",
-        "g": "c20c8766fa664d2e",
-        "name": "link out 52",
-        "mode": "return",
-        "links": [],
-        "x": 335,
-        "y": 880,
-        "wires": []
-    },
-    {
-        "id": "e2a9a4f6ea0938e9",
-        "type": "switch",
-        "z": "9ca80d42115ee3c3",
-        "g": "c20c8766fa664d2e",
-        "name": "StartTx Accepted",
-        "property": "payload.idTagInfo.status",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "Accepted",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 500,
-        "y": 900,
-        "wires": [
-            [
-                "378785534c46db9b"
-            ]
-        ]
-    },
-    {
-        "id": "5bb26352bd2d7e5a",
-        "type": "link in",
-        "z": "9ca80d42115ee3c3",
-        "g": "c20c8766fa664d2e",
-        "name": "EXAMPLE_Auth_StartTx",
-        "links": [],
-        "x": 125,
-        "y": 920,
-        "wires": [
-            [
-                "c71183f6d99d46ef"
-            ]
-        ]
-    },
-    {
-        "id": "c71183f6d99d46ef",
-        "type": "function",
-        "z": "9ca80d42115ee3c3",
-        "g": "c20c8766fa664d2e",
-        "name": "Auth/Start Tx",
-        "func": "// function handles both Authorize and StartTransaction\n// This generate a unique TxId, as long as the function doesn't get called twice\n// within the same millisecond\n\n\n// defaults\nconst ACCEPTED = \"Accepted\"\nlet status = ACCEPTED\nlet tags = []\n\n// copy message for the enhanced message with TxId\nlet msg2 = RED.util.cloneMessage(msg)\n\nmsg2.payload = {\n    idTagInfo: {\n        status\n    }\n}\n\nif (msg.ocpp.command === \"StartTransaction\"){\n    msg2.payload.transactionId = generateUniqueId()\n    msg.ocpp.command = 'StartTransactionEnhanced'\n    msg.payload.command = msg.ocpp.command\n    msg2.ocpp.connectorId = msg.payload.data.connectorId || 1\n}\n\nlet freeVend = global.get(\"CSMS:FreeVend\") \n    \nif (! freeVend ){\n    tags = global.get(\"CSMS:Tags\")\n\n    const result = tags.find((tag) => tag.tagId === msg.payload.data.idTag)\n\n    if (result){\n        if (!result.enabled){\n            msg2.payload.idTagInfo.status = \"Blocked\"\n        }\n        else if (result.expdate){\n            let expDate = new Date(result.expdate)\n            expDate.setHours(23, 59, 59, 999); // Set to the end of the day\n            let currentDate = new Date()\n\n            if (currentDate > expDate){\n                msg2.payload.idTagInfo.status = \"Expired\"\n            }\n            else {\n                msg2.payload.idTagInfo.expiryDate = expDate.toISOString()\n            }\n        } \n    }\n    else {\n        msg2.payload.idTagInfo.status = \"Invalid\"\n    }\n\n    if (msg2.payload.idTagInfo.status !== ACCEPTED){\n        msg2.payload.transactionId = 0\n    }\n\n}\n\nlet data\n\nif(msg.ocpp.command == \"StartTransactionEnhanced\"){\n    data = msg.payload.data\n    data.transactionId = msg2.payload.transactionId\n    data.status = msg2.payload.idTagInfo.status\n    const ts = new Date(data.timestamp)\n    msg.timestamp = ts.getTime()\n    msg.cbId = msg2.ocpp.chargeBoxIdentity\n    msg.msgFrom = \"CS\"\n    msg.payload = [2,msg2.ocpp.MessageId,\"StartTransactionEnhanced\",data]\n} else {\n    msg = null\n}\n\nmsg2.ack = true\n\nreturn [msg2,msg];\n\n\nfunction generateUniqueId() {\n    // Return a positive 32bit Int as a random TxId\n    const isoTimestamp = new Date().toISOString();\n    // Create a Date object from the ISO timestamp string\n    const date = new Date(isoTimestamp);\n\n    // Get the timestamp in seconds since the Unix epoch\n    const timestampInSeconds = Math.floor(date.getTime() / 1000);\n\n    // Calculate offset to ensure positive value within 32-bit signed range\n    const offset = timestampInSeconds < 0 ? 2147483648 : 0;\n\n    // Convert to 32-bit signed integer and apply offset\n    const int32Timestamp = (timestampInSeconds + offset) | 0;\n\n    return int32Timestamp;\n}\n\n/*\n// msg format\n//\n{\n    \"timestamp\":1735842833857,\n    \"cbId\":\"evsesim1\",\n    \"msgFrom\":\"CS\",\n    \"payload\":\n        [\n            2,\n            \"d5f3026e-d602-4ab8-a009-bcdef17932e3\",\n            \"StartTransaction\",\n            {\"connectorId\":1,\"idTag\":\"ccc\",\"meterStart\":2004,\"timestamp\":\"2025-01-02T18:33:53.856Z\"}\n         ],\n         \"_msgid\":\"6dc75f6161d5a70b\"\n}\n*/",
-        "outputs": 2,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 230,
-        "y": 920,
+        "x": 260,
+        "y": 780,
         "wires": [
             [
-                "e2a9a4f6ea0938e9",
-                "1b09a234a1e45737",
-                "02e68d94d30084bf"
-            ],
-            [
-                "08c6daf9b344995d",
-                "9553dfbcb3b284b3"
+                "fa1a321403a73088"
             ]
         ]
     },
     {
-        "id": "1186737eeaebd401",
+        "id": "fa1a321403a73088",
         "type": "link out",
         "z": "9ca80d42115ee3c3",
-        "g": "23d227486f4a19f5",
-        "name": "link out 51",
+        "g": "f6f7b333be6e5917",
+        "name": "link out 55",
         "mode": "return",
         "links": [],
-        "x": 495,
-        "y": 1080,
+        "x": 405,
+        "y": 780,
         "wires": []
     },
     {
-        "id": "668279fcb445ce5d",
+        "id": "056c40eb67d6fe4c",
+        "type": "link in",
+        "z": "9ca80d42115ee3c3",
+        "g": "f6f7b333be6e5917",
+        "name": "EXAMPLE_BootNotification",
+        "links": [],
+        "x": 105,
+        "y": 780,
+        "wires": [
+            [
+                "9298f921e122faa5"
+            ]
+        ]
+    },
+    {
+        "id": "4f4c8a9f1f8d9bb4",
         "type": "function",
         "z": "9ca80d42115ee3c3",
-        "g": "23d227486f4a19f5",
-        "name": "Smart Charge Management Algorithm",
-        "func": "const currentTx = global.get(\"CSMS:SESSIONS\") || []\nconst loadLimit = global.get(\"SITE:LoadLimit\")\nlet adjustment = 1\n\nlet potential = 0\n\ncurrentTx.forEach(function(sess) {\n    potential += sess.amps\n})\n\nif (potential > loadLimit){\n    // Calculate an adjustment %\n    adjustment = 1 - ((( (potential - loadLimit ) / potential ) * 100) / 100)\n}\n\ncurrentTx.forEach(function(sess) {\n    msg = {}\n    msg.payload = {\n        command: \"SetChargingProfile\",\n        cbId: sess.cbId,\n        data: {\n            connectorId: sess.connectorId,\n            csChargingProfiles: {\n              chargingProfileId: 1,\n              transactionId: sess.transactionId,\n              stackLevel: 1,\n              chargingProfilePurpose: \"TxProfile\",\n              chargingProfileKind: \"Absolute\",\n              chargingSchedule: {\n                startSchedule: new Date().toISOString(),\n                chargingRateUnit: \"A\",\n                chargingSchedulePeriod: [\n                    {\n                        startPeriod: 0,\n                        limit: sess.amps * adjustment,\n                        numberPhases: 1\n                    }\n                ]\n              }  \n            }\n        }\n    }\n    msg.potential = potential\n    msg.adjustment = adjustment\n    msg.loadLimit = loadLimit\n    node.send(msg)\n});\n",
+        "g": "f6f7b333be6e5917",
+        "name": "EXAMPLE: Enable Overrides",
+        "func": "// Global Context ocppCmdTargets is a Map object\n\nlet ctx = 'ocppCmdTargets'\n\n//Get the current map\nlet targetMap = global.get(ctx)\n\n// Set new targets for ocpp commands\ntargetMap.set('BootNotification','EXAMPLE_BootNotification')\ntargetMap.set('Heartbeat','EXAMPLE_Heartbeat')\n\n\n// As an example to clear out a user defined ocpp function and return to defaults, do:\n// targetMap.delete('BootNotification')\n\n\n// Set the map back to the global context so the CSMS subflow can use them\nglobal.set(ctx, targetMap)\nreturn\n\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 310,
-        "y": 1080,
+        "x": 660,
+        "y": 760,
         "wires": [
-            [
-                "1186737eeaebd401"
-            ]
-        ]
-    },
-    {
-        "id": "25afca3af5d04a0d",
-        "type": "link in",
-        "z": "9ca80d42115ee3c3",
-        "g": "23d227486f4a19f5",
-        "name": "Generate ChargeProfiles",
-        "links": [
-            "3890b31b33998ff0"
-        ],
-        "x": 125,
-        "y": 1080,
-        "wires": [
-            [
-                "668279fcb445ce5d"
-            ]
-        ]
-    },
-    {
-        "id": "a1f721f1a03c965a",
-        "type": "link out",
-        "z": "9ca80d42115ee3c3",
-        "g": "a0169f65e4967ec2",
-        "name": "link out 17",
-        "mode": "link",
-        "links": [
-            "19a1d55d0ad937f5"
-        ],
-        "x": 1275,
-        "y": 480,
-        "wires": []
-    },
-    {
-        "id": "d836b12b64275a9d",
-        "type": "link in",
-        "z": "9ca80d42115ee3c3",
-        "g": "a0169f65e4967ec2",
-        "name": "Update TS",
-        "links": [
-            "846c6af009c205bd"
-        ],
-        "x": 145,
-        "y": 480,
-        "wires": [
-            [
-                "868ca4fd5276022e"
-            ]
-        ]
-    },
-    {
-        "id": "d2d365e869ae5aa3",
-        "type": "redis-command",
-        "z": "9ca80d42115ee3c3",
-        "g": "a0169f65e4967ec2",
-        "server": "0430675ed6c7cd83",
-        "command": "SET",
-        "name": "",
-        "topic": "",
-        "params": "[]",
-        "paramsType": "json",
-        "payloadType": "json",
-        "block": false,
-        "x": 1160,
-        "y": 480,
-        "wires": [
-            [
-                "a1f721f1a03c965a"
-            ]
-        ]
-    },
-    {
-        "id": "7bc0d39e117db98a",
-        "type": "json",
-        "z": "9ca80d42115ee3c3",
-        "g": "a0169f65e4967ec2",
-        "name": "",
-        "property": "payload",
-        "action": "",
-        "pretty": false,
-        "x": 1020,
-        "y": 480,
-        "wires": [
-            [
-                "d2d365e869ae5aa3"
-            ]
-        ]
-    },
-    {
-        "id": "34b27b38f2e7609a",
-        "type": "change",
-        "z": "9ca80d42115ee3c3",
-        "g": "a0169f65e4967ec2",
-        "name": "Update TS",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload.lastcommtime",
-                "pt": "msg",
-                "to": "timestamp",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 880,
-        "y": 480,
-        "wires": [
-            [
-                "7bc0d39e117db98a"
-            ]
-        ]
-    },
-    {
-        "id": "b952178113645c64",
-        "type": "json",
-        "z": "9ca80d42115ee3c3",
-        "g": "a0169f65e4967ec2",
-        "name": "",
-        "property": "payload",
-        "action": "",
-        "pretty": false,
-        "x": 750,
-        "y": 480,
-        "wires": [
-            [
-                "34b27b38f2e7609a"
-            ]
-        ]
-    },
-    {
-        "id": "e07f99fdfc73cd44",
-        "type": "change",
-        "z": "9ca80d42115ee3c3",
-        "g": "a0169f65e4967ec2",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "\"evse:\" & msg.cbId",
-                "tot": "jsonata"
-            },
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "{}",
-                "tot": "json"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 460,
-        "y": 480,
-        "wires": [
-            [
-                "124fa94892413c81"
-            ]
-        ]
-    },
-    {
-        "id": "124fa94892413c81",
-        "type": "redis-command",
-        "z": "9ca80d42115ee3c3",
-        "g": "a0169f65e4967ec2",
-        "server": "0430675ed6c7cd83",
-        "command": "GET",
-        "name": "",
-        "topic": "",
-        "params": "[]",
-        "paramsType": "json",
-        "payloadType": "json",
-        "block": false,
-        "x": 620,
-        "y": 480,
-        "wires": [
-            [
-                "b952178113645c64"
-            ]
-        ]
-    },
-    {
-        "id": "868ca4fd5276022e",
-        "type": "switch",
-        "z": "9ca80d42115ee3c3",
-        "g": "a0169f65e4967ec2",
-        "name": "Filter from CS only",
-        "property": "msgFrom",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "CS",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 270,
-        "y": 480,
-        "wires": [
-            [
-                "e07f99fdfc73cd44"
-            ]
+            []
         ]
     },
     {
@@ -3178,8 +3153,6 @@
         "links": [
             "9061953296c99fc7",
             "bf301b6e3cd5b7f3",
-            "647ae537e6cb80bc",
-            "e762dccd76164608",
             "485897ecb288f5b2"
         ],
         "x": 145,
@@ -3658,7 +3631,7 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n    <!-- v-toolbar flat>\n      <v-toolbar-title class=\"text-grey\">\n        Actions\n      </v-toolbar-title>\n\n      <v-spacer></v-spacer>\n\n      <v-tooltip text=\"Refresh\" location=\"bottom\">\n        <template v-slot:activator=\"{ props }\">\n          <v-btn icon v-bind=\"props\" @click=\"refresh\">\n            <v-icon>mdi-refresh</v-icon>\n          </v-btn>\n        </template>\n      </v-tooltip>\n\n      <v-tooltip text=\"New\" location=\"bottom\">\n        <template v-slot:activator=\"{ props }\">\n          <v-btn icon v-bind=\"props\" @click=\"addNew\">\n            <v-icon>mdi-ev-station</v-icon>\n          </v-btn>\n        </template>\n      </v-tooltip>\n\n    </v-toolbar>\n\n\n      <v-text-field\n        v-model=\"search\"\n        label=\"Search\"\n        prepend-inner-icon=\"mdi-magnify\"\n        clear-icon=\"mdi-close-circle\"\n        variant=\"oulined\"\n        hide-details\n        single-line\n        clearable\n      ></v-text-field-->\n\n    \n    <v-data-table  \n        :search=\"search\" \n        :items=\"msg?.payload\"\n        :headers=\"msg?.headers\"\n        v-model=\"selected\"\n        item-selectable=\"selectable\"\n        select-strategy=\"all\"\n        hide-select    \n        return-object>\n      <template v-slot:top>\n        <v-toolbar flat>\n          <v-toolbar-title>\n            <v-icon color=\"medium-emphasis\" icon=\"mdi-ev-station\" size=\"x-small\" start></v-icon>\n            EVSEs\n          </v-toolbar-title>\n          <v-text-field\n            v-model=\"search\"\n            label=\"Search\"\n            prepend-inner-icon=\"mdi-magnify\"\n            clear-icon=\"mdi-close-circle\"\n            variant=\"solo-filled\"\n            density=\"compact\"\n            hide-details\n            single-line\n            clearable\n          ></v-text-field>\n                <v-tooltip text=\"Refresh\" location=\"bottom\">\n        <template v-slot:activator=\"{ props }\">\n          <v-btn icon v-bind=\"props\" @click=\"refresh\">\n            <v-icon>mdi-refresh</v-icon>\n          </v-btn>\n        </template>\n      </v-tooltip>\n\n      <v-tooltip text=\"New\" location=\"bottom\">\n        <template v-slot:activator=\"{ props }\">\n          <v-btn icon v-bind=\"props\" @click=\"addNew\">\n            <v-icon>mdi-ev-station</v-icon>\n          </v-btn>\n        </template>\n      </v-tooltip>\n        </v-toolbar>\n      </template>\n      <template v-slot:loading>\n        <v-skeleton-loader type=\"table-row@10\"></v-skeleton-loader>\n      </template>\n\n      <template v-slot:header.lastcommtime>\n        <div><v-icon icon=\"mdi-heart\" class=\"text-center\"></div>\n      </template>\n\n      <template v-slot:header.password>\n        <div class=\"text-center\">p/w</div>\n      </template>\n      <template v-slot:header.ports>\n        <div class=\"text-center\">Ports</div>\n      </template>\n      \n      <template v-slot:item.ports=\"{ item }\">\n        <div class=\"text-center header1\">\n          <v-text>{{ item.ports }}</v-text>\n        </div>\n      </template>\n      \n      <template v-slot:item.cbId=\"{ item }\">\n        <div>\n          <v-text>{{ item.cbId }} xyz</v-text>\n        </div>\n      </template>\n      <template v-slot:item.lat=\"{ item }\">\n        <div class=\"text-center\">\n          <v-text >{{ getShortLatLon(item.lat) }}</v-text>\n        </div>\n      </template>\n      <template v-slot:item.lon=\"{ item }\">\n        <div class=\"text-center\">\n          <v-text >{{ getShortLatLon(item.lon) }}</v-text>\n        </div>\n      </template>      \n\n      <template v-slot:item.password=\"{ item }\">\n        <div class=\"text-center\">\n          <v-icon v-if=\"item.password\" color=\"green\" icon=\"mdi-checkbox-outline\"></v-icon>\n        </div>\n      </template>\n\n      <template v-slot:item.lastcommtime=\"{ item }\">\n        <div class=\"text-center\">\n          <v-icon :icon=\"getLastCommIcon(item)\" :color=\"getLastCommColor(item)\"></v-icon>\n        </div>\n      </template>\n      <template v-slot:item.amps=\"{ item }\">\n        <v-text>{{ item.amps }}A</v-chip>\n      </template>\n\n      <template v-slot:item.type=\"{ item }\">\n        <v-chip :color=\"getTypeColor(item)\">{{ item.type }}</v-chip>\n      </template>\n\n      <template v-slot:item.actions=\"{ item }\">\n        <v-icon v-if=\"getIsOnline(item)\"\n          class=\"me-2\"\n          size=\"small\"\n          @click=\"send({action: 'command', payload: [item]})\"\n        >\n          mdi-apps\n        </v-icon>\n        <v-icon\n          class=\"me-2\"\n          size=\"small\"\n          @click=\"send({action: 'edit', payload: [item]})\"\n        >\n          mdi-pencil\n        </v-icon>\n        <v-icon\n          size=\"small\"\n          @click=\"send({action: 'delete', payload: [item]})\"\n        >\n          mdi-delete\n        </v-icon>\n      </template>\n\n    </v-data-table>\n</template>\n\n<script>\n    export default {\n    data () {\n      return {\n        selected: [],\n        search: '',\n        multiSelected: 0,\n        heartbeat: 120,\n      }\n    },\n    watch: {\n        selected: function() {\n          this.multiSelected = this.selected.length\n        }\n    },\n    mounted() {\n      this.refresh()\n    },\n    methods: {\n      addNew() {\n        this.send({action: 'add', payload: [{ cbId: ''}]});\n        this.selected = [];\n        this.multiSelected = 0;\n      },\n      refresh() {\n        this.send({action: 'refresh', payload: [{}]});\n        this.selected = []\n        this.multiSelected = 0;\n      },\n      // expose a method to our <template> and Vue Application\n      getTypeColor: function(item) {\n        switch(item.type.toLowerCase()) {\n          case 'l1':\n          case 'level1':\n          case 'level 1':\n            return 'gray';\n            break;\n          case 'l2':\n          case 'level2':\n          case 'level 2':\n            return 'purple';\n            break;\n          case 'dcfc':\n          case 'dc':\n            return 'green';\n            break;\n          case 'xfc':\n          case 'hpc':\n            return 'blue';\n            break;\n          default:\n            return 'cyan';\n            break;\n        }\n      },\n\n      getLastCommIcon: function(item) {\n        if (Math.floor((Date.now() - item.lastcommtime) / 1000) > this.heartbeat ){\n          return \"mdi-heart-broken\"\n        }\n        else return \"mdi-heart-flash\"\n      },\n      getLastCommColor: function(item) {\n        if (Math.floor((Date.now() - item.lastcommtime) / 1000) > this.heartbeat ){\n          return \"grey\"\n        }\n        else return \"green\"\n      },\n      getLastCommClass: function(item) {\n        if (Math.floor((Date.now() - item.lastcommtime) / 1000) > this.heartbeat ){\n          return \"offline\"\n        }\n        else return \"online\"\n      },\n      getIsOnline: function(item) {\n        return (Math.floor((Date.now() - item.lastcommtime) / 1000) <= this.heartbeat)\n      },\n      getShortLatLon: function(latlon){\n        if (latlon){\n          return (Math.floor(Number(latlon) * 1000)/ 1000)\n        }\n      }\n    }  \n  }\n</script>\n\n<style>\n\n  .online {\n    font-weight: bold;\n    color: green;\n  }\n  .offline {\n    color: grey;\n  }\n  .header1 {\n    font-weight: bolder;\n  }\n</style>",
+        "format": "<template>    \n    <v-data-table  \n        :search=\"search\" \n        :items=\"msg?.payload\"\n        :headers=\"msg?.headers\"\n        v-model=\"selected\"\n        item-selectable=\"selectable\"\n        select-strategy=\"all\"\n        hide-select    \n        return-object>\n      <template v-slot:top>\n        <v-toolbar flat>\n          <v-toolbar-title>\n            <v-icon color=\"medium-emphasis\" icon=\"mdi-ev-station\" size=\"x-small\" start></v-icon>\n            EVSEs\n          </v-toolbar-title>\n          <v-text-field\n            v-model=\"search\"\n            label=\"Search\"\n            prepend-inner-icon=\"mdi-magnify\"\n            clear-icon=\"mdi-close-circle\"\n            variant=\"solo-filled\"\n            density=\"compact\"\n            hide-details\n            single-line\n            clearable\n          ></v-text-field>\n                <v-tooltip text=\"Refresh\" location=\"bottom\">\n        <template v-slot:activator=\"{ props }\">\n          <v-btn icon v-bind=\"props\" @click=\"refresh\">\n            <v-icon>mdi-refresh</v-icon>\n          </v-btn>\n        </template>\n      </v-tooltip>\n\n      <v-tooltip text=\"New\" location=\"bottom\">\n        <template v-slot:activator=\"{ props }\">\n          <v-btn icon v-bind=\"props\" @click=\"addNew\">\n            <v-icon>mdi-ev-station</v-icon>\n          </v-btn>\n        </template>\n      </v-tooltip>\n        </v-toolbar>\n      </template>\n      <template v-slot:loading>\n        <v-skeleton-loader type=\"table-row@10\"></v-skeleton-loader>\n      </template>\n\n      <template v-slot:header.lastcommtime>\n        <div><v-icon icon=\"mdi-heart\" class=\"text-center\"></div>\n      </template>\n\n      <template v-slot:header.password>\n        <div class=\"text-center\">p/w</div>\n      </template>\n      <template v-slot:header.ports>\n        <div class=\"text-center\">Ports</div>\n      </template>\n      \n      <template v-slot:item.ports=\"{ item }\">\n        <div class=\"text-center header1\">\n          <v-text>{{ item.ports }}</v-text>\n        </div>\n      </template>\n      \n      <template v-slot:item.cbId=\"{ item }\">\n        <div>\n          <v-text>{{ item.cbId }} xyz</v-text>\n        </div>\n      </template>\n      <template v-slot:item.lat=\"{ item }\">\n        <div class=\"text-center\">\n          <v-text >{{ getShortLatLon(item.lat) }}</v-text>\n        </div>\n      </template>\n      <template v-slot:item.lon=\"{ item }\">\n        <div class=\"text-center\">\n          <v-text >{{ getShortLatLon(item.lon) }}</v-text>\n        </div>\n      </template>      \n\n      <template v-slot:item.password=\"{ item }\">\n        <div class=\"text-center\">\n          <v-icon v-if=\"item.password\" color=\"green\" icon=\"mdi-checkbox-outline\"></v-icon>\n        </div>\n      </template>\n\n      <template v-slot:item.lastcommtime=\"{ item }\">\n        <div class=\"text-center\">\n          <v-icon :icon=\"getLastCommIcon(item)\" :color=\"getLastCommColor(item)\"></v-icon>\n        </div>\n      </template>\n      <template v-slot:item.amps=\"{ item }\">\n        <v-text>{{ item.amps }}A</v-chip>\n      </template>\n\n      <template v-slot:item.type=\"{ item }\">\n        <v-chip :color=\"getTypeColor(item)\">{{ item.type }}</v-chip>\n      </template>\n\n      <template v-slot:item.actions=\"{ item }\">\n        <v-icon v-if=\"getIsOnline(item)\"\n          class=\"me-2\"\n          size=\"small\"\n          @click=\"send({action: 'command', payload: [item]})\"\n        >\n          mdi-apps\n        </v-icon>\n        <v-icon\n          class=\"me-2\"\n          size=\"small\"\n          @click=\"send({action: 'edit', payload: [item]})\"\n        >\n          mdi-pencil\n        </v-icon>\n        <v-icon\n          size=\"small\"\n          @click=\"send({action: 'delete', payload: [item]})\"\n        >\n          mdi-delete\n        </v-icon>\n      </template>\n\n    </v-data-table>\n</template>\n\n<script>\n    export default {\n    data () {\n      return {\n        selected: [],\n        search: '',\n        multiSelected: 0,\n        heartbeat: 120,\n      }\n    },\n    watch: {\n        selected: function() {\n          this.multiSelected = this.selected.length\n        }\n    },\n    mounted() {\n      this.refresh()\n    },\n    methods: {\n      addNew() {\n        this.send({action: 'add', payload: [{ cbId: ''}]});\n        this.selected = [];\n        this.multiSelected = 0;\n      },\n      refresh() {\n        this.send({action: 'refresh', payload: [{}]});\n        this.selected = []\n        this.multiSelected = 0;\n      },\n      // expose a method to our <template> and Vue Application\n      getTypeColor: function(item) {\n        switch(item.type.toLowerCase()) {\n          case 'l1':\n          case 'level1':\n          case 'level 1':\n            return 'gray';\n            break;\n          case 'l2':\n          case 'level2':\n          case 'level 2':\n            return 'purple';\n            break;\n          case 'dcfc':\n          case 'dc':\n            return 'green';\n            break;\n          case 'xfc':\n          case 'hpc':\n            return 'blue';\n            break;\n          default:\n            return 'cyan';\n            break;\n        }\n      },\n\n      getLastCommIcon: function(item) {\n        if (Math.floor((Date.now() - item.lastcommtime) / 1000) > this.heartbeat ){\n          return \"mdi-heart-broken\"\n        }\n        else return \"mdi-heart-flash\"\n      },\n      getLastCommColor: function(item) {\n        if (Math.floor((Date.now() - item.lastcommtime) / 1000) > this.heartbeat ){\n          return \"grey\"\n        }\n        else return \"green\"\n      },\n      getLastCommClass: function(item) {\n        if (Math.floor((Date.now() - item.lastcommtime) / 1000) > this.heartbeat ){\n          return \"offline\"\n        }\n        else return \"online\"\n      },\n      getIsOnline: function(item) {\n        return (Math.floor((Date.now() - item.lastcommtime) / 1000) <= this.heartbeat)\n      },\n      getShortLatLon: function(latlon){\n        if (latlon){\n          return (Math.floor(Number(latlon) * 1000)/ 1000)\n        }\n      }\n    }  \n  }\n</script>\n\n<style>\n\n  .online {\n    font-weight: bold;\n    color: green;\n  }\n  .offline {\n    color: grey;\n  }\n  .header1 {\n    font-weight: bolder;\n  }\n</style>",
         "storeOutMessages": true,
         "passthru": false,
         "resendOnRefresh": true,
@@ -5718,42 +5691,8 @@
         "x": 290,
         "y": 40,
         "wires": [
-            [
-                "089bf4f30ca18408"
-            ]
+            []
         ]
-    },
-    {
-        "id": "089bf4f30ca18408",
-        "type": "worldmap",
-        "z": "92d055a5ecbac90c",
-        "name": "",
-        "lat": "",
-        "lon": "",
-        "zoom": "",
-        "layer": "OSMG",
-        "cluster": "",
-        "maxage": "",
-        "usermenu": "show",
-        "layers": "show",
-        "panit": "false",
-        "panlock": "false",
-        "zoomlock": "false",
-        "hiderightclick": "false",
-        "coords": "deg",
-        "showgrid": "false",
-        "showruler": "false",
-        "allowFileDrop": "false",
-        "path": "/worldmap",
-        "overlist": "",
-        "maplist": "OSMG,OSMC,OSMH,EsriC,EsriS,EsriT,EsriDG,NatGeo,UKOS,SW",
-        "mapname": "",
-        "mapurl": "",
-        "mapopt": "",
-        "mapwms": false,
-        "x": 540,
-        "y": 40,
-        "wires": []
     },
     {
         "id": "fd0ce11a6c04c0f3",
@@ -5783,7 +5722,7 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n    <container>\n        <v-img \n            :src=\"this.url\"\n            lazy-src=\"/assets/blue.png\"\n            max-height=\"500\">\n        </v-img>\n    </container>\n</template>\n\n<script>\n    export default {\n\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                url: \"\",\n                show: false,\n                showx: true\n            }\n        },\n        \n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        },\n        mounted() {\n            this.send(\"loaded\")\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n                if (this.msg.payload){\n                    let payload = this.msg.payload\n                    this.url = payload.banner_url\n                    this.show = payload.show || true\n                }\n            })\n            this.refresh()\n        },      \n        methods: {\n        },\n    }\n</script>",
+        "format": "<template>\n    <container>\n        <v-img \n            :src=\"this.url\"\n            lazy-src=\"/assets/blue.png\"\n            max-height=\"500\">\n        </v-img>\n    </container>\n</template>\n\n<script>\n    export default {\n\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                url: \"\",\n                show: false,\n                showx: true\n            }\n        },\n        \n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        },\n        mounted() {\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n                if (this.msg.payload){\n                    let payload = this.msg.payload\n                    this.url = payload.banner_url\n                    this.show = payload.show || true\n                }\n            })\n            this.refresh()\n        },      \n        methods: {\n        },\n    }\n</script>",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -5792,9 +5731,7 @@
         "x": 600,
         "y": 240,
         "wires": [
-            [
-                "445e1fd97be6944e"
-            ]
+            []
         ]
     },
     {
@@ -6469,6 +6406,31 @@
         ]
     },
     {
+        "id": "a96ec32fd158cdc3",
+        "type": "inject",
+        "z": "92d055a5ecbac90c",
+        "name": "",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.5",
+        "topic": "",
+        "x": 165,
+        "y": 240,
+        "wires": [
+            [
+                "445e1fd97be6944e"
+            ]
+        ],
+        "l": false
+    },
+    {
         "id": "445e1fd97be6944e",
         "type": "change",
         "z": "92d055a5ecbac90c",
@@ -6505,9 +6467,26 @@
         "y": 240,
         "wires": [
             [
-                "af38625e0eb46e1a"
+                "af38625e0eb46e1a",
+                "b63fd5d1f402a2bf"
             ]
         ]
+    },
+    {
+        "id": "b63fd5d1f402a2bf",
+        "type": "debug",
+        "z": "92d055a5ecbac90c",
+        "name": "debug 75",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 280,
+        "wires": []
     },
     {
         "id": "f4cb836a36b77b75",
@@ -6804,30 +6783,6 @@
         ]
     },
     {
-        "id": "c32e966c78977a1f",
-        "type": "ui-template",
-        "z": "92d055a5ecbac90c",
-        "group": "195e75b71683482a",
-        "page": "",
-        "ui": "",
-        "name": "",
-        "order": 1,
-        "width": "6",
-        "height": "8",
-        "head": "",
-        "format": "<template>\n\n    <div>\n        <iframe src=\"/worldmap\" height=\"100%\" width=\"100%\"></iframe>\n    </div>\n \n</template>\n\n",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 680,
-        "y": 40,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "f15e121d9ddb12b7",
         "type": "ui-control",
         "z": "92d055a5ecbac90c",
@@ -7007,14 +6962,14 @@
         "type": "debug",
         "z": "92d055a5ecbac90c",
         "name": "debug 3",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 620,
+        "x": 570,
         "y": 140,
         "wires": []
     },
@@ -7077,7 +7032,7 @@
         "type": "debug",
         "z": "92d055a5ecbac90c",
         "name": "debug 4",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -7086,43 +7041,6 @@
         "statusType": "auto",
         "x": 1170,
         "y": 900,
-        "wires": []
-    },
-    {
-        "id": "fc3d7d788482727f",
-        "type": "function",
-        "z": "92d055a5ecbac90c",
-        "name": "Center Map",
-        "func": "\nlet coords = []\n\nmsg.payload.forEach(function(evse) {\n    if (evse.lat && evse.lon){\n\n        coords.push(\n            {\n                lat: evse.lat,\n                lon: evse.lon\n            }\n        )\n        \n        if (coords.length > 0){\n            let command = calculateGeographicCenter(coords)\n            msg= {\n                payload: { command, zoom: 10 }\n            }\n            node.send( msg )\n        }\n    }\n});\n\nfunction calculateGeographicCenter(coords) {\n    if (coords.length === 0) return null;\n\n    let x = 0, y = 0, z = 0;\n\n    coords.forEach(({ lat, lon }) => {\n        // Convert degrees to radians\n        let latRad = lat * Math.PI / 180;\n        let lonRad = lon * Math.PI / 180;\n\n        // Convert to Cartesian coordinates\n        x += Math.cos(latRad) * Math.cos(lonRad);\n        y += Math.cos(latRad) * Math.sin(lonRad);\n        z += Math.sin(latRad);\n    });\n\n    let total = coords.length;\n    x /= total;\n    y /= total;\n    z /= total;\n\n    // Convert back to latitude/longitude\n    let lon = Math.atan2(y, x) * 180 / Math.PI;\n    let hyp = Math.sqrt(x * x + y * y);\n    let lat = Math.atan2(z, hyp) * 180 / Math.PI;\n\n    return { lat, lon };\n}\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 290,
-        "y": 100,
-        "wires": [
-            [
-                "089bf4f30ca18408",
-                "a9bdca78dc7e975b"
-            ]
-        ]
-    },
-    {
-        "id": "a9bdca78dc7e975b",
-        "type": "debug",
-        "z": "92d055a5ecbac90c",
-        "name": "debug 6",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 440,
-        "y": 140,
         "wires": []
     },
     {
@@ -7991,27 +7909,11 @@
         ]
     },
     {
-        "id": "f8c6aff29ab8c9df",
-        "type": "debug",
-        "z": "294f3520d49a4f00",
-        "name": "debug 28",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 920,
-        "y": 300,
-        "wires": []
-    },
-    {
         "id": "09b04c7f9641599a",
         "type": "function",
         "z": "294f3520d49a4f00",
         "name": "FLUX Get raw OCPP",
-        "func": "// clear out any incoming message for now.\n//msg = {}\n\nlet options = flow.get(\"options\") ?? {}\nlet showResp = options?.showResp ?? true \nlet showHB = options?.showHB ?? true\nlet start = options?.start ?? '-1h'\n\nmsg = {}\n\nlet showRespQry = (showResp == false) ? '|> filter(fn: (r) => r.command != \"<response>\")' : \"\"\nlet showHBQry = (showHB == false) ?  '|> filter(fn: (r) => r.command != \"Heartbeat\")' : \"\"\n\nmsg.showRespQry = showRespQry\nmsg.showResp = showResp\n\nmsg.query = \n  `from(bucket: \"ocpp_log\")\n    |> range(start: ${start})\n    |> filter(fn: (r) => r[\"_measurement\"] == \"ocpplog\")\n    |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n    ${showRespQry}\n    ${showHBQry}\n    |> drop(columns: [\"_start\",\"_stop\",\"_mesaurement\"])\n    |> group(columns: [\"msgId\"])\n    |> sort(columns: [\"_time\"])`\n\n/*\n    `from(bucket: \"ocpp_log\")\n      |> range(start: -4d)\n      |> limit(n: 500)\n      |> filter(fn: (r) => r[\"_measurement\"] == \"ocpplog\")\n      |> filter(fn: (r) => r[\"_field\"] == \"ocppMsg\")\n      |> group()\n      |> sort(columns: [\"_time\"])\n      |> drop(columns: [\"table\",\"Result\",\"_measurement\",\"_stop\",\"_start\",\"_field\"])`\n*/\n\nreturn msg;",
+        "func": "// clear out any incoming message for now.\n//msg = {}\n\nlet options = flow.get(\"options\") ?? {}\nlet showResp = options?.showResp ?? true \nlet showHB = options?.showHB ?? true\nlet start = options?.start ?? '-1h'\n\nmsg = {}\n\nlet showRespQry = (showResp == false) ? '|> filter(fn: (r) => r.command != \"<response>\")' : \"\"\nlet showHBQry = (showHB == false) ?  '|> filter(fn: (r) => r.command != \"Heartbeat\")' : \"\"\n\nmsg.showRespQry = showRespQry\nmsg.showResp = showResp\n\nmsg.query = \n  `from(bucket: \"ocpp_log\")\n    |> range(start: ${start})\n    |> filter(fn: (r) => r[\"_measurement\"] == \"ocpplog\")\n    |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n    ${showRespQry}\n    ${showHBQry}\n    |> drop(columns: [\"_start\",\"_stop\",\"_mesaurement\"])\n    |> group(columns: [\"msgId\"])\n    |> sort(columns: [\"_time\"])`\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -8023,7 +7925,7 @@
         "wires": [
             [
                 "22f189e825d297fe",
-                "9625a45bb4b8737d"
+                "76062bc9f86f4659"
             ]
         ]
     },
@@ -8058,20 +7960,23 @@
         "page": "",
         "ui": "",
         "name": "Log Table",
-        "order": 2,
+        "order": 1,
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n    <v-text-field\n        v-model=\"search\"\n        label=\"Search\"\n        prepend-inner-icon=\"mdi-magnify\"\n        variant=\"outlined\"\n        clearable\n        hide-details\n        single-line\n        fixed-header\n      ></v-text-field>\n\n    <v-data-table  \n            v-model:search=\"search\"\n            v-model:sort-by=\"sortBy\"\n            :items=\"msg?.payload\"\n            :headers=\"headers\"\n            density=\"compact\"\n            :filter-keys='[\"command\",\"msgFrom\",\"cbId\",\"ocppMsg\"]'\n            >\n\n        <template v-slot:header._time>\n            <div class=\"headers\">Time</div>\n        </template>\n        <template v-slot:header.cbId>\n            <div class=\"headers\">CS</div>\n        </template>\n        <template v-slot:header.msgFrom>\n            <div class=\"headers\">Origin</div>\n        </template>\n        <template v-slot:header.command>\n            <div class=\"text-center headers\">CMD</div>\n        </template>\n        <!--template v-slot:header._value>\n            <div class=\"text-center headers\">OCPP Message</div>\n        </template -->\n\n        <template v-slot:item._time=\"{ item }\">\n            <div>{{ getLocalTimeString(item._time) }}</div>\n        </template>\n        <template v-slot:item.command=\"{ item }\">\n            <div :class=\"getOCPPCmdClass(item.command)\">{{ item.command }}</div>\n        </template>\n        <template v-slot:item.ocppMsg=\"{ item }\">\n            <div :class=\"getOCPPMsgClass(item.ocppMsg)\">{{ item.ocppMsg }}</div>\n        </template>\n    </v-data-table>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                search: '',\n                sortBy: [{ key: '_time', order: 'asc' }],\n                headers: [\n                    {title: \"Time\", value: \"_time\"},\n                    {title: \"Origin\", key: \"msgFrom\", sortable: false},\n                    {title: \"EVSE\", key: \"cbId\", sortable: false},\n                    {title: \"CMD\", key: \"command\", sortable: false},\n                    {title: \"OCPP Message\", key: \"ocppMsg\", sortable: false}\n                ]\n            }\n        },\n        watch: {\n            // watch for any changes of \"count\"\n\n        },\n        computed: {\n\n        },\n        methods: {\n            // expose a method to our <template> and Vue Application\n            getLocalTimeString: function (isoTime){\n                const date = new Date(isoTime)\n                const options = { \n                    year: '2-digit', \n                    month: '2-digit', \n                    day: '2-digit', \n                    hour: '2-digit', \n                    minute: '2-digit', \n                    second: '2-digit', \n                    millisecond: '3-digit',\n                    hour12: false \n                    }\n                return date.toLocaleString('en-US', options)\n            },\n            getOCPPMsgClass: function (item) {\n                let obj = JSON.parse(item);\n                return \"ocppMsgErr\";\n                if ( obj[0] == 2) {\n                    return \"ocppMsgReq\";\n                }\n                else if ( obj[0] == 3) {\n                    if ( Object.hasOwn(obj[2],\"status\")){\n                        return \"ocppMsgErr\";\n                    }\n                    return \"ocppMsgErr\";\n                }\n                else {\n                    return \"ocppMsgErr\";\n                }\n            },\n            getOCPPCmdClass: function (item) {\n                if (item.startsWith(\"<res\")) {\n                    return \"ocppCmdRes\";\n                }\n                else {\n                    return \"ocppCmdReq\";\n                }\n            }\n        },\n        mounted() {\n            // code here when the component is first loaded\n        },\n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: red;\n    }\n    .headers {\n        font-weight: bold;\n    }\n    .ocppMsgReq {\n        color: blue;\n        font-weight: bold;\n    }\n    .ocppMsgRes {\n        color: blue;\n    }\n    .ocppMsgErr {\n        color: red;\n    }\n    .ocppCmdReq {\n        color: green;\n        font-weight: bold;\n    }\n    .ocppCmdRes {\n        color: DarkCyan;\n    }\n</style>",
+        "format": "<template>\n\n    <v-data-table  \n            v-model:search=\"search\"\n            v-model:sort-by=\"sortBy\"\n            :items=\"msg?.payload\"\n            :headers=\"headers\"\n            density=\"compact\"\n            :filter-keys='[\"command\",\"msgFrom\",\"cbId\",\"ocppMsg\"]'\n            >\n    <template v-slot:top>\n        <v-toolbar flat>\n            <v-toolbar-title>\n                <v-icon color=\"medium-emphasis\" icon=\"mdi-book-open-variant\" size=\"x-small\" start></v-icon>\n                OCPP Log\n            </v-toolbar-title>\n\n            <v-text-field\n                v-model=\"search\"\n                label=\"Search\"\n                prepend-inner-icon=\"mdi-magnify\"\n                clear-icon=\"mdi-close-circle\"\n                variant=\"solo-filled\"\n                density=\"compact\"\n                hide-details\n                single-line\n                clearable\n            ></v-text-field>\n            <v-spacer></v-spacer>           \n            <v-template>\n                <v-switch \n                    v-model=\"showHB\" \n                    label=\"HB\" \n                    color=\"primary\"\n                    >\n                </v-switch>\n            </v-template>\n\n            <v-template>\n                <v-switch \n                    v-model=\"showResp\" \n                    label=\"Resp\" \n                    color=\"primary\"\n                    >\n                </v-switch>\n            </v-template>\n\n            <v-tooltip text=\"Refresh\" location=\"bottom\">\n                <template v-slot:activator=\"{ props }\">\n                <v-btn icon v-bind=\"props\" @click=\"refresh\">\n                    <v-icon>mdi-refresh</v-icon>\n                </v-btn>\n                </template>\n            </v-tooltip>\n            <v-template align-self=\"end\">\n            <v-select\n                v-model=\"select\"\n                :items=\"startTimes\"\n                item-title=\"title\"\n                item-value=\"value\"\n                >\n            </v-select>\n            </v-template>            \n\n        </v-toolbar>\n    </template>            \n\n        <template v-slot:header._time>\n            <div class=\"headers\">Time</div>\n        </template>\n        <template v-slot:header.cbId>\n            <div class=\"headers\">CS</div>\n        </template>\n        <template v-slot:header.msgFrom>\n            <div class=\"headers\">Origin</div>\n        </template>\n        <template v-slot:header.command>\n            <div class=\"text-center headers\">CMD</div>\n        </template>\n        <!--template v-slot:header._value>\n            <div class=\"text-center headers\">OCPP Message</div>\n        </template -->\n\n        <template v-slot:item._time=\"{ item }\">\n            <div>{{ getLocalTimeString(item._time) }}</div>\n        </template>\n        <template v-slot:item.command=\"{ item }\">\n            <div :class=\"getOCPPCmdClass(item.command)\">{{ item.command }}</div>\n        </template>\n        <template v-slot:item.ocppMsg=\"{ item }\">\n            <div :class=\"getOCPPMsgClass(item.ocppMsg)\">{{ item.ocppMsg }}</div>\n        </template>\n    </v-data-table>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                search: '',\n                sortBy: [{ key: '_time', order: 'asc' }],\n                headers: [\n                    {title: \"Time\", value: \"_time\"},\n                    {title: \"Origin\", key: \"msgFrom\", sortable: false},\n                    {title: \"EVSE\", key: \"cbId\", sortable: false},\n                    {title: \"CMD\", key: \"command\", sortable: false},\n                    {title: \"OCPP Message\", key: \"ocppMsg\", sortable: false}\n                ],\n                showResp: true,\n                showHB: true,\n                select: { title: \"past 5m\", value: '-5m'},\n                startTimes: [\n                    { title: \"past 1m\", value: '-1m'},\n                    { title: \"past 5m\", value: '-5m'},\n                    { title: \"past 15m\", value: '-15m'},\n                    { title: \"past 1h\", value: '-1h'},\n                    { title: \"past 3h\", value: '-3h'},\n                    { title: \"past 6h\", value: '-6h'},\n                    { title: \"past 12h\", value: '-12h'},\n                    { title: \"past 24h\", value: '-24h'},\n                    { title: \"past 2d\", value: '-2d'},\n                    { title: \"past 7d\", value: '-7d'},\n                    { title: \"past 30d\", value: '-30d'},\n//                    { title: \"custom\", value: 'custom'}\n                    ]\n            }\n        },\n        computed: {\n\n        },\n        watch: {\n            showHB(newValue) {\n                this.sendOptions()\n            },\n            showResp(newValue) {\n                this.sendOptions()\n            },\n            select(newValue) {\n                this.sendOptions()\n            }\n        },\n        methods: {\n            // expose a method to our <template> and Vue Application\n            getLocalTimeString: function (isoTime){\n                const date = new Date(isoTime)\n                const options = { \n                    year: '2-digit', \n                    month: '2-digit', \n                    day: '2-digit', \n                    hour: '2-digit', \n                    minute: '2-digit', \n                    second: '2-digit', \n                    millisecond: '3-digit',\n                    hour12: false \n                    }\n                return date.toLocaleString('en-US', options)\n            },\n            getOCPPMsgClass: function (item) {\n                let obj = JSON.parse(item);\n                return \"ocppMsgErr\";\n                if ( obj[0] == 2) {\n                    return \"ocppMsgReq\";\n                }\n                else if ( obj[0] == 3) {\n                    if ( Object.hasOwn(obj[2],\"status\")){\n                        return \"ocppMsgErr\";\n                    }\n                    return \"ocppMsgErr\";\n                }\n                else {\n                    return \"ocppMsgErr\";\n                }\n            },\n            getOCPPCmdClass: function (item) {\n                if (item.startsWith(\"<res\")) {\n                    return \"ocppCmdRes\";\n                }\n                else {\n                    return \"ocppCmdReq\";\n                }\n            },\n            sendOptions: function() {\n                this.send({\n                    action: \"options\", \n                    options: {\n                        start: this.select,\n                        showHB: this.showHB,\n                        showResp: this.showResp\n                    }\n                })\n            }\n        },\n        mounted() {\n            // code here when the component is first loaded\n        },\n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: red;\n    }\n    .headers {\n        font-weight: bold;\n    }\n    .ocppMsgReq {\n        color: blue;\n        font-weight: bold;\n    }\n    .ocppMsgRes {\n        color: blue;\n    }\n    .ocppMsgErr {\n        color: red;\n    }\n    .ocppCmdReq {\n        color: green;\n        font-weight: bold;\n    }\n    .ocppCmdRes {\n        color: DarkCyan;\n    }\n</style>",
         "storeOutMessages": true,
-        "passthru": true,
+        "passthru": false,
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 920,
+        "x": 880,
         "y": 340,
         "wires": [
-            []
+            [
+                "fcbda4076fa53d57",
+                "d07158c4069cdd2c"
+            ]
         ]
     },
     {
@@ -8090,8 +7995,7 @@
         "y": 340,
         "wires": [
             [
-                "7d1c0e100d38e388",
-                "f8c6aff29ab8c9df"
+                "7d1c0e100d38e388"
             ]
         ]
     },
@@ -8190,9 +8094,10 @@
         "z": "294f3520d49a4f00",
         "name": "Refresh Log",
         "links": [
-            "fca2ef466dd35c31"
+            "fca2ef466dd35c31",
+            "fdc97bc5af3f0ed6"
         ],
-        "x": 105,
+        "x": 165,
         "y": 340,
         "wires": [
             [
@@ -8424,233 +8329,6 @@
         "wires": []
     },
     {
-        "id": "5fcf104321bf3b9e",
-        "type": "function",
-        "z": "294f3520d49a4f00",
-        "name": "function 17",
-        "func": "msg = {}\n\nmsg.query = `from(bucket: \"ocpp_log\") \\ \n    |> range(start: -1h) \\ \n    |> filter(fn: (r) => r[\"_measurement\"] == \"ocpplog\") \\\n    |> filter(fn: (r) => r[\"_field\"] == \"msgId\" or r[\"_field\"] == \"ocppMsg\") \\\n    |> group(columns: [\"_value\"]) \\\n    |> keep(columns: [\"_time\",\"cbId\",\"command\",\"msgFrom\",\"_value\"]) \\\n    |> sort(columns: [\"command\"], desc: true)`\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 310,
-        "y": 680,
-        "wires": [
-            [
-                "6d6e838673636f47"
-            ]
-        ]
-    },
-    {
-        "id": "916e9cd9c4f8a11b",
-        "type": "debug",
-        "z": "294f3520d49a4f00",
-        "name": "debug 54",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 680,
-        "y": 680,
-        "wires": []
-    },
-    {
-        "id": "13437f1913f23438",
-        "type": "inject",
-        "z": "294f3520d49a4f00",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 140,
-        "y": 680,
-        "wires": [
-            [
-                "5fcf104321bf3b9e"
-            ]
-        ]
-    },
-    {
-        "id": "6d6e838673636f47",
-        "type": "influxdb in",
-        "z": "294f3520d49a4f00",
-        "influxdb": "7cb40fcee206391e",
-        "name": "",
-        "query": "",
-        "rawOutput": false,
-        "precision": "",
-        "retentionPolicy": "",
-        "org": "cipio",
-        "x": 500,
-        "y": 680,
-        "wires": [
-            [
-                "916e9cd9c4f8a11b"
-            ]
-        ]
-    },
-    {
-        "id": "29b7f0d602a2187a",
-        "type": "debug",
-        "z": "294f3520d49a4f00",
-        "name": "debug 72",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 480,
-        "y": 460,
-        "wires": []
-    },
-    {
-        "id": "fc974c9c771a2596",
-        "type": "ui-template",
-        "z": "294f3520d49a4f00",
-        "group": "c187df53e1cacaad",
-        "page": "",
-        "ui": "",
-        "name": "Log Options",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "head": "",
-        "format": "<template>\n\n      <v-toolbar flat>\n        \n        <v-toolbar-title class=\"text-grey\">\n            Options\n        </v-toolbar-title>\n\n        <v-spacer></v-spacer>\n            <v-template>\n            <v-switch \n                v-model=\"showResp\" \n                label=\"Responses\" \n                color=\"primary\"\n                >\n            </v-switch>\n            </v-template>\n            <v-spacer></v-spacer>\n            <v-template>\n            <v-switch \n                v-model=\"showHB\" \n                label=\"Heartbeats\" \n                color=\"primary\"\n                >\n            </v-switch>\n            </v-template>\n            <v-spacer></v-spacer>\n            <v-template>\n            <v-select\n                v-model=\"select\"\n                :items=\"startTimes\"\n                item-title=\"title\"\n                item-value=\"value\"\n                >\n            </v-select>\n            </v-template>\n\n      </v-toolbar>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                showResp: true,\n                showHB: true,\n                select: { title: \"past 5m\", value: '-5m'},\n                startTimes: [\n                    { title: \"past 1m\", value: '-1m'},\n                    { title: \"past 5m\", value: '-5m'},\n                    { title: \"past 15m\", value: '-15m'},\n                    { title: \"past 1h\", value: '-1h'},\n                    { title: \"past 3h\", value: '-3h'},\n                    { title: \"past 6h\", value: '-6h'},\n                    { title: \"past 12h\", value: '-12h'},\n                    { title: \"past 24h\", value: '-24h'},\n                    { title: \"past 2d\", value: '-2d'},\n                    { title: \"past 7d\", value: '-7d'},\n                    { title: \"past 30d\", value: '-30d'},\n//                    { title: \"custom\", value: 'custom'}\n                    ]\n            }\n        },\n        watch: {\n            showHB(newValue) {\n                this.sendOptions()\n            },\n            showResp(newValue) {\n                this.sendOptions()\n            },\n            select(newValue) {\n                this.sendOptions()\n            }\n        },\n        methods: {\n            // expose a method to our <template> and Vue Application\n            sendOptions: function() {\n                this.send({ \n                    options: {\n                        showResp: this.showResp, \n                        showHB: this.showHB,\n                        start: this.select \n                    }\n                })\n            }\n        },\n        mounted() {\n            // code here when the component is first loaded\n        },\n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: red;\n    }\n</style>",
-        "storeOutMessages": true,
-        "passthru": false,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 270,
-        "y": 460,
-        "wires": [
-            [
-                "29b7f0d602a2187a",
-                "05a3a30ace8bde17"
-            ]
-        ]
-    },
-    {
-        "id": "9625a45bb4b8737d",
-        "type": "debug",
-        "z": "294f3520d49a4f00",
-        "name": "debug 73",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 490,
-        "y": 400,
-        "wires": []
-    },
-    {
-        "id": "05a3a30ace8bde17",
-        "type": "change",
-        "z": "294f3520d49a4f00",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "options",
-                "pt": "flow",
-                "to": "options",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 280,
-        "y": 400,
-        "wires": [
-            [
-                "09b04c7f9641599a"
-            ]
-        ]
-    },
-    {
-        "id": "f5ee21688de2721a",
-        "type": "inject",
-        "z": "294f3520d49a4f00",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 150,
-        "y": 580,
-        "wires": [
-            [
-                "6721711cb29da7b6"
-            ]
-        ]
-    },
-    {
-        "id": "6721711cb29da7b6",
-        "type": "change",
-        "z": "294f3520d49a4f00",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "options",
-                "pt": "flow",
-                "to": "{}",
-                "tot": "json"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 310,
-        "y": 580,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "a17aef1dc7d51ba8",
         "type": "switch",
         "z": "294f3520d49a4f00",
@@ -8713,7 +8391,7 @@
         "type": "debug",
         "z": "294f3520d49a4f00",
         "name": "debug 87",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -8757,6 +8435,80 @@
                 "93076343d978982d"
             ]
         ]
+    },
+    {
+        "id": "fcbda4076fa53d57",
+        "type": "change",
+        "z": "294f3520d49a4f00",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "options",
+                "pt": "flow",
+                "to": "options",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1040,
+        "y": 340,
+        "wires": [
+            [
+                "fdc97bc5af3f0ed6"
+            ]
+        ]
+    },
+    {
+        "id": "fdc97bc5af3f0ed6",
+        "type": "link out",
+        "z": "294f3520d49a4f00",
+        "name": "link out 38",
+        "mode": "link",
+        "links": [
+            "6ec7f5c8fa255cf6"
+        ],
+        "x": 1155,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "d07158c4069cdd2c",
+        "type": "debug",
+        "z": "294f3520d49a4f00",
+        "name": "debug 9",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1030,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "76062bc9f86f4659",
+        "type": "debug",
+        "z": "294f3520d49a4f00",
+        "name": "debug 11",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "query",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 510,
+        "y": 480,
+        "wires": []
     },
     {
         "id": "898f5d33416b458c",
@@ -10795,19 +10547,18 @@
         "width": "0",
         "height": "0",
         "head": "",
-        "format": "<template>\n    <v-text-field\n        v-model=\"search\"\n        label=\"Search\"\n        prepend-inner-icon=\"mdi-magnify\"\n        variant=\"outlined\"\n        clearable\n        hide-details\n        single-line\n      ></v-text-field>\n\n    <v-data-table  \n            v-model:search=\"search\" \n            :headers=\"headers\"\n            :items=\"msg?.payload\"\n            :filter-keys='[\"transactionId\",\"cbId\",\"_value\"]'\n            >\n      <template v-slot:item.meter=\"{ item }\">\n        <div>\n          <v-text>{{ item.meterStart }}{{item.meterStop}}</v-text>\n      </template>\n        <template v-slot:item._time=\"{ item }\">\n            <div>{{ getLocalTimeString(item._time) }}</div>\n        </template>\n      <template v-slot:item.actions=\"{ item }\">\n        <v-icon\n          class=\"me-2\"\n          size=\"small\"\n          @click=\"send({payload: { txId: item.transactionId}})\"\n        >\n          mdi-eye\n        </v-icon>\n      </template>\n            \n    </v-data-table>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                search: '',\n                headers: [\n                    { value: \"_time\", title: \"Time\"},\n                    { value: \"command\", title: \"Command\"},\n                    { value: \"transactionId\", title: \"TxId\"},\n                    { value: \"cbId\", title: \"EVSE\"},\n                    { value: \"connectorId\", title: \"Conn\"},\n                    //{ value: \"meterStart\", title: \"Start\"},\n                    //{ value: \"meterStop\", title: \"Stop\"},\n                    { key: \"meter\", title: \"Meter\"},\n                    { key: \"actions\", title: \"View\", sortable: false},\n                ]\n            }\n        },\n        watch: {\n            // watch for any changes of \"count\"\n\n        },\n        computed: {\n\n        },\n        methods: {\n            // expose a method to our <template> and Vue Application\n            getLocalTimeString: function (isoTime){\n                const date = new Date(isoTime)\n                const options = { \n                    year: '2-digit', \n                    month: '2-digit', \n                    day: '2-digit', \n                    hour: '2-digit', \n                    minute: '2-digit', \n                    second: '2-digit', \n                    millisecond: '3-digit',\n                    hour12: false \n                    }\n                return date.toLocaleString('en-US', options)\n            },\n        },\n        mounted() {\n            // code here when the component is first loaded\n        },\n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: red;\n    }\n    .headers {\n        font-weight: bold;\n    }\n    .ocppMsgReq {\n        color: blue;\n        font-weight: bold;\n    }\n    .ocppMsgRes {\n        color: blue;\n    }\n    .ocppMsgErr {\n        color: red;\n    }\n</style>",
+        "format": "<template>\n    <v-data-table  \n            v-model:search=\"search\" \n            :headers=\"headers\"\n            :items=\"msg?.payload\"\n            :filter-keys='[\"transactionId\",\"cbId\",\"_value\"]'\n            >\n    <template v-slot:top>\n        <v-toolbar flat>\n            <v-toolbar-title>\n                <v-icon color=\"medium-emphasis\" icon=\"mdi-bullseye\" size=\"x-small\" start></v-icon>\n                Transactions\n            </v-toolbar-title>\n            <v-text-field\n                v-model=\"search\"\n                label=\"Search\"\n                prepend-inner-icon=\"mdi-magnify\"\n                clear-icon=\"mdi-close-circle\"\n                variant=\"solo-filled\"\n                density=\"compact\"\n                hide-details\n                single-line\n                clearable\n            ></v-text-field>\n            <!-- v-spacer></v-spacer -->           \n            <v-tooltip text=\"Refresh\" location=\"bottom\">\n                <template v-slot:activator=\"{ props }\">\n                <v-btn icon v-bind=\"props\" @click=\"refresh\">\n                    <v-icon>mdi-refresh</v-icon>\n                </v-btn>\n                </template>\n            </v-tooltip>\n            <v-template>\n            <v-select\n                v-model=\"select\"\n                density=\"compact\"\n                :items=\"startTimes\"\n                item-title=\"title\"\n                item-value=\"value\"\n                >\n            </v-select>\n            </v-template>            \n\n\n        </v-toolbar>\n    </template>            \n      <template v-slot:item.meter=\"{ item }\">\n        <div>\n          <v-text>{{ item.meterStart }}{{item.meterStop}}</v-text>\n      </template>\n        <template v-slot:item._time=\"{ item }\">\n            <div>{{ getLocalTimeString(item._time) }}</div>\n        </template>\n      <template v-slot:item.actions=\"{ item }\">\n        <v-icon\n          class=\"me-2\"\n          size=\"small\"\n          @click=\"send({ action: 'txDetails', payload: { txId: item.transactionId }})\"\n        >\n          mdi-eye\n        </v-icon>\n      </template>\n            \n    </v-data-table>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                search: '',\n                headers: [\n                    { value: \"_time\", title: \"Time\"},\n                    { value: \"command\", title: \"Command\"},\n                    { value: \"transactionId\", title: \"TxId\"},\n                    { value: \"cbId\", title: \"EVSE\"},\n                    { value: \"connectorId\", title: \"Conn\"},\n                    //{ value: \"meterStart\", title: \"Start\"},\n                    //{ value: \"meterStop\", title: \"Stop\"},\n                    { key: \"meter\", title: \"Meter\"},\n                    { key: \"actions\", title: \"View\", sortable: false},\n                ],\n                select: { title: \"past 5m\", value: '-5m'},\n                startTimes: [\n                    { title: \"past 1m\", value: '-1m'},\n                    { title: \"past 5m\", value: '-5m'},\n                    { title: \"past 15m\", value: '-15m'},\n                    { title: \"past 1h\", value: '-1h'},\n                    { title: \"past 3h\", value: '-3h'},\n                    { title: \"past 6h\", value: '-6h'},\n                    { title: \"past 12h\", value: '-12h'},\n                    { title: \"past 24h\", value: '-24h'},\n                    { title: \"past 2d\", value: '-2d'},\n                    { title: \"past 7d\", value: '-7d'},\n                    { title: \"past 30d\", value: '-30d'},\n//                    { title: \"custom\", value: 'custom'}\n                    ]\n            }\n        },\n        watch: {\n            select(newValue) {\n                this.sendOptions()\n            }\n        },\n        computed: {\n\n        },\n        methods: {\n            // expose a method to our <template> and Vue Application\n            getLocalTimeString: function (isoTime){\n                const date = new Date(isoTime)\n                const options = { \n                    year: '2-digit', \n                    month: '2-digit', \n                    day: '2-digit', \n                    hour: '2-digit', \n                    minute: '2-digit', \n                    second: '2-digit', \n                    millisecond: '3-digit',\n                    hour12: false \n                    }\n                return date.toLocaleString('en-US', options)\n            },\n            sendOptions: function() {\n                this.send({\n                    action: \"options\", \n                    options: {\n                        start: this.select \n                    }\n                })\n            }\n        },\n        mounted() {\n            // code here when the component is first loaded\n        },\n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: red;\n    }\n    .headers {\n        font-weight: bold;\n    }\n    .ocppMsgReq {\n        color: blue;\n        font-weight: bold;\n    }\n    .ocppMsgRes {\n        color: blue;\n    }\n    .ocppMsgErr {\n        color: red;\n    }\n</style>",
         "storeOutMessages": true,
         "passthru": false,
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 1190,
+        "x": 1210,
         "y": 520,
         "wires": [
             [
-                "c4b73cd2d6f1efbb",
-                "c006c2c3567e7ee6",
-                "2807de6096eb9e1f"
+                "429f153803b4e889",
+                "92d4fc8edd807919"
             ]
         ]
     },
@@ -10922,7 +10673,7 @@
         "type": "function",
         "z": "daf7a59ca2ce18df",
         "name": "FLUX Get raw Tx OCPP",
-        "func": "// clear out any incoming message for now.\nmsg = {}\n\nmsg.query = `from(bucket: \"OCPP\")\n  |> range( start: -20d)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> drop(columns: [\"_start\",\"_stop\",\"_measurement\"])\n  |> group(columns: [\"transactionId\"])\n  |> sort(columns: [\"_time\"])`\n\n\nmsg.query = `\nfrom(bucket: \"OCPP\")\n  |> range(start: -2d)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r[\"_field\"] == \"meterStart\" or r[\"_field\"] == \"meterStop\" or r[\"_field\"] == \"transactionId\" or r[\"_field\"] == \"timestamp\" or r[\"_field\"] == \"idTag\" or r[\"_field\"] == \"connectorId\" )\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> filter(fn: (r) => r.transactionId != 0)\n  |> drop(columns: [\"_start\",\"_stop\",\"_measurement\",\"msgFrom\"])\n  |> group()\n  |> sort(columns: [\"_time\"])\n`\n\nreturn msg;",
+        "func": "let options = flow.get(\"options\") ?? {}\nlet start = options?.start ?? '-1h'\n\n// clear out any incoming message for now.\nmsg = {}\n\nmsg.query = `from(bucket: \"OCPP\")\n  |> range( start: ${start})\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> drop(columns: [\"_start\",\"_stop\",\"_measurement\"])\n  |> group(columns: [\"transactionId\"])\n  |> sort(columns: [\"_time\"])`\n\n\nmsg.query = `\nfrom(bucket: \"OCPP\")\n  |> range(start: ${start})\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r[\"_field\"] == \"meterStart\" or r[\"_field\"] == \"meterStop\" or r[\"_field\"] == \"transactionId\" or r[\"_field\"] == \"timestamp\" or r[\"_field\"] == \"idTag\" or r[\"_field\"] == \"connectorId\" )\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> filter(fn: (r) => r.transactionId != 0)\n  |> drop(columns: [\"_start\",\"_stop\",\"_measurement\",\"msgFrom\"])\n  |> group()\n  |> sort(columns: [\"_time\"])\n`\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -10933,7 +10684,8 @@
         "y": 520,
         "wires": [
             [
-                "3b309fbf5a5e9349"
+                "3b309fbf5a5e9349",
+                "4d28c5123bd6d40d"
             ]
         ]
     },
@@ -10950,8 +10702,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1355,
-        "y": 500,
+        "x": 1395,
+        "y": 460,
         "wires": [],
         "l": false
     },
@@ -11073,8 +10825,8 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 1410,
-        "y": 460,
+        "x": 1450,
+        "y": 420,
         "wires": [
             []
         ]
@@ -11764,8 +11516,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1200,
-        "y": 580,
+        "x": 1240,
+        "y": 700,
         "wires": []
     },
     {
@@ -12149,576 +11901,50 @@
         ]
     },
     {
-        "id": "14a6b84982d9d4ad",
-        "type": "function",
-        "z": "be6953c0e3c70845",
-        "name": "ReqMap",
-        "func": "let reqMap = global.get('CSMS:Req_Map') || new Map()\n\nreqMap.set('StatusNotification', 'my_SN')\nreqMap.set('SCM', 'my_SCM')\n\nglobal.set('CSMS:Req_Map', reqMap)\nreturn",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 670,
-        "y": 340,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "6735aefe1e53050f",
-        "type": "inject",
-        "z": "be6953c0e3c70845",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "3",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 450,
-        "y": 340,
-        "wires": [
-            [
-                "14a6b84982d9d4ad"
-            ]
-        ]
-    },
-    {
-        "id": "3e5be358a0c06a10",
-        "type": "function",
-        "z": "be6953c0e3c70845",
-        "name": "ClearChargingProfile",
-        "func": "let connectorId = 1\nlet cbId = 'L2410002F01040833A02'\n    \nmsg.payload = {\n    command: \"ClearChargingProfile\",\n    cbId,\n    data: {\n        id: 1,\n        chargingProfilePurpose: \"TxDefaultProfile\",\n    }\n}\n\nreturn msg\n\n\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 720,
-        "y": 160,
-        "wires": [
-            [
-                "647ae537e6cb80bc"
-            ]
-        ]
-    },
-    {
-        "id": "2673488a3facfce7",
-        "type": "inject",
-        "z": "be6953c0e3c70845",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "5",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 470,
-        "y": 160,
-        "wires": [
-            [
-                "3e5be358a0c06a10"
-            ]
-        ]
-    },
-    {
-        "id": "28ed0ee4580e427f",
-        "type": "link in",
-        "z": "be6953c0e3c70845",
-        "name": "my_SN",
-        "links": [],
-        "x": 525,
-        "y": 560,
-        "wires": [
-            [
-                "95e87dbab5f2da34"
-            ]
-        ]
-    },
-    {
-        "id": "ea596a5b57cd92ae",
-        "type": "link in",
-        "z": "be6953c0e3c70845",
-        "name": "my_SCM",
-        "links": [],
-        "x": 535,
-        "y": 680,
-        "wires": [
-            [
-                "b06129c20bb66adc"
-            ]
-        ]
-    },
-    {
-        "id": "b06129c20bb66adc",
-        "type": "link out",
-        "z": "be6953c0e3c70845",
-        "name": "link out 42",
-        "mode": "return",
-        "links": [],
-        "x": 725,
-        "y": 680,
-        "wires": []
-    },
-    {
-        "id": "95e87dbab5f2da34",
-        "type": "change",
-        "z": "be6953c0e3c70845",
-        "name": "Generic Return",
-        "rules": [
-            {
-                "t": "set",
-                "p": "ocpp.data",
-                "pt": "msg",
-                "to": "payload.data",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "{}",
-                "tot": "json"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 680,
-        "y": 560,
-        "wires": [
-            [
-                "ee872121139b19d6"
-            ]
-        ]
-    },
-    {
-        "id": "ee872121139b19d6",
-        "type": "link out",
-        "z": "be6953c0e3c70845",
-        "name": "link out 38",
-        "mode": "return",
-        "links": [],
-        "x": 835,
-        "y": 560,
-        "wires": []
-    },
-    {
-        "id": "647ae537e6cb80bc",
-        "type": "link out",
-        "z": "be6953c0e3c70845",
-        "name": "link out 43",
-        "mode": "link",
-        "links": [
-            "6ea73070a96d4eeb"
-        ],
-        "x": 865,
-        "y": 160,
-        "wires": []
-    },
-    {
-        "id": "139500cb73933ae5",
-        "type": "function",
-        "z": "be6953c0e3c70845",
-        "name": "ClearChargingProfile",
-        "func": "let connectorId = 1\nlet cbId = 'L2410002F01040833A02'\n    \nmsg.payload = {\n    command: \"ClearChargingProfile\",\n    cbId,\n    data: {\n        id: 1,\n        chargingProfilePurpose: \"TxProfile\",\n    }\n}\n\nreturn msg\n\n\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 720,
-        "y": 240,
-        "wires": [
-            [
-                "e762dccd76164608"
-            ]
-        ]
-    },
-    {
-        "id": "92bf539f09fad5fc",
-        "type": "inject",
-        "z": "be6953c0e3c70845",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "4",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 470,
-        "y": 240,
-        "wires": [
-            [
-                "139500cb73933ae5"
-            ]
-        ]
-    },
-    {
-        "id": "e762dccd76164608",
-        "type": "link out",
-        "z": "be6953c0e3c70845",
-        "name": "link out 44",
-        "mode": "link",
-        "links": [
-            "6ea73070a96d4eeb"
-        ],
-        "x": 865,
-        "y": 240,
-        "wires": []
-    },
-    {
-        "id": "ba16c53b2a962377",
-        "type": "function",
-        "z": "be6953c0e3c70845",
-        "name": "Clear ReqMap",
-        "func": "let reqMap = new Map()\n\n//reqMap.set('StatusNotification', 'my_SN')\n//reqMap.set('SCM', 'my_SCM')\n\nglobal.set('CSMS:Req_Map', reqMap)\nreturn",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 680,
-        "y": 420,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "c515882adfa185e1",
-        "type": "inject",
-        "z": "be6953c0e3c70845",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": "3",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 430,
-        "y": 420,
-        "wires": [
-            [
-                "ba16c53b2a962377"
-            ]
-        ]
-    },
-    {
-        "id": "d87d1230d7f4c458",
-        "type": "function",
-        "z": "be6953c0e3c70845",
-        "g": "ceb6cf36b4dceec8",
-        "name": "Auth/Start Tx",
-        "func": "// function handles both Authorize and StartTransaction\n// This generate a unique TxId, as long as the function doesn't get called twice\n// within the same millisecond\n\n\n// defaults\nconst ACCEPTED = \"Accepted\"\nlet status = ACCEPTED\nlet tags = []\n\n// copy message for the enhanced message with TxId\nlet msg2 = RED.util.cloneMessage(msg)\n\nmsg2.payload = {\n    idTagInfo: {\n        status\n    }\n}\n\nif (msg.ocpp.command === \"StartTransaction\"){\n    msg2.payload.transactionId = generateUniqueId()\n    msg.ocpp.command = 'StartTransactionEnhanced'\n    msg.payload.command = msg.ocpp.command\n    msg2.ocpp.connectorId = msg.payload.data.connectorId || 1\n}\n\n\nlet freeVend = global.get(\"CSMS:FreeVend\") \n    \nif (! freeVend ){\n    tags = global.get(\"CSMS:Tags\")\n\n    const result = tags.find((tag) => tag.tagId === msg.payload.data.idTag)\n\n    if (result){\n        if (!result.enabled){\n            msg2.payload.idTagInfo.status = \"Blocked\"\n        }\n        else if (result.expdate){\n            let expDate = new Date(result.expdate)\n            expDate.setHours(23, 59, 59, 999); // Set to the end of the day\n            let currentDate = new Date()\n\n            if (currentDate > expDate){\n                msg2.payload.idTagInfo.status = \"Expired\"\n            }\n            else {\n                msg2.payload.idTagInfo.expiryDate = expDate.toISOString()\n            }\n        } \n    }\n    else {\n        msg2.payload.idTagInfo.status = \"Invalid\"\n    }\n\n    if (msg2.payload.idTagInfo.status !== ACCEPTED){\n        msg2.payload.transactionId = 0\n    }\n\n}\n\nlet data\n\nif(msg.ocpp.command == \"StartTransaction\"){\n    data = msg.payload.data\n    data.transactionId = msg2.payload.transactionId\n    data.status = msg2.payload.idTagInfo.status\n    const ts = new Date(data.timestamp)\n    msg.timestamp = ts.getTime()\n    msg.cbId = msg2.ocpp.chargeBoxIdentity\n    msg.msgFrom = \"CS\"\n    msg.payload = [2,msg2.ocpp.MessageId,\"StartTransactionEnhanced\",data]\n} else {\n    msg = null\n} \n\nreturn [msg2,msg];\n\n\nfunction generateUniqueId() {\n    // Return a positive 32bit Int as a random TxId\n    const isoTimestamp = new Date().toISOString();\n    // Create a Date object from the ISO timestamp string\n    const date = new Date(isoTimestamp);\n\n    // Get the timestamp in seconds since the Unix epoch\n    const timestampInSeconds = Math.floor(date.getTime() / 1000);\n\n    // Calculate offset to ensure positive value within 32-bit signed range\n    const offset = timestampInSeconds < 0 ? 2147483648 : 0;\n\n    // Convert to 32-bit signed integer and apply offset\n    const int32Timestamp = (timestampInSeconds + offset) | 0;\n\n    return int32Timestamp;\n}\n",
-        "outputs": 2,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 630,
-        "y": 900,
-        "wires": [
-            [
-                "6aa282ae0b36247d",
-                "23ade09a61f9015c"
-            ],
-            [
-                "cb1919cea557885d"
-            ]
-        ]
-    },
-    {
-        "id": "cc759bb71f06debd",
-        "type": "link in",
-        "z": "be6953c0e3c70845",
-        "g": "ceb6cf36b4dceec8",
-        "name": "CL_Auth_StartTx",
-        "links": [],
-        "x": 525,
-        "y": 900,
-        "wires": [
-            [
-                "d87d1230d7f4c458"
-            ]
-        ]
-    },
-    {
-        "id": "6aa282ae0b36247d",
+        "id": "429f153803b4e889",
         "type": "switch",
-        "z": "be6953c0e3c70845",
-        "g": "ceb6cf36b4dceec8",
-        "name": "StartTx Accepted",
-        "property": "payload.idTagInfo.status",
+        "z": "daf7a59ca2ce18df",
+        "name": "",
+        "property": "action",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "eq",
-                "v": "Accepted",
+                "v": "txDetails",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "options",
                 "vt": "str"
             }
         ],
         "checkall": "true",
         "repair": false,
-        "outputs": 1,
-        "x": 830,
-        "y": 900,
-        "wires": [
-            [
-                "7010f322a6ca6ae5"
-            ]
-        ]
-    },
-    {
-        "id": "23ade09a61f9015c",
-        "type": "link out",
-        "z": "be6953c0e3c70845",
-        "g": "ceb6cf36b4dceec8",
-        "name": "link out 47",
-        "mode": "return",
-        "links": [],
-        "x": 735,
-        "y": 860,
-        "wires": []
-    },
-    {
-        "id": "cb1919cea557885d",
-        "type": "link out",
-        "z": "be6953c0e3c70845",
-        "g": "ceb6cf36b4dceec8",
-        "name": "link out 48",
-        "mode": "link",
-        "links": [],
-        "x": 745,
-        "y": 940,
-        "wires": []
-    },
-    {
-        "id": "12b8bd9cfdff38db",
-        "type": "function",
-        "z": "be6953c0e3c70845",
-        "g": "ceb6cf36b4dceec8",
-        "name": "Save sessions context",
-        "func": "if (msg.ocpp.command === \"StartTransaction\"){\n    let session = {}\n    session.cbId = msg.ocpp.chargeBoxIdentity\n    session.connectorId = msg.ocpp.connectorId\n    session.transactionId = msg.payload.transactionId\n    session.amps = msg.evse.amps\n    let sessions = global.get(\"CSMS:SESSIONS\") || []\n    sessions.push(session)\n    global.set(\"CSMS:SESSIONS\",sessions)\n    return msg;\n}",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1080,
-        "y": 940,
-        "wires": [
-            [
-                "fa6e94f405122a1c"
-            ]
-        ]
-    },
-    {
-        "id": "fa6e94f405122a1c",
-        "type": "function",
-        "z": "be6953c0e3c70845",
-        "g": "ceb6cf36b4dceec8",
-        "name": "function 3",
-        "func": "const command = \"SCM\"\nconst reqMap = global.get(\"CSMS:Req_Map\");\n\n//default target\nmsg.target = \"CL_SCM\"\n\n// Override target\nif (reqMap.has(command)){\n    msg.target = reqMap.get(command)\n}\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1260,
-        "y": 940,
-        "wires": [
-            [
-                "42125ce42a18f3dc"
-            ]
-        ]
-    },
-    {
-        "id": "42125ce42a18f3dc",
-        "type": "link call",
-        "z": "be6953c0e3c70845",
-        "g": "ceb6cf36b4dceec8",
-        "name": "SCM",
-        "links": [],
-        "linkType": "dynamic",
-        "timeout": "30",
-        "x": 1390,
-        "y": 940,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "d293d37b2e3f30f5",
-        "type": "link in",
-        "z": "be6953c0e3c70845",
-        "g": "ceb6cf36b4dceec8",
-        "name": "link in 4",
-        "links": [
-            "0bb0a06fe83260c3"
-        ],
-        "x": 955,
-        "y": 940,
-        "wires": [
-            [
-                "12b8bd9cfdff38db"
-            ]
-        ]
-    },
-    {
-        "id": "7010f322a6ca6ae5",
-        "type": "change",
-        "z": "be6953c0e3c70845",
-        "g": "ceb6cf36b4dceec8",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload2",
-                "pt": "msg",
-                "to": "payload",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "$join([\"evse:\",ocpp.chargeBoxIdentity])",
-                "tot": "jsonata"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1040,
-        "y": 900,
-        "wires": [
-            [
-                "38b195bac085b028"
-            ]
-        ]
-    },
-    {
-        "id": "38b195bac085b028",
-        "type": "redis-command",
-        "z": "be6953c0e3c70845",
-        "g": "ceb6cf36b4dceec8",
-        "server": "0430675ed6c7cd83",
-        "command": "GET",
-        "name": "",
-        "topic": "",
-        "params": "[]",
-        "paramsType": "json",
-        "payloadType": "json",
-        "block": false,
-        "x": 1200,
-        "y": 900,
-        "wires": [
-            [
-                "939509d1bcb662e4"
-            ]
-        ]
-    },
-    {
-        "id": "939509d1bcb662e4",
-        "type": "json",
-        "z": "be6953c0e3c70845",
-        "g": "ceb6cf36b4dceec8",
-        "name": "",
-        "property": "payload",
-        "action": "",
-        "pretty": false,
+        "outputs": 2,
         "x": 1330,
-        "y": 900,
+        "y": 520,
         "wires": [
             [
-                "c8f1b5fdb61f41a7"
+                "cf7b88020b745f6a"
+            ],
+            [
+                "fbdd04f3b4d0925d"
             ]
         ]
     },
     {
-        "id": "c8f1b5fdb61f41a7",
+        "id": "fbdd04f3b4d0925d",
         "type": "change",
-        "z": "be6953c0e3c70845",
-        "g": "ceb6cf36b4dceec8",
+        "z": "daf7a59ca2ce18df",
         "name": "",
         "rules": [
             {
                 "t": "set",
-                "p": "evse",
-                "pt": "msg",
-                "to": "{}",
-                "tot": "json"
-            },
-            {
-                "t": "set",
-                "p": "evse.amps",
-                "pt": "msg",
-                "to": "$number(payload.amps)",
-                "tot": "jsonata"
-            },
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload2",
+                "p": "options",
+                "pt": "flow",
+                "to": "options",
                 "tot": "msg"
-            },
-            {
-                "t": "delete",
-                "p": "payload2",
-                "pt": "msg"
             }
         ],
         "action": "",
@@ -12727,25 +11953,62 @@
         "to": "",
         "reg": false,
         "x": 1480,
-        "y": 900,
+        "y": 600,
         "wires": [
             [
-                "0bb0a06fe83260c3"
+                "d3a017f87387ff7b"
             ]
         ]
     },
     {
-        "id": "0bb0a06fe83260c3",
-        "type": "link out",
-        "z": "be6953c0e3c70845",
-        "g": "ceb6cf36b4dceec8",
-        "name": "link out 49",
-        "mode": "link",
+        "id": "d3a017f87387ff7b",
+        "type": "link call",
+        "z": "daf7a59ca2ce18df",
+        "name": "",
         "links": [
-            "d293d37b2e3f30f5"
+            "22993ff229d6db8d"
         ],
-        "x": 1605,
-        "y": 920,
+        "linkType": "static",
+        "timeout": "30",
+        "x": 1595,
+        "y": 600,
+        "wires": [
+            []
+        ],
+        "l": false
+    },
+    {
+        "id": "4d28c5123bd6d40d",
+        "type": "debug",
+        "z": "daf7a59ca2ce18df",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 810,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "92d4fc8edd807919",
+        "type": "debug",
+        "z": "daf7a59ca2ce18df",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1470,
+        "y": 700,
         "wires": []
     }
 ]

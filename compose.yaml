@@ -19,7 +19,7 @@ services:
       TZ: ${NODE_RED_TIMEZONE:-America/Chicago}
       NODE_RED_CREDENTIAL_SECRET: ${NODE_RED_CREDENTIAL_SECRET:-false}
       NODE_RED_ENABLE_PROJECTS: false
-      DEBUG: "anl:ocpp:*"
+      ## DEBUG: "anl:ocpp:*"
       CIPIO_MQTT_USER: ${CIPIO_USER}
       CIPIO_MQTT_PW: ${CIPIO_PW}
       CIPIO_CSMS_PORT: ${CIPIO_CSMS_PORT-8884}
@@ -34,7 +34,7 @@ services:
         }
       CIPIO_adminUser: ${CIPIO_USER}
       CIPIO_adminPW: ${CIPIO_ADMIN_PW}
-      CIPIO_uiUser: ${CIPIO_USER}
+      CIPIO_uiUser: ${CIPIO_UI_USER}
       CIPIO_uiPW: ${CIPIO_UI_PW}
 
   valkey:

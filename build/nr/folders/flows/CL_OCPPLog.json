@@ -132,27 +132,11 @@
     ]
   },
   {
-    "id": "f8c6aff29ab8c9df",
-    "type": "debug",
-    "z": "294f3520d49a4f00",
-    "name": "debug 28",
-    "active": false,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "false",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 920,
-    "y": 300,
-    "wires": []
-  },
-  {
     "id": "09b04c7f9641599a",
     "type": "function",
     "z": "294f3520d49a4f00",
     "name": "FLUX Get raw OCPP",
-    "func": "// clear out any incoming message for now.\n//msg = {}\n\nlet options = flow.get(\"options\") ?? {}\nlet showResp = options?.showResp ?? true \nlet showHB = options?.showHB ?? true\nlet start = options?.start ?? '-1h'\n\nmsg = {}\n\nlet showRespQry = (showResp == false) ? '|> filter(fn: (r) => r.command != \"<response>\")' : \"\"\nlet showHBQry = (showHB == false) ?  '|> filter(fn: (r) => r.command != \"Heartbeat\")' : \"\"\n\nmsg.showRespQry = showRespQry\nmsg.showResp = showResp\n\nmsg.query = \n  `from(bucket: \"ocpp_log\")\n    |> range(start: ${start})\n    |> filter(fn: (r) => r[\"_measurement\"] == \"ocpplog\")\n    |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n    ${showRespQry}\n    ${showHBQry}\n    |> drop(columns: [\"_start\",\"_stop\",\"_mesaurement\"])\n    |> group(columns: [\"msgId\"])\n    |> sort(columns: [\"_time\"])`\n\n/*\n    `from(bucket: \"ocpp_log\")\n      |> range(start: -4d)\n      |> limit(n: 500)\n      |> filter(fn: (r) => r[\"_measurement\"] == \"ocpplog\")\n      |> filter(fn: (r) => r[\"_field\"] == \"ocppMsg\")\n      |> group()\n      |> sort(columns: [\"_time\"])\n      |> drop(columns: [\"table\",\"Result\",\"_measurement\",\"_stop\",\"_start\",\"_field\"])`\n*/\n\nreturn msg;",
+    "func": "// clear out any incoming message for now.\n//msg = {}\n\nlet options = flow.get(\"options\") ?? {}\nlet showResp = options?.showResp ?? true \nlet showHB = options?.showHB ?? true\nlet start = options?.start ?? '-1h'\n\nmsg = {}\n\nlet showRespQry = (showResp == false) ? '|> filter(fn: (r) => r.command != \"<response>\")' : \"\"\nlet showHBQry = (showHB == false) ?  '|> filter(fn: (r) => r.command != \"Heartbeat\")' : \"\"\n\nmsg.showRespQry = showRespQry\nmsg.showResp = showResp\n\nmsg.query = \n  `from(bucket: \"ocpp_log\")\n    |> range(start: ${start})\n    |> filter(fn: (r) => r[\"_measurement\"] == \"ocpplog\")\n    |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n    ${showRespQry}\n    ${showHBQry}\n    |> drop(columns: [\"_start\",\"_stop\",\"_mesaurement\"])\n    |> group(columns: [\"msgId\"])\n    |> sort(columns: [\"_time\"])`\n\nreturn msg;",
     "outputs": 1,
     "timeout": 0,
     "noerr": 0,
@@ -164,7 +148,7 @@
     "wires": [
       [
         "22f189e825d297fe",
-        "9625a45bb4b8737d"
+        "76062bc9f86f4659"
       ]
     ]
   },
@@ -199,20 +183,23 @@
     "page": "",
     "ui": "",
     "name": "Log Table",
-    "order": 2,
+    "order": 1,
     "width": 0,
     "height": 0,
     "head": "",
-    "format": "<template>\n    <v-text-field\n        v-model=\"search\"\n        label=\"Search\"\n        prepend-inner-icon=\"mdi-magnify\"\n        variant=\"outlined\"\n        clearable\n        hide-details\n        single-line\n        fixed-header\n      ></v-text-field>\n\n    <v-data-table  \n            v-model:search=\"search\"\n            v-model:sort-by=\"sortBy\"\n            :items=\"msg?.payload\"\n            :headers=\"headers\"\n            density=\"compact\"\n            :filter-keys='[\"command\",\"msgFrom\",\"cbId\",\"ocppMsg\"]'\n            >\n\n        <template v-slot:header._time>\n            <div class=\"headers\">Time</div>\n        </template>\n        <template v-slot:header.cbId>\n            <div class=\"headers\">CS</div>\n        </template>\n        <template v-slot:header.msgFrom>\n            <div class=\"headers\">Origin</div>\n        </template>\n        <template v-slot:header.command>\n            <div class=\"text-center headers\">CMD</div>\n        </template>\n        <!--template v-slot:header._value>\n            <div class=\"text-center headers\">OCPP Message</div>\n        </template -->\n\n        <template v-slot:item._time=\"{ item }\">\n            <div>{{ getLocalTimeString(item._time) }}</div>\n        </template>\n        <template v-slot:item.command=\"{ item }\">\n            <div :class=\"getOCPPCmdClass(item.command)\">{{ item.command }}</div>\n        </template>\n        <template v-slot:item.ocppMsg=\"{ item }\">\n            <div :class=\"getOCPPMsgClass(item.ocppMsg)\">{{ item.ocppMsg }}</div>\n        </template>\n    </v-data-table>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                search: '',\n                sortBy: [{ key: '_time', order: 'asc' }],\n                headers: [\n                    {title: \"Time\", value: \"_time\"},\n                    {title: \"Origin\", key: \"msgFrom\", sortable: false},\n                    {title: \"EVSE\", key: \"cbId\", sortable: false},\n                    {title: \"CMD\", key: \"command\", sortable: false},\n                    {title: \"OCPP Message\", key: \"ocppMsg\", sortable: false}\n                ]\n            }\n        },\n        watch: {\n            // watch for any changes of \"count\"\n\n        },\n        computed: {\n\n        },\n        methods: {\n            // expose a method to our <template> and Vue Application\n            getLocalTimeString: function (isoTime){\n                const date = new Date(isoTime)\n                const options = { \n                    year: '2-digit', \n                    month: '2-digit', \n                    day: '2-digit', \n                    hour: '2-digit', \n                    minute: '2-digit', \n                    second: '2-digit', \n                    millisecond: '3-digit',\n                    hour12: false \n                    }\n                return date.toLocaleString('en-US', options)\n            },\n            getOCPPMsgClass: function (item) {\n                let obj = JSON.parse(item);\n                return \"ocppMsgErr\";\n                if ( obj[0] == 2) {\n                    return \"ocppMsgReq\";\n                }\n                else if ( obj[0] == 3) {\n                    if ( Object.hasOwn(obj[2],\"status\")){\n                        return \"ocppMsgErr\";\n                    }\n                    return \"ocppMsgErr\";\n                }\n                else {\n                    return \"ocppMsgErr\";\n                }\n            },\n            getOCPPCmdClass: function (item) {\n                if (item.startsWith(\"<res\")) {\n                    return \"ocppCmdRes\";\n                }\n                else {\n                    return \"ocppCmdReq\";\n                }\n            }\n        },\n        mounted() {\n            // code here when the component is first loaded\n        },\n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: red;\n    }\n    .headers {\n        font-weight: bold;\n    }\n    .ocppMsgReq {\n        color: blue;\n        font-weight: bold;\n    }\n    .ocppMsgRes {\n        color: blue;\n    }\n    .ocppMsgErr {\n        color: red;\n    }\n    .ocppCmdReq {\n        color: green;\n        font-weight: bold;\n    }\n    .ocppCmdRes {\n        color: DarkCyan;\n    }\n</style>",
+    "format": "<template>\n\n    <v-data-table  \n            v-model:search=\"search\"\n            v-model:sort-by=\"sortBy\"\n            :items=\"msg?.payload\"\n            :headers=\"headers\"\n            density=\"compact\"\n            :filter-keys='[\"command\",\"msgFrom\",\"cbId\",\"ocppMsg\"]'\n            >\n    <template v-slot:top>\n        <v-toolbar flat>\n            <v-toolbar-title>\n                <v-icon color=\"medium-emphasis\" icon=\"mdi-book-open-variant\" size=\"x-small\" start></v-icon>\n                OCPP Log\n            </v-toolbar-title>\n\n            <v-text-field\n                v-model=\"search\"\n                label=\"Search\"\n                prepend-inner-icon=\"mdi-magnify\"\n                clear-icon=\"mdi-close-circle\"\n                variant=\"solo-filled\"\n                density=\"compact\"\n                hide-details\n                single-line\n                clearable\n            ></v-text-field>\n            <v-spacer></v-spacer>           \n            <v-template>\n                <v-switch \n                    v-model=\"showHB\" \n                    label=\"HB\" \n                    color=\"primary\"\n                    >\n                </v-switch>\n            </v-template>\n\n            <v-template>\n                <v-switch \n                    v-model=\"showResp\" \n                    label=\"Resp\" \n                    color=\"primary\"\n                    >\n                </v-switch>\n            </v-template>\n\n            <v-tooltip text=\"Refresh\" location=\"bottom\">\n                <template v-slot:activator=\"{ props }\">\n                <v-btn icon v-bind=\"props\" @click=\"refresh\">\n                    <v-icon>mdi-refresh</v-icon>\n                </v-btn>\n                </template>\n            </v-tooltip>\n            <v-template align-self=\"end\">\n            <v-select\n                v-model=\"select\"\n                :items=\"startTimes\"\n                item-title=\"title\"\n                item-value=\"value\"\n                >\n            </v-select>\n            </v-template>            \n\n        </v-toolbar>\n    </template>            \n\n        <template v-slot:header._time>\n            <div class=\"headers\">Time</div>\n        </template>\n        <template v-slot:header.cbId>\n            <div class=\"headers\">CS</div>\n        </template>\n        <template v-slot:header.msgFrom>\n            <div class=\"headers\">Origin</div>\n        </template>\n        <template v-slot:header.command>\n            <div class=\"text-center headers\">CMD</div>\n        </template>\n        <!--template v-slot:header._value>\n            <div class=\"text-center headers\">OCPP Message</div>\n        </template -->\n\n        <template v-slot:item._time=\"{ item }\">\n            <div>{{ getLocalTimeString(item._time) }}</div>\n        </template>\n        <template v-slot:item.command=\"{ item }\">\n            <div :class=\"getOCPPCmdClass(item.command)\">{{ item.command }}</div>\n        </template>\n        <template v-slot:item.ocppMsg=\"{ item }\">\n            <div :class=\"getOCPPMsgClass(item.ocppMsg)\">{{ item.ocppMsg }}</div>\n        </template>\n    </v-data-table>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                search: '',\n                sortBy: [{ key: '_time', order: 'asc' }],\n                headers: [\n                    {title: \"Time\", value: \"_time\"},\n                    {title: \"Origin\", key: \"msgFrom\", sortable: false},\n                    {title: \"EVSE\", key: \"cbId\", sortable: false},\n                    {title: \"CMD\", key: \"command\", sortable: false},\n                    {title: \"OCPP Message\", key: \"ocppMsg\", sortable: false}\n                ],\n                showResp: true,\n                showHB: true,\n                select: { title: \"past 5m\", value: '-5m'},\n                startTimes: [\n                    { title: \"past 1m\", value: '-1m'},\n                    { title: \"past 5m\", value: '-5m'},\n                    { title: \"past 15m\", value: '-15m'},\n                    { title: \"past 1h\", value: '-1h'},\n                    { title: \"past 3h\", value: '-3h'},\n                    { title: \"past 6h\", value: '-6h'},\n                    { title: \"past 12h\", value: '-12h'},\n                    { title: \"past 24h\", value: '-24h'},\n                    { title: \"past 2d\", value: '-2d'},\n                    { title: \"past 7d\", value: '-7d'},\n                    { title: \"past 30d\", value: '-30d'},\n//                    { title: \"custom\", value: 'custom'}\n                    ]\n            }\n        },\n        computed: {\n\n        },\n        watch: {\n            showHB(newValue) {\n                this.sendOptions()\n            },\n            showResp(newValue) {\n                this.sendOptions()\n            },\n            select(newValue) {\n                this.sendOptions()\n            }\n        },\n        methods: {\n            // expose a method to our <template> and Vue Application\n            getLocalTimeString: function (isoTime){\n                const date = new Date(isoTime)\n                const options = { \n                    year: '2-digit', \n                    month: '2-digit', \n                    day: '2-digit', \n                    hour: '2-digit', \n                    minute: '2-digit', \n                    second: '2-digit', \n                    millisecond: '3-digit',\n                    hour12: false \n                    }\n                return date.toLocaleString('en-US', options)\n            },\n            getOCPPMsgClass: function (item) {\n                let obj = JSON.parse(item);\n                return \"ocppMsgErr\";\n                if ( obj[0] == 2) {\n                    return \"ocppMsgReq\";\n                }\n                else if ( obj[0] == 3) {\n                    if ( Object.hasOwn(obj[2],\"status\")){\n                        return \"ocppMsgErr\";\n                    }\n                    return \"ocppMsgErr\";\n                }\n                else {\n                    return \"ocppMsgErr\";\n                }\n            },\n            getOCPPCmdClass: function (item) {\n                if (item.startsWith(\"<res\")) {\n                    return \"ocppCmdRes\";\n                }\n                else {\n                    return \"ocppCmdReq\";\n                }\n            },\n            sendOptions: function() {\n                this.send({\n                    action: \"options\", \n                    options: {\n                        start: this.select,\n                        showHB: this.showHB,\n                        showResp: this.showResp\n                    }\n                })\n            }\n        },\n        mounted() {\n            // code here when the component is first loaded\n        },\n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: red;\n    }\n    .headers {\n        font-weight: bold;\n    }\n    .ocppMsgReq {\n        color: blue;\n        font-weight: bold;\n    }\n    .ocppMsgRes {\n        color: blue;\n    }\n    .ocppMsgErr {\n        color: red;\n    }\n    .ocppCmdReq {\n        color: green;\n        font-weight: bold;\n    }\n    .ocppCmdRes {\n        color: DarkCyan;\n    }\n</style>",
     "storeOutMessages": true,
-    "passthru": true,
+    "passthru": false,
     "resendOnRefresh": true,
     "templateScope": "local",
     "className": "",
-    "x": 920,
+    "x": 880,
     "y": 340,
     "wires": [
-      []
+      [
+        "fcbda4076fa53d57",
+        "d07158c4069cdd2c"
+      ]
     ]
   },
   {
@@ -231,8 +218,7 @@
     "y": 340,
     "wires": [
       [
-        "7d1c0e100d38e388",
-        "f8c6aff29ab8c9df"
+        "7d1c0e100d38e388"
       ]
     ]
   },
@@ -331,9 +317,10 @@
     "z": "294f3520d49a4f00",
     "name": "Refresh Log",
     "links": [
-      "fca2ef466dd35c31"
+      "fca2ef466dd35c31",
+      "fdc97bc5af3f0ed6"
     ],
-    "x": 105,
+    "x": 165,
     "y": 340,
     "wires": [
       [
@@ -565,233 +552,6 @@
     "wires": []
   },
   {
-    "id": "5fcf104321bf3b9e",
-    "type": "function",
-    "z": "294f3520d49a4f00",
-    "name": "function 17",
-    "func": "msg = {}\n\nmsg.query = `from(bucket: \"ocpp_log\") \\ \n    |> range(start: -1h) \\ \n    |> filter(fn: (r) => r[\"_measurement\"] == \"ocpplog\") \\\n    |> filter(fn: (r) => r[\"_field\"] == \"msgId\" or r[\"_field\"] == \"ocppMsg\") \\\n    |> group(columns: [\"_value\"]) \\\n    |> keep(columns: [\"_time\",\"cbId\",\"command\",\"msgFrom\",\"_value\"]) \\\n    |> sort(columns: [\"command\"], desc: true)`\nreturn msg;",
-    "outputs": 1,
-    "timeout": 0,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 310,
-    "y": 680,
-    "wires": [
-      [
-        "6d6e838673636f47"
-      ]
-    ]
-  },
-  {
-    "id": "916e9cd9c4f8a11b",
-    "type": "debug",
-    "z": "294f3520d49a4f00",
-    "name": "debug 54",
-    "active": false,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 680,
-    "y": 680,
-    "wires": []
-  },
-  {
-    "id": "13437f1913f23438",
-    "type": "inject",
-    "z": "294f3520d49a4f00",
-    "name": "",
-    "props": [
-      {
-        "p": "payload"
-      },
-      {
-        "p": "topic",
-        "vt": "str"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "",
-    "payloadType": "date",
-    "x": 140,
-    "y": 680,
-    "wires": [
-      [
-        "5fcf104321bf3b9e"
-      ]
-    ]
-  },
-  {
-    "id": "6d6e838673636f47",
-    "type": "influxdb in",
-    "z": "294f3520d49a4f00",
-    "influxdb": "7cb40fcee206391e",
-    "name": "",
-    "query": "",
-    "rawOutput": false,
-    "precision": "",
-    "retentionPolicy": "",
-    "org": "cipio",
-    "x": 500,
-    "y": 680,
-    "wires": [
-      [
-        "916e9cd9c4f8a11b"
-      ]
-    ]
-  },
-  {
-    "id": "29b7f0d602a2187a",
-    "type": "debug",
-    "z": "294f3520d49a4f00",
-    "name": "debug 72",
-    "active": false,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 480,
-    "y": 460,
-    "wires": []
-  },
-  {
-    "id": "fc974c9c771a2596",
-    "type": "ui-template",
-    "z": "294f3520d49a4f00",
-    "group": "c187df53e1cacaad",
-    "page": "",
-    "ui": "",
-    "name": "Log Options",
-    "order": 1,
-    "width": 0,
-    "height": 0,
-    "head": "",
-    "format": "<template>\n\n      <v-toolbar flat>\n        \n        <v-toolbar-title class=\"text-grey\">\n            Options\n        </v-toolbar-title>\n\n        <v-spacer></v-spacer>\n            <v-template>\n            <v-switch \n                v-model=\"showResp\" \n                label=\"Responses\" \n                color=\"primary\"\n                >\n            </v-switch>\n            </v-template>\n            <v-spacer></v-spacer>\n            <v-template>\n            <v-switch \n                v-model=\"showHB\" \n                label=\"Heartbeats\" \n                color=\"primary\"\n                >\n            </v-switch>\n            </v-template>\n            <v-spacer></v-spacer>\n            <v-template>\n            <v-select\n                v-model=\"select\"\n                :items=\"startTimes\"\n                item-title=\"title\"\n                item-value=\"value\"\n                >\n            </v-select>\n            </v-template>\n\n      </v-toolbar>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                showResp: true,\n                showHB: true,\n                select: { title: \"past 5m\", value: '-5m'},\n                startTimes: [\n                    { title: \"past 1m\", value: '-1m'},\n                    { title: \"past 5m\", value: '-5m'},\n                    { title: \"past 15m\", value: '-15m'},\n                    { title: \"past 1h\", value: '-1h'},\n                    { title: \"past 3h\", value: '-3h'},\n                    { title: \"past 6h\", value: '-6h'},\n                    { title: \"past 12h\", value: '-12h'},\n                    { title: \"past 24h\", value: '-24h'},\n                    { title: \"past 2d\", value: '-2d'},\n                    { title: \"past 7d\", value: '-7d'},\n                    { title: \"past 30d\", value: '-30d'},\n//                    { title: \"custom\", value: 'custom'}\n                    ]\n            }\n        },\n        watch: {\n            showHB(newValue) {\n                this.sendOptions()\n            },\n            showResp(newValue) {\n                this.sendOptions()\n            },\n            select(newValue) {\n                this.sendOptions()\n            }\n        },\n        methods: {\n            // expose a method to our <template> and Vue Application\n            sendOptions: function() {\n                this.send({ \n                    options: {\n                        showResp: this.showResp, \n                        showHB: this.showHB,\n                        start: this.select \n                    }\n                })\n            }\n        },\n        mounted() {\n            // code here when the component is first loaded\n        },\n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: red;\n    }\n</style>",
-    "storeOutMessages": true,
-    "passthru": false,
-    "resendOnRefresh": true,
-    "templateScope": "local",
-    "className": "",
-    "x": 270,
-    "y": 460,
-    "wires": [
-      [
-        "29b7f0d602a2187a",
-        "05a3a30ace8bde17"
-      ]
-    ]
-  },
-  {
-    "id": "9625a45bb4b8737d",
-    "type": "debug",
-    "z": "294f3520d49a4f00",
-    "name": "debug 73",
-    "active": false,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 490,
-    "y": 400,
-    "wires": []
-  },
-  {
-    "id": "05a3a30ace8bde17",
-    "type": "change",
-    "z": "294f3520d49a4f00",
-    "name": "",
-    "rules": [
-      {
-        "t": "set",
-        "p": "options",
-        "pt": "flow",
-        "to": "options",
-        "tot": "msg"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 280,
-    "y": 400,
-    "wires": [
-      [
-        "09b04c7f9641599a"
-      ]
-    ]
-  },
-  {
-    "id": "f5ee21688de2721a",
-    "type": "inject",
-    "z": "294f3520d49a4f00",
-    "name": "",
-    "props": [
-      {
-        "p": "payload"
-      },
-      {
-        "p": "topic",
-        "vt": "str"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": true,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "",
-    "payloadType": "date",
-    "x": 150,
-    "y": 580,
-    "wires": [
-      [
-        "6721711cb29da7b6"
-      ]
-    ]
-  },
-  {
-    "id": "6721711cb29da7b6",
-    "type": "change",
-    "z": "294f3520d49a4f00",
-    "name": "",
-    "rules": [
-      {
-        "t": "set",
-        "p": "options",
-        "pt": "flow",
-        "to": "{}",
-        "tot": "json"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 310,
-    "y": 580,
-    "wires": [
-      []
-    ]
-  },
-  {
     "id": "a17aef1dc7d51ba8",
     "type": "switch",
     "z": "294f3520d49a4f00",
@@ -854,7 +614,7 @@
     "type": "debug",
     "z": "294f3520d49a4f00",
     "name": "debug 87",
-    "active": true,
+    "active": false,
     "tosidebar": true,
     "console": false,
     "tostatus": false,
@@ -898,5 +658,79 @@
         "93076343d978982d"
       ]
     ]
+  },
+  {
+    "id": "fcbda4076fa53d57",
+    "type": "change",
+    "z": "294f3520d49a4f00",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "options",
+        "pt": "flow",
+        "to": "options",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1040,
+    "y": 340,
+    "wires": [
+      [
+        "fdc97bc5af3f0ed6"
+      ]
+    ]
+  },
+  {
+    "id": "fdc97bc5af3f0ed6",
+    "type": "link out",
+    "z": "294f3520d49a4f00",
+    "name": "link out 38",
+    "mode": "link",
+    "links": [
+      "6ec7f5c8fa255cf6"
+    ],
+    "x": 1155,
+    "y": 340,
+    "wires": []
+  },
+  {
+    "id": "d07158c4069cdd2c",
+    "type": "debug",
+    "z": "294f3520d49a4f00",
+    "name": "debug 9",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1030,
+    "y": 440,
+    "wires": []
+  },
+  {
+    "id": "76062bc9f86f4659",
+    "type": "debug",
+    "z": "294f3520d49a4f00",
+    "name": "debug 11",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "query",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 510,
+    "y": 480,
+    "wires": []
   }
 ]

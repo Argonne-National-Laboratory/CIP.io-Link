@@ -107,7 +107,7 @@
   {
     "id": "8cdc313c9611f13f",
     "type": "ui-base",
-    "name": "My Dashboard",
+    "name": "CIP.io Link",
     "path": "/dashboard",
     "appIcon": "",
     "includeClientData": true,
@@ -121,7 +121,8 @@
     "titleBarStyle": "default",
     "showReconnectNotification": false,
     "notificationDisplayTime": "5",
-    "showDisconnectNotification": false
+    "showDisconnectNotification": false,
+    "allowInstall": true
   },
   {
     "id": "0d92c765bfad87e6",
@@ -251,7 +252,7 @@
     "width": "6",
     "height": "1",
     "order": 1,
-    "showTitle": true,
+    "showTitle": false,
     "className": "",
     "visible": "true",
     "disabled": "false",
@@ -291,7 +292,7 @@
     "order": 4,
     "className": "",
     "visible": true,
-    "disabled": "false"
+    "disabled": false
   },
   {
     "id": "17fb40c0e949759b",
@@ -301,7 +302,7 @@
     "width": "6",
     "height": "1",
     "order": 1,
-    "showTitle": true,
+    "showTitle": false,
     "className": "",
     "visible": "true",
     "disabled": "false",
@@ -340,8 +341,8 @@
     ],
     "order": 1,
     "className": "",
-    "visible": true,
-    "disabled": false
+    "visible": "true",
+    "disabled": "false"
   },
   {
     "id": "01bc43f19d1edf0a",

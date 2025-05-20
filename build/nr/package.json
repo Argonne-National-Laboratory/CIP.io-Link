@@ -18,7 +18,7 @@
     "node-red-contrib-influxdb": "^0.7.0",
     "node-red-contrib-modbus": "^5.43.0",
     "node-red-contrib-redis": "^1.4.0",
-    "node-red-contrib-web-worldmap": "^5.1.1",
+    "node-red-contrib-web-worldmap": "5.1.4",
     "node-red-dashboard": "^3.6.5",
     "node-red-contrib-flow-manager": "^0.7.4"
   }
