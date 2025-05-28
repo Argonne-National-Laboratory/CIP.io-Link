@@ -1,4 +1,32 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+##################################################################################
+# Copyright © 2025, UChicago Argonne, LLC
+# All Rights Reserved
+#
+# Software Name: CIPio Link
+# By: Argonne National Laboratory
+#
+# OPEN SOURCE LICENSE (MIT)
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy of
+# this software and associated documentation files (the "Software"), to deal in
+# the Software without restriction, including without limitation the rights to
+# use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+# of the Software, and to permit persons to whom the Software is furnished to do
+# so, subject to the following conditions:
+#
+# •	The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+##################################################################################
 
 # Default .env file path (make this configurable if needed)
 ENV_FILE=".env"
@@ -6,16 +34,7 @@ ENV_FILE=".env"
 SCRIPTS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPTS_DIR/utils.sh"
 
-banner() {
-  clear
-  echo -e "${CYAN}"
-  echo "   ______________    _          __    _       __      "
-  echo "  / ____/  _/ __ \  (_)___     / /   (_)___  / /__    "
-  echo " / /    / // /_/ / / / __ \   / /   / / __ \/ //_/    "
-  echo "/ /____/ // ____/ / / /_/ /  / /___/ / / / / ,<       "
-  echo "\____/___/_/   (_)_/\____/  /_____/_/_/ /_/_/|_|      "
-  echo -e "\n"
-}
+banner
 
 # Create the environment file if it doesn't exist
 if [ ! -f $ENV_FILE ]; then
@@ -65,7 +84,7 @@ update_valkey_conf() {
 
   # the following line will allow for symbols in passwords
   escaped_password=$(printf '%s\n' "$new_password" | sed 's/[\/&]/\\&/g')
-  echo -e "\n"
+  # echo -e "\n"
   # echo "VALKEY PASSWORD: $new_password"
 
   # Use sed to replace the requirepass line
@@ -200,56 +219,56 @@ password=$(tr -dc 'A-Za-z0-9!@#$%^&*_+' </dev/urandom | head -c "$length")
 # Main script logic
 # display_env_settings # Optional: Show current settings
 banner
-echo -e "${GREEN}===================CIP.io Link Setup====================================================${NC}"
-echo "To set up CIP.io Link, please provide input to the following prompts."
-echo "If a value is already set, it will be shown as \"Current\" and you can just hit return"
-echo "to keep the exiting value."
-echo -e "${GREEN}=======================================================================================${NC}"
-echo -e "\n"
+printf "${GREEN}===================CIP.io Link Setup====================================================${NC}\n"
+printf "To set up CIP.io Link, please provide input to the following prompts.\n"
+printf "If a value is already set, it will be shown as \"Current\" and you can just hit return\n"
+printf "to keep the exiting value.\n"
+printf "${GREEN}=======================================================================================${NC}\n"
+printf "\n\n"
 read -p "Hit Enter to continue: " xyz
 
 ## Username & Password
 banner
-echo -e "${YELLOW}==| ${CYAN}CIP.io Link Admin Info${YELLOW} |=================================================================${NC}"
-echo "Please provide a username and password that CIP.io Link will use to configure various"
-echo "applications. To keep things uncomplicated, CIP.io Link uses a common user and password"
-echo "where possible. Since various parts of CIP.io Link run in containers, this isn't a"
-echo "security issue."
-echo -e "\n${RED}NOTE:${NC} This is NOT the Linux system username and password."
-echo "      This is used for logging into the Node-Red programming interface and for any containers"
-echo "      that expect a username and password for security reasons."
-echo -e "\n   ${CYAN}(You will be prompted for a user login info in the next section)${NC}\n"
+printf "${YELLOW}==| ${CYAN}CIP.io Link Admin Info${YELLOW} |=================================================================${NC}\n"
+printf "Please provide a username and password that CIP.io Link will use to configure various\n"
+printf "applications. To keep things uncomplicated, CIP.io Link uses a common user and password\n"
+printf "where possible. Since various parts of CIP.io Link run in containers, this isn't a\n"
+printf "security issue.\n"
+printf "\n${RED}NOTE:${NC} This is NOT the Linux system username and password.\n"
+printf "      This is used for logging into the Node-Red programming interface and for any containers\n"
+printf "      that expect a username and password for security reasons.\n"
+printf "\n   ${CYAN}(You will be prompted for a user login info in the next section)${NC}\n\n"
 update_env_variable "CIPIO_USER" "Enter Admin Username"
 # update_env_variable "CIPIO_PW" "Enter Admin password:"
 prompt_for_secret "CIPIO_PW" "Enter Admin Password"
 
 # Username and Password for the CSMS Web user
 banner
-echo -e "${YELLOW}==| ${CYAN}CIP.io Link User Info${YELLOW} |=================================================================${NC}"
-echo "Please provide a username and password that will be used to access the CSMS web interface"
-echo -e "\n"
+printf "${YELLOW}==| ${CYAN}CIP.io Link User Info${YELLOW} |=================================================================${NC}\n"
+printf "Please provide a username and password that will be used to access the CSMS web interface\n"
+printf "\n\n"
 update_env_variable "CIPIO_UI_USER" "Enter Username"
 prompt_for_secret "CIPIO_UI_PW" "Enter User Password"
 
 # CSMS Port and route
 banner
-echo -e "\n"
-echo -e "${YELLOW}==| ${CYAN}CSMS Port and Route${YELLOW} |==================================================================${NC}"
-echo "We will now set up the port number and path that the CSMS will listen on."
-echo -e "\n"
-echo "For example: "
-echo -e "     a port number of ${GREEN}8822${NC}"
-echo -e "     and a path of ${GREEN}\"/ocpp\"${NC} "
-echo -e "\n"
-echo "...will set up the CSMS to accept incoming EVSE connections on:"
-echo -e "\n"
-echo -e "${CYAN}     \"ws://<host_ip>:${GREEN}8822/ocpp${NC}\".${NC} "
-echo -e "\n"
-echo "You will need to provide that URL to your EVSE."
-echo -e "\n${RED}NOTE:${NC} Refer to your EVSE operations manual to determine if the URL you"
-echo "provide to the EVSE requires you to also append the station name. Many EVSEs"
-echo "do that automatically for you when they connect."
-echo -e "\n"
+printf "\n\n"
+printf "${YELLOW}==| ${CYAN}CSMS Port and Route${YELLOW} |==================================================================${NC}\n"
+printf "We will now set up the port number and path that the CSMS will listen on.\n"
+printf "\n\n"
+printf "For example: \n"
+printf "     a port number of ${GREEN}8822${NC}\n"
+printf "     and a path of ${GREEN}\"/ocpp\"${NC} \n"
+printf "\n\n"
+printf "...will set up the CSMS to accept incoming EVSE connections on:\n"
+printf "\n\n"
+printf "${CYAN}     \"ws://<host_ip>:${GREEN}8822/ocpp${NC}\".${NC} \n"
+printf "\n\n"
+printf "You will need to provide that URL to your EVSE.\n"
+printf "\n${RED}NOTE:${NC} Refer to your EVSE operations manual to determine if the URL you\n"
+printf "provide to the EVSE requires you to also append the station name. Many EVSEs\n"
+printf "do that automatically for you when they connect.\n"
+printf "\n\n"
 update_env_variable "CIPIO_CSMS_PORT" "Enter the port number you want your EVSEs to connect on"
 update_env_variable "CIPIO_CSMS_PATH" "Enter the path you want your EVSEs to connect on"
 
@@ -271,13 +290,13 @@ fi
 
 # Prompt for ValKey Token
 banner
-echo -e "${YELLOW}==| ${CYAN}VALKEY Token${YELLOW} |===========================================================================${NC}"
-echo "We've generated a random password for our in-memory database to use."
-echo "If we have previously done this on an earlier setup, this will be skipped."
-echo "You can accept the random password if prompted (recommended), or change it."
-echo "Subsequent runs of this setup will not prompt for this again and simply"
-echo "use the existing random password if it finds one."
-echo -e "\n"
+printf "${YELLOW}==| ${CYAN}VALKEY Token${YELLOW} |===========================================================================${NC}\n"
+printf "We've generated a random password for our in-memory database to use.\n"
+printf "If we have previously done this on an earlier setup, this will be skipped.\n"
+printf "You can accept the random password if prompted (recommended), or change it.\n"
+printf "Subsequent runs of this setup will not prompt for this again and simply\n"
+printf "use the existing random password if it finds one.\n"
+printf "\n\n"
 update_env_if_not_exists_with_default "CIPIO_VALKEY_PASSWORD" "Enter a random password for the in-memory database" "$password"
 
 # display_env_settings # Optional: Show updated settings
@@ -285,4 +304,4 @@ update_env_if_not_exists_with_default "CIPIO_VALKEY_PASSWORD" "Enter a random pa
 # Update the valkey.conf file with the password
 update_valkey_conf
 
-echo -e "${GREEN}Finished! ${NC}"
+printf "${GREEN}Finished! ${NC}\n"

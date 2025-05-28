@@ -1,16 +1,35 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# source ./utils.sh
-# Color text escape codes
-# Normally we load this brom tuils.sh, but in this case we haven't gotten utils.sh het.
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m' # Bold yellow
-BLUE='\033[0;34m'
-MAGENTA='\033[0;35m'
-CYAN='\033[0;36m'
-BRIGHTWHITE='\33[1;37m'
-NC='\033[0m' # No Color
+##################################################################################
+# Copyright © 2025, UChicago Argonne, LLC
+# All Rights Reserved
+#
+# Software Name: CIPio Link
+# By: Argonne National Laboratory
+#
+# OPEN SOURCE LICENSE (MIT)
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy of
+# this software and associated documentation files (the "Software"), to deal in
+# the Software without restriction, including without limitation the rights to
+# use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+# of the Software, and to permit persons to whom the Software is furnished to do
+# so, subject to the following conditions:
+#
+# •	The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+##################################################################################
+
+SCRIPTS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPTS_DIR/utils.sh"
 
 #
 # Repo info
@@ -19,14 +38,14 @@ REPO_NAME="CIP.io-Link"
 REPO_URL="https://github.com/Argonne-VCI/${REPO_NAME}.git"
 BRANCH="main" # or "development"
 
-clear
-echo -e "${GREEN}********************************************${NC}"
-echo -e "${GREEN}* ${CYAN}Starting CIP.io-Link Installation...   ${GREEN} *${NC}"
-echo -e "${GREEN}********************************************${NC}"
+tput clear
+banner
 
-echo -e "\n\n${GREEN}This script will install the CIP.io-Link CSMS application on your system.${NC}"
-echo -e "\n"
-echo -e "${GREEN}PRESS <ENTER> to continue. <Ctrl-c> to exit${NC}"
+banner_lvl2 "Starting CIP.io-Link Installation"
+
+printf "\n${GREEN}This script will install the CIP.io-Link CSMS application on your system.\n"
+printf "\n"
+printf "PRESS ${REV}<ENTER>${NC}${GREEN} to continue. <Ctrl-c> to exit${NC} "
 read
 
 function install_docker() {
@@ -61,69 +80,68 @@ function install_docker2() {
 }
 
 ## Check for curl installation
-echo -e "${GREEN}## Checking for curl${NC}"
+print_action "Checking for curl"
 
 if ! command -v curl &>/dev/null; then
-  echo "## curl Install #######################################################"
+  print_action_installing "curl"
   sudo apt-get install curl
 else
-  echo "curl is installed"
+  printf "curl is installed\n"
 fi
 
+print_action "Checking for whois"
 if ! command -v mkpasswd &>/dev/null; then
-  echo "## whois Install #######################################################"
+  print_action_installing "whois"
   sudo apt-get install whois
 else
-  echo "whois is installed"
+  printf "whois is installed\n"
 fi
 
 ## Check for git installation
-echo -e "${GREEN}## Checking for git${NC}"
+print_action "Checking for git"
 
 if ! command -v git &>/dev/null; then
-  echo "## git Install #######################################################"
+  print_action_installing "git"
   sudo apt-get install git
 else
-  echo "git is installed"
+  printf "git is installed\n"
 fi
 
 ## Clone the repository
 # git clone https://github.com/Argonne-National-Laboratory/CIP.io-Link.git
 
 if [ ! -d "$REPO_NAME/.git" ]; then
-  echo "Cloning repository..."
+  print_action "Cloning repository..."
   git clone --branch "$BRANCH" "$REPO_URL" "$REPO_NAME"
 else
-  echo "Updating existing setup..."
+  print_action "Updating existing setup..."
   cd "$REPO_NAME" || exit 1
   git fetch origin
   git reset --hard "origin/$BRANCH"
 fi
 
 ## Check for jq installation
-echo -e "${GREEN}## Checking for jq${NC}"
+print_action "Checking for jq"
 
 if ! command -v jq &>/dev/null; then
-  echo "## jq Install #######################################################"
+  print_action_installing "jq"
   sudo apt-get install jq
 else
-  echo "jq is installed"
+  printf "jq is installed\n"
 fi
 
 ## Check for Docker installation
-echo -e "${GREEN}## Checking for Docker${NC}"
+print_action "Checking for Docker"
 
 if ! command -v docker &>/dev/null; then
-  clear
-  echo -e "${GREEN}## Docker Install #######################################################"
-  echo -e "\n"
-  echo -e "First we need to install Docker on your system.${CYAN} Hit <ENTER> to continue:${NC}"
+  print_action_installing "Docker"
+  printf "Docker doesn't appear to be installed on your system.${CYAN} Hit <ENTER> to install Docker:${NC} "
   read
 
   install_docker2
 
   if hash docker 2>/dev/null; then
-    echo "Docker now installed."
+    printf "Docker now installed.\n"
     sudo addgroup docker
     sudo usermod -aG docker ${USER}
   else
@@ -131,8 +149,8 @@ if ! command -v docker &>/dev/null; then
     exit 1
   fi
 else
-  echo "Docker is already installed"
-  echo "Stopping any current CIP.io-Link containers"
+  printf "Docker is installed on this system\n"
+  print_action "Stopping any current CIP.io-Link containers"
   docker compose down
 fi
 
@@ -148,8 +166,8 @@ cipiolnk_host=$(hostname -I | awk '{print $1}')
 echo "CIPIO_LINK_HOST=${cipiolnk_host}" >>.ver.env
 sudo docker compose up -d
 
-echo -e "\n\n ${WHITE}Setup Completed${NC}\n\n"
-echo -e "${YELLOW}*******************************************************************${NC}"
-echo -e "${GREEN} Go to http://${cipiolnk_host}:1880/dashboard to see the CIP.io-Link CSMS app${NC}"
-echo -e "${YELLOW}*******************************************************************${NC}"
-echo -e "\n\n"
+printf "\n\n ${REV}${RED} ${GREEN}  ${BLUE}   ${WHITE} Setup Completed ${BLUE}   ${GREEN}  ${RED} ${NC}\n\n"
+printf "${BRIGHTYELLOW}*****************************************************************************\n"
+printf "${BRIGHTGREEN} Go to http://${cipiolnk_host}:1880/dashboard to see the CIP.io-Link CSMS app\n"
+printf "${BRIGHTYELLOW}*****************************************************************************\n"
+printf "${NC}\n\n"

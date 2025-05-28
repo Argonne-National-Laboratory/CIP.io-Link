@@ -1,22 +1,49 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+##################################################################################
+# Copyright © 2025, UChicago Argonne, LLC
+# All Rights Reserved
+#
+# Software Name: CIPio Link
+# By: Argonne National Laboratory
+#
+# OPEN SOURCE LICENSE (MIT)
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy of
+# this software and associated documentation files (the "Software"), to deal in
+# the Software without restriction, including without limitation the rights to
+# use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+# of the Software, and to permit persons to whom the Software is furnished to do
+# so, subject to the following conditions:
+#
+# •	The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+##################################################################################
 
 SCRIPTS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPTS_DIR/utils.sh"
 
-echo -e "${GREEN}********************************************${NC}"
-echo -e "${GREEN}* ${CYAN}Starting MQTT setup...   ${GREEN}               *${NC}"
-echo -e "${GREEN}********************************************${NC}"
+banner_lvl2 "Starting MQTT Setup..."
+
 # Source the .env file
 if [[ -f .env ]]; then
   source .env
 else
-  echo ".env file not found."
+  printf "${ERRORTEXT}ERROR: .env file not found.\n${NC}"
   exit 1
 fi
 
 if [ -z "$CIPIO_USER" ] || [ -z "$CIPIO_PW" ]; then
-  echo -e "${RED}Either the cipio user or password is not defined."
-  echo -e "Exiting setup${NC}"
+  printf "${ERRORTEXT}Either the cipio user or password is not defined.\n"
+  printf "Exiting setup\n${NC}"
   exit 1
 fi
 
@@ -31,7 +58,7 @@ wait_for_container() {
     local elapsed_time=$((current_time - start_time))
 
     if [[ "$elapsed_time" -gt "$timeout" ]]; then
-      echo -e "${RED}Timeout waiting for container '$container_name'.${NC}"
+      printf "${ERRORTEXT}Timeout waiting for container '$container_name'.\n${NC}"
       docker logs "$container_name" 2>/dev/null
       return 1 # Indicate failure
     fi
@@ -41,20 +68,20 @@ wait_for_container() {
     echo $running
 
     if [[ "$running" == "true" ]]; then
-      echo "Container '$container_name' is running."
+      printf "Container '$container_name' is running.\n"
       return 0 # Indicate success
     elif [[ "$health" == "unhealthy" ]]; then
-      echo -e "${MAGENTA}Container '$container_name' is not yet running. Checking again...${NC}"
+      printf "Container ${MAGENTA} '${container_name}'${NC} is not yet running. Checking again...\n"
       sleep 2
     fi
   done
 }
 
 if [[ "$EUID" != 0 ]]; then
-  echo -e "${GREEN}We need to elevate you to root level for this installation. Please enter the sudo user password${NC}"
+  printf "${GREEN}We need to elevate you to root level for this installation. Please enter the sudo user password\n${NC}"
   sudo -k
   if sudo true; then
-    echo -e "${GREEN}Good, you are now have sudo level access${NC}"
+    printf "${GREEN}${REV}Good, you are now have sudo level access\n${NC}"
   else
     error "Incorrect password.. Exiting installation process"
   fi
@@ -79,14 +106,14 @@ docker compose up mqtt -d
 
 container_name=mqtt
 if wait_for_container "$container_name"; then
-  echo "Container '$container_name' is ready. Performing actions..."
+  printf "Container ${MAGENTA}'$container_name'${NC} is ready. Performing actions...\n"
   # Mosquitto (will) require the password file be owned by root
   docker exec mqtt chown root:root /mosquitto/config/mosquitto.pwd
   docker exec mqtt mosquitto_passwd -b -c /mosquitto/config/mosquitto.pwd $CIPIO_USER $CIPIO_PW
   # Restart mqtt to pick up the users and acls
   docker compose restart mqtt
 else
-  echo -e "${RED}Failed to start container '$container_name' properly.${NC}"
+  printf "${ERRORTEXT}Failed to start container '$container_name' properly.\n${NC}"
   docker rm -f "$container_name"
   exit 1
 fi
