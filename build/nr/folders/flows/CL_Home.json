@@ -376,7 +376,7 @@
     "width": "2",
     "height": "1",
     "name": "",
-    "label": "Tx Today:  ",
+    "label": "Tx Today: ",
     "format": "{{msg.payload}}",
     "layout": "row-left",
     "style": true,
@@ -416,7 +416,7 @@
     "type": "ui-text",
     "z": "92d055a5ecbac90c",
     "group": "530fe8d240942ac0",
-    "order": 4,
+    "order": 5,
     "width": "2",
     "height": "1",
     "name": "",
@@ -429,8 +429,8 @@
     "color": "#068104",
     "wrapText": false,
     "className": "",
-    "x": 940,
-    "y": 720,
+    "x": 1080,
+    "y": 1240,
     "wires": []
   },
   {
@@ -438,7 +438,7 @@
     "type": "ui-text",
     "z": "92d055a5ecbac90c",
     "group": "530fe8d240942ac0",
-    "order": 5,
+    "order": 6,
     "width": "2",
     "height": "1",
     "name": "",
@@ -451,8 +451,8 @@
     "color": "#068104",
     "wrapText": false,
     "className": "",
-    "x": 1070,
-    "y": 840,
+    "x": 1090,
+    "y": 1280,
     "wires": []
   },
   {
@@ -460,7 +460,7 @@
     "type": "ui-text",
     "z": "92d055a5ecbac90c",
     "group": "530fe8d240942ac0",
-    "order": 6,
+    "order": 4,
     "width": "2",
     "height": "1",
     "name": "",
@@ -540,8 +540,8 @@
     "raw": true,
     "className": "",
     "name": "",
-    "x": 390,
-    "y": 540,
+    "x": 1310,
+    "y": 400,
     "wires": [
       []
     ]
@@ -554,8 +554,8 @@
     "links": [
       "dd9016feeab69f8a"
     ],
-    "x": 245,
-    "y": 540,
+    "x": 1165,
+    "y": 400,
     "wires": [
       [
         "0256c52788664639"
@@ -643,7 +643,7 @@
     "payload": "400 kWh",
     "payloadType": "str",
     "x": 220,
-    "y": 720,
+    "y": 1240,
     "wires": [
       [
         "60e4d09450fdac13"
@@ -671,8 +671,8 @@
     "topic": "",
     "payload": "3200 kWh",
     "payloadType": "str",
-    "x": 210,
-    "y": 840,
+    "x": 208,
+    "y": 1283,
     "wires": [
       [
         "7bf24886ffe6be85"
@@ -809,7 +809,7 @@
     "type": "debug",
     "z": "92d055a5ecbac90c",
     "name": "debug 75",
-    "active": true,
+    "active": false,
     "tosidebar": true,
     "console": false,
     "tostatus": false,
@@ -862,7 +862,7 @@
     "type": "function",
     "z": "92d055a5ecbac90c",
     "name": "function 28",
-    "func": "function getMidnightISODateInCurrentTimezone() {\n  const now = new Date();\n\n  // Get the year, month, and day in the current timezone\n  const year = now.getFullYear();\n  const month = now.getMonth();\n  const day = now.getDate();\n\n  // Create a new Date object representing midnight in the current timezone\n  const midnight = new Date(year, month, day);\n\n  // Convert to ISO string.  The important part here is using toISOString() which\n  // handles the timezone conversion for you automatically.\n  return midnight.toISOString();\n}\n\nlet start = getMidnightISODateInCurrentTimezone()\nlet query = `\nfrom(bucket: \"OCPP\")\n  |> range(start: ${start} )\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r._field == \"transactionId\" and r._value != 0)\n  |> group()\n  |> count(column: \"_value\")\n`\nmsg = {\n  query\n}\nreturn msg;\n\n\n\n",
+    "func": "function getMidnightISODateInCurrentTimezone() {\n  const now = new Date();\n\n  // Get the year, month, and day in the current timezone\n  const year = now.getFullYear();\n  const month = now.getMonth();\n  const day = now.getDate();\n\n  // Create a new Date object representing midnight in the current timezone\n  const midnight = new Date(year, month, day);\n\n  // Convert to ISO string.  The important part here is using toISOString() which\n  // handles the timezone conversion for you automatically.\n  return midnight.toISOString();\n}\n\nlet start = getMidnightISODateInCurrentTimezone()\nlet query = `\nfrom(bucket: \"OCPP\")\n  |> range(start: ${start} )\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r._field == \"transactionId\" and r._value != 0)\n  |> filter(fn: (r) => r.command == \"StartTransaction\")\n  |> group()\n  |> count(column: \"_value\")\n`\nmsg = {\n  query\n}\nreturn msg;\n\n\n\n",
     "outputs": 1,
     "timeout": 0,
     "noerr": 0,
@@ -921,7 +921,7 @@
     "type": "function",
     "z": "92d055a5ecbac90c",
     "name": "function 30",
-    "func": "function getMidnightISODateSevenDaysAgo() {\n  const now = new Date();\n\n  // Calculate the date 7 days ago\n  const sevenDaysAgo = new Date(now);\n  sevenDaysAgo.setDate(now.getDate() - 7);\n\n  // Extract year, month, and day from the date 7 days ago\n  const year = sevenDaysAgo.getFullYear();\n  const month = sevenDaysAgo.getMonth();\n  const day = sevenDaysAgo.getDate();\n\n  // Create a new Date object representing midnight 7 days ago\n  const midnightSevenDaysAgo = new Date(year, month, day);\n\n  return midnightSevenDaysAgo.toISOString();\n}\n\nlet start = getMidnightISODateSevenDaysAgo()\nlet query = `\nfrom(bucket: \"OCPP\")\n  |> range(start: ${start} )\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r._field == \"transactionId\" and r._value != 0)\n  |> group()\n  |> count(column: \"_value\")\n`\nmsg = {\n  query\n}\nreturn msg;\n\n\n\n",
+    "func": "function getMidnightISODateSevenDaysAgo() {\n  const now = new Date();\n\n  // Calculate the date 7 days ago\n  const sevenDaysAgo = new Date(now);\n  sevenDaysAgo.setDate(now.getDate() - 7);\n\n  // Extract year, month, and day from the date 7 days ago\n  const year = sevenDaysAgo.getFullYear();\n  const month = sevenDaysAgo.getMonth();\n  const day = sevenDaysAgo.getDate();\n\n  // Create a new Date object representing midnight 7 days ago\n  const midnightSevenDaysAgo = new Date(year, month, day);\n\n  return midnightSevenDaysAgo.toISOString();\n}\n\nlet start = getMidnightISODateSevenDaysAgo()\nlet query = `\nfrom(bucket: \"OCPP\")\n  |> range(start: ${start} )\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r._field == \"transactionId\" and r._value != 0)\n  |> filter(fn: (r) => r.command == \"StartTransaction\")\n  |> group()\n  |> count(column: \"_value\")\n`\nmsg = {\n  query\n}\nreturn msg;\n\n\n\n",
     "outputs": 1,
     "timeout": 0,
     "noerr": 0,
@@ -988,7 +988,7 @@
     "finalize": "",
     "libs": [],
     "x": 390,
-    "y": 720,
+    "y": 1240,
     "wires": [
       [
         "e1d6e963d03a9dab"
@@ -1007,30 +1007,10 @@
     "retentionPolicy": "",
     "org": "cipio",
     "x": 560,
-    "y": 720,
+    "y": 1240,
     "wires": [
       [
-        "75601251f82f3089"
-      ]
-    ]
-  },
-  {
-    "id": "75601251f82f3089",
-    "type": "function",
-    "z": "92d055a5ecbac90c",
-    "name": "function 33",
-    "func": "const sum = msg.payload.reduce((accumulator, currentValue) => {\n  return accumulator + currentValue.meter;\n}, 0); // 0 is the initial value of the accumulator\n\n\n//let count = 0\n//count = msg?.payload[0]?._value || 0\n\nmsg = {\n    payload: `${sum} Wh`\n}\nreturn msg;",
-    "outputs": 1,
-    "timeout": 0,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 750,
-    "y": 720,
-    "wires": [
-      [
-        "dc8ebffcfc3e5ce0"
+        "ed6334f683cc28f8"
       ]
     ]
   },
@@ -1046,8 +1026,8 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 410,
-    "y": 840,
+    "x": 390,
+    "y": 1280,
     "wires": [
       [
         "5ead2fdeaf4adffc"
@@ -1065,32 +1045,11 @@
     "precision": "",
     "retentionPolicy": "",
     "org": "cipio",
-    "x": 600,
-    "y": 840,
+    "x": 560,
+    "y": 1280,
     "wires": [
       [
-        "bac3ee121d202814"
-      ]
-    ]
-  },
-  {
-    "id": "bac3ee121d202814",
-    "type": "function",
-    "z": "92d055a5ecbac90c",
-    "name": "function 35",
-    "func": "let sum = msg.payload.reduce((accumulator, currentValue) => {\n  return accumulator + currentValue.meter;\n}, 0); // 0 is the initial value of the accumulator\n\n\n//let count = 0\n//count = msg?.payload[0]?._value || 0\nlet label = 'Wh'\n\n\nif (sum > 1000){\n  sum = (sum / 1000)\n  sum = Math.floor( sum * 100) / 100\n  label = 'kWh'\n}\n\nmsg = {\n    payload: `${sum} ${label}`\n}\nreturn msg;",
-    "outputs": 1,
-    "timeout": 0,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 810,
-    "y": 840,
-    "wires": [
-      [
-        "5b67ef06c0cafdd5",
-        "54698fd5ceb58aad"
+        "7fb074ac7dc92af5"
       ]
     ]
   },
@@ -1294,7 +1253,7 @@
     "type": "debug",
     "z": "92d055a5ecbac90c",
     "name": "debug 3",
-    "active": true,
+    "active": false,
     "tosidebar": true,
     "console": false,
     "tostatus": false,
@@ -1360,10 +1319,57 @@
     ]
   },
   {
-    "id": "54698fd5ceb58aad",
+    "id": "334b1383690be34b",
+    "type": "worldmap",
+    "z": "92d055a5ecbac90c",
+    "name": "Worldmap",
+    "lat": "",
+    "lon": "",
+    "zoom": "",
+    "layer": "OSMC",
+    "cluster": "",
+    "maxage": "",
+    "usermenu": "show",
+    "layers": "show",
+    "panit": "false",
+    "panlock": "false",
+    "zoomlock": "false",
+    "hiderightclick": "false",
+    "coords": "none",
+    "showgrid": "false",
+    "showruler": "false",
+    "allowFileDrop": "false",
+    "path": "/cipio_map",
+    "overlist": "",
+    "maplist": "OSMC",
+    "mapname": "",
+    "mapurl": "",
+    "mapopt": "",
+    "mapwms": false,
+    "x": 570,
+    "y": 40,
+    "wires": []
+  },
+  {
+    "id": "53ceb08a69575ae4",
+    "type": "catch",
+    "z": "92d055a5ecbac90c",
+    "name": "",
+    "scope": null,
+    "uncaught": false,
+    "x": 780,
+    "y": 40,
+    "wires": [
+      [
+        "61305cf537ebdcc7"
+      ]
+    ]
+  },
+  {
+    "id": "61305cf537ebdcc7",
     "type": "debug",
     "z": "92d055a5ecbac90c",
-    "name": "debug 4",
+    "name": "debug 12",
     "active": true,
     "tosidebar": true,
     "console": false,
@@ -1371,8 +1377,167 @@
     "complete": "false",
     "statusVal": "",
     "statusType": "auto",
-    "x": 1170,
-    "y": 900,
+    "x": 990,
+    "y": 40,
     "wires": []
+  },
+  {
+    "id": "872e0f3bd04ddecc",
+    "type": "ui-template",
+    "z": "92d055a5ecbac90c",
+    "group": "195e75b71683482a",
+    "page": "",
+    "ui": "",
+    "name": "",
+    "order": 1,
+    "width": "6",
+    "height": "8",
+    "head": "",
+    "format": "<template>\n    <div>\n        <iframe src=\"/cipio_map\" class=\"cipio_map\"></iframe>\n    </div>\n</template>\n\n<style>\n    /* define any styles here - supports raw CSS */\n    .cipio_map {\n        width: 100%;\n        height: 100%;\n    }\n</style>",
+    "storeOutMessages": true,
+    "passthru": true,
+    "resendOnRefresh": true,
+    "templateScope": "local",
+    "className": "",
+    "x": 560,
+    "y": 100,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "6fd8bde3125e0633",
+    "type": "function",
+    "z": "92d055a5ecbac90c",
+    "name": "Convert to kilo",
+    "func": "let sum = msg.payload.reduce((accumulator, currentValue) => {\n  return accumulator + currentValue.meter;\n}, 0); // 0 is the initial value of the accumulator\n\n// Make this generic to support different units by passing it in\nlet label = msg.units\n\n// Prefix the 'k' and adjust the value if over 1000\nif (sum > 1000){\n  sum = (sum / 1000)\n  sum = Math.floor( sum * 100) / 100\n  label = `k${label}`\n}\n\nmsg.payload = `${sum} ${label}`\n \nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1300,
+    "y": 460,
+    "wires": [
+      [
+        "e1bcc6f5546a0346"
+      ]
+    ]
+  },
+  {
+    "id": "7fb074ac7dc92af5",
+    "type": "change",
+    "z": "92d055a5ecbac90c",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "units",
+        "pt": "msg",
+        "to": "Wh",
+        "tot": "str"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 730,
+    "y": 1280,
+    "wires": [
+      [
+        "7a387ce83e5a7d08"
+      ]
+    ]
+  },
+  {
+    "id": "ed6334f683cc28f8",
+    "type": "change",
+    "z": "92d055a5ecbac90c",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "units",
+        "pt": "msg",
+        "to": "Wh",
+        "tot": "str"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 730,
+    "y": 1240,
+    "wires": [
+      [
+        "2580da62a8df949f"
+      ]
+    ]
+  },
+  {
+    "id": "c8bff2ea426a4e7d",
+    "type": "link in",
+    "z": "92d055a5ecbac90c",
+    "name": "KiloConverter",
+    "links": [],
+    "x": 1175,
+    "y": 460,
+    "wires": [
+      [
+        "6fd8bde3125e0633"
+      ]
+    ]
+  },
+  {
+    "id": "2580da62a8df949f",
+    "type": "link call",
+    "z": "92d055a5ecbac90c",
+    "name": "",
+    "links": [
+      "c8bff2ea426a4e7d"
+    ],
+    "linkType": "static",
+    "timeout": "30",
+    "x": 900,
+    "y": 1240,
+    "wires": [
+      [
+        "dc8ebffcfc3e5ce0"
+      ]
+    ]
+  },
+  {
+    "id": "e1bcc6f5546a0346",
+    "type": "link out",
+    "z": "92d055a5ecbac90c",
+    "name": "link out 42",
+    "mode": "return",
+    "links": [],
+    "x": 1425,
+    "y": 460,
+    "wires": []
+  },
+  {
+    "id": "7a387ce83e5a7d08",
+    "type": "link call",
+    "z": "92d055a5ecbac90c",
+    "name": "",
+    "links": [
+      "c8bff2ea426a4e7d"
+    ],
+    "linkType": "static",
+    "timeout": "30",
+    "x": 900,
+    "y": 1280,
+    "wires": [
+      [
+        "5b67ef06c0cafdd5"
+      ]
+    ]
   }
 ]

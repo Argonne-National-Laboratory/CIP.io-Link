@@ -4,7 +4,6 @@
     "type": "tab",
     "label": "CL_Transactions",
     "disabled": false,
-    "locked": true,
     "info": "",
     "env": []
   },
@@ -67,7 +66,7 @@
     "width": "0",
     "height": "0",
     "head": "",
-    "format": "<template>\n    <v-data-table  \n            v-model:search=\"search\" \n            :headers=\"headers\"\n            :items=\"msg?.payload\"\n            :filter-keys='[\"transactionId\",\"cbId\",\"_value\"]'\n            >\n    <template v-slot:top>\n        <v-toolbar flat>\n            <v-toolbar-title>\n                <v-icon color=\"medium-emphasis\" icon=\"mdi-bullseye\" size=\"x-small\" start></v-icon>\n                Transactions\n            </v-toolbar-title>\n            <v-text-field\n                v-model=\"search\"\n                label=\"Search\"\n                prepend-inner-icon=\"mdi-magnify\"\n                clear-icon=\"mdi-close-circle\"\n                variant=\"solo-filled\"\n                density=\"compact\"\n                hide-details\n                single-line\n                clearable\n            ></v-text-field>\n            <!-- v-spacer></v-spacer -->           \n            <v-tooltip text=\"Refresh\" location=\"bottom\">\n                <template v-slot:activator=\"{ props }\">\n                <v-btn icon v-bind=\"props\" @click=\"refresh\">\n                    <v-icon>mdi-refresh</v-icon>\n                </v-btn>\n                </template>\n            </v-tooltip>\n            <v-template>\n            <v-select\n                v-model=\"select\"\n                density=\"compact\"\n                :items=\"startTimes\"\n                item-title=\"title\"\n                item-value=\"value\"\n                >\n            </v-select>\n            </v-template>            \n\n\n        </v-toolbar>\n    </template>            \n      <template v-slot:item.meter=\"{ item }\">\n        <div>\n          <v-text>{{ item.meterStart }}{{item.meterStop}}</v-text>\n      </template>\n        <template v-slot:item._time=\"{ item }\">\n            <div>{{ getLocalTimeString(item._time) }}</div>\n        </template>\n      <template v-slot:item.actions=\"{ item }\">\n        <v-icon\n          class=\"me-2\"\n          size=\"small\"\n          @click=\"send({ action: 'txDetails', payload: { txId: item.transactionId }})\"\n        >\n          mdi-eye\n        </v-icon>\n      </template>\n            \n    </v-data-table>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                search: '',\n                headers: [\n                    { value: \"_time\", title: \"Time\"},\n                    { value: \"command\", title: \"Command\"},\n                    { value: \"transactionId\", title: \"TxId\"},\n                    { value: \"cbId\", title: \"EVSE\"},\n                    { value: \"connectorId\", title: \"Conn\"},\n                    //{ value: \"meterStart\", title: \"Start\"},\n                    //{ value: \"meterStop\", title: \"Stop\"},\n                    { key: \"meter\", title: \"Meter\"},\n                    { key: \"actions\", title: \"View\", sortable: false},\n                ],\n                select: { title: \"past 5m\", value: '-5m'},\n                startTimes: [\n                    { title: \"past 1m\", value: '-1m'},\n                    { title: \"past 5m\", value: '-5m'},\n                    { title: \"past 15m\", value: '-15m'},\n                    { title: \"past 1h\", value: '-1h'},\n                    { title: \"past 3h\", value: '-3h'},\n                    { title: \"past 6h\", value: '-6h'},\n                    { title: \"past 12h\", value: '-12h'},\n                    { title: \"past 24h\", value: '-24h'},\n                    { title: \"past 2d\", value: '-2d'},\n                    { title: \"past 7d\", value: '-7d'},\n                    { title: \"past 30d\", value: '-30d'},\n//                    { title: \"custom\", value: 'custom'}\n                    ]\n            }\n        },\n        watch: {\n            select(newValue) {\n                this.sendOptions()\n            }\n        },\n        computed: {\n\n        },\n        methods: {\n            // expose a method to our <template> and Vue Application\n            getLocalTimeString: function (isoTime){\n                const date = new Date(isoTime)\n                const options = { \n                    year: '2-digit', \n                    month: '2-digit', \n                    day: '2-digit', \n                    hour: '2-digit', \n                    minute: '2-digit', \n                    second: '2-digit', \n                    millisecond: '3-digit',\n                    hour12: false \n                    }\n                return date.toLocaleString('en-US', options)\n            },\n            sendOptions: function() {\n                this.send({\n                    action: \"options\", \n                    options: {\n                        start: this.select \n                    }\n                })\n            }\n        },\n        mounted() {\n            // code here when the component is first loaded\n        },\n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: red;\n    }\n    .headers {\n        font-weight: bold;\n    }\n    .ocppMsgReq {\n        color: blue;\n        font-weight: bold;\n    }\n    .ocppMsgRes {\n        color: blue;\n    }\n    .ocppMsgErr {\n        color: red;\n    }\n</style>",
+    "format": "<template>\n    <v-data-table  \n            v-model:search=\"search\" \n            :headers=\"headers\"\n            :items=\"msg?.payload\"\n            :filter-keys='[\"transactionId\",\"cbId\",\"_value\"]'\n            >\n    <template v-slot:top>\n        <v-toolbar flat>\n            <v-toolbar-title>\n                <v-icon color=\"medium-emphasis\" icon=\"mdi-bullseye\" size=\"x-small\" start></v-icon>\n                Transactions\n            </v-toolbar-title>\n            <v-text-field\n                v-model=\"search\"\n                label=\"Search\"\n                prepend-inner-icon=\"mdi-magnify\"\n                clear-icon=\"mdi-close-circle\"\n                variant=\"solo-filled\"\n                density=\"compact\"\n                hide-details\n                single-line\n                clearable\n            ></v-text-field>\n            <!-- v-spacer></v-spacer -->           \n            <v-tooltip text=\"Refresh\" location=\"bottom\">\n                <template v-slot:activator=\"{ props }\">\n                <v-btn icon v-bind=\"props\" @click=\"refresh\">\n                    <v-icon>mdi-refresh</v-icon>\n                </v-btn>\n                </template>\n            </v-tooltip>\n            <v-template>\n            <v-select\n                v-model=\"select\"\n                density=\"compact\"\n                :items=\"startTimes\"\n                item-title=\"title\"\n                item-value=\"value\"\n                >\n            </v-select>\n            </v-template>            \n\n\n        </v-toolbar>\n    </template>            \n      <template v-slot:item.meter=\"{ item }\">\n        <div>\n          <v-text>{{ item.meterStart }}{{item.meterStop}}</v-text>\n      </template>\n        <template v-slot:item._time=\"{ item }\">\n            <div>{{ getLocalTimeString(item._time) }}</div>\n        </template>\n      <template v-slot:item.actions=\"{ item }\">\n        <v-icon\n          class=\"me-2\"\n          size=\"small\"\n          @click=\"send({ action: 'txDetails', payload: { txId: item.transactionId, startTime: item._time }})\"\n        >\n          mdi-eye\n        </v-icon>\n      </template>\n            \n    </v-data-table>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                search: '',\n                headers: [\n                    { value: \"_time\", title: \"Time\"},\n                    //{ value: \"command\", title: \"Command\"},\n                    { value: \"transactionId\", title: \"TxId\"},\n                    { key: \"idTag\", title: \"IdTag\", sortable: true},\n                    { value: \"cbId\", title: \"EVSE\", sortable: true},\n                    { value: \"connectorId\", title: \"Conn\", sortable: true},\n                    { key: \"tx_duration\", value: item => this.getSecToMin(item.tx_duration), title: \"Duration (min)\", sortable: true},\n                    //{ value: \"meterStart\", title: \"Start\"},\n                    //{ value: \"meterStop\", title: \"Stop\"},\n                    //{ key: \"totalEnergy\", title: \"Energy (kWh)\",value: item => this.getTruncated(item.totalEnergy, 3), sortable: true},\n                    { key: \"totalEnergy\", title: \"Energy (kWh)\", sortable: true},\n                    { key: \"actions\", title: \"Details\", sortable: false},\n                ],\n                select: { title: \"past 5m\", value: '-5m'},\n                startTimes: [\n                    { title: \"past 1m\", value: '-1m'},\n                    { title: \"past 5m\", value: '-5m'},\n                    { title: \"past 15m\", value: '-15m'},\n                    { title: \"past 1h\", value: '-1h'},\n                    { title: \"past 3h\", value: '-3h'},\n                    { title: \"past 6h\", value: '-6h'},\n                    { title: \"past 12h\", value: '-12h'},\n                    { title: \"past 24h\", value: '-24h'},\n                    { title: \"past 2d\", value: '-2d'},\n                    { title: \"past 7d\", value: '-7d'},\n                    { title: \"past 30d\", value: '-30d'},\n//                    { title: \"custom\", value: 'custom'}\n                    ]\n            }\n        },\n        watch: {\n            select(newValue) {\n                this.sendOptions()\n            }\n        },\n        computed: {\n\n        },\n        methods: {\n            // expose a method to our <template> and Vue Application\n            getLocalTimeString: function (isoTime){\n                const date = new Date(isoTime)\n                const options = { \n                    year: '2-digit', \n                    month: '2-digit', \n                    day: '2-digit', \n                    hour: '2-digit', \n                    minute: '2-digit', \n                    second: '2-digit', \n                    millisecond: '3-digit',\n                    hour12: false \n                    }\n                return date.toLocaleString('en-US', options)\n            },\n            sendOptions: function() {\n                this.send({\n                    action: \"options\", \n                    options: {\n                        start: this.select \n                    }\n                })\n            },\n            getTruncated: function(value,decimals){\n                const factor = Math.pow(10, decimals);\n                return Math.floor(value * factor) / factor;\n            },\n            getSecToMin: function(value) {\n                return Math.floor(value / 60);\n            }\n        },\n        mounted() {\n            // code here when the component is first loaded\n        },\n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: red;\n    }\n    .headers {\n        font-weight: bold;\n    }\n    .ocppMsgReq {\n        color: blue;\n        font-weight: bold;\n    }\n    .ocppMsgRes {\n        color: blue;\n    }\n    .ocppMsgErr {\n        color: red;\n    }\n</style>",
     "storeOutMessages": true,
     "passthru": false,
     "resendOnRefresh": true,
@@ -83,96 +82,11 @@
     ]
   },
   {
-    "id": "0380a90af6da220b",
-    "type": "influxdb in",
-    "z": "daf7a59ca2ce18df",
-    "influxdb": "7cb40fcee206391e",
-    "name": "",
-    "query": "",
-    "rawOutput": false,
-    "precision": "",
-    "retentionPolicy": "",
-    "org": "argonne",
-    "x": 540,
-    "y": 120,
-    "wires": [
-      [
-        "879a60905f018737"
-      ]
-    ]
-  },
-  {
-    "id": "72d6a88d845b6b48",
-    "type": "function",
-    "z": "daf7a59ca2ce18df",
-    "name": "function 16",
-    "func": "// clear out any incoming message for now.\nmsg = {}\n\nmsg.query = \n    'from(bucket: \"OCPP\") \\\n      |> range(start: -1d) \\\n      |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\") \\\n      //|> filter(fn: (r) => r[\"_field\"] == \"ocppMsg\") \\\n      //|> group() \\\n      //|> sort(columns: [\"_time\"]) \\\n      |> drop(columns: [\"table\",\"Result\",\"_measurement\",\"_stop\",\"_start\",\"_field\"]) \\\n      //|> keep(columns: [\"_time\",\"cbId\",\"command\",\"msgFrom\",\"_value\"]) \\\n      |> limit(n: 500)'\nreturn msg;",
-    "outputs": 1,
-    "timeout": 0,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 370,
-    "y": 120,
-    "wires": [
-      [
-        "0380a90af6da220b"
-      ]
-    ]
-  },
-  {
-    "id": "879a60905f018737",
-    "type": "debug",
-    "z": "daf7a59ca2ce18df",
-    "name": "debug 48",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 700,
-    "y": 120,
-    "wires": []
-  },
-  {
-    "id": "6f06af534fd6202b",
-    "type": "inject",
-    "z": "daf7a59ca2ce18df",
-    "name": "",
-    "props": [
-      {
-        "p": "payload"
-      },
-      {
-        "p": "topic",
-        "vt": "str"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "",
-    "payloadType": "date",
-    "x": 200,
-    "y": 120,
-    "wires": [
-      [
-        "72d6a88d845b6b48"
-      ]
-    ]
-  },
-  {
     "id": "c4b73cd2d6f1efbb",
     "type": "function",
     "z": "daf7a59ca2ce18df",
     "name": "FLUX Get raw MV OCPP",
-    "func": "// clear out any incoming message for now.\nlet filter_by_tx = \"\";\nlet topic = \"00000000\"\nif (msg.payload.txId) {\n  filter_by_tx = `|> filter(fn: (r) => r[\"transactionId\"] == \"${msg.payload.txId}\")`\n  topic = msg.payload.txId\n}\n\nmsg = {}\n\nmsg.topic = topic\n\nmsg.query = `from(bucket: \"OCPP\") \\\n  |> range(start: -365d) \\\n  |> filter(fn: (r) => r[\"_measurement\"] == \"MeterValues\") \\\n  ${filter_by_tx} \\\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\") \\\n  |> drop(columns: [\"_start\",\"_stop\",\"_measurement\",\"cbId\",\"connectorId\",\"transactionId\"]) \\\n  |> sort(columns: [\"_time\"])`\nreturn msg;",
+    "func": "// clear out any incoming message for now.\nlet filter_by_tx = \"\";\nlet txId = \"00000000\"\nlet start = \"-365d\"\nif (msg.payload.txId) {\n  filter_by_tx = `|> filter(fn: (r) => r[\"transactionId\"] == \"${msg.payload.txId}\")`\n  txId = msg.payload.txId\n}\nif (msg.payload.startTime) {\n  start = msg.payload.startTime\n}\n\nmsg = {}\n\nmsg.options = {\n  txId,\n  start\n}\n\nmsg.query = `from(bucket: \"OCPP\") \\\n  |> range(start: ${start}) \\\n  |> filter(fn: (r) => r[\"_measurement\"] == \"MeterValues\") \\\n  ${filter_by_tx} \\\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\") \\\n  |> drop(columns: [\"_start\",\"_stop\",\"_measurement\",\"cbId\",\"connectorId\",\"transactionId\"]) \\\n  |> sort(columns: [\"_time\"])`\nreturn msg;",
     "outputs": 1,
     "timeout": 0,
     "noerr": 0,
@@ -193,7 +107,7 @@
     "type": "function",
     "z": "daf7a59ca2ce18df",
     "name": "FLUX Get raw Tx OCPP",
-    "func": "let options = flow.get(\"options\") ?? {}\nlet start = options?.start ?? '-1h'\n\n// clear out any incoming message for now.\nmsg = {}\n\nmsg.query = `from(bucket: \"OCPP\")\n  |> range( start: ${start})\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> drop(columns: [\"_start\",\"_stop\",\"_measurement\"])\n  |> group(columns: [\"transactionId\"])\n  |> sort(columns: [\"_time\"])`\n\n\nmsg.query = `\nfrom(bucket: \"OCPP\")\n  |> range(start: ${start})\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r[\"_field\"] == \"meterStart\" or r[\"_field\"] == \"meterStop\" or r[\"_field\"] == \"transactionId\" or r[\"_field\"] == \"timestamp\" or r[\"_field\"] == \"idTag\" or r[\"_field\"] == \"connectorId\" )\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> filter(fn: (r) => r.transactionId != 0)\n  |> drop(columns: [\"_start\",\"_stop\",\"_measurement\",\"msgFrom\"])\n  |> group()\n  |> sort(columns: [\"_time\"])\n`\n\nreturn msg;",
+    "func": "let options = flow.get(\"options\") ?? {}\nlet start = options?.start ?? '-1h'\n\n// clear out any incoming message for now.\nmsg = {}\n\nmsg.query = `from(bucket: \"OCPP\")\n  |> range( start: ${start})\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> drop(columns: [\"_start\",\"_stop\",\"_measurement\"])\n  |> group(columns: [\"transactionId\"])\n  |> sort(columns: [\"_time\"])`\n\n\nmsg.query = `\nfrom(bucket: \"OCPP\")\n  |> range(start: ${start})\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r[\"_field\"] == \"meterStart\" or r[\"_field\"] == \"meterStop\" or r[\"_field\"] == \"transactionId\" or r[\"_field\"] == \"timestamp\" or r[\"_field\"] == \"idTag\" or r[\"_field\"] == \"connectorId\" )\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> filter(fn: (r) => r.transactionId != 0)\n  |> drop(columns: [\"_start\",\"_stop\",\"_measurement\",\"msgFrom\"])\n  |> group()\n  |> sort(columns: [\"_time\"])\n`\n//return msg;\n\n\nmsg.query = `\nmeterStart = from(bucket: \"OCPP\")\n  |> range(start: ${start})\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r[\"_field\"] == \"transactionId\" or r[\"_field\"] == \"meterStart\" or r[\"_field\"] == \"idTag\" or r[\"_field\"] == \"connectorId\")\n  |> filter(fn: (r) => r.command == \"StartTransaction\")\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> filter(fn: (r) => r.transactionId != 0)\n  |> drop(columns: [\"_start\",\"_stop\",\"msgFrom\",\"_measurement\"])\n\nmeterStop = from(bucket: \"OCPP\")\n  |> range(start: ${start})\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r[\"_field\"] == \"transactionId\" or r[\"_field\"] == \"meterStop\")\n  |> filter(fn: (r) => r.command == \"StopTransaction\")\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> filter(fn: (r) => r.transactionId != 0)\n  |> drop(columns: [\"_start\",\"_stop\",\"msgFrom\",\"_measurement\"])\n\njoin(tables: {key1: meterStart, key2: meterStop}, on: [\"transactionId\"], method: \"inner\")\n|> group()\n|> sort( columns: [\"_time\"])\n|> map(fn: (r) => ({ r with totalEnergy: r.meterStop - r.meterStart}))\n|> map(fn: (r) => ({ r with tx_duration: (uint( v: r._time_key2) - uint( v: r._time_key1)) / uint(v: 1000000000) }))\n|> map(fn: (r) => ({ r with _time: r._time_key1}))\n|> map(fn: (r) => ({ r with cbId: r.cbId_key1}))\n\n`\nreturn msg;",
     "outputs": 1,
     "timeout": 0,
     "noerr": 0,
@@ -800,8 +714,8 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 1055,
-    "y": 360,
+    "x": 1065,
+    "y": 320,
     "wires": [],
     "l": false
   },
@@ -947,8 +861,8 @@
     "color": "#500ced",
     "wrapText": false,
     "className": "",
-    "x": 1120,
-    "y": 400,
+    "x": 1220,
+    "y": 360,
     "wires": []
   },
   {
@@ -966,7 +880,7 @@
         "t": "set",
         "p": "payload",
         "pt": "msg",
-        "to": "topic",
+        "to": "options.txId",
         "tot": "msg"
       }
     ],
@@ -1177,7 +1091,7 @@
     "type": "function",
     "z": "daf7a59ca2ce18df",
     "name": "Get Tx MeterStart/Stop  ",
-    "func": "let TxId = msg.payload\nmsg = {}\n\nmsg.query = `\nmeterStart = from(bucket: \"OCPP\")\n  |> range(start: -2d)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r[\"_field\"] == \"transactionId\" or r[\"_field\"] == \"meterStart\" or r[\"_field\"] == \"idTag\" or r[\"_field\"] == \"connectorId\")\n  |> filter(fn: (r) => r.command == \"StartTransaction\")\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> filter(fn: (r) => r.transactionId != 0)\n  |> drop(columns: [\"_start\",\"_stop\",\"msgFrom\",\"_measurement\"])\n\nmeterStop = from(bucket: \"OCPP\")\n  |> range(start: -2d)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r[\"_field\"] == \"transactionId\" or r[\"_field\"] == \"meterStop\")\n  |> filter(fn: (r) => r.command == \"StopTransaction\")\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> filter(fn: (r) => r.transactionId != 0)\n  |> drop(columns: [\"_start\",\"_stop\",\"msgFrom\",\"_measurement\"])\n\njoin(tables: {key1: meterStart, key2: meterStop}, on: [\"transactionId\"], method: \"inner\")\n|> map(fn: (r) => ({ r with totalEnergy: r.meterStop - r.meterStart}))\n|> map(fn: (r) => ({ r with difference_seconds: (uint( v: r._time_key2) - uint( v: r._time_key1)) / uint(v: 1000000000) }))\n|> filter(fn: (r) => r.transactionId == ${TxId})\n\n`\nreturn msg;",
+    "func": "let TxId = msg.payload || msg.options.txId\nlet start = msg.options.start || \"-365d\"\nlet stop = \"-363d\"\n\nif (msg?.options?.start) {\n  stop = addXDaysUTC(msg.options.start, 2)\n}\n\nmsg = {}\n\nmsg.query = `\nmeterStart = from(bucket: \"OCPP\")\n  |> range(start: ${start}, stop: ${stop} )\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r[\"_field\"] == \"transactionId\" or r[\"_field\"] == \"meterStart\" or r[\"_field\"] == \"idTag\" or r[\"_field\"] == \"connectorId\")\n  |> filter(fn: (r) => r.command == \"StartTransaction\")\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> filter(fn: (r) => r.transactionId != 0)\n  |> drop(columns: [\"_start\",\"_stop\",\"msgFrom\",\"_measurement\"])\n\nmeterStop = from(bucket: \"OCPP\")\n  |> range(start: ${start}, stop: ${stop})\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r[\"_field\"] == \"transactionId\" or r[\"_field\"] == \"meterStop\")\n  |> filter(fn: (r) => r.command == \"StopTransaction\")\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> filter(fn: (r) => r.transactionId != 0)\n  |> drop(columns: [\"_start\",\"_stop\",\"msgFrom\",\"_measurement\"])\n\njoin(tables: {key1: meterStart, key2: meterStop}, on: [\"transactionId\"], method: \"inner\")\n|> filter(fn: (r) => r.transactionId == ${TxId})\n|> map(fn: (r) => ({ r with totalEnergy: r.meterStop - r.meterStart}))\n|> map(fn: (r) => ({ r with difference_seconds: (uint( v: r._time_key2) - uint( v: r._time_key1)) / uint(v: 1000000000) }))\n\n`\nreturn msg;\n\nfunction addXDaysUTC(utcString, days) {\n  const date = new Date(utcString);\n  if (isNaN(date)) {\n    throw new Error(\"Invalid UTC time string\");\n  }\n\n  // Add one day in milliseconds\n  const oneDayLater = new Date(date.getTime() + days * 24 * 60 * 60 * 1000);\n\n  return oneDayLater.toISOString(); // Always returns in UTC\n}",
     "outputs": 1,
     "timeout": 0,
     "noerr": 0,
@@ -1228,35 +1142,6 @@
     "x": 1230,
     "y": 800,
     "wires": []
-  },
-  {
-    "id": "5cc51912a700cb47",
-    "type": "inject",
-    "z": "daf7a59ca2ce18df",
-    "name": "",
-    "props": [
-      {
-        "p": "payload"
-      },
-      {
-        "p": "topic",
-        "vt": "str"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "1736982609",
-    "payloadType": "num",
-    "x": 130,
-    "y": 800,
-    "wires": [
-      [
-        "9cec406f120e7d5d"
-      ]
-    ]
   },
   {
     "id": "b2ad490ff03c2c97",
