@@ -113,3 +113,13 @@ print_action_installing() {
   local input_string="$1"
   printf "${GREEN}=> ${REV}%s${NC}\n" "${input_string}"
 }
+
+##
+## Print only if debug is true
+##
+db_printf() {
+  local input_string="$1"
+  if [[ $DEBUG == true ]]; then
+    printf "DEBUG: %s\n" "${input_string}"
+  fi
+}
