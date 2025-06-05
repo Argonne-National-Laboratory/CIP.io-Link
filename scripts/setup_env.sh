@@ -57,7 +57,9 @@ update_or_add_env_variable() {
   local variable_value="$2"
 
   # Escape slashes in the value for sed
-  local escaped_value=$(printf '%s\n' "$variable_value" | sed 's|/|\\/|g')
+  local escaped_value
+
+  escaped_value=$(printf '%s\n' "$variable_value" | sed 's|/|\\/|g')
 
   if grep -q "^${variable_name}=" "$ENV_FILE"; then
     # Variable exists, update it

@@ -51,10 +51,14 @@ wait_for_container() {
   local container_name="$1"
   local timeout=60 # Timeout in seconds
 
-  local start_time=$(date +%s)
+  local start_time
+  start_time=$(date +%s)
 
   while true; do
-    local current_time=$(date +%s)
+    local current_time
+
+    current_time=$(date +%s)
+
     local elapsed_time=$((current_time - start_time))
 
     if [[ "$elapsed_time" -gt "$timeout" ]]; then
@@ -63,13 +67,15 @@ wait_for_container() {
       return 1 # Indicate failure
     fi
 
-    local running=$(docker inspect --format='{{json .State.Running}}' "$container_name" 2>/dev/null | tr -d '"')
+    local running
+    running=$(docker inspect --format='{{json .State.Running}}' "$container_name" 2>/dev/null | tr -d '"')
 
     echo $running
 
     if [[ "$running" == "true" ]]; then
       printf "Container '$container_name' is running.\n"
       return 0 # Indicate success
+    ##TODO: Fix missing health variable
     elif [[ "$health" == "unhealthy" ]]; then
       printf "Container ${MAGENTA} '${container_name}'${NC} is not yet running. Checking again...\n"
       sleep 2

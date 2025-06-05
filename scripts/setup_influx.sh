@@ -47,7 +47,8 @@ check_jq_installed() {
 # Check if jq is installed and install if necessary
 check_jq_installed
 
-export INFLUX_DESC=cipio$(date +'%y%m%d%H%M')
+INFLUX_DESC=cipio$(date +'%y%m%d%H%M')
+export INFLUX_DESC
 export INFLUX_ORG=cipio
 
 # Start up the influx container
@@ -86,7 +87,8 @@ done
 # Continue with the rest of your script
 
 # Capture the default operator token so we can do further setup
-export INFLUX_TOKEN=$(docker exec influx2 cat /etc/influxdb2/influx-configs | grep -A 3 -B 3 cipio | grep token | awk -F\" '{print $2}')
+INFLUX_TOKEN=$(docker exec influx2 cat /etc/influxdb2/influx-configs | grep -A 3 -B 3 cipio | grep token | awk -F\" '{print $2}')
+export INFLUX_TOKEN
 
 # setup another couple of buckets
 docker exec influx2 influx bucket create --name OCPP --retention 52w
