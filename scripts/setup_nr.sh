@@ -36,15 +36,15 @@ banner_lvl2 "Starting Node-Red setup..."
 folder_path=./node-red
 if [ ! -d "$folder_path" ]; then
   mkdir -p "$folder_path"
-  echo -e "${GREEN}Folder '$folder_path' created.${NC}"
+  print_action "${GREEN}Folder '$folder_path' created.${NC}"
 fi
 
 if [ ! -d "${folder_path}/assets" ]; then
   mkdir -p "${folder_path}/assets"
-  echo "Folder '${folder_path}/assets' created."
+  print_action "Folder '${folder_path}/assets' created."
 fi
 
-echo -e "${GREEN}Updating ownership of $folder_path...${NC}"
+print_action "${GREEN}Updating ownership of $folder_path...${NC}"
 sudo docker stop node-red >/dev/null 2>&1
 sleep 5
 sudo chown -R ${USER}:${USER} $folder_path

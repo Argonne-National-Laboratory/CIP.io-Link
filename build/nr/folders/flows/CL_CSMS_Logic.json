@@ -4,34 +4,8 @@
     "type": "tab",
     "label": "CL_CSMS_Logic",
     "disabled": false,
-    "locked": true,
     "info": "",
     "env": []
-  },
-  {
-    "id": "a0169f65e4967ec2",
-    "type": "group",
-    "z": "9ca80d42115ee3c3",
-    "name": "Update Last Comm Timestamp",
-    "style": {
-      "fill": "#ffff7f",
-      "label": true
-    },
-    "nodes": [
-      "868ca4fd5276022e",
-      "e07f99fdfc73cd44",
-      "124fa94892413c81",
-      "b952178113645c64",
-      "34b27b38f2e7609a",
-      "7bc0d39e117db98a",
-      "d2d365e869ae5aa3",
-      "d836b12b64275a9d",
-      "a1f721f1a03c965a"
-    ],
-    "x": 104,
-    "y": 439,
-    "w": 1212,
-    "h": 82
   },
   {
     "id": "f6f7b333be6e5917",
@@ -62,25 +36,28 @@
     "info": "**This is just an example** of an override\r\nYou can unlock this tab and click on the nodes to see\r\nhow they work. Do not edit this page or \r\nthese examples. Copy them to an editable\r\nflow of your own if you wish to utilize your\r\nown overrides.\r\n\r\n**Remember** to lock the flow again when you are done\r\nsince CL_ flows get overwritten with new\r\nupdates."
   },
   {
-    "id": "23d227486f4a19f5",
+    "id": "a0169f65e4967ec2",
     "type": "group",
     "z": "9ca80d42115ee3c3",
-    "g": "f6f7b333be6e5917",
-    "name": "Calculate Charging Profile",
+    "name": "Update Last Comm Timestamp",
     "style": {
-      "stroke": "#ff3f3f",
-      "fill": "#ffcf3f",
-      "label": true,
-      "color": "#000000"
+      "fill": "#ffff7f",
+      "label": true
     },
     "nodes": [
-      "25afca3af5d04a0d",
-      "668279fcb445ce5d",
-      "1186737eeaebd401"
+      "868ca4fd5276022e",
+      "e07f99fdfc73cd44",
+      "124fa94892413c81",
+      "b952178113645c64",
+      "34b27b38f2e7609a",
+      "7bc0d39e117db98a",
+      "d2d365e869ae5aa3",
+      "d836b12b64275a9d",
+      "a1f721f1a03c965a"
     ],
-    "x": 84,
-    "y": 1039,
-    "w": 452,
+    "x": 104,
+    "y": 439,
+    "w": 1212,
     "h": 82
   },
   {
@@ -112,442 +89,105 @@
     "h": 182
   },
   {
-    "id": "868ca4fd5276022e",
-    "type": "switch",
+    "id": "23d227486f4a19f5",
+    "type": "group",
     "z": "9ca80d42115ee3c3",
-    "g": "a0169f65e4967ec2",
-    "name": "Filter from CS only",
-    "property": "msgFrom",
-    "propertyType": "msg",
-    "rules": [
-      {
-        "t": "eq",
-        "v": "CS",
-        "vt": "str"
-      }
+    "g": "f6f7b333be6e5917",
+    "name": "Calculate Charging Profile",
+    "style": {
+      "stroke": "#ff3f3f",
+      "fill": "#ffcf3f",
+      "label": true,
+      "color": "#000000"
+    },
+    "nodes": [
+      "25afca3af5d04a0d",
+      "668279fcb445ce5d",
+      "1186737eeaebd401"
     ],
-    "checkall": "true",
-    "repair": false,
-    "outputs": 1,
-    "x": 270,
-    "y": 480,
+    "x": 84,
+    "y": 1039,
+    "w": 452,
+    "h": 82
+  },
+  {
+    "id": "56aa204f90d0fdb2",
+    "type": "junction",
+    "z": "9ca80d42115ee3c3",
+    "x": 420,
+    "y": 80,
     "wires": [
       [
-        "e07f99fdfc73cd44"
+        "fdaa305606c3401a"
       ]
     ]
   },
   {
-    "id": "124fa94892413c81",
-    "type": "redis-command",
-    "z": "9ca80d42115ee3c3",
-    "g": "a0169f65e4967ec2",
-    "server": "0430675ed6c7cd83",
-    "command": "GET",
-    "name": "",
-    "topic": "",
-    "params": "[]",
-    "paramsType": "json",
-    "payloadType": "json",
-    "block": false,
-    "x": 620,
-    "y": 480,
-    "wires": [
-      [
-        "b952178113645c64"
-      ]
-    ]
-  },
-  {
-    "id": "e07f99fdfc73cd44",
-    "type": "change",
-    "z": "9ca80d42115ee3c3",
-    "g": "a0169f65e4967ec2",
-    "name": "",
-    "rules": [
-      {
-        "t": "set",
-        "p": "topic",
-        "pt": "msg",
-        "to": "\"evse:\" & msg.cbId",
-        "tot": "jsonata"
-      },
-      {
-        "t": "set",
-        "p": "payload",
-        "pt": "msg",
-        "to": "{}",
-        "tot": "json"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 460,
-    "y": 480,
-    "wires": [
-      [
-        "124fa94892413c81"
-      ]
-    ]
-  },
-  {
-    "id": "b952178113645c64",
-    "type": "json",
-    "z": "9ca80d42115ee3c3",
-    "g": "a0169f65e4967ec2",
-    "name": "",
-    "property": "payload",
-    "action": "",
-    "pretty": false,
-    "x": 750,
-    "y": 480,
-    "wires": [
-      [
-        "34b27b38f2e7609a"
-      ]
-    ]
-  },
-  {
-    "id": "34b27b38f2e7609a",
-    "type": "change",
-    "z": "9ca80d42115ee3c3",
-    "g": "a0169f65e4967ec2",
-    "name": "Update TS",
-    "rules": [
-      {
-        "t": "set",
-        "p": "payload.lastcommtime",
-        "pt": "msg",
-        "to": "timestamp",
-        "tot": "msg"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 880,
-    "y": 480,
-    "wires": [
-      [
-        "7bc0d39e117db98a"
-      ]
-    ]
-  },
-  {
-    "id": "7bc0d39e117db98a",
-    "type": "json",
-    "z": "9ca80d42115ee3c3",
-    "g": "a0169f65e4967ec2",
-    "name": "",
-    "property": "payload",
-    "action": "",
-    "pretty": false,
-    "x": 1020,
-    "y": 480,
-    "wires": [
-      [
-        "d2d365e869ae5aa3"
-      ]
-    ]
-  },
-  {
-    "id": "d2d365e869ae5aa3",
-    "type": "redis-command",
-    "z": "9ca80d42115ee3c3",
-    "g": "a0169f65e4967ec2",
-    "server": "0430675ed6c7cd83",
-    "command": "SET",
-    "name": "",
-    "topic": "",
-    "params": "[]",
-    "paramsType": "json",
-    "payloadType": "json",
-    "block": false,
-    "x": 1160,
-    "y": 480,
-    "wires": [
-      [
-        "a1f721f1a03c965a"
-      ]
-    ]
-  },
-  {
-    "id": "d836b12b64275a9d",
-    "type": "link in",
-    "z": "9ca80d42115ee3c3",
-    "g": "a0169f65e4967ec2",
-    "name": "Update TS",
-    "links": [
-      "846c6af009c205bd"
-    ],
-    "x": 145,
-    "y": 480,
-    "wires": [
-      [
-        "868ca4fd5276022e"
-      ]
-    ]
-  },
-  {
-    "id": "a1f721f1a03c965a",
-    "type": "link out",
-    "z": "9ca80d42115ee3c3",
-    "g": "a0169f65e4967ec2",
-    "name": "link out 17",
-    "mode": "link",
-    "links": [
-      "19a1d55d0ad937f5"
-    ],
-    "x": 1275,
-    "y": 480,
-    "wires": []
-  },
-  {
-    "id": "25afca3af5d04a0d",
-    "type": "link in",
-    "z": "9ca80d42115ee3c3",
-    "g": "23d227486f4a19f5",
-    "name": "Generate ChargeProfiles",
-    "links": [
-      "3890b31b33998ff0"
-    ],
-    "x": 125,
-    "y": 1080,
-    "wires": [
-      [
-        "668279fcb445ce5d"
-      ]
-    ]
-  },
-  {
-    "id": "668279fcb445ce5d",
+    "id": "4f4c8a9f1f8d9bb4",
     "type": "function",
     "z": "9ca80d42115ee3c3",
-    "g": "23d227486f4a19f5",
-    "name": "Smart Charge Management Algorithm",
-    "func": "const currentTx = global.get(\"CSMS:SESSIONS\") || []\nconst loadLimit = global.get(\"SITE:LoadLimit\")\nlet adjustment = 1\n\nlet potential = 0\n\ncurrentTx.forEach(function(sess) {\n    potential += sess.amps\n})\n\nif (potential > loadLimit){\n    // Calculate an adjustment %\n    adjustment = 1 - ((( (potential - loadLimit ) / potential ) * 100) / 100)\n}\n\ncurrentTx.forEach(function(sess) {\n    msg = {}\n    msg.payload = {\n        command: \"SetChargingProfile\",\n        cbId: sess.cbId,\n        data: {\n            connectorId: sess.connectorId,\n            csChargingProfiles: {\n              chargingProfileId: 1,\n              transactionId: sess.transactionId,\n              stackLevel: 1,\n              chargingProfilePurpose: \"TxProfile\",\n              chargingProfileKind: \"Absolute\",\n              chargingSchedule: {\n                startSchedule: new Date().toISOString(),\n                chargingRateUnit: \"A\",\n                chargingSchedulePeriod: [\n                    {\n                        startPeriod: 0,\n                        limit: sess.amps * adjustment,\n                        numberPhases: 1\n                    }\n                ]\n              }  \n            }\n        }\n    }\n    msg.potential = potential\n    msg.adjustment = adjustment\n    msg.loadLimit = loadLimit\n    node.send(msg)\n});\n",
+    "g": "f6f7b333be6e5917",
+    "name": "EXAMPLE: Enable Overrides",
+    "func": "// Global Context ocppCmdTargets is a Map object\n\nlet ctx = 'ocppCmdTargets'\n\n//Get the current map\nlet targetMap = global.get(ctx)\n\n// Set new targets for ocpp commands\ntargetMap.set('BootNotification','EXAMPLE_BootNotification')\ntargetMap.set('Heartbeat','EXAMPLE_Heartbeat')\n\n\n// As an example to clear out a user defined ocpp function and return to defaults, do:\n// targetMap.delete('BootNotification')\n\n\n// Set the map back to the global context so the CSMS subflow can use them\nglobal.set(ctx, targetMap)\nreturn\n\n",
     "outputs": 1,
     "timeout": 0,
     "noerr": 0,
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 310,
-    "y": 1080,
+    "x": 660,
+    "y": 760,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "056c40eb67d6fe4c",
+    "type": "link in",
+    "z": "9ca80d42115ee3c3",
+    "g": "f6f7b333be6e5917",
+    "name": "EXAMPLE_BootNotification",
+    "links": [],
+    "x": 105,
+    "y": 780,
     "wires": [
       [
-        "1186737eeaebd401"
+        "9298f921e122faa5"
       ]
     ]
   },
   {
-    "id": "1186737eeaebd401",
+    "id": "fa1a321403a73088",
     "type": "link out",
     "z": "9ca80d42115ee3c3",
-    "g": "23d227486f4a19f5",
-    "name": "link out 51",
+    "g": "f6f7b333be6e5917",
+    "name": "link out 55",
     "mode": "return",
     "links": [],
-    "x": 495,
-    "y": 1080,
+    "x": 405,
+    "y": 780,
     "wires": []
   },
   {
-    "id": "c71183f6d99d46ef",
+    "id": "9298f921e122faa5",
     "type": "function",
     "z": "9ca80d42115ee3c3",
-    "g": "c20c8766fa664d2e",
-    "name": "Auth/Start Tx",
-    "func": "// function handles both Authorize and StartTransaction\n// This generate a unique TxId, as long as the function doesn't get called twice\n// within the same millisecond\n\n\n// defaults\nconst ACCEPTED = \"Accepted\"\nlet status = ACCEPTED\nlet tags = []\n\n// copy message for the enhanced message with TxId\nlet msg2 = RED.util.cloneMessage(msg)\n\nmsg2.payload = {\n    idTagInfo: {\n        status\n    }\n}\n\nif (msg.ocpp.command === \"StartTransaction\"){\n    msg2.payload.transactionId = generateUniqueId()\n    msg.ocpp.command = 'StartTransactionEnhanced'\n    msg.payload.command = msg.ocpp.command\n    msg2.ocpp.connectorId = msg.payload.data.connectorId || 1\n}\n\nlet freeVend = global.get(\"CSMS:FreeVend\") \n    \nif (! freeVend ){\n    tags = global.get(\"CSMS:Tags\")\n\n    const result = tags.find((tag) => tag.tagId === msg.payload.data.idTag)\n\n    if (result){\n        if (!result.enabled){\n            msg2.payload.idTagInfo.status = \"Blocked\"\n        }\n        else if (result.expdate){\n            let expDate = new Date(result.expdate)\n            expDate.setHours(23, 59, 59, 999); // Set to the end of the day\n            let currentDate = new Date()\n\n            if (currentDate > expDate){\n                msg2.payload.idTagInfo.status = \"Expired\"\n            }\n            else {\n                msg2.payload.idTagInfo.expiryDate = expDate.toISOString()\n            }\n        } \n    }\n    else {\n        msg2.payload.idTagInfo.status = \"Invalid\"\n    }\n\n    if (msg2.payload.idTagInfo.status !== ACCEPTED){\n        msg2.payload.transactionId = 0\n    }\n\n}\n\nlet data\n\nif(msg.ocpp.command == \"StartTransactionEnhanced\"){\n    data = msg.payload.data\n    data.transactionId = msg2.payload.transactionId\n    data.status = msg2.payload.idTagInfo.status\n    const ts = new Date(data.timestamp)\n    msg.timestamp = ts.getTime()\n    msg.cbId = msg2.ocpp.chargeBoxIdentity\n    msg.msgFrom = \"CS\"\n    msg.payload = [2,msg2.ocpp.MessageId,\"StartTransactionEnhanced\",data]\n} else {\n    msg = null\n}\n\nmsg2.ack = true\n\nreturn [msg2,msg];\n\n\nfunction generateUniqueId() {\n    // Return a positive 32bit Int as a random TxId\n    const isoTimestamp = new Date().toISOString();\n    // Create a Date object from the ISO timestamp string\n    const date = new Date(isoTimestamp);\n\n    // Get the timestamp in seconds since the Unix epoch\n    const timestampInSeconds = Math.floor(date.getTime() / 1000);\n\n    // Calculate offset to ensure positive value within 32-bit signed range\n    const offset = timestampInSeconds < 0 ? 2147483648 : 0;\n\n    // Convert to 32-bit signed integer and apply offset\n    const int32Timestamp = (timestampInSeconds + offset) | 0;\n\n    return int32Timestamp;\n}\n\n/*\n// msg format\n//\n{\n    \"timestamp\":1735842833857,\n    \"cbId\":\"evsesim1\",\n    \"msgFrom\":\"CS\",\n    \"payload\":\n        [\n            2,\n            \"d5f3026e-d602-4ab8-a009-bcdef17932e3\",\n            \"StartTransaction\",\n            {\"connectorId\":1,\"idTag\":\"ccc\",\"meterStart\":2004,\"timestamp\":\"2025-01-02T18:33:53.856Z\"}\n         ],\n         \"_msgid\":\"6dc75f6161d5a70b\"\n}\n*/",
-    "outputs": 2,
+    "g": "f6f7b333be6e5917",
+    "name": "BootNotification",
+    "func": "//Load defaults\nconst interval = global.get(\"CSMS:HeartBeatInterval\") ?? 120\nconst currentTime = new Date().toISOString()\nconst validEVSEs = global.get(\"CSMS:EVSEs\") ?? []\n\nlet status = (validEVSEs.find((cbId) => cbId === msg.ocpp.chargeBoxIdentity) != undefined) ? \"Accepted\" : \"Rejected\"\n\nmsg.payload = {\n    interval,\n    currentTime,\n    status\n}\n\nmsg.ack = true\n\nreturn msg;",
+    "outputs": 1,
     "timeout": "",
     "noerr": 0,
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 230,
-    "y": 920,
+    "x": 260,
+    "y": 780,
     "wires": [
       [
-        "e2a9a4f6ea0938e9",
-        "1b09a234a1e45737",
-        "02e68d94d30084bf"
-      ],
-      [
-        "08c6daf9b344995d",
-        "9553dfbcb3b284b3"
+        "fa1a321403a73088"
       ]
     ]
-  },
-  {
-    "id": "5bb26352bd2d7e5a",
-    "type": "link in",
-    "z": "9ca80d42115ee3c3",
-    "g": "c20c8766fa664d2e",
-    "name": "EXAMPLE_Auth_StartTx",
-    "links": [],
-    "x": 125,
-    "y": 920,
-    "wires": [
-      [
-        "c71183f6d99d46ef"
-      ]
-    ]
-  },
-  {
-    "id": "e2a9a4f6ea0938e9",
-    "type": "switch",
-    "z": "9ca80d42115ee3c3",
-    "g": "c20c8766fa664d2e",
-    "name": "StartTx Accepted",
-    "property": "payload.idTagInfo.status",
-    "propertyType": "msg",
-    "rules": [
-      {
-        "t": "eq",
-        "v": "Accepted",
-        "vt": "str"
-      }
-    ],
-    "checkall": "true",
-    "repair": false,
-    "outputs": 1,
-    "x": 500,
-    "y": 900,
-    "wires": [
-      [
-        "378785534c46db9b"
-      ]
-    ]
-  },
-  {
-    "id": "1b09a234a1e45737",
-    "type": "link out",
-    "z": "9ca80d42115ee3c3",
-    "g": "c20c8766fa664d2e",
-    "name": "link out 52",
-    "mode": "return",
-    "links": [],
-    "x": 335,
-    "y": 880,
-    "wires": []
-  },
-  {
-    "id": "08c6daf9b344995d",
-    "type": "link out",
-    "z": "9ca80d42115ee3c3",
-    "g": "c20c8766fa664d2e",
-    "name": "link out 53",
-    "mode": "link",
-    "links": [
-      "31dee9642ab622cd"
-    ],
-    "x": 345,
-    "y": 940,
-    "wires": []
-  },
-  {
-    "id": "378785534c46db9b",
-    "type": "function",
-    "z": "9ca80d42115ee3c3",
-    "g": "c20c8766fa664d2e",
-    "name": "Save sessions context",
-    "func": "if (msg.ocpp.command === \"StartTransaction\"){\n    let session = {}\n    session.cbId = msg.ocpp.chargeBoxIdentity\n    session.connectorId = msg.ocpp.connectorId\n    session.transactionId = msg.payload.transactionId\n    session.amps = (session.cbId == \"EVOChargeLab1\") ? 32 : 40\n    let sessions = global.get(\"CSMS:SESSIONS\") || []\n    sessions.push(session)\n    global.set(\"CSMS:SESSIONS\",sessions)\n    return msg;\n}",
-    "outputs": 1,
-    "timeout": 0,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 710,
-    "y": 900,
-    "wires": [
-      [
-        "3890b31b33998ff0"
-      ]
-    ]
-  },
-  {
-    "id": "3890b31b33998ff0",
-    "type": "link out",
-    "z": "9ca80d42115ee3c3",
-    "g": "c20c8766fa664d2e",
-    "name": "link out 54",
-    "mode": "link",
-    "links": [
-      "25afca3af5d04a0d"
-    ],
-    "x": 855,
-    "y": 900,
-    "wires": []
-  },
-  {
-    "id": "9553dfbcb3b284b3",
-    "type": "debug",
-    "z": "9ca80d42115ee3c3",
-    "g": "c20c8766fa664d2e",
-    "name": "MSG",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 450,
-    "y": 960,
-    "wires": []
-  },
-  {
-    "id": "02e68d94d30084bf",
-    "type": "debug",
-    "z": "9ca80d42115ee3c3",
-    "g": "c20c8766fa664d2e",
-    "name": "MSG 2",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 480,
-    "y": 860,
-    "wires": []
-  },
-  {
-    "id": "1e88d1e2d4dcc7d3",
-    "type": "link in",
-    "z": "9ca80d42115ee3c3",
-    "g": "f6f7b333be6e5917",
-    "name": "EXAMPLE_Heartbeat",
-    "links": [],
-    "x": 105,
-    "y": 740,
-    "wires": [
-      [
-        "7283d4e60852fabc"
-      ]
-    ]
-  },
-  {
-    "id": "2b16b2bbbd57fabc",
-    "type": "link out",
-    "z": "9ca80d42115ee3c3",
-    "g": "f6f7b333be6e5917",
-    "name": "HB_OUT",
-    "mode": "return",
-    "links": [],
-    "x": 395,
-    "y": 740,
-    "wires": []
   },
   {
     "id": "7283d4e60852fabc",
@@ -592,70 +232,441 @@
     ]
   },
   {
-    "id": "9298f921e122faa5",
-    "type": "function",
-    "z": "9ca80d42115ee3c3",
-    "g": "f6f7b333be6e5917",
-    "name": "BootNotification",
-    "func": "//Load defaults\nconst interval = global.get(\"CSMS:HeartBeatInterval\") ?? 120\nconst currentTime = new Date().toISOString()\nconst validEVSEs = global.get(\"CSMS:EVSEs\") ?? []\n\nlet status = (validEVSEs.find((cbId) => cbId === msg.ocpp.chargeBoxIdentity) != undefined) ? \"Accepted\" : \"Rejected\"\n\nmsg.payload = {\n    interval,\n    currentTime,\n    status\n}\n\nmsg.ack = true\n\nreturn msg;",
-    "outputs": 1,
-    "timeout": "",
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 260,
-    "y": 780,
-    "wires": [
-      [
-        "fa1a321403a73088"
-      ]
-    ]
-  },
-  {
-    "id": "fa1a321403a73088",
+    "id": "2b16b2bbbd57fabc",
     "type": "link out",
     "z": "9ca80d42115ee3c3",
     "g": "f6f7b333be6e5917",
-    "name": "link out 55",
+    "name": "HB_OUT",
     "mode": "return",
     "links": [],
-    "x": 405,
-    "y": 780,
+    "x": 395,
+    "y": 740,
     "wires": []
   },
   {
-    "id": "056c40eb67d6fe4c",
+    "id": "1e88d1e2d4dcc7d3",
     "type": "link in",
     "z": "9ca80d42115ee3c3",
     "g": "f6f7b333be6e5917",
-    "name": "EXAMPLE_BootNotification",
+    "name": "EXAMPLE_Heartbeat",
     "links": [],
     "x": 105,
-    "y": 780,
+    "y": 740,
     "wires": [
       [
-        "9298f921e122faa5"
+        "7283d4e60852fabc"
       ]
     ]
   },
   {
-    "id": "4f4c8a9f1f8d9bb4",
+    "id": "02e68d94d30084bf",
+    "type": "debug",
+    "z": "9ca80d42115ee3c3",
+    "g": "c20c8766fa664d2e",
+    "name": "MSG 2",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 480,
+    "y": 860,
+    "wires": []
+  },
+  {
+    "id": "9553dfbcb3b284b3",
+    "type": "debug",
+    "z": "9ca80d42115ee3c3",
+    "g": "c20c8766fa664d2e",
+    "name": "MSG",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 450,
+    "y": 960,
+    "wires": []
+  },
+  {
+    "id": "3890b31b33998ff0",
+    "type": "link out",
+    "z": "9ca80d42115ee3c3",
+    "g": "c20c8766fa664d2e",
+    "name": "link out 54",
+    "mode": "link",
+    "links": [
+      "25afca3af5d04a0d"
+    ],
+    "x": 855,
+    "y": 900,
+    "wires": []
+  },
+  {
+    "id": "378785534c46db9b",
     "type": "function",
     "z": "9ca80d42115ee3c3",
-    "g": "f6f7b333be6e5917",
-    "name": "EXAMPLE: Enable Overrides",
-    "func": "// Global Context ocppCmdTargets is a Map object\n\nlet ctx = 'ocppCmdTargets'\n\n//Get the current map\nlet targetMap = global.get(ctx)\n\n// Set new targets for ocpp commands\ntargetMap.set('BootNotification','EXAMPLE_BootNotification')\ntargetMap.set('Heartbeat','EXAMPLE_Heartbeat')\n\n\n// As an example to clear out a user defined ocpp function and return to defaults, do:\n// targetMap.delete('BootNotification')\n\n\n// Set the map back to the global context so the CSMS subflow can use them\nglobal.set(ctx, targetMap)\nreturn\n\n",
+    "g": "c20c8766fa664d2e",
+    "name": "Save sessions context",
+    "func": "if (msg.ocpp.command === \"StartTransaction\"){\n    let session = {}\n    session.cbId = msg.ocpp.chargeBoxIdentity\n    session.connectorId = msg.ocpp.connectorId\n    session.transactionId = msg.payload.transactionId\n    session.amps = (session.cbId == \"EVOChargeLab1\") ? 32 : 40\n    let sessions = global.get(\"CSMS:SESSIONS\") || []\n    sessions.push(session)\n    global.set(\"CSMS:SESSIONS\",sessions)\n    return msg;\n}",
     "outputs": 1,
     "timeout": 0,
     "noerr": 0,
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 660,
-    "y": 760,
+    "x": 710,
+    "y": 900,
     "wires": [
-      []
+      [
+        "3890b31b33998ff0"
+      ]
+    ]
+  },
+  {
+    "id": "08c6daf9b344995d",
+    "type": "link out",
+    "z": "9ca80d42115ee3c3",
+    "g": "c20c8766fa664d2e",
+    "name": "link out 53",
+    "mode": "link",
+    "links": [
+      "31dee9642ab622cd"
+    ],
+    "x": 345,
+    "y": 940,
+    "wires": []
+  },
+  {
+    "id": "1b09a234a1e45737",
+    "type": "link out",
+    "z": "9ca80d42115ee3c3",
+    "g": "c20c8766fa664d2e",
+    "name": "link out 52",
+    "mode": "return",
+    "links": [],
+    "x": 335,
+    "y": 880,
+    "wires": []
+  },
+  {
+    "id": "e2a9a4f6ea0938e9",
+    "type": "switch",
+    "z": "9ca80d42115ee3c3",
+    "g": "c20c8766fa664d2e",
+    "name": "StartTx Accepted",
+    "property": "payload.idTagInfo.status",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "Accepted",
+        "vt": "str"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 500,
+    "y": 900,
+    "wires": [
+      [
+        "378785534c46db9b"
+      ]
+    ]
+  },
+  {
+    "id": "5bb26352bd2d7e5a",
+    "type": "link in",
+    "z": "9ca80d42115ee3c3",
+    "g": "c20c8766fa664d2e",
+    "name": "EXAMPLE_Auth_StartTx",
+    "links": [],
+    "x": 125,
+    "y": 920,
+    "wires": [
+      [
+        "c71183f6d99d46ef"
+      ]
+    ]
+  },
+  {
+    "id": "c71183f6d99d46ef",
+    "type": "function",
+    "z": "9ca80d42115ee3c3",
+    "g": "c20c8766fa664d2e",
+    "name": "Auth/Start Tx",
+    "func": "// function handles both Authorize and StartTransaction\n// This generate a unique TxId, as long as the function doesn't get called twice\n// within the same millisecond\n\n\n// defaults\nconst ACCEPTED = \"Accepted\"\nlet status = ACCEPTED\nlet tags = []\n\n// copy message for the enhanced message with TxId\nlet msg2 = RED.util.cloneMessage(msg)\n\nmsg2.payload = {\n    idTagInfo: {\n        status\n    }\n}\n\nif (msg.ocpp.command === \"StartTransaction\"){\n    msg2.payload.transactionId = generateUniqueId()\n    msg.ocpp.command = 'StartTransactionEnhanced'\n    msg.payload.command = msg.ocpp.command\n    msg2.ocpp.connectorId = msg.payload.data.connectorId || 1\n}\n\nlet freeVend = global.get(\"CSMS:FreeVend\") \n    \nif (! freeVend ){\n    tags = global.get(\"CSMS:Tags\")\n\n    const result = tags.find((tag) => tag.tagId === msg.payload.data.idTag)\n\n    if (result){\n        if (!result.enabled){\n            msg2.payload.idTagInfo.status = \"Blocked\"\n        }\n        else if (result.expdate){\n            let expDate = new Date(result.expdate)\n            expDate.setHours(23, 59, 59, 999); // Set to the end of the day\n            let currentDate = new Date()\n\n            if (currentDate > expDate){\n                msg2.payload.idTagInfo.status = \"Expired\"\n            }\n            else {\n                msg2.payload.idTagInfo.expiryDate = expDate.toISOString()\n            }\n        } \n    }\n    else {\n        msg2.payload.idTagInfo.status = \"Invalid\"\n    }\n\n    if (msg2.payload.idTagInfo.status !== ACCEPTED){\n        msg2.payload.transactionId = 0\n    }\n\n}\n\nlet data\n\nif(msg.ocpp.command == \"StartTransactionEnhanced\"){\n    data = msg.payload.data\n    data.transactionId = msg2.payload.transactionId\n    data.status = msg2.payload.idTagInfo.status\n    const ts = new Date(data.timestamp)\n    msg.timestamp = ts.getTime()\n    msg.cbId = msg2.ocpp.chargeBoxIdentity\n    msg.msgFrom = \"CS\"\n    msg.payload = [2,msg2.ocpp.MessageId,\"StartTransactionEnhanced\",data]\n} else {\n    msg = null\n}\n\nmsg2.ack = true\n\nreturn [msg2,msg];\n\n\nfunction generateUniqueId() {\n    // Return a positive 32bit Int as a random TxId\n    const isoTimestamp = new Date().toISOString();\n    // Create a Date object from the ISO timestamp string\n    const date = new Date(isoTimestamp);\n\n    // Get the timestamp in seconds since the Unix epoch\n    const timestampInSeconds = Math.floor(date.getTime() / 1000);\n\n    // Calculate offset to ensure positive value within 32-bit signed range\n    const offset = timestampInSeconds < 0 ? 2147483648 : 0;\n\n    // Convert to 32-bit signed integer and apply offset\n    const int32Timestamp = (timestampInSeconds + offset) | 0;\n\n    return int32Timestamp;\n}\n\n/*\n// msg format\n//\n{\n    \"timestamp\":1735842833857,\n    \"cbId\":\"evsesim1\",\n    \"msgFrom\":\"CS\",\n    \"payload\":\n        [\n            2,\n            \"d5f3026e-d602-4ab8-a009-bcdef17932e3\",\n            \"StartTransaction\",\n            {\"connectorId\":1,\"idTag\":\"ccc\",\"meterStart\":2004,\"timestamp\":\"2025-01-02T18:33:53.856Z\"}\n         ],\n         \"_msgid\":\"6dc75f6161d5a70b\"\n}\n*/",
+    "outputs": 2,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 230,
+    "y": 920,
+    "wires": [
+      [
+        "e2a9a4f6ea0938e9",
+        "1b09a234a1e45737",
+        "02e68d94d30084bf"
+      ],
+      [
+        "08c6daf9b344995d",
+        "9553dfbcb3b284b3"
+      ]
+    ]
+  },
+  {
+    "id": "1186737eeaebd401",
+    "type": "link out",
+    "z": "9ca80d42115ee3c3",
+    "g": "23d227486f4a19f5",
+    "name": "link out 51",
+    "mode": "return",
+    "links": [],
+    "x": 495,
+    "y": 1080,
+    "wires": []
+  },
+  {
+    "id": "668279fcb445ce5d",
+    "type": "function",
+    "z": "9ca80d42115ee3c3",
+    "g": "23d227486f4a19f5",
+    "name": "Smart Charge Management Algorithm",
+    "func": "const currentTx = global.get(\"CSMS:SESSIONS\") || []\nconst loadLimit = global.get(\"SITE:LoadLimit\")\nlet adjustment = 1\n\nlet potential = 0\n\ncurrentTx.forEach(function(sess) {\n    potential += sess.amps\n})\n\nif (potential > loadLimit){\n    // Calculate an adjustment %\n    adjustment = 1 - ((( (potential - loadLimit ) / potential ) * 100) / 100)\n}\n\ncurrentTx.forEach(function(sess) {\n    msg = {}\n    msg.payload = {\n        command: \"SetChargingProfile\",\n        cbId: sess.cbId,\n        data: {\n            connectorId: sess.connectorId,\n            csChargingProfiles: {\n              chargingProfileId: 1,\n              transactionId: sess.transactionId,\n              stackLevel: 1,\n              chargingProfilePurpose: \"TxProfile\",\n              chargingProfileKind: \"Absolute\",\n              chargingSchedule: {\n                startSchedule: new Date().toISOString(),\n                chargingRateUnit: \"A\",\n                chargingSchedulePeriod: [\n                    {\n                        startPeriod: 0,\n                        limit: sess.amps * adjustment,\n                        numberPhases: 1\n                    }\n                ]\n              }  \n            }\n        }\n    }\n    msg.potential = potential\n    msg.adjustment = adjustment\n    msg.loadLimit = loadLimit\n    node.send(msg)\n});\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 310,
+    "y": 1080,
+    "wires": [
+      [
+        "1186737eeaebd401"
+      ]
+    ]
+  },
+  {
+    "id": "25afca3af5d04a0d",
+    "type": "link in",
+    "z": "9ca80d42115ee3c3",
+    "g": "23d227486f4a19f5",
+    "name": "Generate ChargeProfiles",
+    "links": [
+      "3890b31b33998ff0"
+    ],
+    "x": 125,
+    "y": 1080,
+    "wires": [
+      [
+        "668279fcb445ce5d"
+      ]
+    ]
+  },
+  {
+    "id": "a1f721f1a03c965a",
+    "type": "link out",
+    "z": "9ca80d42115ee3c3",
+    "g": "a0169f65e4967ec2",
+    "name": "link out 17",
+    "mode": "link",
+    "links": [
+      "19a1d55d0ad937f5"
+    ],
+    "x": 1275,
+    "y": 480,
+    "wires": []
+  },
+  {
+    "id": "d836b12b64275a9d",
+    "type": "link in",
+    "z": "9ca80d42115ee3c3",
+    "g": "a0169f65e4967ec2",
+    "name": "Update TS",
+    "links": [
+      "846c6af009c205bd"
+    ],
+    "x": 145,
+    "y": 480,
+    "wires": [
+      [
+        "868ca4fd5276022e"
+      ]
+    ]
+  },
+  {
+    "id": "d2d365e869ae5aa3",
+    "type": "redis-command",
+    "z": "9ca80d42115ee3c3",
+    "g": "a0169f65e4967ec2",
+    "server": "0430675ed6c7cd83",
+    "command": "SET",
+    "name": "",
+    "topic": "",
+    "params": "[]",
+    "paramsType": "json",
+    "payloadType": "json",
+    "block": false,
+    "x": 1160,
+    "y": 480,
+    "wires": [
+      [
+        "a1f721f1a03c965a"
+      ]
+    ]
+  },
+  {
+    "id": "7bc0d39e117db98a",
+    "type": "json",
+    "z": "9ca80d42115ee3c3",
+    "g": "a0169f65e4967ec2",
+    "name": "",
+    "property": "payload",
+    "action": "",
+    "pretty": false,
+    "x": 1020,
+    "y": 480,
+    "wires": [
+      [
+        "d2d365e869ae5aa3"
+      ]
+    ]
+  },
+  {
+    "id": "34b27b38f2e7609a",
+    "type": "change",
+    "z": "9ca80d42115ee3c3",
+    "g": "a0169f65e4967ec2",
+    "name": "Update TS",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload.lastcommtime",
+        "pt": "msg",
+        "to": "timestamp",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 880,
+    "y": 480,
+    "wires": [
+      [
+        "7bc0d39e117db98a"
+      ]
+    ]
+  },
+  {
+    "id": "b952178113645c64",
+    "type": "json",
+    "z": "9ca80d42115ee3c3",
+    "g": "a0169f65e4967ec2",
+    "name": "",
+    "property": "payload",
+    "action": "",
+    "pretty": false,
+    "x": 750,
+    "y": 480,
+    "wires": [
+      [
+        "34b27b38f2e7609a"
+      ]
+    ]
+  },
+  {
+    "id": "e07f99fdfc73cd44",
+    "type": "change",
+    "z": "9ca80d42115ee3c3",
+    "g": "a0169f65e4967ec2",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "topic",
+        "pt": "msg",
+        "to": "\"evse:\" & msg.cbId",
+        "tot": "jsonata"
+      },
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "{}",
+        "tot": "json"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 460,
+    "y": 480,
+    "wires": [
+      [
+        "124fa94892413c81"
+      ]
+    ]
+  },
+  {
+    "id": "124fa94892413c81",
+    "type": "redis-command",
+    "z": "9ca80d42115ee3c3",
+    "g": "a0169f65e4967ec2",
+    "server": "0430675ed6c7cd83",
+    "command": "GET",
+    "name": "",
+    "topic": "",
+    "params": "[]",
+    "paramsType": "json",
+    "payloadType": "json",
+    "block": false,
+    "x": 620,
+    "y": 480,
+    "wires": [
+      [
+        "b952178113645c64"
+      ]
+    ]
+  },
+  {
+    "id": "868ca4fd5276022e",
+    "type": "switch",
+    "z": "9ca80d42115ee3c3",
+    "g": "a0169f65e4967ec2",
+    "name": "Filter from CS only",
+    "property": "msgFrom",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "CS",
+        "vt": "str"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 270,
+    "y": 480,
+    "wires": [
+      [
+        "e07f99fdfc73cd44"
+      ]
     ]
   },
   {
@@ -708,18 +719,19 @@
     "type": "function",
     "z": "9ca80d42115ee3c3",
     "name": "LOCAL_SET_ALL_AUTH_EVSES",
-    "func": "let evse_array = msg.payload;\n\nmsg.payload = {}\nmsg.payload.command = \"LOCAL_SET_ALL_AUTH_EVSES\"\nmsg.payload.data = {}\n\nevse_array.forEach(function(evse) {\n    msg.payload.data[evse.cbId] = evse.password;\n});\nreturn msg;",
+    "func": "let evse_array = msg.payload;\n\nmsg.payload = {}\nmsg.payload.command = \"LOCAL_SET_ALL_AUTH_EVSES\"\nmsg.payload.data = {}\n\nevse_array.forEach(function(evse) {\n    if (evse?.password){\n        msg.payload.data[evse.cbId] = evse.password;\n    }\n});\nreturn msg;",
     "outputs": 1,
     "timeout": 0,
     "noerr": 0,
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 340,
-    "y": 220,
+    "x": 320,
+    "y": 280,
     "wires": [
       [
-        "fdaa305606c3401a"
+        "6266aa52eeaf9166",
+        "56aa204f90d0fdb2"
       ]
     ]
   },
@@ -732,7 +744,7 @@
       "40fe4278635a683c"
     ],
     "x": 125,
-    "y": 220,
+    "y": 280,
     "wires": [
       [
         "44e8fa5ea6d0b7fe"
@@ -862,7 +874,7 @@
     "y": 20,
     "wires": [
       [
-        "fdaa305606c3401a"
+        "56aa204f90d0fdb2"
       ]
     ]
   },
@@ -880,8 +892,8 @@
     "y": 80,
     "wires": [
       [
-        "fdaa305606c3401a",
-        "f6cabb9b8b83d2ce"
+        "f6cabb9b8b83d2ce",
+        "56aa204f90d0fdb2"
       ]
     ]
   },
@@ -890,7 +902,7 @@
     "type": "debug",
     "z": "9ca80d42115ee3c3",
     "name": "debug 51",
-    "active": true,
+    "active": false,
     "tosidebar": true,
     "console": false,
     "tostatus": false,
@@ -1011,7 +1023,7 @@
     "y": 160,
     "wires": [
       [
-        "fdaa305606c3401a"
+        "56aa204f90d0fdb2"
       ]
     ]
   },
@@ -1095,6 +1107,72 @@
     "wires": [
       [
         "846c6af009c205bd"
+      ]
+    ]
+  },
+  {
+    "id": "6266aa52eeaf9166",
+    "type": "debug",
+    "z": "9ca80d42115ee3c3",
+    "name": "debug 14",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 740,
+    "y": 280,
+    "wires": []
+  },
+  {
+    "id": "8e95bc50d9817acd",
+    "type": "inject",
+    "z": "9ca80d42115ee3c3",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 750,
+    "y": 340,
+    "wires": [
+      [
+        "4e4771b18a9d9f64"
+      ]
+    ]
+  },
+  {
+    "id": "4e4771b18a9d9f64",
+    "type": "function",
+    "z": "9ca80d42115ee3c3",
+    "name": "function 3",
+    "func": "msg.payload = {\"command\":\"LOCAL_SET_ALL_AUTH_EVSES\", data: undefined}\n\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 930,
+    "y": 340,
+    "wires": [
+      [
+        "fdaa305606c3401a"
       ]
     ]
   }

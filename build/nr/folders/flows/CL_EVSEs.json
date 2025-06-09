@@ -4,7 +4,6 @@
     "type": "tab",
     "label": "CL_EVSEs",
     "disabled": false,
-    "locked": true,
     "info": "",
     "env": []
   },
@@ -56,35 +55,6 @@
     "x": 680,
     "y": 600,
     "wires": []
-  },
-  {
-    "id": "6c962dc6f4338719",
-    "type": "inject",
-    "z": "217382551c48905d",
-    "name": "",
-    "props": [
-      {
-        "p": "payload"
-      },
-      {
-        "p": "topic",
-        "vt": "str"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "evse:1",
-    "payload": "{\"cbId\":\"ChargionONE\",\"ports\":1,\"type\":\"DCFC\",\"amps\":40}",
-    "payloadType": "json",
-    "x": 190,
-    "y": 520,
-    "wires": [
-      [
-        "a22435a838a7042d"
-      ]
-    ]
   },
   {
     "id": "a22435a838a7042d",
@@ -356,8 +326,8 @@
       "d67d4f13803bc38a",
       "2f70c5015a5d4885",
       "a20667f00c1262ba",
-      "a1f721f1a03c965a",
-      "c1ed374a1bace4de"
+      "c1ed374a1bace4de",
+      "a1f721f1a03c965a"
     ],
     "x": 65,
     "y": 420,
@@ -1638,7 +1608,7 @@
     "type": "debug",
     "z": "217382551c48905d",
     "name": "debug 65",
-    "active": false,
+    "active": true,
     "tosidebar": true,
     "console": false,
     "tostatus": false,

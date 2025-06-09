@@ -4,7 +4,6 @@
     "type": "tab",
     "label": "CL_Settings",
     "disabled": false,
-    "locked": true,
     "info": "",
     "env": []
   },
