@@ -264,7 +264,7 @@
     "name": "Transactions",
     "ui": "8cdc313c9611f13f",
     "path": "/sessions",
-    "icon": "mdi-bullseye",
+    "icon": "mdi-handshake",
     "layout": "notebook",
     "theme": "0d92c765bfad87e6",
     "breakpoints": [
@@ -291,8 +291,8 @@
     ],
     "order": 4,
     "className": "",
-    "visible": true,
-    "disabled": false
+    "visible": "true",
+    "disabled": "false"
   },
   {
     "id": "17fb40c0e949759b",

@@ -4,7 +4,6 @@
         "type": "tab",
         "label": "CL_CSMS_Logic",
         "disabled": false,
-        "locked": true,
         "info": "",
         "env": []
     },
@@ -13,7 +12,6 @@
         "type": "tab",
         "label": "CL_EVSEs",
         "disabled": false,
-        "locked": true,
         "info": "",
         "env": []
     },
@@ -22,7 +20,6 @@
         "type": "tab",
         "label": "CL_GetSetConfig",
         "disabled": false,
-        "locked": true,
         "info": "",
         "env": []
     },
@@ -31,7 +28,6 @@
         "type": "tab",
         "label": "CL_Home",
         "disabled": false,
-        "locked": true,
         "info": "",
         "env": []
     },
@@ -40,7 +36,6 @@
         "type": "tab",
         "label": "CL_Info",
         "disabled": false,
-        "locked": true,
         "info": "",
         "env": []
     },
@@ -49,7 +44,6 @@
         "type": "tab",
         "label": "CL_Meters",
         "disabled": false,
-        "locked": true,
         "info": "",
         "env": []
     },
@@ -58,7 +52,6 @@
         "type": "tab",
         "label": "CL_OCPPLog",
         "disabled": false,
-        "locked": true,
         "info": "",
         "env": []
     },
@@ -67,7 +60,6 @@
         "type": "tab",
         "label": "CL_Settings",
         "disabled": false,
-        "locked": true,
         "info": "",
         "env": []
     },
@@ -76,7 +68,6 @@
         "type": "tab",
         "label": "CL_TagInfo",
         "disabled": false,
-        "locked": true,
         "info": "",
         "env": []
     },
@@ -85,7 +76,6 @@
         "type": "tab",
         "label": "CL_Transactions",
         "disabled": false,
-        "locked": true,
         "info": "",
         "env": []
     },
@@ -168,31 +158,6 @@
         "icon": "font-awesome/fa-bolt"
     },
     {
-        "id": "a0169f65e4967ec2",
-        "type": "group",
-        "z": "9ca80d42115ee3c3",
-        "name": "Update Last Comm Timestamp",
-        "style": {
-            "fill": "#ffff7f",
-            "label": true
-        },
-        "nodes": [
-            "868ca4fd5276022e",
-            "e07f99fdfc73cd44",
-            "124fa94892413c81",
-            "b952178113645c64",
-            "34b27b38f2e7609a",
-            "7bc0d39e117db98a",
-            "d2d365e869ae5aa3",
-            "d836b12b64275a9d",
-            "a1f721f1a03c965a"
-        ],
-        "x": 104,
-        "y": 439,
-        "w": 1212,
-        "h": 82
-    },
-    {
         "id": "f6f7b333be6e5917",
         "type": "group",
         "z": "9ca80d42115ee3c3",
@@ -219,6 +184,31 @@
         "w": 864,
         "h": 448,
         "info": "**This is just an example** of an override\r\nYou can unlock this tab and click on the nodes to see\r\nhow they work. Do not edit this page or \r\nthese examples. Copy them to an editable\r\nflow of your own if you wish to utilize your\r\nown overrides.\r\n\r\n**Remember** to lock the flow again when you are done\r\nsince CL_ flows get overwritten with new\r\nupdates."
+    },
+    {
+        "id": "a0169f65e4967ec2",
+        "type": "group",
+        "z": "9ca80d42115ee3c3",
+        "name": "Update Last Comm Timestamp",
+        "style": {
+            "fill": "#ffff7f",
+            "label": true
+        },
+        "nodes": [
+            "868ca4fd5276022e",
+            "e07f99fdfc73cd44",
+            "124fa94892413c81",
+            "b952178113645c64",
+            "34b27b38f2e7609a",
+            "7bc0d39e117db98a",
+            "d2d365e869ae5aa3",
+            "d836b12b64275a9d",
+            "a1f721f1a03c965a"
+        ],
+        "x": 104,
+        "y": 439,
+        "w": 1212,
+        "h": 82
     },
     {
         "id": "adad8cfed89e9a2e",
@@ -296,28 +286,6 @@
         "h": 162
     },
     {
-        "id": "23d227486f4a19f5",
-        "type": "group",
-        "z": "9ca80d42115ee3c3",
-        "g": "f6f7b333be6e5917",
-        "name": "Calculate Charging Profile",
-        "style": {
-            "stroke": "#ff3f3f",
-            "fill": "#ffcf3f",
-            "label": true,
-            "color": "#000000"
-        },
-        "nodes": [
-            "25afca3af5d04a0d",
-            "668279fcb445ce5d",
-            "1186737eeaebd401"
-        ],
-        "x": 84,
-        "y": 1039,
-        "w": 452,
-        "h": 82
-    },
-    {
         "id": "c20c8766fa664d2e",
         "type": "group",
         "z": "9ca80d42115ee3c3",
@@ -344,6 +312,28 @@
         "y": 819,
         "w": 812,
         "h": 182
+    },
+    {
+        "id": "23d227486f4a19f5",
+        "type": "group",
+        "z": "9ca80d42115ee3c3",
+        "g": "f6f7b333be6e5917",
+        "name": "Calculate Charging Profile",
+        "style": {
+            "stroke": "#ff3f3f",
+            "fill": "#ffcf3f",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "25afca3af5d04a0d",
+            "668279fcb445ce5d",
+            "1186737eeaebd401"
+        ],
+        "x": 84,
+        "y": 1039,
+        "w": 452,
+        "h": 82
     },
     {
         "id": "f740792ad0c8f5fd",
@@ -437,6 +427,18 @@
                 "c006c2c3567e7ee6",
                 "2807de6096eb9e1f",
                 "c4b73cd2d6f1efbb"
+            ]
+        ]
+    },
+    {
+        "id": "56aa204f90d0fdb2",
+        "type": "junction",
+        "z": "9ca80d42115ee3c3",
+        "x": 420,
+        "y": 80,
+        "wires": [
+            [
+                "fdaa305606c3401a"
             ]
         ]
     },
@@ -705,7 +707,7 @@
         "name": "Transactions",
         "ui": "8cdc313c9611f13f",
         "path": "/sessions",
-        "icon": "mdi-bullseye",
+        "icon": "mdi-handshake",
         "layout": "notebook",
         "theme": "0d92c765bfad87e6",
         "breakpoints": [
@@ -732,8 +734,8 @@
         ],
         "order": 4,
         "className": "",
-        "visible": true,
-        "disabled": false
+        "visible": "true",
+        "disabled": "false"
     },
     {
         "id": "17fb40c0e949759b",
@@ -1795,9 +1797,7 @@
         "x": 125,
         "y": 80,
         "wires": [
-            [
-                "70bfca444e38cb32"
-            ]
+            []
         ]
     },
     {
@@ -2391,442 +2391,71 @@
         "wires": []
     },
     {
-        "id": "868ca4fd5276022e",
-        "type": "switch",
-        "z": "9ca80d42115ee3c3",
-        "g": "a0169f65e4967ec2",
-        "name": "Filter from CS only",
-        "property": "msgFrom",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "CS",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 270,
-        "y": 480,
-        "wires": [
-            [
-                "e07f99fdfc73cd44"
-            ]
-        ]
-    },
-    {
-        "id": "124fa94892413c81",
-        "type": "redis-command",
-        "z": "9ca80d42115ee3c3",
-        "g": "a0169f65e4967ec2",
-        "server": "0430675ed6c7cd83",
-        "command": "GET",
-        "name": "",
-        "topic": "",
-        "params": "[]",
-        "paramsType": "json",
-        "payloadType": "json",
-        "block": false,
-        "x": 620,
-        "y": 480,
-        "wires": [
-            [
-                "b952178113645c64"
-            ]
-        ]
-    },
-    {
-        "id": "e07f99fdfc73cd44",
-        "type": "change",
-        "z": "9ca80d42115ee3c3",
-        "g": "a0169f65e4967ec2",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "\"evse:\" & msg.cbId",
-                "tot": "jsonata"
-            },
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "{}",
-                "tot": "json"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 460,
-        "y": 480,
-        "wires": [
-            [
-                "124fa94892413c81"
-            ]
-        ]
-    },
-    {
-        "id": "b952178113645c64",
-        "type": "json",
-        "z": "9ca80d42115ee3c3",
-        "g": "a0169f65e4967ec2",
-        "name": "",
-        "property": "payload",
-        "action": "",
-        "pretty": false,
-        "x": 750,
-        "y": 480,
-        "wires": [
-            [
-                "34b27b38f2e7609a"
-            ]
-        ]
-    },
-    {
-        "id": "34b27b38f2e7609a",
-        "type": "change",
-        "z": "9ca80d42115ee3c3",
-        "g": "a0169f65e4967ec2",
-        "name": "Update TS",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload.lastcommtime",
-                "pt": "msg",
-                "to": "timestamp",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 880,
-        "y": 480,
-        "wires": [
-            [
-                "7bc0d39e117db98a"
-            ]
-        ]
-    },
-    {
-        "id": "7bc0d39e117db98a",
-        "type": "json",
-        "z": "9ca80d42115ee3c3",
-        "g": "a0169f65e4967ec2",
-        "name": "",
-        "property": "payload",
-        "action": "",
-        "pretty": false,
-        "x": 1020,
-        "y": 480,
-        "wires": [
-            [
-                "d2d365e869ae5aa3"
-            ]
-        ]
-    },
-    {
-        "id": "d2d365e869ae5aa3",
-        "type": "redis-command",
-        "z": "9ca80d42115ee3c3",
-        "g": "a0169f65e4967ec2",
-        "server": "0430675ed6c7cd83",
-        "command": "SET",
-        "name": "",
-        "topic": "",
-        "params": "[]",
-        "paramsType": "json",
-        "payloadType": "json",
-        "block": false,
-        "x": 1160,
-        "y": 480,
-        "wires": [
-            [
-                "a1f721f1a03c965a"
-            ]
-        ]
-    },
-    {
-        "id": "d836b12b64275a9d",
-        "type": "link in",
-        "z": "9ca80d42115ee3c3",
-        "g": "a0169f65e4967ec2",
-        "name": "Update TS",
-        "links": [
-            "846c6af009c205bd"
-        ],
-        "x": 145,
-        "y": 480,
-        "wires": [
-            [
-                "868ca4fd5276022e"
-            ]
-        ]
-    },
-    {
-        "id": "a1f721f1a03c965a",
-        "type": "link out",
-        "z": "9ca80d42115ee3c3",
-        "g": "a0169f65e4967ec2",
-        "name": "link out 17",
-        "mode": "link",
-        "links": [
-            "19a1d55d0ad937f5"
-        ],
-        "x": 1275,
-        "y": 480,
-        "wires": []
-    },
-    {
-        "id": "25afca3af5d04a0d",
-        "type": "link in",
-        "z": "9ca80d42115ee3c3",
-        "g": "23d227486f4a19f5",
-        "name": "Generate ChargeProfiles",
-        "links": [
-            "3890b31b33998ff0"
-        ],
-        "x": 125,
-        "y": 1080,
-        "wires": [
-            [
-                "668279fcb445ce5d"
-            ]
-        ]
-    },
-    {
-        "id": "668279fcb445ce5d",
+        "id": "4f4c8a9f1f8d9bb4",
         "type": "function",
         "z": "9ca80d42115ee3c3",
-        "g": "23d227486f4a19f5",
-        "name": "Smart Charge Management Algorithm",
-        "func": "const currentTx = global.get(\"CSMS:SESSIONS\") || []\nconst loadLimit = global.get(\"SITE:LoadLimit\")\nlet adjustment = 1\n\nlet potential = 0\n\ncurrentTx.forEach(function(sess) {\n    potential += sess.amps\n})\n\nif (potential > loadLimit){\n    // Calculate an adjustment %\n    adjustment = 1 - ((( (potential - loadLimit ) / potential ) * 100) / 100)\n}\n\ncurrentTx.forEach(function(sess) {\n    msg = {}\n    msg.payload = {\n        command: \"SetChargingProfile\",\n        cbId: sess.cbId,\n        data: {\n            connectorId: sess.connectorId,\n            csChargingProfiles: {\n              chargingProfileId: 1,\n              transactionId: sess.transactionId,\n              stackLevel: 1,\n              chargingProfilePurpose: \"TxProfile\",\n              chargingProfileKind: \"Absolute\",\n              chargingSchedule: {\n                startSchedule: new Date().toISOString(),\n                chargingRateUnit: \"A\",\n                chargingSchedulePeriod: [\n                    {\n                        startPeriod: 0,\n                        limit: sess.amps * adjustment,\n                        numberPhases: 1\n                    }\n                ]\n              }  \n            }\n        }\n    }\n    msg.potential = potential\n    msg.adjustment = adjustment\n    msg.loadLimit = loadLimit\n    node.send(msg)\n});\n",
+        "g": "f6f7b333be6e5917",
+        "name": "EXAMPLE: Enable Overrides",
+        "func": "// Global Context ocppCmdTargets is a Map object\n\nlet ctx = 'ocppCmdTargets'\n\n//Get the current map\nlet targetMap = global.get(ctx)\n\n// Set new targets for ocpp commands\ntargetMap.set('BootNotification','EXAMPLE_BootNotification')\ntargetMap.set('Heartbeat','EXAMPLE_Heartbeat')\n\n\n// As an example to clear out a user defined ocpp function and return to defaults, do:\n// targetMap.delete('BootNotification')\n\n\n// Set the map back to the global context so the CSMS subflow can use them\nglobal.set(ctx, targetMap)\nreturn\n\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 310,
-        "y": 1080,
+        "x": 660,
+        "y": 760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "056c40eb67d6fe4c",
+        "type": "link in",
+        "z": "9ca80d42115ee3c3",
+        "g": "f6f7b333be6e5917",
+        "name": "EXAMPLE_BootNotification",
+        "links": [],
+        "x": 105,
+        "y": 780,
         "wires": [
             [
-                "1186737eeaebd401"
+                "9298f921e122faa5"
             ]
         ]
     },
     {
-        "id": "1186737eeaebd401",
+        "id": "fa1a321403a73088",
         "type": "link out",
         "z": "9ca80d42115ee3c3",
-        "g": "23d227486f4a19f5",
-        "name": "link out 51",
+        "g": "f6f7b333be6e5917",
+        "name": "link out 55",
         "mode": "return",
         "links": [],
-        "x": 495,
-        "y": 1080,
+        "x": 405,
+        "y": 780,
         "wires": []
     },
     {
-        "id": "c71183f6d99d46ef",
+        "id": "9298f921e122faa5",
         "type": "function",
         "z": "9ca80d42115ee3c3",
-        "g": "c20c8766fa664d2e",
-        "name": "Auth/Start Tx",
-        "func": "// function handles both Authorize and StartTransaction\n// This generate a unique TxId, as long as the function doesn't get called twice\n// within the same millisecond\n\n\n// defaults\nconst ACCEPTED = \"Accepted\"\nlet status = ACCEPTED\nlet tags = []\n\n// copy message for the enhanced message with TxId\nlet msg2 = RED.util.cloneMessage(msg)\n\nmsg2.payload = {\n    idTagInfo: {\n        status\n    }\n}\n\nif (msg.ocpp.command === \"StartTransaction\"){\n    msg2.payload.transactionId = generateUniqueId()\n    msg.ocpp.command = 'StartTransactionEnhanced'\n    msg.payload.command = msg.ocpp.command\n    msg2.ocpp.connectorId = msg.payload.data.connectorId || 1\n}\n\nlet freeVend = global.get(\"CSMS:FreeVend\") \n    \nif (! freeVend ){\n    tags = global.get(\"CSMS:Tags\")\n\n    const result = tags.find((tag) => tag.tagId === msg.payload.data.idTag)\n\n    if (result){\n        if (!result.enabled){\n            msg2.payload.idTagInfo.status = \"Blocked\"\n        }\n        else if (result.expdate){\n            let expDate = new Date(result.expdate)\n            expDate.setHours(23, 59, 59, 999); // Set to the end of the day\n            let currentDate = new Date()\n\n            if (currentDate > expDate){\n                msg2.payload.idTagInfo.status = \"Expired\"\n            }\n            else {\n                msg2.payload.idTagInfo.expiryDate = expDate.toISOString()\n            }\n        } \n    }\n    else {\n        msg2.payload.idTagInfo.status = \"Invalid\"\n    }\n\n    if (msg2.payload.idTagInfo.status !== ACCEPTED){\n        msg2.payload.transactionId = 0\n    }\n\n}\n\nlet data\n\nif(msg.ocpp.command == \"StartTransactionEnhanced\"){\n    data = msg.payload.data\n    data.transactionId = msg2.payload.transactionId\n    data.status = msg2.payload.idTagInfo.status\n    const ts = new Date(data.timestamp)\n    msg.timestamp = ts.getTime()\n    msg.cbId = msg2.ocpp.chargeBoxIdentity\n    msg.msgFrom = \"CS\"\n    msg.payload = [2,msg2.ocpp.MessageId,\"StartTransactionEnhanced\",data]\n} else {\n    msg = null\n}\n\nmsg2.ack = true\n\nreturn [msg2,msg];\n\n\nfunction generateUniqueId() {\n    // Return a positive 32bit Int as a random TxId\n    const isoTimestamp = new Date().toISOString();\n    // Create a Date object from the ISO timestamp string\n    const date = new Date(isoTimestamp);\n\n    // Get the timestamp in seconds since the Unix epoch\n    const timestampInSeconds = Math.floor(date.getTime() / 1000);\n\n    // Calculate offset to ensure positive value within 32-bit signed range\n    const offset = timestampInSeconds < 0 ? 2147483648 : 0;\n\n    // Convert to 32-bit signed integer and apply offset\n    const int32Timestamp = (timestampInSeconds + offset) | 0;\n\n    return int32Timestamp;\n}\n\n/*\n// msg format\n//\n{\n    \"timestamp\":1735842833857,\n    \"cbId\":\"evsesim1\",\n    \"msgFrom\":\"CS\",\n    \"payload\":\n        [\n            2,\n            \"d5f3026e-d602-4ab8-a009-bcdef17932e3\",\n            \"StartTransaction\",\n            {\"connectorId\":1,\"idTag\":\"ccc\",\"meterStart\":2004,\"timestamp\":\"2025-01-02T18:33:53.856Z\"}\n         ],\n         \"_msgid\":\"6dc75f6161d5a70b\"\n}\n*/",
-        "outputs": 2,
+        "g": "f6f7b333be6e5917",
+        "name": "BootNotification",
+        "func": "//Load defaults\nconst interval = global.get(\"CSMS:HeartBeatInterval\") ?? 120\nconst currentTime = new Date().toISOString()\nconst validEVSEs = global.get(\"CSMS:EVSEs\") ?? []\n\nlet status = (validEVSEs.find((cbId) => cbId === msg.ocpp.chargeBoxIdentity) != undefined) ? \"Accepted\" : \"Rejected\"\n\nmsg.payload = {\n    interval,\n    currentTime,\n    status\n}\n\nmsg.ack = true\n\nreturn msg;",
+        "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 230,
-        "y": 920,
+        "x": 260,
+        "y": 780,
         "wires": [
             [
-                "e2a9a4f6ea0938e9",
-                "1b09a234a1e45737",
-                "02e68d94d30084bf"
-            ],
-            [
-                "08c6daf9b344995d",
-                "9553dfbcb3b284b3"
+                "fa1a321403a73088"
             ]
         ]
-    },
-    {
-        "id": "5bb26352bd2d7e5a",
-        "type": "link in",
-        "z": "9ca80d42115ee3c3",
-        "g": "c20c8766fa664d2e",
-        "name": "EXAMPLE_Auth_StartTx",
-        "links": [],
-        "x": 125,
-        "y": 920,
-        "wires": [
-            [
-                "c71183f6d99d46ef"
-            ]
-        ]
-    },
-    {
-        "id": "e2a9a4f6ea0938e9",
-        "type": "switch",
-        "z": "9ca80d42115ee3c3",
-        "g": "c20c8766fa664d2e",
-        "name": "StartTx Accepted",
-        "property": "payload.idTagInfo.status",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "Accepted",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 500,
-        "y": 900,
-        "wires": [
-            [
-                "378785534c46db9b"
-            ]
-        ]
-    },
-    {
-        "id": "1b09a234a1e45737",
-        "type": "link out",
-        "z": "9ca80d42115ee3c3",
-        "g": "c20c8766fa664d2e",
-        "name": "link out 52",
-        "mode": "return",
-        "links": [],
-        "x": 335,
-        "y": 880,
-        "wires": []
-    },
-    {
-        "id": "08c6daf9b344995d",
-        "type": "link out",
-        "z": "9ca80d42115ee3c3",
-        "g": "c20c8766fa664d2e",
-        "name": "link out 53",
-        "mode": "link",
-        "links": [
-            "31dee9642ab622cd"
-        ],
-        "x": 345,
-        "y": 940,
-        "wires": []
-    },
-    {
-        "id": "378785534c46db9b",
-        "type": "function",
-        "z": "9ca80d42115ee3c3",
-        "g": "c20c8766fa664d2e",
-        "name": "Save sessions context",
-        "func": "if (msg.ocpp.command === \"StartTransaction\"){\n    let session = {}\n    session.cbId = msg.ocpp.chargeBoxIdentity\n    session.connectorId = msg.ocpp.connectorId\n    session.transactionId = msg.payload.transactionId\n    session.amps = (session.cbId == \"EVOChargeLab1\") ? 32 : 40\n    let sessions = global.get(\"CSMS:SESSIONS\") || []\n    sessions.push(session)\n    global.set(\"CSMS:SESSIONS\",sessions)\n    return msg;\n}",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 710,
-        "y": 900,
-        "wires": [
-            [
-                "3890b31b33998ff0"
-            ]
-        ]
-    },
-    {
-        "id": "3890b31b33998ff0",
-        "type": "link out",
-        "z": "9ca80d42115ee3c3",
-        "g": "c20c8766fa664d2e",
-        "name": "link out 54",
-        "mode": "link",
-        "links": [
-            "25afca3af5d04a0d"
-        ],
-        "x": 855,
-        "y": 900,
-        "wires": []
-    },
-    {
-        "id": "9553dfbcb3b284b3",
-        "type": "debug",
-        "z": "9ca80d42115ee3c3",
-        "g": "c20c8766fa664d2e",
-        "name": "MSG",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 450,
-        "y": 960,
-        "wires": []
-    },
-    {
-        "id": "02e68d94d30084bf",
-        "type": "debug",
-        "z": "9ca80d42115ee3c3",
-        "g": "c20c8766fa664d2e",
-        "name": "MSG 2",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 480,
-        "y": 860,
-        "wires": []
-    },
-    {
-        "id": "1e88d1e2d4dcc7d3",
-        "type": "link in",
-        "z": "9ca80d42115ee3c3",
-        "g": "f6f7b333be6e5917",
-        "name": "EXAMPLE_Heartbeat",
-        "links": [],
-        "x": 105,
-        "y": 740,
-        "wires": [
-            [
-                "7283d4e60852fabc"
-            ]
-        ]
-    },
-    {
-        "id": "2b16b2bbbd57fabc",
-        "type": "link out",
-        "z": "9ca80d42115ee3c3",
-        "g": "f6f7b333be6e5917",
-        "name": "HB_OUT",
-        "mode": "return",
-        "links": [],
-        "x": 395,
-        "y": 740,
-        "wires": []
     },
     {
         "id": "7283d4e60852fabc",
@@ -2871,70 +2500,441 @@
         ]
     },
     {
-        "id": "9298f921e122faa5",
-        "type": "function",
-        "z": "9ca80d42115ee3c3",
-        "g": "f6f7b333be6e5917",
-        "name": "BootNotification",
-        "func": "//Load defaults\nconst interval = global.get(\"CSMS:HeartBeatInterval\") ?? 120\nconst currentTime = new Date().toISOString()\nconst validEVSEs = global.get(\"CSMS:EVSEs\") ?? []\n\nlet status = (validEVSEs.find((cbId) => cbId === msg.ocpp.chargeBoxIdentity) != undefined) ? \"Accepted\" : \"Rejected\"\n\nmsg.payload = {\n    interval,\n    currentTime,\n    status\n}\n\nmsg.ack = true\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 260,
-        "y": 780,
-        "wires": [
-            [
-                "fa1a321403a73088"
-            ]
-        ]
-    },
-    {
-        "id": "fa1a321403a73088",
+        "id": "2b16b2bbbd57fabc",
         "type": "link out",
         "z": "9ca80d42115ee3c3",
         "g": "f6f7b333be6e5917",
-        "name": "link out 55",
+        "name": "HB_OUT",
         "mode": "return",
         "links": [],
-        "x": 405,
-        "y": 780,
+        "x": 395,
+        "y": 740,
         "wires": []
     },
     {
-        "id": "056c40eb67d6fe4c",
+        "id": "1e88d1e2d4dcc7d3",
         "type": "link in",
         "z": "9ca80d42115ee3c3",
         "g": "f6f7b333be6e5917",
-        "name": "EXAMPLE_BootNotification",
+        "name": "EXAMPLE_Heartbeat",
         "links": [],
         "x": 105,
-        "y": 780,
+        "y": 740,
         "wires": [
             [
-                "9298f921e122faa5"
+                "7283d4e60852fabc"
             ]
         ]
     },
     {
-        "id": "4f4c8a9f1f8d9bb4",
+        "id": "02e68d94d30084bf",
+        "type": "debug",
+        "z": "9ca80d42115ee3c3",
+        "g": "c20c8766fa664d2e",
+        "name": "MSG 2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 480,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "9553dfbcb3b284b3",
+        "type": "debug",
+        "z": "9ca80d42115ee3c3",
+        "g": "c20c8766fa664d2e",
+        "name": "MSG",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 450,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "3890b31b33998ff0",
+        "type": "link out",
+        "z": "9ca80d42115ee3c3",
+        "g": "c20c8766fa664d2e",
+        "name": "link out 54",
+        "mode": "link",
+        "links": [
+            "25afca3af5d04a0d"
+        ],
+        "x": 855,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "378785534c46db9b",
         "type": "function",
         "z": "9ca80d42115ee3c3",
-        "g": "f6f7b333be6e5917",
-        "name": "EXAMPLE: Enable Overrides",
-        "func": "// Global Context ocppCmdTargets is a Map object\n\nlet ctx = 'ocppCmdTargets'\n\n//Get the current map\nlet targetMap = global.get(ctx)\n\n// Set new targets for ocpp commands\ntargetMap.set('BootNotification','EXAMPLE_BootNotification')\ntargetMap.set('Heartbeat','EXAMPLE_Heartbeat')\n\n\n// As an example to clear out a user defined ocpp function and return to defaults, do:\n// targetMap.delete('BootNotification')\n\n\n// Set the map back to the global context so the CSMS subflow can use them\nglobal.set(ctx, targetMap)\nreturn\n\n",
+        "g": "c20c8766fa664d2e",
+        "name": "Save sessions context",
+        "func": "if (msg.ocpp.command === \"StartTransaction\"){\n    let session = {}\n    session.cbId = msg.ocpp.chargeBoxIdentity\n    session.connectorId = msg.ocpp.connectorId\n    session.transactionId = msg.payload.transactionId\n    session.amps = (session.cbId == \"EVOChargeLab1\") ? 32 : 40\n    let sessions = global.get(\"CSMS:SESSIONS\") || []\n    sessions.push(session)\n    global.set(\"CSMS:SESSIONS\",sessions)\n    return msg;\n}",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 660,
-        "y": 760,
+        "x": 710,
+        "y": 900,
         "wires": [
-            []
+            [
+                "3890b31b33998ff0"
+            ]
+        ]
+    },
+    {
+        "id": "08c6daf9b344995d",
+        "type": "link out",
+        "z": "9ca80d42115ee3c3",
+        "g": "c20c8766fa664d2e",
+        "name": "link out 53",
+        "mode": "link",
+        "links": [
+            "31dee9642ab622cd"
+        ],
+        "x": 345,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "1b09a234a1e45737",
+        "type": "link out",
+        "z": "9ca80d42115ee3c3",
+        "g": "c20c8766fa664d2e",
+        "name": "link out 52",
+        "mode": "return",
+        "links": [],
+        "x": 335,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "e2a9a4f6ea0938e9",
+        "type": "switch",
+        "z": "9ca80d42115ee3c3",
+        "g": "c20c8766fa664d2e",
+        "name": "StartTx Accepted",
+        "property": "payload.idTagInfo.status",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Accepted",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 500,
+        "y": 900,
+        "wires": [
+            [
+                "378785534c46db9b"
+            ]
+        ]
+    },
+    {
+        "id": "5bb26352bd2d7e5a",
+        "type": "link in",
+        "z": "9ca80d42115ee3c3",
+        "g": "c20c8766fa664d2e",
+        "name": "EXAMPLE_Auth_StartTx",
+        "links": [],
+        "x": 125,
+        "y": 920,
+        "wires": [
+            [
+                "c71183f6d99d46ef"
+            ]
+        ]
+    },
+    {
+        "id": "c71183f6d99d46ef",
+        "type": "function",
+        "z": "9ca80d42115ee3c3",
+        "g": "c20c8766fa664d2e",
+        "name": "Auth/Start Tx",
+        "func": "// function handles both Authorize and StartTransaction\n// This generate a unique TxId, as long as the function doesn't get called twice\n// within the same millisecond\n\n\n// defaults\nconst ACCEPTED = \"Accepted\"\nlet status = ACCEPTED\nlet tags = []\n\n// copy message for the enhanced message with TxId\nlet msg2 = RED.util.cloneMessage(msg)\n\nmsg2.payload = {\n    idTagInfo: {\n        status\n    }\n}\n\nif (msg.ocpp.command === \"StartTransaction\"){\n    msg2.payload.transactionId = generateUniqueId()\n    msg.ocpp.command = 'StartTransactionEnhanced'\n    msg.payload.command = msg.ocpp.command\n    msg2.ocpp.connectorId = msg.payload.data.connectorId || 1\n}\n\nlet freeVend = global.get(\"CSMS:FreeVend\") \n    \nif (! freeVend ){\n    tags = global.get(\"CSMS:Tags\")\n\n    const result = tags.find((tag) => tag.tagId === msg.payload.data.idTag)\n\n    if (result){\n        if (!result.enabled){\n            msg2.payload.idTagInfo.status = \"Blocked\"\n        }\n        else if (result.expdate){\n            let expDate = new Date(result.expdate)\n            expDate.setHours(23, 59, 59, 999); // Set to the end of the day\n            let currentDate = new Date()\n\n            if (currentDate > expDate){\n                msg2.payload.idTagInfo.status = \"Expired\"\n            }\n            else {\n                msg2.payload.idTagInfo.expiryDate = expDate.toISOString()\n            }\n        } \n    }\n    else {\n        msg2.payload.idTagInfo.status = \"Invalid\"\n    }\n\n    if (msg2.payload.idTagInfo.status !== ACCEPTED){\n        msg2.payload.transactionId = 0\n    }\n\n}\n\nlet data\n\nif(msg.ocpp.command == \"StartTransactionEnhanced\"){\n    data = msg.payload.data\n    data.transactionId = msg2.payload.transactionId\n    data.status = msg2.payload.idTagInfo.status\n    const ts = new Date(data.timestamp)\n    msg.timestamp = ts.getTime()\n    msg.cbId = msg2.ocpp.chargeBoxIdentity\n    msg.msgFrom = \"CS\"\n    msg.payload = [2,msg2.ocpp.MessageId,\"StartTransactionEnhanced\",data]\n} else {\n    msg = null\n}\n\nmsg2.ack = true\n\nreturn [msg2,msg];\n\n\nfunction generateUniqueId() {\n    // Return a positive 32bit Int as a random TxId\n    const isoTimestamp = new Date().toISOString();\n    // Create a Date object from the ISO timestamp string\n    const date = new Date(isoTimestamp);\n\n    // Get the timestamp in seconds since the Unix epoch\n    const timestampInSeconds = Math.floor(date.getTime() / 1000);\n\n    // Calculate offset to ensure positive value within 32-bit signed range\n    const offset = timestampInSeconds < 0 ? 2147483648 : 0;\n\n    // Convert to 32-bit signed integer and apply offset\n    const int32Timestamp = (timestampInSeconds + offset) | 0;\n\n    return int32Timestamp;\n}\n\n/*\n// msg format\n//\n{\n    \"timestamp\":1735842833857,\n    \"cbId\":\"evsesim1\",\n    \"msgFrom\":\"CS\",\n    \"payload\":\n        [\n            2,\n            \"d5f3026e-d602-4ab8-a009-bcdef17932e3\",\n            \"StartTransaction\",\n            {\"connectorId\":1,\"idTag\":\"ccc\",\"meterStart\":2004,\"timestamp\":\"2025-01-02T18:33:53.856Z\"}\n         ],\n         \"_msgid\":\"6dc75f6161d5a70b\"\n}\n*/",
+        "outputs": 2,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 230,
+        "y": 920,
+        "wires": [
+            [
+                "e2a9a4f6ea0938e9",
+                "1b09a234a1e45737",
+                "02e68d94d30084bf"
+            ],
+            [
+                "08c6daf9b344995d",
+                "9553dfbcb3b284b3"
+            ]
+        ]
+    },
+    {
+        "id": "1186737eeaebd401",
+        "type": "link out",
+        "z": "9ca80d42115ee3c3",
+        "g": "23d227486f4a19f5",
+        "name": "link out 51",
+        "mode": "return",
+        "links": [],
+        "x": 495,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "668279fcb445ce5d",
+        "type": "function",
+        "z": "9ca80d42115ee3c3",
+        "g": "23d227486f4a19f5",
+        "name": "Smart Charge Management Algorithm",
+        "func": "const currentTx = global.get(\"CSMS:SESSIONS\") || []\nconst loadLimit = global.get(\"SITE:LoadLimit\")\nlet adjustment = 1\n\nlet potential = 0\n\ncurrentTx.forEach(function(sess) {\n    potential += sess.amps\n})\n\nif (potential > loadLimit){\n    // Calculate an adjustment %\n    adjustment = 1 - ((( (potential - loadLimit ) / potential ) * 100) / 100)\n}\n\ncurrentTx.forEach(function(sess) {\n    msg = {}\n    msg.payload = {\n        command: \"SetChargingProfile\",\n        cbId: sess.cbId,\n        data: {\n            connectorId: sess.connectorId,\n            csChargingProfiles: {\n              chargingProfileId: 1,\n              transactionId: sess.transactionId,\n              stackLevel: 1,\n              chargingProfilePurpose: \"TxProfile\",\n              chargingProfileKind: \"Absolute\",\n              chargingSchedule: {\n                startSchedule: new Date().toISOString(),\n                chargingRateUnit: \"A\",\n                chargingSchedulePeriod: [\n                    {\n                        startPeriod: 0,\n                        limit: sess.amps * adjustment,\n                        numberPhases: 1\n                    }\n                ]\n              }  \n            }\n        }\n    }\n    msg.potential = potential\n    msg.adjustment = adjustment\n    msg.loadLimit = loadLimit\n    node.send(msg)\n});\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 1080,
+        "wires": [
+            [
+                "1186737eeaebd401"
+            ]
+        ]
+    },
+    {
+        "id": "25afca3af5d04a0d",
+        "type": "link in",
+        "z": "9ca80d42115ee3c3",
+        "g": "23d227486f4a19f5",
+        "name": "Generate ChargeProfiles",
+        "links": [
+            "3890b31b33998ff0"
+        ],
+        "x": 125,
+        "y": 1080,
+        "wires": [
+            [
+                "668279fcb445ce5d"
+            ]
+        ]
+    },
+    {
+        "id": "a1f721f1a03c965a",
+        "type": "link out",
+        "z": "9ca80d42115ee3c3",
+        "g": "a0169f65e4967ec2",
+        "name": "link out 17",
+        "mode": "link",
+        "links": [
+            "19a1d55d0ad937f5"
+        ],
+        "x": 1275,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "d836b12b64275a9d",
+        "type": "link in",
+        "z": "9ca80d42115ee3c3",
+        "g": "a0169f65e4967ec2",
+        "name": "Update TS",
+        "links": [
+            "846c6af009c205bd"
+        ],
+        "x": 145,
+        "y": 480,
+        "wires": [
+            [
+                "868ca4fd5276022e"
+            ]
+        ]
+    },
+    {
+        "id": "d2d365e869ae5aa3",
+        "type": "redis-command",
+        "z": "9ca80d42115ee3c3",
+        "g": "a0169f65e4967ec2",
+        "server": "0430675ed6c7cd83",
+        "command": "SET",
+        "name": "",
+        "topic": "",
+        "params": "[]",
+        "paramsType": "json",
+        "payloadType": "json",
+        "block": false,
+        "x": 1160,
+        "y": 480,
+        "wires": [
+            [
+                "a1f721f1a03c965a"
+            ]
+        ]
+    },
+    {
+        "id": "7bc0d39e117db98a",
+        "type": "json",
+        "z": "9ca80d42115ee3c3",
+        "g": "a0169f65e4967ec2",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 1020,
+        "y": 480,
+        "wires": [
+            [
+                "d2d365e869ae5aa3"
+            ]
+        ]
+    },
+    {
+        "id": "34b27b38f2e7609a",
+        "type": "change",
+        "z": "9ca80d42115ee3c3",
+        "g": "a0169f65e4967ec2",
+        "name": "Update TS",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.lastcommtime",
+                "pt": "msg",
+                "to": "timestamp",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 880,
+        "y": 480,
+        "wires": [
+            [
+                "7bc0d39e117db98a"
+            ]
+        ]
+    },
+    {
+        "id": "b952178113645c64",
+        "type": "json",
+        "z": "9ca80d42115ee3c3",
+        "g": "a0169f65e4967ec2",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 750,
+        "y": 480,
+        "wires": [
+            [
+                "34b27b38f2e7609a"
+            ]
+        ]
+    },
+    {
+        "id": "e07f99fdfc73cd44",
+        "type": "change",
+        "z": "9ca80d42115ee3c3",
+        "g": "a0169f65e4967ec2",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "\"evse:\" & msg.cbId",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 460,
+        "y": 480,
+        "wires": [
+            [
+                "124fa94892413c81"
+            ]
+        ]
+    },
+    {
+        "id": "124fa94892413c81",
+        "type": "redis-command",
+        "z": "9ca80d42115ee3c3",
+        "g": "a0169f65e4967ec2",
+        "server": "0430675ed6c7cd83",
+        "command": "GET",
+        "name": "",
+        "topic": "",
+        "params": "[]",
+        "paramsType": "json",
+        "payloadType": "json",
+        "block": false,
+        "x": 620,
+        "y": 480,
+        "wires": [
+            [
+                "b952178113645c64"
+            ]
+        ]
+    },
+    {
+        "id": "868ca4fd5276022e",
+        "type": "switch",
+        "z": "9ca80d42115ee3c3",
+        "g": "a0169f65e4967ec2",
+        "name": "Filter from CS only",
+        "property": "msgFrom",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "CS",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 270,
+        "y": 480,
+        "wires": [
+            [
+                "e07f99fdfc73cd44"
+            ]
         ]
     },
     {
@@ -2987,18 +2987,19 @@
         "type": "function",
         "z": "9ca80d42115ee3c3",
         "name": "LOCAL_SET_ALL_AUTH_EVSES",
-        "func": "let evse_array = msg.payload;\n\nmsg.payload = {}\nmsg.payload.command = \"LOCAL_SET_ALL_AUTH_EVSES\"\nmsg.payload.data = {}\n\nevse_array.forEach(function(evse) {\n    msg.payload.data[evse.cbId] = evse.password;\n});\nreturn msg;",
+        "func": "let evse_array = msg.payload;\n\nmsg.payload = {}\nmsg.payload.command = \"LOCAL_SET_ALL_AUTH_EVSES\"\nmsg.payload.data = {}\n\nevse_array.forEach(function(evse) {\n    if (evse?.password){\n        msg.payload.data[evse.cbId] = evse.password;\n    }\n});\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 340,
-        "y": 220,
+        "x": 320,
+        "y": 280,
         "wires": [
             [
-                "fdaa305606c3401a"
+                "6266aa52eeaf9166",
+                "56aa204f90d0fdb2"
             ]
         ]
     },
@@ -3011,7 +3012,7 @@
             "40fe4278635a683c"
         ],
         "x": 125,
-        "y": 220,
+        "y": 280,
         "wires": [
             [
                 "44e8fa5ea6d0b7fe"
@@ -3141,7 +3142,7 @@
         "y": 20,
         "wires": [
             [
-                "fdaa305606c3401a"
+                "56aa204f90d0fdb2"
             ]
         ]
     },
@@ -3159,8 +3160,8 @@
         "y": 80,
         "wires": [
             [
-                "fdaa305606c3401a",
-                "f6cabb9b8b83d2ce"
+                "f6cabb9b8b83d2ce",
+                "56aa204f90d0fdb2"
             ]
         ]
     },
@@ -3169,7 +3170,7 @@
         "type": "debug",
         "z": "9ca80d42115ee3c3",
         "name": "debug 51",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -3290,7 +3291,7 @@
         "y": 160,
         "wires": [
             [
-                "fdaa305606c3401a"
+                "56aa204f90d0fdb2"
             ]
         ]
     },
@@ -3378,6 +3379,72 @@
         ]
     },
     {
+        "id": "6266aa52eeaf9166",
+        "type": "debug",
+        "z": "9ca80d42115ee3c3",
+        "name": "debug 14",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "8e95bc50d9817acd",
+        "type": "inject",
+        "z": "9ca80d42115ee3c3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 750,
+        "y": 340,
+        "wires": [
+            [
+                "4e4771b18a9d9f64"
+            ]
+        ]
+    },
+    {
+        "id": "4e4771b18a9d9f64",
+        "type": "function",
+        "z": "9ca80d42115ee3c3",
+        "name": "function 3",
+        "func": "msg.payload = {\"command\":\"LOCAL_SET_ALL_AUTH_EVSES\", data: undefined}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 930,
+        "y": 340,
+        "wires": [
+            [
+                "fdaa305606c3401a"
+            ]
+        ]
+    },
+    {
         "id": "366db60c10403558",
         "type": "redis-command",
         "z": "217382551c48905d",
@@ -3413,35 +3480,6 @@
         "x": 680,
         "y": 600,
         "wires": []
-    },
-    {
-        "id": "6c962dc6f4338719",
-        "type": "inject",
-        "z": "217382551c48905d",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "evse:1",
-        "payload": "{\"cbId\":\"ChargionONE\",\"ports\":1,\"type\":\"DCFC\",\"amps\":40}",
-        "payloadType": "json",
-        "x": 190,
-        "y": 520,
-        "wires": [
-            [
-                "a22435a838a7042d"
-            ]
-        ]
     },
     {
         "id": "a22435a838a7042d",
@@ -3713,8 +3751,8 @@
             "d67d4f13803bc38a",
             "2f70c5015a5d4885",
             "a20667f00c1262ba",
-            "a1f721f1a03c965a",
-            "c1ed374a1bace4de"
+            "c1ed374a1bace4de",
+            "a1f721f1a03c965a"
         ],
         "x": 65,
         "y": 420,
@@ -3878,7 +3916,7 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n    <v-dialog width=\"auto\" v-model=\"showDialog\">\n        <v-card color=\"white\" v-click-outside=\"{handler: onClickOutside}\" >\n            <v-toolbar color=\"primary\">\n                <v-card-title>\n                    <span>{{ title }}</span>\n                </v-card-title>\n            </v-toolbar>\n            <v-container>\n                                <v-row>\n                <v-col cols=\"12\">\n                    <v-card \n                        :title=\"this.cbId\"\n                        prepend-icon=\"mdi-ev-station\"\n                        subtitle=\"Commands will be sent to this EVSE\">\n                    </v-card>\n                </v-col>\n                </v-row>\n                                <v-row>\n                <v-col cols=\"6\">\n                    <v-btn block \n                        prepend-icon=\"mdi-lock-open\" \n                        color=\"primary\" \n                        @click=\"sendCmd('UnlockConnector')\"\n                        >\n                        Unlock Connector\n                    </v-btn>\n                </v-col>\n                <v-col cols=\"6\">\n                    <v-btn block \n                        prepend-icon=\"mdi-pause-octagon-outline\" \n                        color=\"primary\" \n                        @click=\"sendCmd('ChangeAvailability')\"\n                        >\n                        Change Availability\n                    </v-btn>\n                </v-col>\n                </v-row>\n                <v-row>\n                <v-col cols=\"6\">\n                    <v-btn block prepend-icon=\"mdi-play-circle-outline\" color=\"primary\" @click=\"sendCmd('RemoteStartTransaction')\">Remote Start Transaction</v-btn>\n                </v-col>\n                <v-col cols=\"6\">\n                    <v-btn block prepend-icon=\"mdi-stop-circle-outline\" color=\"primary\" @click=\"sendCmd('RemoteStopTransaction')\">Remote Stop Transaction</v-btn>\n                </v-col>\n                </v-row>\n                <v-row>\n                <v-col cols=\"6\">\n                    <v-btn block prepend-icon=\"mdi-hammer-screwdriver\" color=\"primary\" @click=\"sendCmd('TriggerMessage')\">Trigger Message</v-btn>\n                </v-col>\n                <v-col cols=\"6\">\n                    <v-btn block prepend-icon=\"mdi-cog-counterclockwise\" color=\"primary\" @click=\"sendCmd('ClearCache',{})\">Clear Cache</v-btn>\n                </v-col>\n                </v-row>                                        \n                <v-row>\n                <v-col cols=\"6\">\n                    <v-btn block prepend-icon=\"mdi-power-plug-outline\" color=\"primary\" @click=\"sendCmd('Reset',{ type: 'Soft'})\">Soft Reset</v-btn>\n                </v-col>\n                <v-col cols=\"6\">\n                    <v-btn block prepend-icon=\"mdi-power-plug\" color=\"primary\" @click=\"sendCmd('Reset',{ type: 'Hard'} )\">Hard Reset</v-btn>\n                </v-col>\n                </v-row>\n                <v-row>\n                    <v-col cols=\"12\">\n                    <v-btn block variant=\"elevated\" color=\"secondary\" @click=\"closeDialog()\">Close</v-btn>\n                </v-col>                                        \n\n            </v-container>\n        </v-card>\n    </v-dialog>                \n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                cbId: '',\n                ports: 1,\n                showDialog: false,\n                title: 'Send OCPP Commands'\n            }\n        },\n        watch: {  \n        },\n\n        computed: {\n            // automatically compute this variable\n            // whenever VueJS deems appropriate\n\n        },\n        methods: {\n            // expose a method to our <template> and Vue Application\n\n            sendCmd: function(command, data=0){\n                let payload = {\n                    cbId: this.cbId,\n                    command: command\n                }\n\n                if (data != 0) {\n                    payload.data = data\n                }\n\n                this.send({\n                    payload\n                })\n            },\n            closeDialog: function() {\n                let payload = {\n                    command: \"closeDialog\"\n                }\n                this.send({payload})\n                this.showDialog = false\n            },\n            onClickOutside: function() {\n                this.msg.payload = {}\n                this.send({})\n                this.showDialog = false\n            },\n\n        },\n        mounted() {\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n                if (this.msg.payload){\n                let payload = this.msg.payload\n                this.cbId = payload.cbId\n                this.ports = payload.ports\n                }\n                \n                if (this.msg.dialog) {\n                let dialog = this.msg.dialog\n                this.showDialog = dialog.showDialog\n                this.closeText = dialog.closeText\n                this.title = dialog.title ?? 'Send OCPP Commands'\n                }\n            })\n        },\n   }\n</script>\n",
+        "format": "<template>\n    <v-dialog width=\"auto\" v-model=\"showDialog\">\n        <!-- v-card color=\"white\" v-click-outside=\"{handler: onClickOutside}\" -->\n        <v-card color=\"white\">\n            <v-toolbar color=\"primary\">\n                <v-card-title>\n                    <span>{{ title }}</span>\n                </v-card-title>\n            </v-toolbar>\n            <v-container>\n                                <v-row>\n                <v-col cols=\"12\">\n                    <v-card \n                        :title=\"this.cbId\"\n                        prepend-icon=\"mdi-ev-station\"\n                        subtitle=\"Commands will be sent to this EVSE\">\n                    </v-card>\n                </v-col>\n                </v-row>\n                                <v-row>\n                <v-col cols=\"6\">\n                    <v-btn block \n                        prepend-icon=\"mdi-lock-open\" \n                        color=\"primary\" \n                        @click=\"sendCmd('UnlockConnector')\"\n                        >\n                        Unlock Connector\n                    </v-btn>\n                </v-col>\n                <v-col cols=\"6\">\n                    <v-btn block \n                        prepend-icon=\"mdi-pause-octagon-outline\" \n                        color=\"primary\" \n                        @click=\"sendCmd('ChangeAvailability')\"\n                        >\n                        Change Availability\n                    </v-btn>\n                </v-col>\n                </v-row>\n                <v-row>\n                <v-col cols=\"6\">\n                    <v-btn block prepend-icon=\"mdi-play-circle-outline\" color=\"primary\" @click=\"sendCmd('RemoteStartTransaction')\">Remote Start Transaction</v-btn>\n                </v-col>\n                <v-col cols=\"6\">\n                    <v-btn block prepend-icon=\"mdi-stop-circle-outline\" color=\"primary\" @click=\"sendCmd('RemoteStopTransaction')\">Remote Stop Transaction</v-btn>\n                </v-col>\n                </v-row>\n                <v-row>\n                <v-col cols=\"6\">\n                    <v-btn block prepend-icon=\"mdi-hammer-screwdriver\" color=\"primary\" @click=\"sendCmd('TriggerMessage')\">Trigger Message</v-btn>\n                </v-col>\n                <v-col cols=\"6\">\n                    <v-btn block prepend-icon=\"mdi-cog-counterclockwise\" color=\"primary\" @click=\"sendCmd('ClearCache',{})\">Clear Cache</v-btn>\n                </v-col>\n                </v-row>                                        \n                <v-row>\n                <v-col cols=\"6\">\n                    <v-btn block prepend-icon=\"mdi-power-plug-outline\" color=\"primary\" @click=\"sendCmd('Reset',{ type: 'Soft'})\">Soft Reset</v-btn>\n                </v-col>\n                <v-col cols=\"6\">\n                    <v-btn block prepend-icon=\"mdi-power-plug\" color=\"primary\" @click=\"sendCmd('Reset',{ type: 'Hard'} )\">Hard Reset</v-btn>\n                </v-col>\n                </v-row>\n                <v-row>\n                    <v-col cols=\"12\">\n                    <v-btn block variant=\"elevated\" color=\"secondary\" @click=\"closeDialog()\">Close</v-btn>\n                </v-col>                                        \n\n            </v-container>\n        </v-card>\n    </v-dialog>                \n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                cbId: '',\n                ports: 1,\n                showDialog: false,\n                title: 'Send OCPP Commands'\n            }\n        },\n\n        methods: {\n            // expose a method to our <template> and Vue Application\n\n            sendCmd: function(command, data=0){\n                let payload = {\n                    cbId: this.cbId,\n                    command: command\n                }\n\n                if (data != 0) {\n                    payload.data = data\n                }\n\n                this.send({\n                    payload\n                })\n            },\n            closeDialog: function() {\n                let payload = {\n                    command: \"closeDialog\"\n                }\n                this.send({payload})\n                this.showDialog = false\n            },\n            onClickOutside: function() {\n                this.msg.payload = {}\n                this.send({})\n                this.showDialog = false\n            },\n\n        },\n        mounted() {\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n                if (this.msg.payload){\n                let payload = this.msg.payload\n                this.cbId = payload.cbId\n                this.ports = payload.ports\n                }\n                \n                if (this.msg.dialog) {\n                let dialog = this.msg.dialog\n                this.showDialog = dialog.showDialog\n                this.closeText = dialog.closeText\n                this.title = dialog.title ?? 'Send OCPP Commands'\n                }\n            })\n        },\n   }\n</script>\n",
         "storeOutMessages": true,
         "passthru": false,
         "resendOnRefresh": true,
@@ -4323,7 +4361,7 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n    <v-dialog width=\"auto\" v-model=\"showDialog\">\n        <v-card color=\"white\" v-click-outside=\"{handler: onClickOutside}\">\n            <v-toolbar color=\"primary\">\n                <v-card-title>\n                    <span>{{ cbId }}: Trigger Msg</span>\n                </v-card-title>\n            </v-toolbar>\n            <v-container>\n                <v-text-field \n                    v-model=\"connectorId\" \n                    label=\"Connector ID\" \n                    type=\"number\" \n                    hint=\"Connector ID\"\n                >\n                </v-text-field>\n                <v-select \n                    v-model=\"requestedMessage\" \n                    label=\"Command\"\n                    :items='requestedMessages'\n                    hint=\"OCPP Trigger Message\">\n                </v-select>            \n            </v-container>\n            <v-card-actions class=\"justify-end\">\n                <v-btn variant=\"elevated\" @click=\"okDialog\">{{ okText }}</v-btn>\n                <v-btn variant=\"elevated\" @click=\"cancelDialog\">{{ cancelText }}</v-btn>\n            </v-card-actions>\n        </v-card>\n    </v-dialog>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                connectorId: 1,\n                showDialog: false,\n                cbId: 'xyzzz',\n                okText: 'OK',\n                cancelText: 'Cancel',\n                requestedMessages: ['BootNotification','DiagnosticStatusNotification','FirmwareStatusNotification','Heartbeat','MeterValues','StatusNotification'] ,\n                requestedMessage: 'StatusNotification',\n                command: 'TriggerMessage',\n                trigger: 'StatusNotification'\n            }\n        },\n\n        watch: {},\n        mounted() {\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n            \n                if (this.msg.dialog){\n                    let dialog = this.msg.dialog\n                    this.showDialog = dialog.showDialog ?? false\n                    this.okText = dialog.okText ?? \"OK\"\n                    this.cancelText = dialog.cancelText ?? \"Cancel\"\n                }\n                if (this.msg.payload){\n                    this.cbId = this.msg.payload.cbId\n                    this.command = this.msg.payload.command\n\n                }\n            })\n        },\n        methods: {\n            okDialog: function() {\n                this.showDialog = false\n                this.send({\n                    payload: {\n                        cbId: this.cbId,\n                        connectorId: this.connectorId,\n                        command: this.command,\n                        requestedMessage: this.requestedMessage\n                    }\n                })\n\n            },\n            cancelDialog: function() {\n                this.msg.paylaod = {}\n                this.showDialog = false\n                \n            }\n\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: red;\n    }\n</style>",
+        "format": "<template>\n    <v-dialog width=\"auto\" v-model=\"showDialog\">\n        <!-- v-card color=\"white\" v-click-outside=\"{handler: onClickOutside}\"-->\n        <v-card color=\"white\">\n            <v-toolbar color=\"primary\">\n                <v-card-title>\n                    <span>{{ cbId }}: Trigger Msg</span>\n                </v-card-title>\n            </v-toolbar>\n            <v-container>\n                <v-text-field \n                    v-model=\"connectorId\" \n                    label=\"Connector ID\" \n                    type=\"number\" \n                    hint=\"Connector ID\"\n                >\n                </v-text-field>\n                <v-select \n                    v-model=\"requestedMessage\" \n                    label=\"Command\"\n                    :items='requestedMessages'\n                    hint=\"OCPP Trigger Message\">\n                </v-select>            \n            </v-container>\n            <v-card-actions class=\"justify-end\">\n                <v-btn variant=\"elevated\" @click=\"okDialog\">{{ okText }}</v-btn>\n                <v-btn variant=\"elevated\" @click=\"cancelDialog\">{{ cancelText }}</v-btn>\n            </v-card-actions>\n        </v-card>\n    </v-dialog>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                connectorId: 1,\n                showDialog: false,\n                cbId: 'xyzzz',\n                okText: 'OK',\n                cancelText: 'Cancel',\n                requestedMessages: ['BootNotification','DiagnosticStatusNotification','FirmwareStatusNotification','Heartbeat','MeterValues','StatusNotification'] ,\n                requestedMessage: 'StatusNotification',\n                command: 'TriggerMessage',\n                trigger: 'StatusNotification'\n            }\n        },\n\n        watch: {},\n        mounted() {\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n            \n                if (this.msg.dialog){\n                    let dialog = this.msg.dialog\n                    this.showDialog = dialog.showDialog ?? false\n                    this.okText = dialog.okText ?? \"OK\"\n                    this.cancelText = dialog.cancelText ?? \"Cancel\"\n                }\n                if (this.msg.payload){\n                    this.cbId = this.msg.payload.cbId\n                    this.command = this.msg.payload.command\n\n                }\n            })\n        },\n        methods: {\n            okDialog: function() {\n                this.showDialog = false\n                this.send({\n                    payload: {\n                        cbId: this.cbId,\n                        connectorId: this.connectorId,\n                        command: this.command,\n                        requestedMessage: this.requestedMessage\n                    }\n                })\n\n            },\n            cancelDialog: function() {\n                this.msg.paylaod = {}\n                this.showDialog = false\n                \n            }\n\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: red;\n    }\n</style>",
         "storeOutMessages": true,
         "passthru": false,
         "resendOnRefresh": true,
@@ -4349,7 +4387,7 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n    <v-dialog width=\"auto\" v-model=\"showDialog\">\n        <v-card color=\"white\" v-click-outside=\"{handler: onClickOutside}\">\n            <v-toolbar color=\"primary\">\n                <v-card-title>\n                    <span>{{ cbId }}: Remote Start Transaction</span>\n                </v-card-title>\n            </v-toolbar>\n            <v-container>\n                <v-text-field\n                    v-model=\"connector\"\n                    label=\"Connector ID\"\n                    type=\"number\"\n                    hint=\"Connector ID to start transaction on\"\n                ></v-text-field>\n                <v-select \n                    v-model=\"option\" \n                    label=\"tagId\"\n                    :items='options'\n                    hint=\"TokenID\">\n                </v-select>            \n            </v-container>\n            <v-card-actions class=\"justify-end\">\n                <v-btn variant=\"elevated\" @click=\"okDialog\">{{ okText }}</v-btn>\n                <v-btn variant=\"elevated\" @click=\"cancelDialog\">{{ cancelText }}</v-btn>\n            </v-card-actions>\n        </v-card>\n    </v-dialog>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                connector: 1,\n                cbId: 'xyzzz',\n                option: '',\n                options: [],\n                okText: 'OK',\n                showDialog: false,\n                cancelText: 'Cancel',\n                command: 'RemoteStartTransaction'                \n\n            }\n        },\n        mounted() {\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n            \n                if (this.msg.dialog){\n                    let dialog = this.msg.dialog\n                    this.showDialog = dialog.showDialog ?? false\n                    this.okText = dialog.okText ?? \"OK\"\n                    this.cancelText = dialog.cancelText ?? \"Cancel\"\n                }\n                if (this.msg.payload){\n                    this.cbId = this.msg.payload.cbId\n                    this.command = this.msg.payload.command\n\n                }\n                if (this.msg.tags){\n                    this.options = this.msg.tags\n                }\n            })\n        },\n        methods: {\n            okDialog: function() {\n                this.showDialog = false\n                this.send({\n                    payload: {\n                        cbId: this.cbId,\n                        data: {\n                            connectorId: this.connector,\n                            tagId: this.option,\n                        },\n                        command: this.command\n                    }\n                })\n\n            },\n            cancelDialog: function() {\n                this.msg.paylaod = {}\n                this.showDialog = false\n                \n            }\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: red;\n    }\n</style>",
+        "format": "<template>\n    <v-dialog width=\"auto\" v-model=\"showDialog\">\n        <v-card color=\"white\" v-click-outside=\"{handler: onClickOutside}\">\n            <v-toolbar color=\"primary\">\n                <v-card-title>\n                    <span>{{ cbId }}: Remote Start Transaction</span>\n                </v-card-title>\n            </v-toolbar>\n            <v-container>\n                <v-text-field\n                    v-model=\"connector\"\n                    label=\"Connector ID\"\n                    type=\"number\"\n                    hint=\"Connector ID to start transaction on\"\n                ></v-text-field>\n                <v-select \n                    v-model=\"option\" \n                    label=\"tagId\"\n                    :items='options'\n                    hint=\"TokenID\">\n                </v-select>            \n            </v-container>\n            <v-card-actions class=\"justify-end\">\n                <v-btn variant=\"elevated\" @click=\"okDialog\">{{ okText }}</v-btn>\n                <v-btn variant=\"elevated\" @click=\"cancelDialog\">{{ cancelText }}</v-btn>\n            </v-card-actions>\n        </v-card>\n    </v-dialog>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                connector: 1,\n                cbId: 'xyzzz',\n                option: '',\n                options: [],\n                okText: 'OK',\n                showDialog: false,\n                cancelText: 'Cancel',\n                command: 'RemoteStartTransaction'                \n\n            }\n        },\n        mounted() {\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n            \n                if (this.msg.dialog){\n                    let dialog = this.msg.dialog\n                    this.showDialog = dialog.showDialog ?? false\n                    this.okText = dialog.okText ?? \"OK\"\n                    this.cancelText = dialog.cancelText ?? \"Cancel\"\n                }\n                if (this.msg.payload){\n                    this.cbId = this.msg.payload.cbId\n                    this.command = this.msg.payload.command\n\n                }\n                if (this.msg.tags){\n                    this.options = (Array.isArray(this.msg.tags)) ? this.msg.tags : [ this.msg.tags ];\n                }\n            })\n        },\n        methods: {\n            okDialog: function() {\n                this.showDialog = false\n                this.send({\n                    payload: {\n                        cbId: this.cbId,\n                        data: {\n                            connectorId: this.connector,\n                            tagId: this.option,\n                        },\n                        command: this.command\n                    }\n                })\n\n            },\n            cancelDialog: function() {\n                this.msg.paylaod = {}\n                this.showDialog = false\n                \n            }\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: red;\n    }\n</style>",
         "storeOutMessages": true,
         "passthru": false,
         "resendOnRefresh": true,
@@ -4595,7 +4633,8 @@
         "y": 226,
         "wires": [
             [
-                "f4550ea4a5f41146"
+                "f4550ea4a5f41146",
+                "4e7a5d412d2c3301"
             ]
         ]
     },
@@ -4994,7 +5033,7 @@
         "type": "debug",
         "z": "217382551c48905d",
         "name": "debug 65",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -5106,6 +5145,23 @@
                 "b5a35872c6a2a30c"
             ]
         ]
+    },
+    {
+        "id": "4e7a5d412d2c3301",
+        "type": "debug",
+        "z": "217382551c48905d",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1690,
+        "y": 280,
+        "wires": []
     },
     {
         "id": "250472edd0782156",
@@ -6044,7 +6100,7 @@
         "width": "2",
         "height": "1",
         "name": "",
-        "label": "Tx Today:  ",
+        "label": "Tx Today: ",
         "format": "{{msg.payload}}",
         "layout": "row-left",
         "style": true,
@@ -6084,7 +6140,7 @@
         "type": "ui-text",
         "z": "92d055a5ecbac90c",
         "group": "530fe8d240942ac0",
-        "order": 4,
+        "order": 5,
         "width": "2",
         "height": "1",
         "name": "",
@@ -6097,8 +6153,8 @@
         "color": "#068104",
         "wrapText": false,
         "className": "",
-        "x": 940,
-        "y": 720,
+        "x": 1080,
+        "y": 1240,
         "wires": []
     },
     {
@@ -6106,7 +6162,7 @@
         "type": "ui-text",
         "z": "92d055a5ecbac90c",
         "group": "530fe8d240942ac0",
-        "order": 5,
+        "order": 6,
         "width": "2",
         "height": "1",
         "name": "",
@@ -6119,8 +6175,8 @@
         "color": "#068104",
         "wrapText": false,
         "className": "",
-        "x": 1070,
-        "y": 840,
+        "x": 1090,
+        "y": 1280,
         "wires": []
     },
     {
@@ -6128,7 +6184,7 @@
         "type": "ui-text",
         "z": "92d055a5ecbac90c",
         "group": "530fe8d240942ac0",
-        "order": 6,
+        "order": 4,
         "width": "2",
         "height": "1",
         "name": "",
@@ -6208,8 +6264,8 @@
         "raw": true,
         "className": "",
         "name": "",
-        "x": 390,
-        "y": 540,
+        "x": 1310,
+        "y": 400,
         "wires": [
             []
         ]
@@ -6222,8 +6278,8 @@
         "links": [
             "dd9016feeab69f8a"
         ],
-        "x": 245,
-        "y": 540,
+        "x": 1165,
+        "y": 400,
         "wires": [
             [
                 "0256c52788664639"
@@ -6311,7 +6367,7 @@
         "payload": "400 kWh",
         "payloadType": "str",
         "x": 220,
-        "y": 720,
+        "y": 1240,
         "wires": [
             [
                 "60e4d09450fdac13"
@@ -6339,8 +6395,8 @@
         "topic": "",
         "payload": "3200 kWh",
         "payloadType": "str",
-        "x": 210,
-        "y": 840,
+        "x": 208,
+        "y": 1283,
         "wires": [
             [
                 "7bf24886ffe6be85"
@@ -6477,7 +6533,7 @@
         "type": "debug",
         "z": "92d055a5ecbac90c",
         "name": "debug 75",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -6530,7 +6586,7 @@
         "type": "function",
         "z": "92d055a5ecbac90c",
         "name": "function 28",
-        "func": "function getMidnightISODateInCurrentTimezone() {\n  const now = new Date();\n\n  // Get the year, month, and day in the current timezone\n  const year = now.getFullYear();\n  const month = now.getMonth();\n  const day = now.getDate();\n\n  // Create a new Date object representing midnight in the current timezone\n  const midnight = new Date(year, month, day);\n\n  // Convert to ISO string.  The important part here is using toISOString() which\n  // handles the timezone conversion for you automatically.\n  return midnight.toISOString();\n}\n\nlet start = getMidnightISODateInCurrentTimezone()\nlet query = `\nfrom(bucket: \"OCPP\")\n  |> range(start: ${start} )\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r._field == \"transactionId\" and r._value != 0)\n  |> group()\n  |> count(column: \"_value\")\n`\nmsg = {\n  query\n}\nreturn msg;\n\n\n\n",
+        "func": "function getMidnightISODateInCurrentTimezone() {\n  const now = new Date();\n\n  // Get the year, month, and day in the current timezone\n  const year = now.getFullYear();\n  const month = now.getMonth();\n  const day = now.getDate();\n\n  // Create a new Date object representing midnight in the current timezone\n  const midnight = new Date(year, month, day);\n\n  // Convert to ISO string.  The important part here is using toISOString() which\n  // handles the timezone conversion for you automatically.\n  return midnight.toISOString();\n}\n\nlet start = getMidnightISODateInCurrentTimezone()\nlet query = `\nfrom(bucket: \"OCPP\")\n  |> range(start: ${start} )\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r._field == \"transactionId\" and r._value != 0)\n  |> filter(fn: (r) => r.command == \"StartTransaction\")\n  |> group()\n  |> count(column: \"_value\")\n`\nmsg = {\n  query\n}\nreturn msg;\n\n\n\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -6589,7 +6645,7 @@
         "type": "function",
         "z": "92d055a5ecbac90c",
         "name": "function 30",
-        "func": "function getMidnightISODateSevenDaysAgo() {\n  const now = new Date();\n\n  // Calculate the date 7 days ago\n  const sevenDaysAgo = new Date(now);\n  sevenDaysAgo.setDate(now.getDate() - 7);\n\n  // Extract year, month, and day from the date 7 days ago\n  const year = sevenDaysAgo.getFullYear();\n  const month = sevenDaysAgo.getMonth();\n  const day = sevenDaysAgo.getDate();\n\n  // Create a new Date object representing midnight 7 days ago\n  const midnightSevenDaysAgo = new Date(year, month, day);\n\n  return midnightSevenDaysAgo.toISOString();\n}\n\nlet start = getMidnightISODateSevenDaysAgo()\nlet query = `\nfrom(bucket: \"OCPP\")\n  |> range(start: ${start} )\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r._field == \"transactionId\" and r._value != 0)\n  |> group()\n  |> count(column: \"_value\")\n`\nmsg = {\n  query\n}\nreturn msg;\n\n\n\n",
+        "func": "function getMidnightISODateSevenDaysAgo() {\n  const now = new Date();\n\n  // Calculate the date 7 days ago\n  const sevenDaysAgo = new Date(now);\n  sevenDaysAgo.setDate(now.getDate() - 7);\n\n  // Extract year, month, and day from the date 7 days ago\n  const year = sevenDaysAgo.getFullYear();\n  const month = sevenDaysAgo.getMonth();\n  const day = sevenDaysAgo.getDate();\n\n  // Create a new Date object representing midnight 7 days ago\n  const midnightSevenDaysAgo = new Date(year, month, day);\n\n  return midnightSevenDaysAgo.toISOString();\n}\n\nlet start = getMidnightISODateSevenDaysAgo()\nlet query = `\nfrom(bucket: \"OCPP\")\n  |> range(start: ${start} )\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r._field == \"transactionId\" and r._value != 0)\n  |> filter(fn: (r) => r.command == \"StartTransaction\")\n  |> group()\n  |> count(column: \"_value\")\n`\nmsg = {\n  query\n}\nreturn msg;\n\n\n\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -6656,7 +6712,7 @@
         "finalize": "",
         "libs": [],
         "x": 390,
-        "y": 720,
+        "y": 1240,
         "wires": [
             [
                 "e1d6e963d03a9dab"
@@ -6675,30 +6731,10 @@
         "retentionPolicy": "",
         "org": "cipio",
         "x": 560,
-        "y": 720,
+        "y": 1240,
         "wires": [
             [
-                "75601251f82f3089"
-            ]
-        ]
-    },
-    {
-        "id": "75601251f82f3089",
-        "type": "function",
-        "z": "92d055a5ecbac90c",
-        "name": "function 33",
-        "func": "const sum = msg.payload.reduce((accumulator, currentValue) => {\n  return accumulator + currentValue.meter;\n}, 0); // 0 is the initial value of the accumulator\n\n\n//let count = 0\n//count = msg?.payload[0]?._value || 0\n\nmsg = {\n    payload: `${sum} Wh`\n}\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 750,
-        "y": 720,
-        "wires": [
-            [
-                "dc8ebffcfc3e5ce0"
+                "ed6334f683cc28f8"
             ]
         ]
     },
@@ -6714,8 +6750,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 410,
-        "y": 840,
+        "x": 390,
+        "y": 1280,
         "wires": [
             [
                 "5ead2fdeaf4adffc"
@@ -6733,32 +6769,11 @@
         "precision": "",
         "retentionPolicy": "",
         "org": "cipio",
-        "x": 600,
-        "y": 840,
+        "x": 560,
+        "y": 1280,
         "wires": [
             [
-                "bac3ee121d202814"
-            ]
-        ]
-    },
-    {
-        "id": "bac3ee121d202814",
-        "type": "function",
-        "z": "92d055a5ecbac90c",
-        "name": "function 35",
-        "func": "let sum = msg.payload.reduce((accumulator, currentValue) => {\n  return accumulator + currentValue.meter;\n}, 0); // 0 is the initial value of the accumulator\n\n\n//let count = 0\n//count = msg?.payload[0]?._value || 0\nlet label = 'Wh'\n\n\nif (sum > 1000){\n  sum = (sum / 1000)\n  sum = Math.floor( sum * 100) / 100\n  label = 'kWh'\n}\n\nmsg = {\n    payload: `${sum} ${label}`\n}\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 810,
-        "y": 840,
-        "wires": [
-            [
-                "5b67ef06c0cafdd5",
-                "54698fd5ceb58aad"
+                "7fb074ac7dc92af5"
             ]
         ]
     },
@@ -6962,7 +6977,7 @@
         "type": "debug",
         "z": "92d055a5ecbac90c",
         "name": "debug 3",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -7028,10 +7043,57 @@
         ]
     },
     {
-        "id": "54698fd5ceb58aad",
+        "id": "334b1383690be34b",
+        "type": "worldmap",
+        "z": "92d055a5ecbac90c",
+        "name": "Worldmap",
+        "lat": "",
+        "lon": "",
+        "zoom": "",
+        "layer": "OSMC",
+        "cluster": "",
+        "maxage": "",
+        "usermenu": "show",
+        "layers": "show",
+        "panit": "false",
+        "panlock": "false",
+        "zoomlock": "false",
+        "hiderightclick": "false",
+        "coords": "none",
+        "showgrid": "false",
+        "showruler": "false",
+        "allowFileDrop": "false",
+        "path": "/cipio_map",
+        "overlist": "",
+        "maplist": "OSMC",
+        "mapname": "",
+        "mapurl": "",
+        "mapopt": "",
+        "mapwms": false,
+        "x": 570,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "53ceb08a69575ae4",
+        "type": "catch",
+        "z": "92d055a5ecbac90c",
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 780,
+        "y": 40,
+        "wires": [
+            [
+                "61305cf537ebdcc7"
+            ]
+        ]
+    },
+    {
+        "id": "61305cf537ebdcc7",
         "type": "debug",
         "z": "92d055a5ecbac90c",
-        "name": "debug 4",
+        "name": "debug 12",
         "active": true,
         "tosidebar": true,
         "console": false,
@@ -7039,9 +7101,168 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1170,
-        "y": 900,
+        "x": 990,
+        "y": 40,
         "wires": []
+    },
+    {
+        "id": "872e0f3bd04ddecc",
+        "type": "ui-template",
+        "z": "92d055a5ecbac90c",
+        "group": "195e75b71683482a",
+        "page": "",
+        "ui": "",
+        "name": "",
+        "order": 1,
+        "width": "6",
+        "height": "8",
+        "head": "",
+        "format": "<template>\n    <div>\n        <iframe src=\"/cipio_map\" class=\"cipio_map\"></iframe>\n    </div>\n</template>\n\n<style>\n    /* define any styles here - supports raw CSS */\n    .cipio_map {\n        width: 100%;\n        height: 100%;\n    }\n</style>",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 560,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6fd8bde3125e0633",
+        "type": "function",
+        "z": "92d055a5ecbac90c",
+        "name": "Convert to kilo",
+        "func": "let sum = msg.payload.reduce((accumulator, currentValue) => {\n  return accumulator + currentValue.meter;\n}, 0); // 0 is the initial value of the accumulator\n\n// Make this generic to support different units by passing it in\nlet label = msg.units\n\n// Prefix the 'k' and adjust the value if over 1000\nif (sum > 1000){\n  sum = (sum / 1000)\n  sum = Math.floor( sum * 100) / 100\n  label = `k${label}`\n}\n\nmsg.payload = `${sum} ${label}`\n \nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1300,
+        "y": 460,
+        "wires": [
+            [
+                "e1bcc6f5546a0346"
+            ]
+        ]
+    },
+    {
+        "id": "7fb074ac7dc92af5",
+        "type": "change",
+        "z": "92d055a5ecbac90c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "units",
+                "pt": "msg",
+                "to": "Wh",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 730,
+        "y": 1280,
+        "wires": [
+            [
+                "7a387ce83e5a7d08"
+            ]
+        ]
+    },
+    {
+        "id": "ed6334f683cc28f8",
+        "type": "change",
+        "z": "92d055a5ecbac90c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "units",
+                "pt": "msg",
+                "to": "Wh",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 730,
+        "y": 1240,
+        "wires": [
+            [
+                "2580da62a8df949f"
+            ]
+        ]
+    },
+    {
+        "id": "c8bff2ea426a4e7d",
+        "type": "link in",
+        "z": "92d055a5ecbac90c",
+        "name": "KiloConverter",
+        "links": [],
+        "x": 1175,
+        "y": 460,
+        "wires": [
+            [
+                "6fd8bde3125e0633"
+            ]
+        ]
+    },
+    {
+        "id": "2580da62a8df949f",
+        "type": "link call",
+        "z": "92d055a5ecbac90c",
+        "name": "",
+        "links": [
+            "c8bff2ea426a4e7d"
+        ],
+        "linkType": "static",
+        "timeout": "30",
+        "x": 900,
+        "y": 1240,
+        "wires": [
+            [
+                "dc8ebffcfc3e5ce0"
+            ]
+        ]
+    },
+    {
+        "id": "e1bcc6f5546a0346",
+        "type": "link out",
+        "z": "92d055a5ecbac90c",
+        "name": "link out 42",
+        "mode": "return",
+        "links": [],
+        "x": 1425,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "7a387ce83e5a7d08",
+        "type": "link call",
+        "z": "92d055a5ecbac90c",
+        "name": "",
+        "links": [
+            "c8bff2ea426a4e7d"
+        ],
+        "linkType": "static",
+        "timeout": "30",
+        "x": 900,
+        "y": 1280,
+        "wires": [
+            [
+                "5b67ef06c0cafdd5"
+            ]
+        ]
     },
     {
         "id": "6e251da731f92cf5",
@@ -10084,7 +10305,7 @@
         "type": "function",
         "z": "55e67bd3e4f94c9a",
         "name": "function 5",
-        "func": "let evse\nlet tagInfo\nlet tags = []\n\nmsg.payload.splice(0,1)\n\nmsg.payload.forEach(function(tagItem) {\n    tagInfo = JSON.parse(tagItem)\n    tags.push(tagInfo)\n})\n\n/*\nmsg.headers = [\n    { key: 'name', title: 'Name', align: 'start'},\n    { key: 'tagId', title: \"Tag\"}, // title: 'Tag ID', value: 'item.tagId'},\n    { key: 'expdate', title: 'Expires'},\n    { key: 'enabled', title: 'Enabled'},\n    { key: 'lasttxdate', title: 'Last Tx'},\n    { key: 'actions', title: 'Action',align: 'end', sortable: false} \n]\n*/\n\nglobal.set(\"CSMS:Tags\",tags)\nmsg.payload = tags\nreturn msg;",
+        "func": "let evse\nlet tagInfo\nlet tags = []\n\nmsg.payload.splice(0,1)\n\nmsg.payload.forEach(function(tagItem) {\n    tagInfo = JSON.parse(tagItem)\n    tags.push(tagInfo)\n})\n\nglobal.set(\"CSMS:Tags\",tags)\nmsg.payload = tags\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -10132,7 +10353,7 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n\n    <!--v-toolbar flat>\n      <v-toolbar-title class=\"text-grey\">\n        Actions\n      </v-toolbar-title>\n\n      <v-spacer></v-spacer>\n           <v-tooltip text=\"Refresh\" location=\"bottom\">\n        <template v-slot:activator=\"{ props }\">\n          <v-btn icon v-bind=\"props\" @click=\"refresh\">\n            <v-icon>mdi-refresh</v-icon>\n          </v-btn>\n        </template>\n      </v-tooltip>\n      <v-tooltip text=\"New\" location=\"bottom\">\n        <template v-slot:activator=\"{ props }\">\n          <v-btn icon v-bind=\"props\" @click=\"addNew\">\n            <v-icon>mdi-card-account-details-outline</v-icon>\n          </v-btn>\n        </template>\n      </v-tooltip>\n\n    </v-toolbar>\n\n      <v-text-field\n        v-model=\"search\"\n        label=\"Search\"\n        prepend-inner-icon=\"mdi-magnify\"\n        variant=\"outlined\"\n        clearable\n        hide-details\n        single-line\n      ></v-text-field -->\n\n    \n    <v-data-table  \n        :search=\"search\" \n        :items=\"msg?.payload\"\n        :headers=\"headers\"\n        v-model=\"selected\"\n        item-selectable=\"selectable\"\n        select-strategy=\"all\"\n        hide-select    \n        return-object>\n      <template v-slot:top>\n        <v-toolbar flat>\n          <v-toolbar-title>\n            <v-icon color=\"medium-emphasis\" icon=\"mdi-card-account-details\" size=\"x-small\" start></v-icon>\n            Tag Info\n          </v-toolbar-title>\n          <v-text-field\n            v-model=\"search\"\n            label=\"Search\"\n            prepend-inner-icon=\"mdi-magnify\"\n            clear-icon=\"mdi-close-circle\"\n            variant=\"solo-filled\"\n            density=\"compact\"\n            hide-details\n            single-line\n            clearable\n          ></v-text-field>\n                <v-tooltip text=\"Refresh\" location=\"bottom\">\n        <template v-slot:activator=\"{ props }\">\n          <v-btn icon v-bind=\"props\" @click=\"refresh\">\n            <v-icon>mdi-refresh</v-icon>\n          </v-btn>\n        </template>\n      </v-tooltip>\n\n      <v-tooltip text=\"New\" location=\"bottom\">\n        <template v-slot:activator=\"{ props }\">\n          <v-btn icon v-bind=\"props\" @click=\"addNew\">\n            <v-icon>mdi-card-account-details-outline</v-icon>\n          </v-btn>\n        </template>\n      </v-tooltip>\n        </v-toolbar>\n      </template>\n      <template v-slot:header.lasttxdate>\n        <div><v-icon icon=\"mdi-calendar\" class=\"text-center\"></div>\n      </template>\n\n      <template v-slot:item.name=\"{ item }\">\n        <div :class=\"statusClass(item)\">\n          <v-text>{{ item.name }}</v-text>\n      </template>\n\n      <template v-slot:item.tagId=\"{ item }\">\n        <div :class=\"statusClass(item)\">\n          <v-text>{{ item.tagId }}</v-text>\n      </template>\n      \n\n      <template v-slot:item.expdate=\"{ item }\">\n        <div :class=\"statusClass(item)\">\n          <v-text>{{ item.expdate }}</v-text>\n      </template>\n\n      \n      <template v-slot:item.enabled=\"{ item }\">\n        <div class=\"text-center\">\n          <v-icon v-if=\"item.enabled\" color=\"green\" icon=\"mdi-checkbox-outline\"></v-icon>\n          <v-icon v-else color=\"red\" icon=\"mdi-minus-box-outline\"></v-icon>\n        </div>\n      </template>\n\n      <template v-slot:item.actions=\"{ item }\">\n        <v-icon\n          class=\"me-2\"\n          size=\"small\"\n          @click=\"send({action: 'edit', payload: [item]})\"\n        >\n          mdi-pencil\n        </v-icon>\n        <v-icon\n          size=\"small\"\n          @click=\"send({action: 'delete', payload: [item]})\"\n        >\n          mdi-delete\n        </v-icon>\n      </template>\n\n    </v-data-table>\n\n</template>\n\n<script>\n    export default {\n    data () {\n      return {\n        selected: [],\n        search: '',\n        multiSelected: 0,\n        heartbeat: 30,\n        headers: [\n            { key: 'name', title: 'Name', align: 'start'},\n            { key: 'tagId', title: \"Tag\"},\n            { key: 'expdate', title: 'Expires'},\n            { key: 'enabled', title: 'Enabled', align: 'center'},\n            //{ key: 'lasttxdate', title: 'Last Tx'},\n            { key: 'actions', title: 'Action',align: 'end', sortable: false} \n        ]\n      }\n    },\n    watch: {\n        selected: function() {\n          this.multiSelected = this.selected.length\n        }\n    },\n    methods: {\n      // expose a method to our <template> and Vue Application\n      addNew() {\n        this.send({action: 'add', payload: [{ cbId: ''}]});\n        this.selected = [];\n        this.multiSelected = 0;\n      },\n      statusClass(item) {\n        if (item.expdate){ \n            let expDate = new Date(item.expdate)\n            expDate.setHours(23, 59, 59, 999); // Set to the end of the day\n            let currentDate = new Date()\n\n            if (currentDate > expDate){\n              return \"disabled\"\n            }\n        }\n\n          return (item.enabled)? \"enabled\" : \"disabled\"\n      }\n    }  \n  }\n</script>\n\n<style>\n  .disabled {\n    color: red;\n    text-decoration: line-through;\n  }\n  .enabled {\n    color: darkgreen;\n    font-weight: bold;\n  }\n</style>",
+        "format": "<template>\n    \n    <v-data-table  \n        :search=\"search\" \n        :items=\"msg?.payload\"\n        :headers=\"headers\"\n        v-model=\"selected\"\n        item-selectable=\"selectable\"\n        select-strategy=\"all\"\n        hide-select    \n        return-object>\n      <template v-slot:top>\n        <v-toolbar flat>\n          <v-toolbar-title>\n            <v-icon color=\"medium-emphasis\" icon=\"mdi-card-account-details\" size=\"x-small\" start></v-icon>\n            Tag Info\n          </v-toolbar-title>\n          <v-text-field\n            v-model=\"search\"\n            label=\"Search\"\n            prepend-inner-icon=\"mdi-magnify\"\n            clear-icon=\"mdi-close-circle\"\n            variant=\"solo-filled\"\n            density=\"compact\"\n            hide-details\n            single-line\n            clearable\n          ></v-text-field>\n                <v-tooltip text=\"Refresh\" location=\"bottom\">\n        <template v-slot:activator=\"{ props }\">\n          <v-btn icon v-bind=\"props\" @click=\"refresh\">\n            <v-icon>mdi-refresh</v-icon>\n          </v-btn>\n        </template>\n      </v-tooltip>\n\n      <v-tooltip text=\"New\" location=\"bottom\">\n        <template v-slot:activator=\"{ props }\">\n          <v-btn icon v-bind=\"props\" @click=\"addNew\">\n            <v-icon>mdi-card-account-details-outline</v-icon>\n          </v-btn>\n        </template>\n      </v-tooltip>\n        </v-toolbar>\n      </template>\n      <template v-slot:header.lasttxdate>\n        <div><v-icon icon=\"mdi-calendar\" class=\"text-center\"></div>\n      </template>\n\n      <template v-slot:item.name=\"{ item }\">\n        <div :class=\"statusClass(item)\">\n          <v-text>{{ item.name }}</v-text>\n      </template>\n\n      <template v-slot:item.tagId=\"{ item }\">\n        <div :class=\"statusClass(item)\">\n          <v-text>{{ item.tagId }}</v-text>\n      </template>\n      \n\n      <template v-slot:item.expdate=\"{ item }\">\n        <div :class=\"statusClass(item)\">\n          <v-text>{{ item.expdate }}</v-text>\n      </template>\n\n      \n      <template v-slot:item.enabled=\"{ item }\">\n        <div class=\"text-center\">\n          <v-icon v-if=\"item.enabled\" color=\"green\" icon=\"mdi-checkbox-outline\"></v-icon>\n          <v-icon v-else color=\"red\" icon=\"mdi-minus-box-outline\"></v-icon>\n        </div>\n      </template>\n\n      <template v-slot:item.actions=\"{ item }\">\n        <v-icon\n          class=\"me-2\"\n          size=\"small\"\n          @click=\"send({action: 'edit', payload: [item]})\"\n        >\n          mdi-pencil\n        </v-icon>\n        <v-icon\n          size=\"small\"\n          @click=\"send({action: 'delete', payload: [item]})\"\n        >\n          mdi-delete\n        </v-icon>\n      </template>\n\n    </v-data-table>\n\n</template>\n\n<script>\n    export default {\n    data () {\n      return {\n        selected: [],\n        search: '',\n        multiSelected: 0,\n        heartbeat: 30,\n        headers: [\n            { key: 'name', title: 'Name', align: 'start'},\n            { key: 'tagId', title: \"Tag\"},\n            { key: 'expdate', title: 'Expires'},\n            { key: 'enabled', title: 'Enabled', align: 'center'},\n            //{ key: 'lasttxdate', title: 'Last Tx'},\n            { key: 'actions', title: 'Action',align: 'end', sortable: false} \n        ]\n      }\n    },\n    watch: {\n        selected: function() {\n          this.multiSelected = this.selected.length\n        }\n    },\n    methods: {\n      // expose a method to our <template> and Vue Application\n      addNew() {\n        this.send({action: 'add', payload: [{ cbId: ''}]});\n        this.selected = [];\n        this.multiSelected = 0;\n      },\n      statusClass(item) {\n        if (item.expdate){ \n            let expDate = new Date(item.expdate)\n            expDate.setHours(23, 59, 59, 999); // Set to the end of the day\n            let currentDate = new Date()\n\n            if (currentDate > expDate){\n              return \"disabled\"\n            }\n        }\n\n          return (item.enabled)? \"enabled\" : \"disabled\"\n      }\n    }  \n  }\n</script>\n\n<style>\n  .disabled {\n    color: red;\n    text-decoration: line-through;\n  }\n  .enabled {\n    color: darkgreen;\n    font-weight: bold;\n  }\n</style>",
         "storeOutMessages": true,
         "passthru": false,
         "resendOnRefresh": true,
@@ -10531,8 +10752,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 730,
-        "y": 580,
+        "x": 900,
+        "y": 320,
         "wires": []
     },
     {
@@ -10547,7 +10768,7 @@
         "width": "0",
         "height": "0",
         "head": "",
-        "format": "<template>\n    <v-data-table  \n            v-model:search=\"search\" \n            :headers=\"headers\"\n            :items=\"msg?.payload\"\n            :filter-keys='[\"transactionId\",\"cbId\",\"_value\"]'\n            >\n    <template v-slot:top>\n        <v-toolbar flat>\n            <v-toolbar-title>\n                <v-icon color=\"medium-emphasis\" icon=\"mdi-bullseye\" size=\"x-small\" start></v-icon>\n                Transactions\n            </v-toolbar-title>\n            <v-text-field\n                v-model=\"search\"\n                label=\"Search\"\n                prepend-inner-icon=\"mdi-magnify\"\n                clear-icon=\"mdi-close-circle\"\n                variant=\"solo-filled\"\n                density=\"compact\"\n                hide-details\n                single-line\n                clearable\n            ></v-text-field>\n            <!-- v-spacer></v-spacer -->           \n            <v-tooltip text=\"Refresh\" location=\"bottom\">\n                <template v-slot:activator=\"{ props }\">\n                <v-btn icon v-bind=\"props\" @click=\"refresh\">\n                    <v-icon>mdi-refresh</v-icon>\n                </v-btn>\n                </template>\n            </v-tooltip>\n            <v-template>\n            <v-select\n                v-model=\"select\"\n                density=\"compact\"\n                :items=\"startTimes\"\n                item-title=\"title\"\n                item-value=\"value\"\n                >\n            </v-select>\n            </v-template>            \n\n\n        </v-toolbar>\n    </template>            \n      <template v-slot:item.meter=\"{ item }\">\n        <div>\n          <v-text>{{ item.meterStart }}{{item.meterStop}}</v-text>\n      </template>\n        <template v-slot:item._time=\"{ item }\">\n            <div>{{ getLocalTimeString(item._time) }}</div>\n        </template>\n      <template v-slot:item.actions=\"{ item }\">\n        <v-icon\n          class=\"me-2\"\n          size=\"small\"\n          @click=\"send({ action: 'txDetails', payload: { txId: item.transactionId }})\"\n        >\n          mdi-eye\n        </v-icon>\n      </template>\n            \n    </v-data-table>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                search: '',\n                headers: [\n                    { value: \"_time\", title: \"Time\"},\n                    { value: \"command\", title: \"Command\"},\n                    { value: \"transactionId\", title: \"TxId\"},\n                    { value: \"cbId\", title: \"EVSE\"},\n                    { value: \"connectorId\", title: \"Conn\"},\n                    //{ value: \"meterStart\", title: \"Start\"},\n                    //{ value: \"meterStop\", title: \"Stop\"},\n                    { key: \"meter\", title: \"Meter\"},\n                    { key: \"actions\", title: \"View\", sortable: false},\n                ],\n                select: { title: \"past 5m\", value: '-5m'},\n                startTimes: [\n                    { title: \"past 1m\", value: '-1m'},\n                    { title: \"past 5m\", value: '-5m'},\n                    { title: \"past 15m\", value: '-15m'},\n                    { title: \"past 1h\", value: '-1h'},\n                    { title: \"past 3h\", value: '-3h'},\n                    { title: \"past 6h\", value: '-6h'},\n                    { title: \"past 12h\", value: '-12h'},\n                    { title: \"past 24h\", value: '-24h'},\n                    { title: \"past 2d\", value: '-2d'},\n                    { title: \"past 7d\", value: '-7d'},\n                    { title: \"past 30d\", value: '-30d'},\n//                    { title: \"custom\", value: 'custom'}\n                    ]\n            }\n        },\n        watch: {\n            select(newValue) {\n                this.sendOptions()\n            }\n        },\n        computed: {\n\n        },\n        methods: {\n            // expose a method to our <template> and Vue Application\n            getLocalTimeString: function (isoTime){\n                const date = new Date(isoTime)\n                const options = { \n                    year: '2-digit', \n                    month: '2-digit', \n                    day: '2-digit', \n                    hour: '2-digit', \n                    minute: '2-digit', \n                    second: '2-digit', \n                    millisecond: '3-digit',\n                    hour12: false \n                    }\n                return date.toLocaleString('en-US', options)\n            },\n            sendOptions: function() {\n                this.send({\n                    action: \"options\", \n                    options: {\n                        start: this.select \n                    }\n                })\n            }\n        },\n        mounted() {\n            // code here when the component is first loaded\n        },\n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: red;\n    }\n    .headers {\n        font-weight: bold;\n    }\n    .ocppMsgReq {\n        color: blue;\n        font-weight: bold;\n    }\n    .ocppMsgRes {\n        color: blue;\n    }\n    .ocppMsgErr {\n        color: red;\n    }\n</style>",
+        "format": "<template>\n    <v-data-table  \n            v-model:search=\"search\" \n            :headers=\"headers\"\n            :items=\"msg?.payload\"\n            :filter-keys='[\"transactionId\",\"cbId\",\"_value\"]'\n            >\n    <template v-slot:top>\n        <v-toolbar flat>\n            <v-toolbar-title>\n                <v-icon color=\"medium-emphasis\" icon=\"mdi-handshake\" size=\"x-small\" start></v-icon>\n                Transactions\n            </v-toolbar-title>\n            <v-text-field\n                v-model=\"search\"\n                label=\"Search\"\n                prepend-inner-icon=\"mdi-magnify\"\n                clear-icon=\"mdi-close-circle\"\n                variant=\"solo-filled\"\n                density=\"compact\"\n                hide-details\n                single-line\n                clearable\n            ></v-text-field>\n            <!-- v-spacer></v-spacer -->           \n            <v-tooltip text=\"Refresh\" location=\"bottom\">\n                <template v-slot:activator=\"{ props }\">\n                <v-btn icon v-bind=\"props\" @click=\"refresh\">\n                    <v-icon>mdi-refresh</v-icon>\n                </v-btn>\n                </template>\n            </v-tooltip>\n            <v-template>\n            <v-select\n                v-model=\"selectedStartTime\"\n                density=\"compact\"\n                :items=\"startTimes\"\n                item-title=\"title\"\n                item-value=\"value\"\n                >\n            </v-select>\n            </v-template>            \n\n        </v-toolbar>\n    </template>            \n      <template v-slot:item.meter=\"{ item }\">\n        <div>\n          <v-text>{{ item.meterStart }}{{item.meterStop}}</v-text>\n      </template>\n        <template v-slot:item._time=\"{ item }\">\n            <div>{{ getLocalTimeString(item._time) }}</div>\n        </template>\n      <template v-slot:item.actions=\"{ item }\">\n        <v-icon\n          class=\"me-2\"\n          size=\"small\"\n          @click=\"send({ action: 'txDetails', payload: { txId: item.transactionId, startTime: item._time }})\"\n        >\n          mdi-eye\n        </v-icon>\n      </template>\n            \n    </v-data-table>\n    <v-container>\n    <v-row align=\"center\" justify=\"center\">\n      <v-col cols=\"auto\">\n        <v-btn size=\"x-small\" @click=\"selectedStartTime = '-12d'\">Change</v-btn>\n      </v-col>\n    </v-row>\n  </v-container>\n</template>\n\n<script>\n    export default {\n        data() {\n            return {\n                loaded: false,\n                search: '',\n                headers: [\n                    { value: \"_time\", title: \"Time\"},\n                    { value: \"transactionId\", title: \"TxId\"},\n                    { key: \"idTag\", title: \"IdTag\", sortable: true},\n                    { value: \"cbId\", title: \"EVSE\", sortable: true},\n                    { value: \"connectorId\", title: \"Conn\", sortable: true},\n                    { key: \"tx_duration\", value: item => this.getSecToMin(item.tx_duration), title: \"Duration (min)\", sortable: true},\n                    { key: \"totalEnergy\", title: \"Energy (kWh)\", sortable: true},\n                    { key: \"actions\", title: \"Details\", sortable: false},\n                ],\n                selectedStartTime: \"-3d\",\n                startTimes: [\n                    { title: \"past 1m\", value: '-1m'},\n                    { title: \"past 5m\", value: '-5m'},\n                    { title: \"past 15m\", value: '-15m'},\n                    { title: \"past 1h\", value: '-1h'},\n                    { title: \"past 3h\", value: '-3h'},\n                    { title: \"past 6h\", value: '-6h'},\n                    { title: \"past 12h\", value: '-12h'},\n                    { title: \"past 24h\", value: '-24h'},\n                    { title: \"past 2d\", value: '-2d'},\n                    { title: \"past 7d\", value: '-7d'},\n                    { title: \"past 12d\", value: '-12d'},\n                    { title: \"past 30d\", value: '-30d'},\n                    ]\n            }\n        },\n        watch: {\n            selectedStartTime: function() {\n                this.sendOptions()\n            }\n        },\n        computed: {\n            \n        },\n        methods: {\n            // expose a method to our <template> and Vue Application\n            getLocalTimeString: function (isoTime){\n                const date = new Date(isoTime)\n                const options = { \n                    year: '2-digit', \n                    month: '2-digit', \n                    day: '2-digit', \n                    hour: '2-digit', \n                    minute: '2-digit', \n                    second: '2-digit', \n                    millisecond: '3-digit',\n                    hour12: false \n                    }\n                return date.toLocaleString('en-US', options)\n            },\n            sendOptions: function() {\n                this.send({\n                    action: \"options\", \n                    options: {\n                        start: this.selectedStartTime\n                    }\n                })\n            },\n            getTruncated: function(value,decimals){\n                const factor = Math.pow(10, decimals);\n                return Math.floor(value * factor) / factor;\n            },\n            getSecToMin: function(value) {\n                return Math.floor(value / 60);\n            },\n            \n        },\n        mounted() {\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n                if (! this.loaded ){\n                    this.loaded = true\n                    //this.selectedStartTime = \"-20d\"\n                }\n             })\n        },\n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: red;\n    }\n    .headers {\n        font-weight: bold;\n    }\n    .ocppMsgReq {\n        color: blue;\n        font-weight: bold;\n    }\n    .ocppMsgRes {\n        color: blue;\n    }\n    .ocppMsgErr {\n        color: red;\n    }\n</style>",
         "storeOutMessages": true,
         "passthru": false,
         "resendOnRefresh": true,
@@ -10563,96 +10784,11 @@
         ]
     },
     {
-        "id": "0380a90af6da220b",
-        "type": "influxdb in",
-        "z": "daf7a59ca2ce18df",
-        "influxdb": "7cb40fcee206391e",
-        "name": "",
-        "query": "",
-        "rawOutput": false,
-        "precision": "",
-        "retentionPolicy": "",
-        "org": "argonne",
-        "x": 540,
-        "y": 120,
-        "wires": [
-            [
-                "879a60905f018737"
-            ]
-        ]
-    },
-    {
-        "id": "72d6a88d845b6b48",
-        "type": "function",
-        "z": "daf7a59ca2ce18df",
-        "name": "function 16",
-        "func": "// clear out any incoming message for now.\nmsg = {}\n\nmsg.query = \n    'from(bucket: \"OCPP\") \\\n      |> range(start: -1d) \\\n      |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\") \\\n      //|> filter(fn: (r) => r[\"_field\"] == \"ocppMsg\") \\\n      //|> group() \\\n      //|> sort(columns: [\"_time\"]) \\\n      |> drop(columns: [\"table\",\"Result\",\"_measurement\",\"_stop\",\"_start\",\"_field\"]) \\\n      //|> keep(columns: [\"_time\",\"cbId\",\"command\",\"msgFrom\",\"_value\"]) \\\n      |> limit(n: 500)'\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 370,
-        "y": 120,
-        "wires": [
-            [
-                "0380a90af6da220b"
-            ]
-        ]
-    },
-    {
-        "id": "879a60905f018737",
-        "type": "debug",
-        "z": "daf7a59ca2ce18df",
-        "name": "debug 48",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 700,
-        "y": 120,
-        "wires": []
-    },
-    {
-        "id": "6f06af534fd6202b",
-        "type": "inject",
-        "z": "daf7a59ca2ce18df",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 200,
-        "y": 120,
-        "wires": [
-            [
-                "72d6a88d845b6b48"
-            ]
-        ]
-    },
-    {
         "id": "c4b73cd2d6f1efbb",
         "type": "function",
         "z": "daf7a59ca2ce18df",
         "name": "FLUX Get raw MV OCPP",
-        "func": "// clear out any incoming message for now.\nlet filter_by_tx = \"\";\nlet topic = \"00000000\"\nif (msg.payload.txId) {\n  filter_by_tx = `|> filter(fn: (r) => r[\"transactionId\"] == \"${msg.payload.txId}\")`\n  topic = msg.payload.txId\n}\n\nmsg = {}\n\nmsg.topic = topic\n\nmsg.query = `from(bucket: \"OCPP\") \\\n  |> range(start: -365d) \\\n  |> filter(fn: (r) => r[\"_measurement\"] == \"MeterValues\") \\\n  ${filter_by_tx} \\\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\") \\\n  |> drop(columns: [\"_start\",\"_stop\",\"_measurement\",\"cbId\",\"connectorId\",\"transactionId\"]) \\\n  |> sort(columns: [\"_time\"])`\nreturn msg;",
+        "func": "// clear out any incoming message for now.\nlet filter_by_tx = \"\";\nlet txId = \"00000000\"\nlet start = \"-365d\"\nif (msg.payload.txId) {\n  filter_by_tx = `|> filter(fn: (r) => r[\"transactionId\"] == \"${msg.payload.txId}\")`\n  txId = msg.payload.txId\n}\nif (msg.payload.startTime) {\n  start = msg.payload.startTime\n}\n\nmsg = {}\n\nmsg.options = {\n  txId,\n  start\n}\n\nmsg.query = `from(bucket: \"OCPP\") \\\n  |> range(start: ${start}) \\\n  |> filter(fn: (r) => r[\"_measurement\"] == \"MeterValues\") \\\n  ${filter_by_tx} \\\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\") \\\n  |> drop(columns: [\"_start\",\"_stop\",\"_measurement\",\"cbId\",\"connectorId\",\"transactionId\"]) \\\n  |> sort(columns: [\"_time\"])`\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -10673,7 +10809,7 @@
         "type": "function",
         "z": "daf7a59ca2ce18df",
         "name": "FLUX Get raw Tx OCPP",
-        "func": "let options = flow.get(\"options\") ?? {}\nlet start = options?.start ?? '-1h'\n\n// clear out any incoming message for now.\nmsg = {}\n\nmsg.query = `from(bucket: \"OCPP\")\n  |> range( start: ${start})\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> drop(columns: [\"_start\",\"_stop\",\"_measurement\"])\n  |> group(columns: [\"transactionId\"])\n  |> sort(columns: [\"_time\"])`\n\n\nmsg.query = `\nfrom(bucket: \"OCPP\")\n  |> range(start: ${start})\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r[\"_field\"] == \"meterStart\" or r[\"_field\"] == \"meterStop\" or r[\"_field\"] == \"transactionId\" or r[\"_field\"] == \"timestamp\" or r[\"_field\"] == \"idTag\" or r[\"_field\"] == \"connectorId\" )\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> filter(fn: (r) => r.transactionId != 0)\n  |> drop(columns: [\"_start\",\"_stop\",\"_measurement\",\"msgFrom\"])\n  |> group()\n  |> sort(columns: [\"_time\"])\n`\n\nreturn msg;",
+        "func": "let options = flow.get(\"options\") ?? {}\nlet start = options?.start ?? '-7d'\n\n// clear out any incoming message for now.\nmsg = {}\n\nmsg.query = `\nmeterStart = from(bucket: \"OCPP\")\n  |> range(start: ${start})\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r[\"_field\"] == \"transactionId\" or r[\"_field\"] == \"meterStart\" or r[\"_field\"] == \"idTag\" or r[\"_field\"] == \"connectorId\")\n  |> filter(fn: (r) => r.command == \"StartTransaction\")\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> filter(fn: (r) => r.transactionId != 0)\n  |> drop(columns: [\"_start\",\"_stop\",\"msgFrom\",\"_measurement\"])\n\nmeterStop = from(bucket: \"OCPP\")\n  |> range(start: ${start})\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r[\"_field\"] == \"transactionId\" or r[\"_field\"] == \"meterStop\")\n  |> filter(fn: (r) => r.command == \"StopTransaction\")\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> filter(fn: (r) => r.transactionId != 0)\n  |> drop(columns: [\"_start\",\"_stop\",\"msgFrom\",\"_measurement\"])\n\njoin(tables: {key1: meterStart, key2: meterStop}, on: [\"transactionId\"], method: \"inner\")\n  |> group()\n  |> sort( columns: [\"_time\"])\n  |> map(fn: (r) => ({ r with totalEnergy: r.meterStop - r.meterStart}))\n  |> map(fn: (r) => ({ r with tx_duration: (uint( v: r._time_key2) - uint( v: r._time_key1)) / uint(v: 1000000000) }))\n  |> map(fn: (r) => ({ r with _time: r._time_key1}))\n  |> map(fn: (r) => ({ r with cbId: r.cbId_key1}))\n\n`\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -10761,7 +10897,7 @@
         "type": "function",
         "z": "daf7a59ca2ce18df",
         "name": "FLUX remove extras",
-        "func": "msg.payload.forEach(function(ocppMsg) {\n    delete ocppMsg.result;\n    delete ocppMsg.table;\n});\nreturn msg;",
+        "func": "msg.payload.forEach(function(ocppMsg) {\n    delete ocppMsg.result;\n    delete ocppMsg.table;\n});\nmsg.options = flow.get('options')\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -10797,7 +10933,8 @@
         "z": "daf7a59ca2ce18df",
         "name": "Transaction Refreh",
         "links": [
-            "7a8e05f5d5a2e926"
+            "7a8e05f5d5a2e926",
+            "c42e4d342acc0cd3"
         ],
         "x": 145,
         "y": 520,
@@ -11280,8 +11417,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1055,
-        "y": 360,
+        "x": 1065,
+        "y": 320,
         "wires": [],
         "l": false
     },
@@ -11427,8 +11564,8 @@
         "color": "#500ced",
         "wrapText": false,
         "className": "",
-        "x": 1120,
-        "y": 400,
+        "x": 1220,
+        "y": 360,
         "wires": []
     },
     {
@@ -11446,7 +11583,7 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "topic",
+                "to": "options.txId",
                 "tot": "msg"
             }
         ],
@@ -11513,7 +11650,8 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "true",
+        "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
         "x": 1240,
@@ -11657,7 +11795,7 @@
         "type": "function",
         "z": "daf7a59ca2ce18df",
         "name": "Get Tx MeterStart/Stop  ",
-        "func": "let TxId = msg.payload\nmsg = {}\n\nmsg.query = `\nmeterStart = from(bucket: \"OCPP\")\n  |> range(start: -2d)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r[\"_field\"] == \"transactionId\" or r[\"_field\"] == \"meterStart\" or r[\"_field\"] == \"idTag\" or r[\"_field\"] == \"connectorId\")\n  |> filter(fn: (r) => r.command == \"StartTransaction\")\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> filter(fn: (r) => r.transactionId != 0)\n  |> drop(columns: [\"_start\",\"_stop\",\"msgFrom\",\"_measurement\"])\n\nmeterStop = from(bucket: \"OCPP\")\n  |> range(start: -2d)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r[\"_field\"] == \"transactionId\" or r[\"_field\"] == \"meterStop\")\n  |> filter(fn: (r) => r.command == \"StopTransaction\")\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> filter(fn: (r) => r.transactionId != 0)\n  |> drop(columns: [\"_start\",\"_stop\",\"msgFrom\",\"_measurement\"])\n\njoin(tables: {key1: meterStart, key2: meterStop}, on: [\"transactionId\"], method: \"inner\")\n|> map(fn: (r) => ({ r with totalEnergy: r.meterStop - r.meterStart}))\n|> map(fn: (r) => ({ r with difference_seconds: (uint( v: r._time_key2) - uint( v: r._time_key1)) / uint(v: 1000000000) }))\n|> filter(fn: (r) => r.transactionId == ${TxId})\n\n`\nreturn msg;",
+        "func": "let TxId = msg.payload || msg.options.txId\nlet start = msg.options.start || \"-365d\"\nlet stop = \"-363d\"\n\nif (msg?.options?.start) {\n  stop = addXDaysUTC(msg.options.start, 2)\n}\n\nmsg = {}\n\nmsg.query = `\nmeterStart = from(bucket: \"OCPP\")\n  |> range(start: ${start}, stop: ${stop} )\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r[\"_field\"] == \"transactionId\" or r[\"_field\"] == \"meterStart\" or r[\"_field\"] == \"idTag\" or r[\"_field\"] == \"connectorId\")\n  |> filter(fn: (r) => r.command == \"StartTransaction\")\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> filter(fn: (r) => r.transactionId != 0)\n  |> drop(columns: [\"_start\",\"_stop\",\"msgFrom\",\"_measurement\"])\n\nmeterStop = from(bucket: \"OCPP\")\n  |> range(start: ${start}, stop: ${stop})\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r[\"_field\"] == \"transactionId\" or r[\"_field\"] == \"meterStop\")\n  |> filter(fn: (r) => r.command == \"StopTransaction\")\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> filter(fn: (r) => r.transactionId != 0)\n  |> drop(columns: [\"_start\",\"_stop\",\"msgFrom\",\"_measurement\"])\n\njoin(tables: {key1: meterStart, key2: meterStop}, on: [\"transactionId\"], method: \"inner\")\n|> filter(fn: (r) => r.transactionId == ${TxId})\n|> map(fn: (r) => ({ r with totalEnergy: r.meterStop - r.meterStart}))\n|> map(fn: (r) => ({ r with difference_seconds: (uint( v: r._time_key2) - uint( v: r._time_key1)) / uint(v: 1000000000) }))\n\n`\nreturn msg;\n\nfunction addXDaysUTC(utcString, days) {\n  const date = new Date(utcString);\n  if (isNaN(date)) {\n    throw new Error(\"Invalid UTC time string\");\n  }\n\n  // Add one day in milliseconds\n  const oneDayLater = new Date(date.getTime() + days * 24 * 60 * 60 * 1000);\n\n  return oneDayLater.toISOString(); // Always returns in UTC\n}",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -11708,35 +11846,6 @@
         "x": 1230,
         "y": 800,
         "wires": []
-    },
-    {
-        "id": "5cc51912a700cb47",
-        "type": "inject",
-        "z": "daf7a59ca2ce18df",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "1736982609",
-        "payloadType": "num",
-        "x": 130,
-        "y": 800,
-        "wires": [
-            [
-                "9cec406f120e7d5d"
-            ]
-        ]
     },
     {
         "id": "b2ad490ff03c2c97",
@@ -11956,26 +12065,9 @@
         "y": 600,
         "wires": [
             [
-                "d3a017f87387ff7b"
+                "c42e4d342acc0cd3"
             ]
         ]
-    },
-    {
-        "id": "d3a017f87387ff7b",
-        "type": "link call",
-        "z": "daf7a59ca2ce18df",
-        "name": "",
-        "links": [
-            "22993ff229d6db8d"
-        ],
-        "linkType": "static",
-        "timeout": "30",
-        "x": 1595,
-        "y": 600,
-        "wires": [
-            []
-        ],
-        "l": false
     },
     {
         "id": "4d28c5123bd6d40d",
@@ -12009,6 +12101,84 @@
         "statusType": "auto",
         "x": 1470,
         "y": 700,
+        "wires": []
+    },
+    {
+        "id": "0c0b9e08cf5c59be",
+        "type": "inject",
+        "z": "daf7a59ca2ce18df",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1530,
+        "y": 940,
+        "wires": [
+            [
+                "c2d5dbeda92099af"
+            ]
+        ]
+    },
+    {
+        "id": "c2d5dbeda92099af",
+        "type": "function",
+        "z": "daf7a59ca2ce18df",
+        "name": "function 2",
+        "func": "const startTimes = [\n    { title: \"past 1m\", value: '-1m'},\n    { title: \"past 5m\", value: '-5m'},\n    { title: \"past 15m\", value: '-15m'},\n    { title: \"past 1h\", value: '-1h'},\n    { title: \"past 3h\", value: '-3h'},\n    { title: \"past 6h\", value: '-6h'},\n    { title: \"past 12h\", value: '-12h'},\n    { title: \"past 24h\", value: '-24h'},\n    { title: \"past 2d\", value: '-2d'},\n    { title: \"past 7d\", value: '-7d'},\n    { title: \"past 30d\", value: '-30d'},\n    ]\nlet select \n\n    if ( flow.get('options') ){\n        let targetValue = flow.get('options').start\n        if (targetValue) {\n            const found = startTimes.find(obj => obj.value === targetValue);\n            if (found) {\n                select = found\n\n            }\n        } \n    }\n\nmsg.payload = select\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1690,
+        "y": 940,
+        "wires": [
+            [
+                "b0158432da4e08b0"
+            ]
+        ]
+    },
+    {
+        "id": "b0158432da4e08b0",
+        "type": "debug",
+        "z": "daf7a59ca2ce18df",
+        "name": "debug 13",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1830,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "c42e4d342acc0cd3",
+        "type": "link out",
+        "z": "daf7a59ca2ce18df",
+        "name": "link out 43",
+        "mode": "link",
+        "links": [
+            "22993ff229d6db8d"
+        ],
+        "x": 1605,
+        "y": 600,
         "wires": []
     }
 ]
