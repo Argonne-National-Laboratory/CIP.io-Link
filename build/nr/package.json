@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "node-red": ">=4.0",
-    "@flowfuse/node-red-dashboard": "^1.22.1",
+    "@flowfuse/node-red-dashboard": "^1.24.2",
     "@flowfuse/node-red-dashboard-2-ui-iframe": "^1.1.0",
     "@flowfuse/node-red-dashboard-2-ui-led": "^1.1.0",
     "node-red-contrib-ocpp": "^1.3.9",

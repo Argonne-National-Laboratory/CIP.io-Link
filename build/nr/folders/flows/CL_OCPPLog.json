@@ -17,8 +17,7 @@
       [
         "f3e1c99425a9c103",
         "a032c7f04398d7d4",
-        "687284eeeefc6094",
-        "e7de0b7ea1e77e8e"
+        "687284eeeefc6094"
       ]
     ]
   },
@@ -34,8 +33,7 @@
     "y": 160,
     "wires": [
       [
-        "82c6ee1e7ebdc068",
-        "05ced04ece9fd092"
+        "82c6ee1e7ebdc068"
       ]
     ]
   },
@@ -53,7 +51,7 @@
     "retentionPolicyV18Flux": "",
     "org": "cipio",
     "bucket": "ocpp_log",
-    "x": 850,
+    "x": 770,
     "y": 160,
     "wires": []
   },
@@ -78,40 +76,6 @@
     ]
   },
   {
-    "id": "4599c18a0badb5ba",
-    "type": "debug",
-    "z": "294f3520d49a4f00",
-    "name": "debug 26",
-    "active": false,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "payload[2]",
-    "targetType": "msg",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 400,
-    "y": 220,
-    "wires": []
-  },
-  {
-    "id": "258d81071dbe8925",
-    "type": "debug",
-    "z": "294f3520d49a4f00",
-    "name": "debug 27",
-    "active": false,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 720,
-    "y": 260,
-    "wires": []
-  },
-  {
     "id": "22f189e825d297fe",
     "type": "influxdb in",
     "z": "294f3520d49a4f00",
@@ -123,7 +87,7 @@
     "retentionPolicy": "",
     "org": "cipio",
     "x": 500,
-    "y": 340,
+    "y": 420,
     "wires": [
       [
         "61d8e489a269e5c7"
@@ -135,7 +99,7 @@
     "type": "function",
     "z": "294f3520d49a4f00",
     "name": "FLUX Get raw OCPP",
-    "func": "// clear out any incoming message for now.\n//msg = {}\n\nlet options = flow.get(\"options\") ?? {}\nlet showResp = options?.showResp ?? true \nlet showHB = options?.showHB ?? true\nlet start = options?.start ?? '-1h'\n\nmsg = {}\n\nlet showRespQry = (showResp == false) ? '|> filter(fn: (r) => r.command != \"<response>\")' : \"\"\nlet showHBQry = (showHB == false) ?  '|> filter(fn: (r) => r.command != \"Heartbeat\")' : \"\"\n\nmsg.showRespQry = showRespQry\nmsg.showResp = showResp\n\nmsg.query = \n  `from(bucket: \"ocpp_log\")\n    |> range(start: ${start})\n    |> filter(fn: (r) => r[\"_measurement\"] == \"ocpplog\")\n    |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n    ${showRespQry}\n    ${showHBQry}\n    |> drop(columns: [\"_start\",\"_stop\",\"_mesaurement\"])\n    |> group(columns: [\"msgId\"])\n    |> sort(columns: [\"_time\"])`\n\nreturn msg;",
+    "func": "let options = flow.get(\"options\") ?? {}\nlet showResp = options?.showResp ?? true \nlet showHB = options?.showHB ?? true\nlet start = options?.start ?? '-1h'\n\nmsg = {}\n\nlet showRespQry = (showResp == false) ? '|> filter(fn: (r) => r.command != \"<response>\")' : \"\"\nlet showHBQry = (showHB == false) ?  '|> filter(fn: (r) => r.command != \"Heartbeat\")' : \"\"\n\nmsg.showRespQry = showRespQry\nmsg.showResp = showResp\n\nmsg.query = \n  `from(bucket: \"ocpp_log\")\n    |> range(start: ${start})\n    |> filter(fn: (r) => r[\"_measurement\"] == \"ocpplog\")\n    |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n    ${showRespQry}\n    ${showHBQry}\n    |> drop(columns: [\"_start\",\"_stop\",\"_mesaurement\"])\n    |> group(columns: [\"msgId\"])\n    |> sort(columns: [\"_time\"])`\n\nreturn msg;",
     "outputs": 1,
     "timeout": 0,
     "noerr": 0,
@@ -143,35 +107,11 @@
     "finalize": "",
     "libs": [],
     "x": 300,
-    "y": 340,
+    "y": 420,
     "wires": [
       [
-        "22f189e825d297fe",
-        "76062bc9f86f4659"
+        "22f189e825d297fe"
       ]
-    ]
-  },
-  {
-    "id": "8aa8700b2f7344e6",
-    "type": "inject",
-    "z": "294f3520d49a4f00",
-    "name": "Init Log",
-    "props": [
-      {
-        "p": "payload"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": true,
-    "onceDelay": "1",
-    "topic": "",
-    "payload": "",
-    "payloadType": "date",
-    "x": 200,
-    "y": 40,
-    "wires": [
-      []
     ]
   },
   {
@@ -186,18 +126,17 @@
     "width": 0,
     "height": 0,
     "head": "",
-    "format": "<template>\n\n    <v-data-table  \n            v-model:search=\"search\"\n            v-model:sort-by=\"sortBy\"\n            :items=\"msg?.payload\"\n            :headers=\"headers\"\n            density=\"compact\"\n            :filter-keys='[\"command\",\"msgFrom\",\"cbId\",\"ocppMsg\"]'\n            >\n    <template v-slot:top>\n        <v-toolbar flat>\n            <v-toolbar-title>\n                <v-icon color=\"medium-emphasis\" icon=\"mdi-book-open-variant\" size=\"x-small\" start></v-icon>\n                OCPP Log\n            </v-toolbar-title>\n\n            <v-text-field\n                v-model=\"search\"\n                label=\"Search\"\n                prepend-inner-icon=\"mdi-magnify\"\n                clear-icon=\"mdi-close-circle\"\n                variant=\"solo-filled\"\n                density=\"compact\"\n                hide-details\n                single-line\n                clearable\n            ></v-text-field>\n            <v-spacer></v-spacer>           \n            <v-template>\n                <v-switch \n                    v-model=\"showHB\" \n                    label=\"HB\" \n                    color=\"primary\"\n                    >\n                </v-switch>\n            </v-template>\n\n            <v-template>\n                <v-switch \n                    v-model=\"showResp\" \n                    label=\"Resp\" \n                    color=\"primary\"\n                    >\n                </v-switch>\n            </v-template>\n\n            <v-tooltip text=\"Refresh\" location=\"bottom\">\n                <template v-slot:activator=\"{ props }\">\n                <v-btn icon v-bind=\"props\" @click=\"refresh\">\n                    <v-icon>mdi-refresh</v-icon>\n                </v-btn>\n                </template>\n            </v-tooltip>\n            <v-template align-self=\"end\">\n            <v-select\n                v-model=\"select\"\n                :items=\"startTimes\"\n                item-title=\"title\"\n                item-value=\"value\"\n                >\n            </v-select>\n            </v-template>            \n\n        </v-toolbar>\n    </template>            \n\n        <template v-slot:header._time>\n            <div class=\"headers\">Time</div>\n        </template>\n        <template v-slot:header.cbId>\n            <div class=\"headers\">CS</div>\n        </template>\n        <template v-slot:header.msgFrom>\n            <div class=\"headers\">Origin</div>\n        </template>\n        <template v-slot:header.command>\n            <div class=\"text-center headers\">CMD</div>\n        </template>\n        <!--template v-slot:header._value>\n            <div class=\"text-center headers\">OCPP Message</div>\n        </template -->\n\n        <template v-slot:item._time=\"{ item }\">\n            <div>{{ getLocalTimeString(item._time) }}</div>\n        </template>\n        <template v-slot:item.command=\"{ item }\">\n            <div :class=\"getOCPPCmdClass(item.command)\">{{ item.command }}</div>\n        </template>\n        <template v-slot:item.ocppMsg=\"{ item }\">\n            <div :class=\"getOCPPMsgClass(item.ocppMsg)\">{{ item.ocppMsg }}</div>\n        </template>\n    </v-data-table>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                search: '',\n                sortBy: [{ key: '_time', order: 'asc' }],\n                headers: [\n                    {title: \"Time\", value: \"_time\"},\n                    {title: \"Origin\", key: \"msgFrom\", sortable: false},\n                    {title: \"EVSE\", key: \"cbId\", sortable: false},\n                    {title: \"CMD\", key: \"command\", sortable: false},\n                    {title: \"OCPP Message\", key: \"ocppMsg\", sortable: false}\n                ],\n                showResp: true,\n                showHB: true,\n                select: { title: \"past 5m\", value: '-5m'},\n                startTimes: [\n                    { title: \"past 1m\", value: '-1m'},\n                    { title: \"past 5m\", value: '-5m'},\n                    { title: \"past 15m\", value: '-15m'},\n                    { title: \"past 1h\", value: '-1h'},\n                    { title: \"past 3h\", value: '-3h'},\n                    { title: \"past 6h\", value: '-6h'},\n                    { title: \"past 12h\", value: '-12h'},\n                    { title: \"past 24h\", value: '-24h'},\n                    { title: \"past 2d\", value: '-2d'},\n                    { title: \"past 7d\", value: '-7d'},\n                    { title: \"past 30d\", value: '-30d'},\n//                    { title: \"custom\", value: 'custom'}\n                    ]\n            }\n        },\n        computed: {\n\n        },\n        watch: {\n            showHB(newValue) {\n                this.sendOptions()\n            },\n            showResp(newValue) {\n                this.sendOptions()\n            },\n            select(newValue) {\n                this.sendOptions()\n            }\n        },\n        methods: {\n            // expose a method to our <template> and Vue Application\n            getLocalTimeString: function (isoTime){\n                const date = new Date(isoTime)\n                const options = { \n                    year: '2-digit', \n                    month: '2-digit', \n                    day: '2-digit', \n                    hour: '2-digit', \n                    minute: '2-digit', \n                    second: '2-digit', \n                    millisecond: '3-digit',\n                    hour12: false \n                    }\n                return date.toLocaleString('en-US', options)\n            },\n            getOCPPMsgClass: function (item) {\n                let obj = JSON.parse(item);\n                return \"ocppMsgErr\";\n                if ( obj[0] == 2) {\n                    return \"ocppMsgReq\";\n                }\n                else if ( obj[0] == 3) {\n                    if ( Object.hasOwn(obj[2],\"status\")){\n                        return \"ocppMsgErr\";\n                    }\n                    return \"ocppMsgErr\";\n                }\n                else {\n                    return \"ocppMsgErr\";\n                }\n            },\n            getOCPPCmdClass: function (item) {\n                if (item.startsWith(\"<res\")) {\n                    return \"ocppCmdRes\";\n                }\n                else {\n                    return \"ocppCmdReq\";\n                }\n            },\n            sendOptions: function() {\n                this.send({\n                    action: \"options\", \n                    options: {\n                        start: this.select,\n                        showHB: this.showHB,\n                        showResp: this.showResp\n                    }\n                })\n            }\n        },\n        mounted() {\n            // code here when the component is first loaded\n        },\n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: red;\n    }\n    .headers {\n        font-weight: bold;\n    }\n    .ocppMsgReq {\n        color: blue;\n        font-weight: bold;\n    }\n    .ocppMsgRes {\n        color: blue;\n    }\n    .ocppMsgErr {\n        color: red;\n    }\n    .ocppCmdReq {\n        color: green;\n        font-weight: bold;\n    }\n    .ocppCmdRes {\n        color: DarkCyan;\n    }\n</style>",
+    "format": "<template>\n\n    <v-data-table\n            theme=\"dark\"\n            v-model:search=\"search\"\n            v-model:sort-by=\"sortBy\"\n            :items=\"msg?.payload\"\n            :headers=\"headers\"\n            density=\"compact\"\n            :filter-keys='[\"command\",\"msgFrom\",\"cbId\",\"ocppMsg\"]'\n            >\n    <template v-slot:top>\n        <v-toolbar flat>\n            <v-toolbar-title>\n                <v-icon color=\"#0000FF\" icon=\"mdi-book-open-variant\" size=\"x-large\" start></v-icon>\n                OCPP Log\n            </v-toolbar-title>\n\n            <v-text-field\n                v-model=\"search\"\n                label=\"Search\"\n                prepend-inner-icon=\"mdi-magnify\"\n                clear-icon=\"mdi-close-circle\"\n                variant=\"solo-filled\"\n                density=\"compact\"\n                hide-details\n                single-line\n                clearable\n            ></v-text-field>\n            <v-spacer></v-spacer>           \n            <v-template>\n                <v-switch \n                    v-model=\"showHB\" \n                    label=\"HB\" \n                    color=\"primary\"\n                    >\n                </v-switch>\n            </v-template>\n\n            <v-template>\n                <v-switch \n                    v-model=\"showResp\" \n                    label=\"Resp\" \n                    color=\"primary\"\n                    >\n                </v-switch>\n            </v-template>\n\n            <v-tooltip text=\"Refresh\" location=\"bottom\">\n                <template v-slot:activator=\"{ props }\">\n                <v-btn icon v-bind=\"props\" @click=\"refresh\">\n                    <v-icon size=\"large\" color=\"primary\">mdi-refresh</v-icon>\n                </v-btn>\n                </template>\n            </v-tooltip>\n            <v-template align-self=\"end\">\n            <v-select\n                v-model=\"select\"\n                :items=\"startTimes\"\n                item-title=\"title\"\n                item-value=\"value\"\n                >\n            </v-select>\n            </v-template>            \n\n        </v-toolbar>\n    </template>            \n        <template v-slot:header._time>\n            <div class=\"headers\">Time</div>\n        </template>\n        <template v-slot:header.cbId>\n            <div class=\"headers\">CS</div>\n        </template>\n        <template v-slot:header.msgFrom>\n            <div class=\"headers\">Origin</div>\n        </template>\n        <template v-slot:header.command>\n            <div class=\"text-center headers\">CMD</div>\n        </template>\n        <!--template v-slot:header._value>\n            <div class=\"text-center headers\">OCPP Message</div>\n        </template -->\n\n        <template v-slot:item._time=\"{ item }\">\n            <div>{{ getLocalTimeString(item._time) }}</div>\n        </template>\n        <template v-slot:item.command=\"{ item }\">\n            <div :class=\"getOCPPCmdClass(item.command)\">{{ item.command }}</div>\n        </template>\n        <template v-slot:item.ocppMsg=\"{ item }\">\n            <div :class=\"getOCPPMsgClass(item.ocppMsg)\">{{ item.ocppMsg }}</div>\n        </template>\n        <template v-slot:item.msgFrom=\"{ item }\">\n            <v-chip :color=\"getTypeColor(item)\">{{ item.msgFrom }}</v-chip>\n        </template>        \n    </v-data-table>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                search: '',\n                sortBy: [{ key: '_time', order: 'asc' }],\n                headers: [\n                    {title: \"Time\", value: \"_time\"},\n                    {title: \"Origin\", key: \"msgFrom\", value: \"msgFrom\", sortable: false},\n                    {title: \"EVSE\", key: \"cbId\", sortable: false},\n                    {title: \"CMD\", key: \"command\", sortable: false},\n                    {title: \"OCPP Message\", key: \"ocppMsg\", sortable: false}\n                ],\n                showResp: true,\n                showHB: true,\n                select: { title: \"past 5m\", value: '-5m'},\n                startTimes: [\n                    { title: \"past 1m\", value: '-1m'},\n                    { title: \"past 5m\", value: '-5m'},\n                    { title: \"past 15m\", value: '-15m'},\n                    { title: \"past 1h\", value: '-1h'},\n                    { title: \"past 3h\", value: '-3h'},\n                    { title: \"past 6h\", value: '-6h'},\n                    { title: \"past 12h\", value: '-12h'},\n                    { title: \"past 24h\", value: '-24h'},\n                    { title: \"past 2d\", value: '-2d'},\n                    { title: \"past 7d\", value: '-7d'},\n                    { title: \"past 30d\", value: '-30d'},\n//                    { title: \"custom\", value: 'custom'}\n                    ]\n            }\n        },\n        computed: {\n\n        },\n        watch: {\n            showHB(newValue) {\n                this.sendOptions()\n            },\n            showResp(newValue) {\n                this.sendOptions()\n            },\n            select(newValue) {\n                this.sendOptions()\n            }\n        },\n        methods: {\n            // expose a method to our <template> and Vue Application\n            getLocalTimeString: function (isoTime){\n                const date = new Date(isoTime)\n                const options = { \n                    year: '2-digit', \n                    month: '2-digit', \n                    day: '2-digit', \n                    hour: '2-digit', \n                    minute: '2-digit', \n                    second: '2-digit', \n                    millisecond: '3-digit',\n                    hour12: false \n                    }\n                return date.toLocaleString('en-US', options)\n            },\n            getOCPPMsgClass: function (item) {\n                let obj = JSON.parse(item);\n                return \"ocppMsgErr\";\n                if ( obj[0] == 2) {\n                    return \"ocppMsgReq\";\n                }\n                else if ( obj[0] == 3) {\n                    if ( Object.hasOwn(obj[2],\"status\")){\n                        return \"ocppMsgErr\";\n                    }\n                    return \"ocppMsgErr\";\n                }\n                else {\n                    return \"ocppMsgErr\";\n                }\n            },\n            getOCPPCmdClass: function (item) {\n                if (item.startsWith(\"<res\")) {\n                    return \"ocppCmdRes\";\n                }\n                else {\n                    return \"ocppCmdReq\";\n                }\n            },\n            getTypeColor: function(item) {\n                switch(item.msgFrom.toLowerCase()) {\n                case 'csms':\n                    return 'purple';\n                    break;\n                case 'cs':\n                    return 'green';\n                    break;\n                default:\n                    return 'cyan';\n                    break;\n                }\n            },\n            sendOptions: function() {\n                this.send({\n                    action: \"options\", \n                    options: {\n                        start: this.select,\n                        showHB: this.showHB,\n                        showResp: this.showResp\n                    }\n                })\n            },\n            refresh: function() {\n                this.send({\n                    action: \"refresh\" \n                })\n            }\n        },\n        mounted() {\n            // code here when the component is first loaded\n        },\n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: red;\n    }\n    .headers {\n        font-weight: bold;\n    }\n    .ocppMsgReq {\n        color: blue;\n        font-weight: bold;\n    }\n    .ocppMsgRes {\n        color: blue;\n        background-color: red;\n    }\n    .ocppMsgErr {\n        color: red;\n    }\n    .ocppCmdReq {\n        color: green;\n        font-weight: bold;\n    }\n    .ocppCmdRes {\n        color: DarkCyan;\n        background-color: #efefef;\n    }\n</style>",
     "storeOutMessages": true,
     "passthru": false,
     "resendOnRefresh": true,
     "templateScope": "local",
     "className": "",
     "x": 880,
-    "y": 340,
+    "y": 420,
     "wires": [
       [
-        "fcbda4076fa53d57",
-        "d07158c4069cdd2c"
+        "e281ef451589b5fc"
       ]
     ]
   },
@@ -214,7 +153,7 @@
     "finalize": "",
     "libs": [],
     "x": 700,
-    "y": 340,
+    "y": 420,
     "wires": [
       [
         "7d1c0e100d38e388"
@@ -238,7 +177,7 @@
     "drop": false,
     "allowrate": false,
     "outputs": 1,
-    "x": 600,
+    "x": 540,
     "y": 200,
     "wires": [
       [
@@ -260,8 +199,8 @@
     "retentionPolicyV18Flux": "",
     "org": "cipio",
     "bucket": "OCPP",
-    "x": 1340,
-    "y": 120,
+    "x": 1380,
+    "y": 100,
     "wires": []
   },
   {
@@ -280,8 +219,8 @@
     "y": 100,
     "wires": [
       [
-        "96fa7c9ac4acc47f",
-        "0fcf5938cf680373"
+        "0fcf5938cf680373",
+        "0a6dc7e28b3a3004"
       ]
     ]
   },
@@ -302,7 +241,7 @@
     "checkall": "true",
     "repair": false,
     "outputs": 1,
-    "x": 640,
+    "x": 580,
     "y": 160,
     "wires": [
       [
@@ -320,7 +259,7 @@
       "fdc97bc5af3f0ed6"
     ],
     "x": 165,
-    "y": 340,
+    "y": 420,
     "wires": [
       [
         "09b04c7f9641599a"
@@ -336,84 +275,16 @@
     "links": [
       "6ec7f5c8fa255cf6"
     ],
-    "x": 715,
+    "x": 635,
     "y": 200,
     "wires": []
-  },
-  {
-    "id": "96fa7c9ac4acc47f",
-    "type": "debug",
-    "z": "294f3520d49a4f00",
-    "name": "debug 50",
-    "active": false,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 890,
-    "y": 40,
-    "wires": []
-  },
-  {
-    "id": "05ced04ece9fd092",
-    "type": "switch",
-    "z": "294f3520d49a4f00",
-    "name": "",
-    "property": "msgFrom",
-    "propertyType": "msg",
-    "rules": [
-      {
-        "t": "eq",
-        "v": "CS",
-        "vt": "str"
-      }
-    ],
-    "checkall": "true",
-    "repair": false,
-    "outputs": 1,
-    "x": 230,
-    "y": 220,
-    "wires": [
-      [
-        "4599c18a0badb5ba",
-        "a17aef1dc7d51ba8"
-      ]
-    ]
-  },
-  {
-    "id": "e7de0b7ea1e77e8e",
-    "type": "switch",
-    "z": "294f3520d49a4f00",
-    "name": "",
-    "property": "payload[1].command",
-    "propertyType": "msg",
-    "rules": [
-      {
-        "t": "eq",
-        "v": "MeterValues",
-        "vt": "str"
-      }
-    ],
-    "checkall": "true",
-    "repair": false,
-    "outputs": 1,
-    "x": 590,
-    "y": 260,
-    "wires": [
-      [
-        "258d81071dbe8925"
-      ]
-    ]
   },
   {
     "id": "670bbc7e0e5a3e30",
     "type": "function",
     "z": "294f3520d49a4f00",
     "name": "MeterValues to Influx",
-    "func": "let txid = msg.payload[0].transactionId || 0;\n\n// Some OCPP implementations continue to send M/V after a session has ended.\nif (txid === 0) return;\n\nmsg.measurement = 'MeterValues';\n\nlet influxFields = {};\n\nlet influxTags = { \n    connectorId: msg.payload[0].connectorId,\n    transactionId: msg.payload[0].transactionId,\n    cbId: msg.cbId,\n}\n\n// This will calculate the RMS value for multi-phase (or even a single phase)\n// current and voltage returns\n//\nfunction getRMSValue(measurementArray) {\n    let rtnVal = 0;\n    if (measurementArray.length > 0) {\n        let count = measurementArray.length;\n        let value = 0;\n        measurementArray.forEach(function (x) {\n            value += x ** 2;\n        });\n        rtnVal = Math.sqrt((value / count));\n    }\n    return rtnVal;\n}\n\nif (Array.isArray(msg.payload[0].meterValue)){\n    msg.payload[0].meterValue.forEach(doMeterValues);\n}\nelse {\n    doMeterValues(msg.payload[0].meterValue);\n}\n\nfunction doMeterValues(mv){\n    if (mv.hasOwnProperty('timestamp')){\n        influxFields.time = new Date(mv.timestamp);\n    } \n    // Use this for multiple phase units\n    let CurrentArray = [];\n    let VoltageArray = [];\n\n    mv.sampledValue.forEach(sv => {\n        let value = Number(sv.value);\n        let unit = sv.unit;\n        switch (sv.measurand){\n            case 'Energy.Active.Import.Register':\n                value = (unit[0] == 'k')? value : value / 1000;\n                influxFields.EnergykWh = Math.round(value * 100) / 100;\n                break;\n            case 'Energy.Active.Export.Register':\n                value = (unit[0] == 'k') ? value : value / 1000;\n                influxFields.EnergyExportkWh = Math.round(value * 100) / 100;\n                break;\n            case 'Power.Active.Import':\n                value = (unit[0] == 'k')? value : value / 1000;\n                influxFields.PowerkW = Math.round(value * 100) / 100;\n                break;\n            case 'Power.Active.Export':\n                value = (unit[0] == 'k') ? value : value / 1000;\n                influxFields.PowerExportkW = Math.round(value * 100) / 100;\n                break;\n            case 'Current.Import':\n                // Only add value to array if it isn't zero\n                if (value != 0) { CurrentArray.push(value); }\n                if (Object.hasOwn(sv,\"phase\")) {\n                    let prop = `CurrentA_${sv.phase}`;\n                    influxFields[prop] = value;\n                }\n                break;\n            case 'Current.Offered':\n                influxFields.CurrentOfferedA = value;\n                break;\n            case 'Current.Export':\n                    influxFields.CurrentExportA = value;\n                    break;\n            case 'Voltage':\n                if (value != 0) { VoltageArray.push(value); }\n                if (Object.hasOwn(sv, \"phase\")) {\n                    let prop = `VoltageV_${sv.phase}`;\n                    influxFields[prop] = value;\n                }\n                break;\n            case 'SoC':\n                influxFields.SoC = value;\n                break;\n            case 'RPM':\n                influxFields.RPM = value;\n            case 'Temperature':\n                influxFields.Temperature = value;\n            default:\n                break;\n        }\n    });\n\n    //This calculates the current RMS for multiple phases\n    influxFields.CurrentA = getRMSValue(CurrentArray);\n    influxFields.VoltageV = getRMSValue(VoltageArray);\n\n}\n\n// Next we verify that we have a power value since some (LiteOn/EVOCharge) EVSEs don't bother\n// to supply one. \nif (influxFields.hasOwnProperty('PowerkW') != true){\n    if (influxFields.hasOwnProperty('VoltageV') && influxFields.hasOwnProperty('CurrentA')){\n        influxFields.PowerkW = ((influxFields.VoltageV * influxFields.CurrentA / 1000) * 100) / 100;\n    }\n}\n\n\nmsg.payload = [influxFields, influxTags];\n\nreturn msg;\n\n\n",
+    "func": "let txid = msg.payload[0].transactionId || 0;\n\n// Some OCPP implementations continue to send M/V after a session has ended.\nif (txid === 0) return;\n\nmsg.measurement = 'MeterValues';\n\nlet influxFields = {};\n\nlet influxTags = { \n    connectorId: msg.payload[0].connectorId,\n    transactionId: msg.payload[0].transactionId,\n    cbId: msg.cbId,\n}\n\n// This will calculate the RMS value for multi-phase (or even a single phase)\n// current and voltage returns\n//\nfunction getRMSValue(measurementArray) {\n    let rtnVal = 0;\n    if (measurementArray.length > 0) {\n        let count = measurementArray.length;\n        let value = 0;\n        measurementArray.forEach(function (x) {\n            value += x ** 2;\n        });\n        rtnVal = Math.sqrt((value / count));\n    }\n    return rtnVal;\n}\n\n// This checks to see if the MeterValue has an array of meter values, or just a single meter value set.\n//\nif (Array.isArray(msg.payload[0].meterValue)){\n    msg.payload[0].meterValue.forEach(doMeterValues);\n}\nelse {\n    doMeterValues(msg.payload[0].meterValue);\n}\n\nfunction doMeterValues(mv){\n    if (mv.hasOwnProperty('timestamp')){\n        influxFields.time = new Date(mv.timestamp);\n    } \n    // Use this for multiple phase units\n    let CurrentArray = [];\n    let VoltageArray = [];\n\n    mv.sampledValue.forEach(sv => {\n        let value = Number(sv.value);\n        let unit = sv.unit;\n        switch (sv.measurand){\n            //\n            // Energy\n            //\n            case 'Energy.Active.Import.Register':\n                value = (unit[0] == 'k')? value : value / 1000;\n                influxFields.EnergykWh = Math.round(value * 100) / 100;\n                break;\n            case 'Energy.Active.Export.Register':\n                value = (unit[0] == 'k') ? value : value / 1000;\n                influxFields.EnergyExportkWh = Math.round(value * 100) / 100;\n                break;\n            case 'Energy.Reactive.Import.Register':\n                value = (unit[0] == 'k') ? value : value / 1000;\n                influxFields.EnergyReactivekvarh = Math.round(value * 100) / 100;\n                break;\n            case 'Energy.Reactive.Export.Register':\n                value = (unit[0] == 'k') ? value : value / 1000;\n                influxFields.EnergyReactiveExportkvarh = Math.round(value * 100) / 100;\n                break;                \n            case 'Energy.Active.Import.Interval':\n                value = (unit[0] == 'k') ? value : value / 1000;\n                influxFields.EnergyIntervalkWh = Math.round(value * 100) / 100;\n                break;\n            case 'Energy.Active.Export.Interval':\n                value = (unit[0] == 'k') ? value : value / 1000;\n                influxFields.EnergyExportIntervalkWh = Math.round(value * 100) / 100;\n                break;\n            case 'Energy.Reactive.Import.Interval':\n                value = (unit[0] == 'k') ? value : value / 1000;\n                influxFields.EnergyReactiveIntervalkvarh = Math.round(value * 100) / 100;\n                break;\n            case 'Energy.Reactive.Export.Interval':\n                value = (unit[0] == 'k') ? value : value / 1000;\n                influxFields.EnergyReactiveExportIntervalkvarh = Math.round(value * 100) / 100;\n                break;                \n\n            //\n            // Power\n            //\n            case 'Power.Active.Import':\n                value = (unit[0] == 'k')? value : value / 1000;\n                influxFields.PowerkW = Math.round(value * 100) / 100;\n                break;\n            case 'Power.Active.Export':\n                value = (unit[0] == 'k') ? value : value / 1000;\n                influxFields.PowerExportkW = Math.round(value * 100) / 100;\n                break;\n            case 'Power.Reactive.Import':\n                value = (unit[0] == 'k') ? value : value / 1000;\n                influxFields.PowerkReactivevar = Math.round(value * 100) / 100;\n                break;\n            case 'Power.Reactive.Export':\n                value = (unit[0] == 'k') ? value : value / 1000;\n                influxFields.PowerReactiveExportkvar = Math.round(value * 100) / 100;\n                break;\n            case 'Power.Offered':\n                value = (unit[0] == 'k') ? value : value / 1000;\n                influxFields.PowerOfferedkW = Math.round(value * 100) / 100;\n                break;\n            case 'Power.Factor':\n                influxFields.CurrentFactor = value;\n                break;\n\n            //\n            // Current\n            //\n            case 'Current.Import':\n                // Only add value to array if it isn't zero\n                if (value != 0) { CurrentArray.push(value); }\n                if (Object.hasOwn(sv,\"phase\")) {\n                    let prop = `CurrentA_${sv.phase}`;\n                    influxFields[prop] = value;\n                }\n                break;\n            case 'Current.Offered':\n                influxFields.CurrentOfferedA = value;\n                break;\n            case 'Current.Export':\n                // Only add value to array if it isn't zero\n                if (value != 0) { CurrentArray.push(value); }\n                if (Object.hasOwn(sv, \"phase\")) {\n                    let prop = `CurrentExportA_${sv.phase}`;\n                    influxFields[prop] = value;\n                }\n                break;\n\n            //\n            // Voltage\n            //\n            case 'Voltage':\n                if (value != 0) { VoltageArray.push(value); }\n                if (Object.hasOwn(sv, \"phase\")) {\n                    let prop = `VoltageV_${sv.phase}`;\n                    influxFields[prop] = value;\n                }\n                break;\n\n            //\n            // Other\n            //\n            case 'SoC':\n                influxFields.SoC = value;\n                break;\n            case 'RPM':\n                influxFields.RPM = value;\n                break;\n            case 'Temperature':\n                influxFields.Temperature = value;\n                break;\n            case 'Frequency':\n                influxFields.Frequency = value;\n                break;\n            default:\n                break;\n        }\n    });\n\n    //This calculates the current RMS for multiple phases\n    influxFields.CurrentA = getRMSValue(CurrentArray);\n    influxFields.VoltageV = getRMSValue(VoltageArray);\n\n}\n\n// Next we verify that we have a power value since some (LiteOn/EVOCharge) EVSEs don't bother\n// to supply one. \nif (influxFields.hasOwnProperty('PowerkW') != true){\n    if (influxFields.hasOwnProperty('VoltageV') && influxFields.hasOwnProperty('CurrentA')){\n        influxFields.PowerkW = ((influxFields.VoltageV * influxFields.CurrentA / 1000) * 100) / 100;\n    }\n}\n\n\nmsg.payload = [influxFields, influxTags];\n\nreturn msg;\n\n\n",
     "outputs": 1,
     "timeout": 0,
     "noerr": 0,
@@ -452,32 +323,13 @@
     "y": 100,
     "wires": [
       [
-        "670bbc7e0e5a3e30",
-        "5afb9cd944ed3a2a"
+        "670bbc7e0e5a3e30"
       ],
       [
         "24ec176038fe713d",
-        "c8de40583c78dc49",
-        "51d80e171b2eadaf"
+        "c8de40583c78dc49"
       ]
     ]
-  },
-  {
-    "id": "5afb9cd944ed3a2a",
-    "type": "debug",
-    "z": "294f3520d49a4f00",
-    "name": "debug 53",
-    "active": false,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 1070,
-    "y": 40,
-    "wires": []
   },
   {
     "id": "c8de40583c78dc49",
@@ -511,12 +363,10 @@
     "checkall": "true",
     "repair": false,
     "outputs": 4,
-    "x": 1140,
-    "y": 220,
+    "x": 1070,
+    "y": 160,
     "wires": [
-      [
-        "7a8e05f5d5a2e926"
-      ],
+      [],
       [
         "b30433a611efd29c"
       ],
@@ -530,11 +380,9 @@
     "z": "294f3520d49a4f00",
     "name": "link out 22",
     "mode": "link",
-    "links": [
-      "22993ff229d6db8d"
-    ],
-    "x": 1325,
-    "y": 200,
+    "links": [],
+    "x": 1235,
+    "y": 140,
     "wires": []
   },
   {
@@ -546,117 +394,9 @@
     "links": [
       "aa18045a070128d9"
     ],
-    "x": 1325,
-    "y": 240,
-    "wires": []
-  },
-  {
-    "id": "a17aef1dc7d51ba8",
-    "type": "switch",
-    "z": "294f3520d49a4f00",
-    "name": "",
-    "property": "payload[2]",
-    "propertyType": "msg",
-    "rules": [
-      {
-        "t": "eq",
-        "v": "StartTransaction",
-        "vt": "str"
-      },
-      {
-        "t": "eq",
-        "v": "StartTransactionEnhanced",
-        "vt": "str"
-      },
-      {
-        "t": "eq",
-        "v": "StopTransaction",
-        "vt": "str"
-      }
-    ],
-    "checkall": "true",
-    "repair": false,
-    "outputs": 3,
-    "x": 320,
-    "y": 280,
-    "wires": [
-      [
-        "0f4685282fcb972d"
-      ],
-      [
-        "0f4685282fcb972d"
-      ],
-      [
-        "0f4685282fcb972d"
-      ]
-    ]
-  },
-  {
-    "id": "0f4685282fcb972d",
-    "type": "debug",
-    "z": "294f3520d49a4f00",
-    "name": "debug 86",
-    "active": false,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 460,
-    "y": 280,
-    "wires": []
-  },
-  {
-    "id": "93076343d978982d",
-    "type": "debug",
-    "z": "294f3520d49a4f00",
-    "name": "debug 87",
-    "active": false,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 1580,
+    "x": 1235,
     "y": 180,
     "wires": []
-  },
-  {
-    "id": "51d80e171b2eadaf",
-    "type": "switch",
-    "z": "294f3520d49a4f00",
-    "name": "",
-    "property": "payload[1].command",
-    "propertyType": "msg",
-    "rules": [
-      {
-        "t": "eq",
-        "v": "StartTransaction",
-        "vt": "str"
-      },
-      {
-        "t": "eq",
-        "v": "StopTransaction",
-        "vt": "str"
-      }
-    ],
-    "checkall": "true",
-    "repair": false,
-    "outputs": 2,
-    "x": 1410,
-    "y": 180,
-    "wires": [
-      [
-        "93076343d978982d"
-      ],
-      [
-        "93076343d978982d"
-      ]
-    ]
   },
   {
     "id": "fcbda4076fa53d57",
@@ -677,8 +417,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 1040,
-    "y": 340,
+    "x": 1180,
+    "y": 380,
     "wires": [
       [
         "fdc97bc5af3f0ed6"
@@ -694,42 +434,91 @@
     "links": [
       "6ec7f5c8fa255cf6"
     ],
-    "x": 1155,
-    "y": 340,
+    "x": 1305,
+    "y": 420,
     "wires": []
   },
   {
-    "id": "d07158c4069cdd2c",
-    "type": "debug",
+    "id": "18f967dea852c725",
+    "type": "comment",
     "z": "294f3520d49a4f00",
-    "name": "debug 9",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
+    "name": "CSMS UI Log Display",
+    "info": "",
+    "x": 300,
+    "y": 360,
+    "wires": []
+  },
+  {
+    "id": "e281ef451589b5fc",
+    "type": "switch",
+    "z": "294f3520d49a4f00",
+    "name": "",
+    "property": "action",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "options",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "refresh",
+        "vt": "str"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
     "x": 1030,
-    "y": 440,
+    "y": 420,
+    "wires": [
+      [
+        "fcbda4076fa53d57"
+      ],
+      [
+        "fdc97bc5af3f0ed6"
+      ]
+    ]
+  },
+  {
+    "id": "e5d5ca46d23b180c",
+    "type": "redis-out",
+    "z": "294f3520d49a4f00",
+    "server": "0430675ed6c7cd83",
+    "command": "publish",
+    "name": "Publish OCPP Msg",
+    "topic": "",
+    "obj": true,
+    "x": 1270,
+    "y": 220,
     "wires": []
   },
   {
-    "id": "76062bc9f86f4659",
-    "type": "debug",
+    "id": "0a6dc7e28b3a3004",
+    "type": "change",
     "z": "294f3520d49a4f00",
-    "name": "debug 11",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "query",
-    "targetType": "msg",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 510,
-    "y": 480,
-    "wires": []
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "topic",
+        "pt": "msg",
+        "to": "'csms:ocpp:' & msg.measurement",
+        "tot": "jsonata"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1090,
+    "y": 220,
+    "wires": [
+      [
+        "e5d5ca46d23b180c"
+      ]
+    ]
   }
 ]

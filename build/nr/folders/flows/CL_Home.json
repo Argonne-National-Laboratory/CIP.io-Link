@@ -8,6 +8,70 @@
     "env": []
   },
   {
+    "id": "5467f49e453ce114",
+    "type": "group",
+    "z": "92d055a5ecbac90c",
+    "name": "Call Functions",
+    "style": {
+      "stroke": "#92d04f",
+      "fill": "#c8e7a7",
+      "label": true,
+      "label-position": "n",
+      "color": "#001f60"
+    },
+    "nodes": [
+      "6fd8bde3125e0633",
+      "c8bff2ea426a4e7d",
+      "e1bcc6f5546a0346",
+      "4c7c18b8e1c2aa14",
+      "6582d565aa21b5d6",
+      "f3054096229843f4"
+    ],
+    "x": 1224,
+    "y": 39,
+    "w": 312,
+    "h": 142
+  },
+  {
+    "id": "e03ff1fcf73167f8",
+    "type": "junction",
+    "z": "92d055a5ecbac90c",
+    "x": 420,
+    "y": 600,
+    "wires": [
+      [
+        "cae50a9e566c31a2",
+        "3c1e11c8ed086779",
+        "f874cc3bd44a0208"
+      ]
+    ]
+  },
+  {
+    "id": "7a0d8235ef0920d9",
+    "type": "junction",
+    "z": "92d055a5ecbac90c",
+    "x": 220,
+    "y": 920,
+    "wires": [
+      [
+        "60e4d09450fdac13",
+        "7bf24886ffe6be85"
+      ]
+    ]
+  },
+  {
+    "id": "4d74ca2a2923fc10",
+    "type": "junction",
+    "z": "92d055a5ecbac90c",
+    "x": 220,
+    "y": 1120,
+    "wires": [
+      [
+        "3aaa4e40e7f96077"
+      ]
+    ]
+  },
+  {
     "id": "49370f62ef275c28",
     "type": "function",
     "z": "92d055a5ecbac90c",
@@ -22,7 +86,9 @@
     "x": 290,
     "y": 40,
     "wires": [
-      []
+      [
+        "334b1383690be34b"
+      ]
     ]
   },
   {
@@ -66,54 +132,6 @@
     ]
   },
   {
-    "id": "39f51e38c8ce88f2",
-    "type": "change",
-    "z": "92d055a5ecbac90c",
-    "name": "",
-    "rules": [
-      {
-        "t": "set",
-        "p": "payload",
-        "pt": "msg",
-        "to": "{\"currentA\":0,\"time\":\"\"}",
-        "tot": "json"
-      },
-      {
-        "t": "set",
-        "p": "payload.currentA",
-        "pt": "msg",
-        "to": "SITE:LoadLimit",
-        "tot": "global"
-      },
-      {
-        "t": "set",
-        "p": "payload.time",
-        "pt": "msg",
-        "to": "",
-        "tot": "date"
-      },
-      {
-        "t": "set",
-        "p": "topic",
-        "pt": "msg",
-        "to": "LoadLimit",
-        "tot": "str"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 420,
-    "y": 940,
-    "wires": [
-      [
-        "d1bc1b3ba06b799a"
-      ]
-    ]
-  },
-  {
     "id": "74499b15f0145429",
     "type": "inject",
     "z": "92d055a5ecbac90c",
@@ -127,19 +145,18 @@
         "vt": "str"
       }
     ],
-    "repeat": "3",
+    "repeat": "",
     "crontab": "",
     "once": true,
     "onceDelay": "0.5",
     "topic": "",
     "payload": "",
     "payloadType": "date",
-    "x": 145,
-    "y": 940,
+    "x": 165,
+    "y": 1100,
     "wires": [
       [
-        "39f51e38c8ce88f2",
-        "d8769e54fee991f9"
+        "4d74ca2a2923fc10"
       ]
     ],
     "l": false
@@ -155,13 +172,11 @@
     "precision": "",
     "retentionPolicy": "",
     "org": "cipio",
-    "x": 660,
-    "y": 980,
+    "x": 740,
+    "y": 1120,
     "wires": [
       [
-        "0f02c20fb2330f7a",
-        "825191f59f313cab",
-        "19926af6f970a4b9"
+        "d13e1728464f84ba"
       ]
     ]
   },
@@ -170,72 +185,20 @@
     "type": "function",
     "z": "92d055a5ecbac90c",
     "name": "FLUX Get raw MV OCPP",
-    "func": "// clear out any incoming message for now.\nlet filter_by_tx = \"\";\nlet topic = \"00000000\"\n\n/*\nif (msg.payload.txId) {\n  filter_by_tx = `|> filter(fn: (r) => r[\"transactionId\"] == \"${msg.payload.txId}\")`\n  topic = msg.payload.txId\n}\n*/\n\nmsg = {}\n\nmsg.topic = topic\n\nlet window = global.get(\"CSMS:MVSampleInterval\") || 60\n\nlet measurand = \"CurrentA\"\n\nmsg.query = \n  `from(bucket: \"OCPP\") \n    |> range(start: -1h) \n    |> filter(fn: (r) => r[\"_measurement\"] == \"MeterValues\") \n    |> filter(fn: (r) => r[\"_field\"] == \"${measurand}\")\n    |> aggregateWindow(every: ${window}s, createEmpty: true, fn: mean)\n    |> sort(columns: [\"_time\"])`\nreturn msg;",
+    "func": "// clear out any incoming message for now.\nconst options = flow.get(\"options\") ?? {}\nlet start = options?.start ?? '-1h'\nlet stop = options?.stop ?? 'now()'\nlet filter_by_tx = \"\";\nlet measurand = msg.topic ?? 'Unknown'\n\nlet window = global.get(\"CSMS:MVSampleInterval\") || 60\n\nmsg.query = \n  `from(bucket: \"OCPP\") \n    |> range(start: ${start}, stop: ${stop}) \n    |> filter(fn: (r) => r[\"_measurement\"] == \"MeterValues\") \n    |> filter(fn: (r) => r[\"_field\"] == \"${measurand}\")\n    |> aggregateWindow(every: ${window}s, createEmpty: true, fn: mean)\n    |> sort(columns: [\"_time\"])`\nreturn msg;",
     "outputs": 1,
     "timeout": 0,
     "noerr": 0,
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 450,
-    "y": 980,
+    "x": 530,
+    "y": 1120,
     "wires": [
       [
         "f3b30d3612e48f36"
       ]
     ]
-  },
-  {
-    "id": "0f02c20fb2330f7a",
-    "type": "function",
-    "z": "92d055a5ecbac90c",
-    "name": "FLUX remove extras",
-    "func": "msg.payload.forEach(function(mv) {\n    //delete ocppMsg.result;\n    //delete ocppMsg.table;\n    node.send({ \n        topic: `${mv.cbId}:P${mv.connectorId}`, \n        payload: {\n            currentA: mv._value,\n            time: mv._time \n        } \n    })\n});\n",
-    "outputs": 1,
-    "timeout": 0,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 920,
-    "y": 960,
-    "wires": [
-      []
-    ]
-  },
-  {
-    "id": "825191f59f313cab",
-    "type": "debug",
-    "z": "92d055a5ecbac90c",
-    "name": "debug 62",
-    "active": false,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 880,
-    "y": 920,
-    "wires": []
-  },
-  {
-    "id": "d1bc1b3ba06b799a",
-    "type": "debug",
-    "z": "92d055a5ecbac90c",
-    "name": "debug 63",
-    "active": false,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 600,
-    "y": 940,
-    "wires": []
   },
   {
     "id": "9ccf03b5bb8eecc2",
@@ -250,8 +213,8 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 1080,
-    "y": 1000,
+    "x": 1380,
+    "y": 1120,
     "wires": []
   },
   {
@@ -266,14 +229,14 @@
     "width": 0,
     "height": 0,
     "head": "",
-    "format": "<template>\n    <canvas ref=\"chart\" />\n</template>\n\n<script src=\"https://cdn.jsdelivr.net/npm/chart.js\"></script>\n\n<script>\n    export default {\n        mounted() {\n            // register a listener for incoming data\n            this.$socket.on('msg-input:' + this.id, this.onInput)\n\n            // check with ChartJS has loaded\n            let interval = setInterval(() => {\n                if (window.Chart) {\n                    // clear the check for ChartJS\n                    clearInterval(interval);\n                    // draw our initial chart\n                    this.draw()\n                }\n            }, 100);\n        },\n        methods: {\n            draw () {\n                // get reference to the <canvas /> element\n                const ctx = this.$refs.chart\n                \n                // Render the chart\n                const chart = new Chart(ctx, {\n                    type: 'line',\n                    data: {\n                        datasets: [{\n                            label: \"\",  // label for the single line we'll render\n                            data: [\n                            ],            // start with no data\n                            fill: 1\n                        }]\n                    },\n                    options: {\n                        animation: false, // don't run the animation for incoming data\n                        responsive: true, // ensure we auto-resize the content\n                        scales: {\n                            x: {\n                                type: 'time' // in this example, we're rendering timestamps\n                            },\n                            y: {\n                                stacked: true\n                            }\n                        },\n                        parsing: {\n                            xAxisKey: 'time', // the property to render on the x-axis\n                            yAxisKey: 'value' // the property to render on the y-axis\n                        },\n                        plugins: {\n                            legend: {\n                                position: 'top',\n                            },\n                            title: {\n                                display: true,\n                                text: 'EVSE Current (Amps)'\n                            }\n                        }   \n                    },\n                });\n                // make this available to all elements of the component\n                this.chart = chart\n            },\n            onInput (msg) {\n                this.chart.data.datasets = []\n                // this.chart.data.datasets[0].data = []\n                this.chart.update()\n             \n\n\n                msg.payload.forEach( ( mvItem ) => {\n                    let label = `${mvItem.cbId}:P${mvItem.connectorId}`\n                    let idx = this.chart.data.datasets.findIndex( (ds) => ds.label == label )\n\n                    if (idx == -1) { \n                        idx = this.chart.data.datasets.push( {label: label, data: [] } ) - 1\n                    }\n                    \n                    this.chart.data.datasets[idx].data.push({time: mvItem._time, value: mvItem._value}) \n                })\n                this.chart.update()  \n            }    \n            \n        }\n    }\n\n</script>",
+    "format": "<template>\n    <canvas ref=\"chart\" />\n</template>\n\n<script src=\"https://cdn.jsdelivr.net/npm/chart.js\"></script>\n\n<script>\n    export default {\n        mounted() {\n            // register a listener for incoming data\n            this.$socket.on('msg-input:' + this.id, this.onInput)\n\n            // check with ChartJS has loaded\n            let interval = setInterval(() => {\n                if (window.Chart) {\n                    // clear the check for ChartJS\n                    clearInterval(interval);\n                    // draw our initial chart\n                    this.draw()\n                }\n            }, 100);\n        },\n        methods: {\n            draw () {\n                // get reference to the <canvas /> element\n                const ctx = this.$refs.chart\n                \n                // Render the chart\n                const chart = new Chart(ctx, {\n                    type: 'line',\n                    data: {\n                        datasets: [{\n                            label: \"\",  // label for the single line we'll render\n                            data: [\n                            ],            // start with no data\n                            fill: 1\n                        }]\n                    },\n                    options: {\n                        animation: false, // don't run the animation for incoming data\n                        responsive: true, // ensure we auto-resize the content\n                        scales: {\n                            x: {\n                                type: 'timeseries',\n                            },\n                            y: {\n                                stacked: false\n                            }\n                        },\n                        parsing: {\n                            xAxisKey: 'time', // the property to render on the x-axis\n                            yAxisKey: 'value' // the property to render on the y-axis\n                        },\n                        plugins: {\n                            legend: {\n                                position: 'top',\n                            },\n                            title: {\n                                display: true,\n                                text: 'EVSE Current (Amps)'\n                            }\n                        }   \n                    },\n                });\n                // make this available to all elements of the component\n                this.chart = chart\n            },\n            onInput (msg) {\n                this.chart.data.datasets = []\n                // this.chart.data.datasets[0].data = []\n                const start_sec = msg.options.start_sec\n                const now = new Date();\n                const minTime = new Date(now.getTime() - start_sec * 1000); // subtract 4 hours\n                const utcString = minTime.toISOString();\n\n                this.chart.options.scales.x.min = utcString\n                this.chart.update()\n\n                msg.payload.forEach( ( mvItem ) => {\n                    let label = `${mvItem.cbId}:P${mvItem.connectorId}`\n                    let idx = this.chart.data.datasets.findIndex( (ds) => ds.label == label )\n\n                    if (idx == -1) { \n                        idx = this.chart.data.datasets.push( {label: label, data: [] } ) - 1\n                    }\n                    \n                    this.chart.data.datasets[idx].data.push({time: mvItem._time, value: mvItem._value}) \n                })\n                this.chart.update()  \n            }    \n            \n        }\n    }\n\n</script>",
     "storeOutMessages": true,
     "passthru": true,
     "resendOnRefresh": true,
     "templateScope": "local",
     "className": "",
-    "x": 900,
-    "y": 1000,
+    "x": 1200,
+    "y": 1100,
     "wires": [
       [
         "9ccf03b5bb8eecc2"
@@ -384,7 +347,7 @@
     "color": "#490481",
     "wrapText": false,
     "className": "",
-    "x": 920,
+    "x": 1100,
     "y": 620,
     "wires": []
   },
@@ -406,7 +369,7 @@
     "color": "#490481",
     "wrapText": false,
     "className": "",
-    "x": 580,
+    "x": 720,
     "y": 580,
     "wires": []
   },
@@ -428,8 +391,8 @@
     "color": "#068104",
     "wrapText": false,
     "className": "",
-    "x": 1080,
-    "y": 1240,
+    "x": 1360,
+    "y": 880,
     "wires": []
   },
   {
@@ -450,8 +413,8 @@
     "color": "#068104",
     "wrapText": false,
     "className": "",
-    "x": 1090,
-    "y": 1280,
+    "x": 1370,
+    "y": 920,
     "wires": []
   },
   {
@@ -472,7 +435,7 @@
     "color": "#068104",
     "wrapText": false,
     "className": "",
-    "x": 910,
+    "x": 730,
     "y": 760,
     "wires": []
   },
@@ -494,31 +457,8 @@
     "color": "#490481",
     "wrapText": false,
     "className": "",
-    "x": 930,
+    "x": 1110,
     "y": 660,
-    "wires": []
-  },
-  {
-    "id": "67c26650958b4c02",
-    "type": "ui-text",
-    "z": "92d055a5ecbac90c",
-    "d": true,
-    "group": "530fe8d240942ac0",
-    "order": 7,
-    "width": "2",
-    "height": "1",
-    "name": "",
-    "label": "Current Load:  ",
-    "format": "{{msg.payload}}",
-    "layout": "row-left",
-    "style": true,
-    "font": "",
-    "fontSize": "22",
-    "color": "#068104",
-    "wrapText": false,
-    "className": "",
-    "x": 600,
-    "y": 800,
     "wires": []
   },
   {
@@ -539,8 +479,8 @@
     "raw": true,
     "className": "",
     "name": "",
-    "x": 1310,
-    "y": 400,
+    "x": 390,
+    "y": 360,
     "wires": [
       []
     ]
@@ -553,41 +493,11 @@
     "links": [
       "dd9016feeab69f8a"
     ],
-    "x": 1165,
-    "y": 400,
+    "x": 245,
+    "y": 360,
     "wires": [
       [
         "0256c52788664639"
-      ]
-    ]
-  },
-  {
-    "id": "a81b9fb52754cfc9",
-    "type": "inject",
-    "z": "92d055a5ecbac90c",
-    "name": "",
-    "props": [
-      {
-        "p": "payload"
-      },
-      {
-        "p": "topic",
-        "vt": "str"
-      }
-    ],
-    "repeat": "10",
-    "crontab": "",
-    "once": true,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "8",
-    "payloadType": "str",
-    "x": 230,
-    "y": 620,
-    "wires": [
-      [
-        "3c1e11c8ed086779",
-        "cae50a9e566c31a2"
       ]
     ]
   },
@@ -596,119 +506,43 @@
     "type": "inject",
     "z": "92d055a5ecbac90c",
     "name": "",
-    "props": [
-      {
-        "p": "payload"
-      },
-      {
-        "p": "topic",
-        "vt": "str"
-      }
-    ],
-    "repeat": "5",
+    "props": [],
+    "repeat": "",
     "crontab": "",
     "once": true,
     "onceDelay": 0.1,
     "topic": "",
-    "payload": "2",
-    "payloadType": "str",
-    "x": 230,
-    "y": 580,
+    "x": 325,
+    "y": 560,
     "wires": [
       [
-        "f874cc3bd44a0208"
+        "e03ff1fcf73167f8"
       ]
-    ]
+    ],
+    "l": false
   },
   {
     "id": "8dfd14d0c2d79980",
     "type": "inject",
     "z": "92d055a5ecbac90c",
     "name": "",
-    "props": [
-      {
-        "p": "payload"
-      },
-      {
-        "p": "topic",
-        "vt": "str"
-      }
-    ],
-    "repeat": "5",
+    "props": [],
+    "repeat": "",
     "crontab": "",
     "once": true,
     "onceDelay": 0.1,
     "topic": "",
-    "payload": "400 kWh",
-    "payloadType": "str",
-    "x": 220,
-    "y": 1240,
+    "x": 145,
+    "y": 880,
     "wires": [
       [
-        "60e4d09450fdac13"
+        "7a0d8235ef0920d9"
       ]
-    ]
-  },
-  {
-    "id": "f803a977c0eea8b2",
-    "type": "inject",
-    "z": "92d055a5ecbac90c",
-    "name": "",
-    "props": [
-      {
-        "p": "payload"
-      },
-      {
-        "p": "topic",
-        "vt": "str"
-      }
     ],
-    "repeat": "10",
-    "crontab": "",
-    "once": true,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "3200 kWh",
-    "payloadType": "str",
-    "x": 208,
-    "y": 1283,
-    "wires": [
-      [
-        "7bf24886ffe6be85"
-      ]
-    ]
+    "l": false
   },
   {
     "id": "10cd57b6e514e458",
-    "type": "inject",
-    "z": "92d055a5ecbac90c",
-    "name": "",
-    "props": [
-      {
-        "p": "payload"
-      },
-      {
-        "p": "topic",
-        "vt": "str"
-      }
-    ],
-    "repeat": "5",
-    "crontab": "",
-    "once": true,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "SITE:LoadLimit",
-    "payloadType": "global",
-    "x": 250,
-    "y": 760,
-    "wires": [
-      [
-        "58602cbda0a10753"
-      ]
-    ]
-  },
-  {
-    "id": "4d2028a35bb0c9a4",
     "type": "inject",
     "z": "92d055a5ecbac90c",
     "name": "",
@@ -726,15 +560,16 @@
     "once": true,
     "onceDelay": 0.1,
     "topic": "",
-    "payload": "40 Amps",
-    "payloadType": "str",
-    "x": 220,
-    "y": 800,
+    "payload": "SITE:LoadLimit",
+    "payloadType": "global",
+    "x": 435,
+    "y": 720,
     "wires": [
       [
-        "67c26650958b4c02"
+        "58602cbda0a10753"
       ]
-    ]
+    ],
+    "l": false
   },
   {
     "id": "a96ec32fd158cdc3",
@@ -798,41 +633,7 @@
     "y": 240,
     "wires": [
       [
-        "af38625e0eb46e1a",
-        "b63fd5d1f402a2bf"
-      ]
-    ]
-  },
-  {
-    "id": "b63fd5d1f402a2bf",
-    "type": "debug",
-    "z": "92d055a5ecbac90c",
-    "name": "debug 75",
-    "active": false,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "false",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 580,
-    "y": 280,
-    "wires": []
-  },
-  {
-    "id": "f4cb836a36b77b75",
-    "type": "link in",
-    "z": "92d055a5ecbac90c",
-    "name": "Update Banner",
-    "links": [
-      "4f2eb882456520c0"
-    ],
-    "x": 185,
-    "y": 180,
-    "wires": [
-      [
-        "445e1fd97be6944e",
-        "082f57bbbfa35a38"
+        "af38625e0eb46e1a"
       ]
     ]
   },
@@ -848,7 +649,7 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 410,
+    "x": 570,
     "y": 580,
     "wires": [
       [
@@ -868,7 +669,7 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 390,
+    "x": 570,
     "y": 620,
     "wires": [
       [
@@ -887,7 +688,7 @@
     "precision": "",
     "retentionPolicy": "",
     "org": "cipio",
-    "x": 560,
+    "x": 740,
     "y": 620,
     "wires": [
       [
@@ -907,7 +708,7 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 750,
+    "x": 930,
     "y": 620,
     "wires": [
       [
@@ -927,7 +728,7 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 390,
+    "x": 570,
     "y": 660,
     "wires": [
       [
@@ -946,7 +747,7 @@
     "precision": "",
     "retentionPolicy": "",
     "org": "cipio",
-    "x": 560,
+    "x": 740,
     "y": 660,
     "wires": [
       [
@@ -966,7 +767,7 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 750,
+    "x": 930,
     "y": 660,
     "wires": [
       [
@@ -978,19 +779,19 @@
     "id": "60e4d09450fdac13",
     "type": "function",
     "z": "92d055a5ecbac90c",
-    "name": "function 32",
-    "func": "function getMidnightISODateInCurrentTimezone() {\n  const now = new Date();\n\n  // Get the year, month, and day in the current timezone\n  const year = now.getFullYear();\n  const month = now.getMonth();\n  const day = now.getDate();\n\n  // Create a new Date object representing midnight in the current timezone\n  const midnight = new Date(year, month, day);\n\n  // Convert to ISO string.  The important part here is using toISOString() which\n  // handles the timezone conversion for you automatically.\n  return midnight.toISOString();\n}\n\nlet start = getMidnightISODateInCurrentTimezone()\n\nlet query = `\nimport \"join\"\n\nstopTx = from(bucket: \"OCPP\")\n  |> range(start: ${start})\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r.command == \"StopTransaction\")\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> keep(columns: [\"_cbId\", \"meterStop\",\"meterStart\",\"transactionId\"])\n  |> filter(fn: (r) => r.transactionId != 0)\n\nstartTx = from(bucket: \"OCPP\")\n  |> range(start: ${start})\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r.command == \"StartTransaction\")\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> keep(columns: [\"_cbId\", \"meterStop\",\"meterStart\",\"transactionId\"])\n  |> filter(fn: (r) => r.transactionId != 0)\n\n\njoin.inner(left: stopTx, right: startTx, on: (l, r) => l.transactionId == r.transactionId, as: (l, r) => { return {transactionId: l.transactionId, meterStop: l.meterStop, meterStart: r.meterStart, meter: l.meterStop - r.meterStart}})\n\n`\nmsg = {\n  query\n}\nreturn msg;\n\n\n\n",
+    "name": "Since Midnight",
+    "func": "function getMidnightISODateInCurrentTimezone() {\n  const now = new Date();\n\n  // Get the year, month, and day in the current timezone\n  const year = now.getFullYear();\n  const month = now.getMonth();\n  const day = now.getDate();\n\n  // Create a new Date object representing midnight in the current timezone\n  const midnight = new Date(year, month, day);\n\n  // Convert to ISO string.  The important part here is using toISOString() which\n  // handles the timezone conversion for you automatically.\n  return midnight.toISOString();\n}\n\nlet start = getMidnightISODateInCurrentTimezone()\n\nmsg.start = start;\nmsg.topic = \"today\"\nreturn msg;\n\n\n\n",
     "outputs": 1,
     "timeout": 0,
     "noerr": 0,
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 390,
-    "y": 1240,
+    "x": 340,
+    "y": 900,
     "wires": [
       [
-        "e1d6e963d03a9dab"
+        "06bfb6fd4bbd9c1c"
       ]
     ]
   },
@@ -1005,8 +806,8 @@
     "precision": "",
     "retentionPolicy": "",
     "org": "cipio",
-    "x": 560,
-    "y": 1240,
+    "x": 680,
+    "y": 900,
     "wires": [
       [
         "ed6334f683cc28f8"
@@ -1017,38 +818,19 @@
     "id": "7bf24886ffe6be85",
     "type": "function",
     "z": "92d055a5ecbac90c",
-    "name": "function 34",
-    "func": "function getMidnightISODateSevenDaysAgo() {\n  const now = new Date();\n\n  // Calculate the date 7 days ago\n  const sevenDaysAgo = new Date(now);\n  sevenDaysAgo.setDate(now.getDate() - 7);\n\n  // Extract year, month, and day from the date 7 days ago\n  const year = sevenDaysAgo.getFullYear();\n  const month = sevenDaysAgo.getMonth();\n  const day = sevenDaysAgo.getDate();\n\n  // Create a new Date object representing midnight 7 days ago\n  const midnightSevenDaysAgo = new Date(year, month, day);\n\n  return midnightSevenDaysAgo.toISOString();\n}\n\nlet start = getMidnightISODateSevenDaysAgo()\n\nlet query = `\nimport \"join\"\n\nstopTx = from(bucket: \"OCPP\")\n  |> range(start: ${start})\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r.command == \"StopTransaction\")\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> keep(columns: [\"_cbId\", \"meterStop\",\"meterStart\",\"transactionId\"])\n  |> filter(fn: (r) => r.transactionId != 0)\n\nstartTx = from(bucket: \"OCPP\")\n  |> range(start: ${start})\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r.command == \"StartTransaction\")\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> keep(columns: [\"_cbId\", \"meterStop\",\"meterStart\",\"transactionId\"])\n  |> filter(fn: (r) => r.transactionId != 0)\n\n\njoin.inner(left: stopTx, right: startTx, on: (l, r) => l.transactionId == r.transactionId, as: (l, r) => { return {transactionId: l.transactionId, meterStop: l.meterStop, meterStart: r.meterStart, meter: l.meterStop - r.meterStart}})\n\n  \n`\nmsg = {\n  query\n}\nreturn msg;\n\n\n\n",
+    "name": "Last 7 days",
+    "func": "function getMidnightISODateSevenDaysAgo() {\n  const now = new Date();\n\n  // Calculate the date 7 days ago\n  const sevenDaysAgo = new Date(now);\n  sevenDaysAgo.setDate(now.getDate() - 7);\n\n  // Extract year, month, and day from the date 7 days ago\n  const year = sevenDaysAgo.getFullYear();\n  const month = sevenDaysAgo.getMonth();\n  const day = sevenDaysAgo.getDate();\n\n  // Create a new Date object representing midnight 7 days ago\n  const midnightSevenDaysAgo = new Date(year, month, day);\n\n  return midnightSevenDaysAgo.toISOString();\n}\n\nlet start = getMidnightISODateSevenDaysAgo()\n\nmsg.start = start;\nmsg.topic = \"sevenDay\"\nreturn msg;\n\n\n\n",
     "outputs": 1,
     "timeout": 0,
     "noerr": 0,
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 390,
-    "y": 1280,
+    "x": 330,
+    "y": 940,
     "wires": [
       [
-        "5ead2fdeaf4adffc"
-      ]
-    ]
-  },
-  {
-    "id": "5ead2fdeaf4adffc",
-    "type": "influxdb in",
-    "z": "92d055a5ecbac90c",
-    "influxdb": "7cb40fcee206391e",
-    "name": "",
-    "query": "",
-    "rawOutput": false,
-    "precision": "",
-    "retentionPolicy": "",
-    "org": "cipio",
-    "x": 560,
-    "y": 1280,
-    "wires": [
-      [
-        "7fb074ac7dc92af5"
+        "06bfb6fd4bbd9c1c"
       ]
     ]
   },
@@ -1064,7 +846,7 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 730,
+    "x": 570,
     "y": 760,
     "wires": [
       [
@@ -1136,118 +918,6 @@
     "wires": []
   },
   {
-    "id": "eae926fb8f46e23c",
-    "type": "inject",
-    "z": "92d055a5ecbac90c",
-    "name": "",
-    "props": [
-      {
-        "p": "payload"
-      },
-      {
-        "p": "topic",
-        "vt": "str"
-      }
-    ],
-    "repeat": "3",
-    "crontab": "",
-    "once": true,
-    "onceDelay": "0.5",
-    "topic": "",
-    "payload": "",
-    "payloadType": "date",
-    "x": 155,
-    "y": 1100,
-    "wires": [
-      [
-        "a6e5cdd91da413a1"
-      ]
-    ],
-    "l": false
-  },
-  {
-    "id": "b1d8871ec67a310f",
-    "type": "influxdb in",
-    "z": "92d055a5ecbac90c",
-    "influxdb": "7cb40fcee206391e",
-    "name": "",
-    "query": "",
-    "rawOutput": false,
-    "precision": "",
-    "retentionPolicy": "",
-    "org": "cipio",
-    "x": 640,
-    "y": 1100,
-    "wires": [
-      [
-        "25ff9cd1197d0a85"
-      ]
-    ]
-  },
-  {
-    "id": "89ae70ba92a6beec",
-    "type": "function",
-    "z": "92d055a5ecbac90c",
-    "name": "FLUX Get raw MV OCPP",
-    "func": "// clear out any incoming message for now.\nlet filter_by_tx = \"\";\nlet topic = \"00000000\"\n\n/*\nif (msg.payload.txId) {\n  filter_by_tx = `|> filter(fn: (r) => r[\"transactionId\"] == \"${msg.payload.txId}\")`\n  topic = msg.payload.txId\n}\n*/\n\nmsg = {}\n\nmsg.topic = topic\n\nlet window = global.get(\"CSMS:MVSampleInterval\") || 60\nlet measurand = \"PowerkW\"\n\nmsg.query = \n  `from(bucket: \"OCPP\") \n    |> range(start: -1h) \n    |> filter(fn: (r) => r[\"_measurement\"] == \"MeterValues\") \n    |> filter(fn: (r) => r[\"_field\"] == \"${measurand}\")\n    |> aggregateWindow(every: ${window}s, createEmpty: true, fn: mean)\n    |> sort(columns: [\"_time\"])`\nreturn msg;",
-    "outputs": 1,
-    "timeout": 0,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 430,
-    "y": 1100,
-    "wires": [
-      [
-        "b1d8871ec67a310f"
-      ]
-    ]
-  },
-  {
-    "id": "0e5f5ef4d59a290f",
-    "type": "debug",
-    "z": "92d055a5ecbac90c",
-    "name": "debug 5",
-    "active": false,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 1000,
-    "y": 1100,
-    "wires": []
-  },
-  {
-    "id": "25ff9cd1197d0a85",
-    "type": "ui-template",
-    "z": "92d055a5ecbac90c",
-    "group": "588463f4dbc60e20",
-    "page": "",
-    "ui": "",
-    "name": "ChartJS Power",
-    "order": 1,
-    "width": 0,
-    "height": 0,
-    "head": "",
-    "format": "<template>\n    <canvas ref=\"chart\" />\n</template>\n\n<script src=\"https://cdn.jsdelivr.net/npm/chart.js\"></script>\n\n<script>\n    export default {\n        mounted() {\n            // register a listener for incoming data\n            this.$socket.on('msg-input:' + this.id, this.onInput)\n\n            // check with ChartJS has loaded\n            let interval = setInterval(() => {\n                if (window.Chart) {\n                    // clear the check for ChartJS\n                    clearInterval(interval);\n                    // draw our initial chart\n                    this.draw()\n                }\n            }, 100);\n        },\n        methods: {\n            draw () {\n                // get reference to the <canvas /> element\n                const ctx = this.$refs.chart\n                \n                // Render the chart\n                const chart = new Chart(ctx, {\n                    type: 'line',\n                    data: {\n                        datasets: [{\n                            label: \"\",  // label for the single line we'll render\n                            data: [\n                            ],            // start with no data\n                            fill: 1\n                        }]\n                    },\n                    options: {\n                        animation: false, // don't run the animation for incoming data\n                        responsive: true, // ensure we auto-resize the content\n                        scales: {\n                            x: {\n                                type: 'time' // in this example, we're rendering timestamps\n                            },\n                            y: {\n                                stacked: true\n                            }\n                        },\n                        parsing: {\n                            xAxisKey: 'time', // the property to render on the x-axis\n                            yAxisKey: 'value' // the property to render on the y-axis\n                        },\n                        plugins: {\n                            legend: {\n                                position: 'top',\n                            },\n                            title: {\n                                display: true,\n                                text: 'EVSE Power (kW)'\n                            }\n                        }   \n                    },\n                });\n                // make this available to all elements of the component\n                this.chart = chart\n            },\n            onInput (msg) {\n                this.chart.data.datasets = []\n                // this.chart.data.datasets[0].data = []\n                this.chart.update()\n             \n\n\n                msg.payload.forEach( ( mvItem ) => {\n                    let label = `${mvItem.cbId}:P${mvItem.connectorId}`\n                    let idx = this.chart.data.datasets.findIndex( (ds) => ds.label == label )\n\n                    if (idx == -1) { \n                        idx = this.chart.data.datasets.push( {label: label, data: [] } ) - 1\n                    }\n                    \n                    this.chart.data.datasets[idx].data.push({time: mvItem._time, value: mvItem._value}) \n                })\n                this.chart.update()  \n            }    \n            \n        }\n    }\n\n</script>",
-    "storeOutMessages": true,
-    "passthru": true,
-    "resendOnRefresh": true,
-    "templateScope": "local",
-    "className": "",
-    "x": 820,
-    "y": 1100,
-    "wires": [
-      [
-        "0e5f5ef4d59a290f"
-      ]
-    ]
-  },
-  {
     "id": "219975580bbca010",
     "type": "debug",
     "z": "92d055a5ecbac90c",
@@ -1262,60 +932,6 @@
     "x": 570,
     "y": 140,
     "wires": []
-  },
-  {
-    "id": "d8769e54fee991f9",
-    "type": "switch",
-    "z": "92d055a5ecbac90c",
-    "name": "",
-    "property": "CSMS:ShowCurrentGraph",
-    "propertyType": "global",
-    "rules": [
-      {
-        "t": "false"
-      },
-      {
-        "t": "else"
-      }
-    ],
-    "checkall": "true",
-    "repair": false,
-    "outputs": 2,
-    "x": 250,
-    "y": 980,
-    "wires": [
-      [],
-      [
-        "f18b9979d2212d1b"
-      ]
-    ]
-  },
-  {
-    "id": "a6e5cdd91da413a1",
-    "type": "switch",
-    "z": "92d055a5ecbac90c",
-    "name": "",
-    "property": "CSMS:ShowPowerGraph",
-    "propertyType": "global",
-    "rules": [
-      {
-        "t": "false"
-      },
-      {
-        "t": "else"
-      }
-    ],
-    "checkall": "true",
-    "repair": false,
-    "outputs": 2,
-    "x": 250,
-    "y": 1100,
-    "wires": [
-      [],
-      [
-        "89ae70ba92a6beec"
-      ]
-    ]
   },
   {
     "id": "334b1383690be34b",
@@ -1387,7 +1003,7 @@
     "group": "195e75b71683482a",
     "page": "",
     "ui": "",
-    "name": "",
+    "name": "Map",
     "order": 1,
     "width": "6",
     "height": "8",
@@ -1398,7 +1014,7 @@
     "resendOnRefresh": true,
     "templateScope": "local",
     "className": "",
-    "x": 560,
+    "x": 550,
     "y": 100,
     "wires": [
       []
@@ -1408,6 +1024,7 @@
     "id": "6fd8bde3125e0633",
     "type": "function",
     "z": "92d055a5ecbac90c",
+    "g": "5467f49e453ce114",
     "name": "Convert to kilo",
     "func": "let sum = msg.payload.reduce((accumulator, currentValue) => {\n  return accumulator + currentValue.meter;\n}, 0); // 0 is the initial value of the accumulator\n\n// Make this generic to support different units by passing it in\nlet label = msg.units\n\n// Prefix the 'k' and adjust the value if over 1000\nif (sum > 1000){\n  sum = (sum / 1000)\n  sum = Math.floor( sum * 100) / 100\n  label = `k${label}`\n}\n\nmsg.payload = `${sum} ${label}`\n \nreturn msg;",
     "outputs": 1,
@@ -1416,38 +1033,11 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 1300,
-    "y": 460,
+    "x": 1380,
+    "y": 80,
     "wires": [
       [
         "e1bcc6f5546a0346"
-      ]
-    ]
-  },
-  {
-    "id": "7fb074ac7dc92af5",
-    "type": "change",
-    "z": "92d055a5ecbac90c",
-    "name": "",
-    "rules": [
-      {
-        "t": "set",
-        "p": "units",
-        "pt": "msg",
-        "to": "Wh",
-        "tot": "str"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 730,
-    "y": 1280,
-    "wires": [
-      [
-        "7a387ce83e5a7d08"
       ]
     ]
   },
@@ -1470,8 +1060,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 730,
-    "y": 1240,
+    "x": 850,
+    "y": 900,
     "wires": [
       [
         "2580da62a8df949f"
@@ -1482,10 +1072,11 @@
     "id": "c8bff2ea426a4e7d",
     "type": "link in",
     "z": "92d055a5ecbac90c",
+    "g": "5467f49e453ce114",
     "name": "KiloConverter",
     "links": [],
-    "x": 1175,
-    "y": 460,
+    "x": 1265,
+    "y": 80,
     "wires": [
       [
         "6fd8bde3125e0633"
@@ -1502,11 +1093,11 @@
     ],
     "linkType": "static",
     "timeout": "30",
-    "x": 900,
-    "y": 1240,
+    "x": 1020,
+    "y": 900,
     "wires": [
       [
-        "dc8ebffcfc3e5ce0"
+        "64d835c03ecfad43"
       ]
     ]
   },
@@ -1514,28 +1105,509 @@
     "id": "e1bcc6f5546a0346",
     "type": "link out",
     "z": "92d055a5ecbac90c",
+    "g": "5467f49e453ce114",
     "name": "link out 42",
     "mode": "return",
     "links": [],
-    "x": 1425,
-    "y": 460,
+    "x": 1495,
+    "y": 80,
     "wires": []
   },
   {
-    "id": "7a387ce83e5a7d08",
+    "id": "9590429dfc0224bd",
+    "type": "inject",
+    "z": "92d055a5ecbac90c",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "-6h",
+    "payloadType": "str",
+    "x": 650,
+    "y": 1420,
+    "wires": [
+      [
+        "3972effc74a44a67"
+      ]
+    ]
+  },
+  {
+    "id": "3972effc74a44a67",
+    "type": "change",
+    "z": "92d055a5ecbac90c",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "start",
+        "pt": "msg",
+        "to": "payload",
+        "tot": "msg"
+      },
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "{\"options\":{\"start\":\"-1h\"}}",
+        "tot": "json"
+      },
+      {
+        "t": "set",
+        "p": "payload.options.start",
+        "pt": "msg",
+        "to": "start",
+        "tot": "msg"
+      },
+      {
+        "t": "set",
+        "p": "options",
+        "pt": "flow",
+        "to": "payload.options",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 900,
+    "y": 1420,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "5cc208c5b50eef04",
+    "type": "inject",
+    "z": "92d055a5ecbac90c",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "-3h",
+    "payloadType": "str",
+    "x": 650,
+    "y": 1540,
+    "wires": [
+      [
+        "3972effc74a44a67"
+      ]
+    ]
+  },
+  {
+    "id": "d13e1728464f84ba",
+    "type": "function",
+    "z": "92d055a5ecbac90c",
+    "name": "function 9",
+    "func": "const options = flow.get('options')\nconst start = options?.start || '-1h'\nconst start_sec = parseTimeOffset(start)\nmsg.options = { start_sec }\nreturn msg;\n\n\nfunction parseTimeOffset(input) {\n  const regex = /^-?(\\d+)([smhd])$/;\n  const match = input.match(regex);\n\n  if (!match) {\n    throw new Error(\"Invalid format. Use format like -30m, -1h, etc.\");\n  }\n\n  const value = parseInt(match[1], 10);\n  const unit = match[2];\n\n  const unitToSeconds = {\n    s: 1,\n    m: 60,\n    h: 3600,\n    d: 86400\n  };\n\n  if (!unitToSeconds[unit]) {\n    throw new Error(`Unsupported time unit: ${unit}`);\n  }\n\n  return value * unitToSeconds[unit];\n}\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 900,
+    "y": 1120,
+    "wires": [
+      [
+        "495125fb4b65388e"
+      ]
+    ]
+  },
+  {
+    "id": "be1e7f2ebbc1074d",
+    "type": "inject",
+    "z": "92d055a5ecbac90c",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "-4h",
+    "payloadType": "str",
+    "x": 650,
+    "y": 1500,
+    "wires": [
+      [
+        "3972effc74a44a67"
+      ]
+    ]
+  },
+  {
+    "id": "f6471b762ca6adaf",
+    "type": "inject",
+    "z": "92d055a5ecbac90c",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "-5h",
+    "payloadType": "str",
+    "x": 650,
+    "y": 1460,
+    "wires": [
+      [
+        "3972effc74a44a67"
+      ]
+    ]
+  },
+  {
+    "id": "e976251fd0470553",
+    "type": "inject",
+    "z": "92d055a5ecbac90c",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "-1d",
+    "payloadType": "str",
+    "x": 650,
+    "y": 1380,
+    "wires": [
+      [
+        "3972effc74a44a67"
+      ]
+    ]
+  },
+  {
+    "id": "676b4108c7f0123b",
+    "type": "ui-template",
+    "z": "92d055a5ecbac90c",
+    "group": "588463f4dbc60e20",
+    "page": "",
+    "ui": "",
+    "name": "ChartJS Power",
+    "order": 1,
+    "width": 0,
+    "height": 0,
+    "head": "",
+    "format": "<template>\n    <canvas ref=\"chart\" />\n</template>\n\n<script src=\"https://cdn.jsdelivr.net/npm/chart.js\"></script>\n\n<script>\n    export default {\n        mounted() {\n            // register a listener for incoming data\n            this.$socket.on('msg-input:' + this.id, this.onInput)\n\n            // check with ChartJS has loaded\n            let interval = setInterval(() => {\n                if (window.Chart) {\n                    // clear the check for ChartJS\n                    clearInterval(interval);\n                    // draw our initial chart\n                    this.draw()\n                }\n            }, 100);\n        },\n        methods: {\n            draw () {\n                // get reference to the <canvas /> element\n                const ctx = this.$refs.chart\n                \n                // Render the chart\n                const chart = new Chart(ctx, {\n                    type: 'line',\n                    data: {\n                        datasets: [{\n                            label: \"\",  // label for the single line we'll render\n                            data: [\n                            ],            // start with no data\n                            fill: 1\n                        }]\n                    },\n                    options: {\n                        animation: false, // don't run the animation for incoming data\n                        responsive: true, // ensure we auto-resize the content\n                        scales: {\n                            x: {\n                                type: 'timeseries' // in this example, we're rendering timestamps\n                            },\n                            y: {\n                                stacked: false\n                            }\n                        },\n                        parsing: {\n                            xAxisKey: 'time', // the property to render on the x-axis\n                            yAxisKey: 'value' // the property to render on the y-axis\n                        },\n                        plugins: {\n                            legend: {\n                                position: 'top',\n                            },\n                            title: {\n                                display: true,\n                                text: 'EVSE Power (kW)'\n                            }\n                        }   \n                    },\n                });\n                // make this available to all elements of the component\n                this.chart = chart\n            },\n            onInput (msg) {\n                this.chart.data.datasets = []\n                // this.chart.data.datasets[0].data = []\n                const start_sec = msg.options.start_sec\n                const now = new Date();\n                const minTime = new Date(now.getTime() - start_sec * 1000); // subtract 4 hours\n                const utcString = minTime.toISOString();\n\n                this.chart.options.scales.x.min = utcString\n                this.chart.update()\n\n                msg.payload.forEach( ( mvItem ) => {\n                    let label = `${mvItem.cbId}:P${mvItem.connectorId}`\n                    let idx = this.chart.data.datasets.findIndex( (ds) => ds.label == label )\n\n                    if (idx == -1) { \n                        idx = this.chart.data.datasets.push( {label: label, data: [] } ) - 1\n                    }\n                    \n                    this.chart.data.datasets[idx].data.push({time: mvItem._time, value: mvItem._value}) \n                })\n                this.chart.update()  \n            }        \n            \n        }\n    }\n\n</script>",
+    "storeOutMessages": true,
+    "passthru": true,
+    "resendOnRefresh": true,
+    "templateScope": "local",
+    "className": "",
+    "x": 1200,
+    "y": 1140,
+    "wires": [
+      [
+        "9ccf03b5bb8eecc2"
+      ]
+    ]
+  },
+  {
+    "id": "3aaa4e40e7f96077",
+    "type": "function",
+    "z": "92d055a5ecbac90c",
+    "name": "Filter Graphs",
+    "func": "const showCurrentGraph = global.get('CSMS:ShowCurrentGraph') ?? 'true'\nconst showPowerGraph = global.get('CSMS:ShowPowerGraph') ?? 'true'\n\nif (showCurrentGraph){\n    msg.topic = 'CurrentA'\n    node.send(msg)\n}\n\nif (showPowerGraph){\n    msg.topic = 'PowerkW'\n    node.send(msg)\n}\n\nreturn",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 330,
+    "y": 1120,
+    "wires": [
+      [
+        "f18b9979d2212d1b"
+      ]
+    ]
+  },
+  {
+    "id": "495125fb4b65388e",
+    "type": "switch",
+    "z": "92d055a5ecbac90c",
+    "name": "",
+    "property": "topic",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "CurrentA",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "PowerkW",
+        "vt": "str"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 1030,
+    "y": 1120,
+    "wires": [
+      [
+        "19926af6f970a4b9"
+      ],
+      [
+        "676b4108c7f0123b"
+      ]
+    ]
+  },
+  {
+    "id": "9bc95aff2e7a309f",
+    "type": "comment",
+    "z": "92d055a5ecbac90c",
+    "name": "Update Graphs on MeterValue events",
+    "info": "",
+    "x": 210,
+    "y": 1060,
+    "wires": []
+  },
+  {
+    "id": "bbd00c38158e9803",
+    "type": "redis-in",
+    "z": "92d055a5ecbac90c",
+    "server": "0430675ed6c7cd83",
+    "command": "psubscribe",
+    "name": "",
+    "topic": "settings:site:show*",
+    "obj": true,
+    "timeout": 0,
+    "x": 130,
+    "y": 180,
+    "wires": [
+      [
+        "082f57bbbfa35a38",
+        "445e1fd97be6944e"
+      ]
+    ]
+  },
+  {
+    "id": "0788572fb72dc33c",
+    "type": "redis-in",
+    "z": "92d055a5ecbac90c",
+    "server": "0430675ed6c7cd83",
+    "command": "subscribe",
+    "name": "",
+    "topic": "csms:update:sessions",
+    "obj": true,
+    "timeout": 0,
+    "x": 240,
+    "y": 600,
+    "wires": [
+      [
+        "e03ff1fcf73167f8"
+      ]
+    ]
+  },
+  {
+    "id": "117aefd666e879a5",
+    "type": "redis-in",
+    "z": "92d055a5ecbac90c",
+    "server": "0430675ed6c7cd83",
+    "command": "subscribe",
+    "name": "",
+    "topic": "settings:site:load_limit",
+    "obj": true,
+    "timeout": 0,
+    "x": 360,
+    "y": 760,
+    "wires": [
+      [
+        "58602cbda0a10753"
+      ]
+    ]
+  },
+  {
+    "id": "4c7c18b8e1c2aa14",
+    "type": "function",
+    "z": "92d055a5ecbac90c",
+    "g": "5467f49e453ce114",
+    "name": "Tx Query",
+    "func": "/*\nfunction getMidnightISODateInCurrentTimezone() {\n  const now = new Date();\n\n  // Get the year, month, and day in the current timezone\n  const year = now.getFullYear();\n  const month = now.getMonth();\n  const day = now.getDate();\n\n  // Create a new Date object representing midnight in the current timezone\n  const midnight = new Date(year, month, day);\n\n  // Convert to ISO string.  The important part here is using toISOString() which\n  // handles the timezone conversion for you automatically.\n  return midnight.toISOString();\n}\n\nlet start = getMidnightISODateInCurrentTimezone()\n*/\n\nconst start = msg.start\nconst topic = msg.topic\n\nlet query = `\nimport \"join\"\n\nstopTx = from(bucket: \"OCPP\")\n  |> range(start: ${start})\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r.command == \"StopTransaction\")\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> keep(columns: [\"_cbId\", \"meterStop\",\"meterStart\",\"transactionId\"])\n  |> filter(fn: (r) => r.transactionId != 0)\n\nstartTx = from(bucket: \"OCPP\")\n  |> range(start: ${start})\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r.command == \"StartTransaction\")\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> keep(columns: [\"_cbId\", \"meterStop\",\"meterStart\",\"transactionId\"])\n  |> filter(fn: (r) => r.transactionId != 0)\n\n\njoin.inner(left: stopTx, right: startTx, on: (l, r) => l.transactionId == r.transactionId, as: (l, r) => { return {transactionId: l.transactionId, meterStop: l.meterStop, meterStart: r.meterStart, meter: l.meterStop - r.meterStart}})\n\n`\nmsg.query = query\n\nreturn msg;\n\n\n\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1360,
+    "y": 140,
+    "wires": [
+      [
+        "f3054096229843f4"
+      ]
+    ]
+  },
+  {
+    "id": "6582d565aa21b5d6",
+    "type": "link in",
+    "z": "92d055a5ecbac90c",
+    "g": "5467f49e453ce114",
+    "name": "query tx",
+    "links": [],
+    "x": 1265,
+    "y": 140,
+    "wires": [
+      [
+        "4c7c18b8e1c2aa14"
+      ]
+    ]
+  },
+  {
+    "id": "f3054096229843f4",
+    "type": "link out",
+    "z": "92d055a5ecbac90c",
+    "g": "5467f49e453ce114",
+    "name": "link out 66",
+    "mode": "return",
+    "links": [],
+    "x": 1465,
+    "y": 140,
+    "wires": []
+  },
+  {
+    "id": "06bfb6fd4bbd9c1c",
     "type": "link call",
     "z": "92d055a5ecbac90c",
     "name": "",
     "links": [
-      "c8bff2ea426a4e7d"
+      "6582d565aa21b5d6"
     ],
     "linkType": "static",
     "timeout": "30",
-    "x": 900,
-    "y": 1280,
+    "x": 520,
+    "y": 900,
     "wires": [
       [
+        "e1d6e963d03a9dab"
+      ]
+    ]
+  },
+  {
+    "id": "64d835c03ecfad43",
+    "type": "switch",
+    "z": "92d055a5ecbac90c",
+    "name": "",
+    "property": "topic",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "today",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "sevenDay",
+        "vt": "str"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 1200,
+    "y": 900,
+    "wires": [
+      [
+        "dc8ebffcfc3e5ce0"
+      ],
+      [
         "5b67ef06c0cafdd5"
+      ]
+    ]
+  },
+  {
+    "id": "451980a900ea5489",
+    "type": "redis-in",
+    "z": "92d055a5ecbac90c",
+    "server": "0430675ed6c7cd83",
+    "command": "subscribe",
+    "name": "Sub Tx",
+    "topic": "csms:ocpp:Transaction",
+    "obj": true,
+    "timeout": 0,
+    "x": 110,
+    "y": 920,
+    "wires": [
+      [
+        "7a0d8235ef0920d9"
+      ]
+    ]
+  },
+  {
+    "id": "13502706680d4ee5",
+    "type": "comment",
+    "z": "92d055a5ecbac90c",
+    "name": "Update Energy totals on Tx events",
+    "info": "",
+    "x": 200,
+    "y": 840,
+    "wires": []
+  },
+  {
+    "id": "a2117e50193ae737",
+    "type": "redis-in",
+    "z": "92d055a5ecbac90c",
+    "server": "0430675ed6c7cd83",
+    "command": "subscribe",
+    "name": "Sub MV",
+    "topic": "csms:ocpp:MeterValue",
+    "obj": true,
+    "timeout": 0,
+    "x": 130,
+    "y": 1140,
+    "wires": [
+      [
+        "4d74ca2a2923fc10"
+      ]
+    ]
+  },
+  {
+    "id": "7d4e836ec4a61401",
+    "type": "redis-in",
+    "z": "92d055a5ecbac90c",
+    "server": "0430675ed6c7cd83",
+    "command": "subscribe",
+    "name": "Sub Tx",
+    "topic": "csms:ocpp:Transaction",
+    "obj": true,
+    "timeout": 0,
+    "x": 130,
+    "y": 1180,
+    "wires": [
+      [
+        "4d74ca2a2923fc10"
       ]
     ]
   }

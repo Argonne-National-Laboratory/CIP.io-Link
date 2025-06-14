@@ -8,18 +8,131 @@
     "env": []
   },
   {
+    "id": "0f64ec29e5e2920f",
+    "type": "group",
+    "z": "daf7a59ca2ce18df",
+    "name": "Tx Details ",
+    "style": {
+      "stroke": "#c8e7a7",
+      "fill": "#ffcf3f",
+      "label": true,
+      "color": "#001f60"
+    },
+    "nodes": [
+      "c4b73cd2d6f1efbb",
+      "2b3313124c5432fd",
+      "7d7516052c9c7a0a",
+      "02ea19c5e98fd683",
+      "20adfc41cd29af1b",
+      "83b842273e7bfae5",
+      "9cec406f120e7d5d",
+      "70f90fb397f12726",
+      "bb739222584f69de",
+      "54ff26bff532c2d5",
+      "b790fef9f4f7de2c",
+      "4cc7f71877e27f96",
+      "bc6bb2f523b00fa9",
+      "a39145869b71df51",
+      "2ef7f596c72004a1",
+      "11ee4d2550f2e6b1",
+      "bae6fc11c3f77385",
+      "2a2eb5a77e70df62",
+      "b2ad490ff03c2c97",
+      "9214f5879d50fbe0",
+      "e5e3bc3824864970",
+      "4a191fd359629475",
+      "a6948cd72ae1a796",
+      "0cfe76cf25b87178",
+      "a54940f160f7f0db",
+      "d301de1fbbac9723",
+      "33e220dd106839f5",
+      "306d784e407efc57",
+      "5aed68d7dac2c043",
+      "6056ebcd2dce07ad",
+      "28e987d2f51b24a4",
+      "2bf238ae31912284",
+      "4c7d7739dd4dfec4",
+      "103cbc8e3cfdb916",
+      "dce39f362f094d13",
+      "83789711b154ecf9"
+    ],
+    "x": 14,
+    "y": 479,
+    "w": 1312,
+    "h": 622
+  },
+  {
+    "id": "95650db55e509f3a",
+    "type": "group",
+    "z": "daf7a59ca2ce18df",
+    "name": "Tx List",
+    "style": {
+      "stroke": "#92d04f",
+      "fill": "#ffff3f",
+      "label": true,
+      "color": "#001f60"
+    },
+    "nodes": [
+      "e3912322d07af67d",
+      "47ec7b659bf636da",
+      "3b309fbf5a5e9349",
+      "1380888fab8c8636",
+      "c5cd7189e5cb3f54",
+      "22993ff229d6db8d",
+      "429f153803b4e889",
+      "fbdd04f3b4d0925d",
+      "c42e4d342acc0cd3",
+      "86d3cd69d0bb705f",
+      "95c129bce90c82d2"
+    ],
+    "x": 14,
+    "y": 299,
+    "w": 1362,
+    "h": 162
+  },
+  {
+    "id": "3ac4f1444c541fae",
+    "type": "group",
+    "z": "daf7a59ca2ce18df",
+    "name": "View Control",
+    "style": {
+      "stroke": "#92d04f",
+      "fill": "#c8e7a7",
+      "label": true,
+      "color": "#001f60"
+    },
+    "nodes": [
+      "e721721ffe065303",
+      "e5cf1fe4522628ee",
+      "add76386e6a46f5d",
+      "c006c2c3567e7ee6",
+      "5df3e99944651698",
+      "7ad34b56292f573d",
+      "6ff728dbd7af2084",
+      "d4313ae998f77a51",
+      "87227c37b26c9994",
+      "c3993a72f3c63028"
+    ],
+    "x": 14,
+    "y": 19,
+    "w": 832,
+    "h": 242
+  },
+  {
     "id": "b790fef9f4f7de2c",
     "type": "junction",
     "z": "daf7a59ca2ce18df",
-    "x": 1340,
-    "y": 240,
+    "g": "0f64ec29e5e2920f",
+    "x": 1020,
+    "y": 580,
     "wires": [
       [
         "bc6bb2f523b00fa9",
         "a39145869b71df51",
         "2ef7f596c72004a1",
         "11ee4d2550f2e6b1",
-        "bae6fc11c3f77385"
+        "bae6fc11c3f77385",
+        "6056ebcd2dce07ad"
       ]
     ]
   },
@@ -27,8 +140,9 @@
     "id": "4cc7f71877e27f96",
     "type": "junction",
     "z": "daf7a59ca2ce18df",
-    "x": 740,
-    "y": 920,
+    "g": "0f64ec29e5e2920f",
+    "x": 640,
+    "y": 860,
     "wires": [
       [
         "2a2eb5a77e70df62",
@@ -41,23 +155,10 @@
     ]
   },
   {
-    "id": "cf7b88020b745f6a",
-    "type": "junction",
-    "z": "daf7a59ca2ce18df",
-    "x": 1420,
-    "y": 520,
-    "wires": [
-      [
-        "c006c2c3567e7ee6",
-        "2807de6096eb9e1f",
-        "c4b73cd2d6f1efbb"
-      ]
-    ]
-  },
-  {
     "id": "e3912322d07af67d",
     "type": "ui-template",
     "z": "daf7a59ca2ce18df",
+    "g": "95650db55e509f3a",
     "group": "17fb40c0e949759b",
     "page": "",
     "ui": "",
@@ -66,18 +167,17 @@
     "width": "0",
     "height": "0",
     "head": "",
-    "format": "<template>\n    <v-data-table  \n            v-model:search=\"search\" \n            :headers=\"headers\"\n            :items=\"msg?.payload\"\n            :filter-keys='[\"transactionId\",\"cbId\",\"_value\"]'\n            >\n    <template v-slot:top>\n        <v-toolbar flat>\n            <v-toolbar-title>\n                <v-icon color=\"medium-emphasis\" icon=\"mdi-handshake\" size=\"x-small\" start></v-icon>\n                Transactions\n            </v-toolbar-title>\n            <v-text-field\n                v-model=\"search\"\n                label=\"Search\"\n                prepend-inner-icon=\"mdi-magnify\"\n                clear-icon=\"mdi-close-circle\"\n                variant=\"solo-filled\"\n                density=\"compact\"\n                hide-details\n                single-line\n                clearable\n            ></v-text-field>\n            <!-- v-spacer></v-spacer -->           \n            <v-tooltip text=\"Refresh\" location=\"bottom\">\n                <template v-slot:activator=\"{ props }\">\n                <v-btn icon v-bind=\"props\" @click=\"refresh\">\n                    <v-icon>mdi-refresh</v-icon>\n                </v-btn>\n                </template>\n            </v-tooltip>\n            <v-template>\n            <v-select\n                v-model=\"selectedStartTime\"\n                density=\"compact\"\n                :items=\"startTimes\"\n                item-title=\"title\"\n                item-value=\"value\"\n                >\n            </v-select>\n            </v-template>            \n\n        </v-toolbar>\n    </template>            \n      <template v-slot:item.meter=\"{ item }\">\n        <div>\n          <v-text>{{ item.meterStart }}{{item.meterStop}}</v-text>\n      </template>\n        <template v-slot:item._time=\"{ item }\">\n            <div>{{ getLocalTimeString(item._time) }}</div>\n        </template>\n      <template v-slot:item.actions=\"{ item }\">\n        <v-icon\n          class=\"me-2\"\n          size=\"small\"\n          @click=\"send({ action: 'txDetails', payload: { txId: item.transactionId, startTime: item._time }})\"\n        >\n          mdi-eye\n        </v-icon>\n      </template>\n            \n    </v-data-table>\n    <v-container>\n    <v-row align=\"center\" justify=\"center\">\n      <v-col cols=\"auto\">\n        <v-btn size=\"x-small\" @click=\"selectedStartTime = '-12d'\">Change</v-btn>\n      </v-col>\n    </v-row>\n  </v-container>\n</template>\n\n<script>\n    export default {\n        data() {\n            return {\n                loaded: false,\n                search: '',\n                headers: [\n                    { value: \"_time\", title: \"Time\"},\n                    { value: \"transactionId\", title: \"TxId\"},\n                    { key: \"idTag\", title: \"IdTag\", sortable: true},\n                    { value: \"cbId\", title: \"EVSE\", sortable: true},\n                    { value: \"connectorId\", title: \"Conn\", sortable: true},\n                    { key: \"tx_duration\", value: item => this.getSecToMin(item.tx_duration), title: \"Duration (min)\", sortable: true},\n                    { key: \"totalEnergy\", title: \"Energy (kWh)\", sortable: true},\n                    { key: \"actions\", title: \"Details\", sortable: false},\n                ],\n                selectedStartTime: \"-3d\",\n                startTimes: [\n                    { title: \"past 1m\", value: '-1m'},\n                    { title: \"past 5m\", value: '-5m'},\n                    { title: \"past 15m\", value: '-15m'},\n                    { title: \"past 1h\", value: '-1h'},\n                    { title: \"past 3h\", value: '-3h'},\n                    { title: \"past 6h\", value: '-6h'},\n                    { title: \"past 12h\", value: '-12h'},\n                    { title: \"past 24h\", value: '-24h'},\n                    { title: \"past 2d\", value: '-2d'},\n                    { title: \"past 7d\", value: '-7d'},\n                    { title: \"past 12d\", value: '-12d'},\n                    { title: \"past 30d\", value: '-30d'},\n                    ]\n            }\n        },\n        watch: {\n            selectedStartTime: function() {\n                this.sendOptions()\n            }\n        },\n        computed: {\n            \n        },\n        methods: {\n            // expose a method to our <template> and Vue Application\n            getLocalTimeString: function (isoTime){\n                const date = new Date(isoTime)\n                const options = { \n                    year: '2-digit', \n                    month: '2-digit', \n                    day: '2-digit', \n                    hour: '2-digit', \n                    minute: '2-digit', \n                    second: '2-digit', \n                    millisecond: '3-digit',\n                    hour12: false \n                    }\n                return date.toLocaleString('en-US', options)\n            },\n            sendOptions: function() {\n                this.send({\n                    action: \"options\", \n                    options: {\n                        start: this.selectedStartTime\n                    }\n                })\n            },\n            getTruncated: function(value,decimals){\n                const factor = Math.pow(10, decimals);\n                return Math.floor(value * factor) / factor;\n            },\n            getSecToMin: function(value) {\n                return Math.floor(value / 60);\n            },\n            \n        },\n        mounted() {\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n                if (! this.loaded ){\n                    this.loaded = true\n                    //this.selectedStartTime = \"-20d\"\n                }\n             })\n        },\n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: red;\n    }\n    .headers {\n        font-weight: bold;\n    }\n    .ocppMsgReq {\n        color: blue;\n        font-weight: bold;\n    }\n    .ocppMsgRes {\n        color: blue;\n    }\n    .ocppMsgErr {\n        color: red;\n    }\n</style>",
+    "format": "<template>\n    <v-data-table  \n            v-model:search=\"search\" \n            :headers=\"headers\"\n            :items=\"msg?.payload\"\n            :filter-keys='[\"transactionId\",\"cbId\",\"_value\"]'\n            >\n    <template v-slot:top>\n        <v-toolbar flat>\n            <v-toolbar-title>\n                <v-icon color=\"#0000FF\" icon=\"mdi-handshake\" size=\"x-large\" start></v-icon>\n                Transactions\n            </v-toolbar-title>\n            <v-text-field\n                v-model=\"search\"\n                label=\"Search\"\n                prepend-inner-icon=\"mdi-magnify\"\n                clear-icon=\"mdi-close-circle\"\n                variant=\"solo-filled\"\n                density=\"compact\"\n                hide-details\n                single-line\n                clearable\n            ></v-text-field>\n            <!-- v-spacer></v-spacer -->           \n            <v-tooltip text=\"Refresh\" location=\"bottom\">\n                <template v-slot:activator=\"{ props }\">\n                <v-btn icon v-bind=\"props\" @click=\"refresh\">\n                    <v-icon size=\"large\" color=\"primary\">mdi-refresh</v-icon>\n                </v-btn>\n                </template>\n            </v-tooltip>\n            <v-template>\n            <v-select\n                v-model=\"selectedStartTime\"\n                density=\"compact\"\n                :items=\"startTimes\"\n                item-title=\"title\"\n                item-value=\"value\"\n                >\n            </v-select>\n            </v-template>            \n\n        </v-toolbar>\n    </template>            \n      <template v-slot:item.meter=\"{ item }\">\n        <div>\n          <v-text>{{ item.meterStart }}{{item.meterStop}}</v-text>\n      </template>\n        <template v-slot:item._time=\"{ item }\">\n            <div>{{ getLocalTimeString(item._time) }}</div>\n        </template>\n      <template v-slot:item.actions=\"{ item }\">\n        <v-icon\n          class=\"me-2\"\n          size=\"small\"\n          @click=\"send({ action: 'txDetails', payload: { txId: item.transactionId, startTime: item._time }})\"\n        >\n          mdi-eye\n        </v-icon>\n      </template>\n            \n    </v-data-table>\n    <!--v-container>\n    <v-row align=\"center\" justify=\"center\">\n      <v-col cols=\"auto\">\n        <v-btn size=\"x-small\" @click=\"selectedStartTime = '-12d'\">Change</v-btn>\n      </v-col>\n    </v-row>\n  </v-container -->\n</template>\n\n<script>\n    export default {\n        data() {\n            return {\n                loaded: false,\n                search: '',\n                headers: [\n                    { value: \"_time\", title: \"Time\"},\n                    { value: \"transactionId\", title: \"TxId\"},\n                    { key: \"idTag\", title: \"IdTag\", sortable: true},\n                    { value: \"cbId\", title: \"EVSE\", sortable: true},\n                    { value: \"connectorId\", title: \"Conn\", sortable: true},\n                    { key: \"tx_duration\", value: item => this.getSecToMin(item.tx_duration), title: \"Duration (min)\", sortable: true},\n                    { key: \"totalEnergy\", title: \"Energy (kWh)\", sortable: true},\n                    { key: \"actions\", title: \"Details\", sortable: false},\n                ],\n                selectedStartTime: \"-3d\",\n                startTimes: [\n                    { title: \"past 1m\", value: '-1m'},\n                    { title: \"past 5m\", value: '-5m'},\n                    { title: \"past 15m\", value: '-15m'},\n                    { title: \"past 1h\", value: '-1h'},\n                    { title: \"past 3h\", value: '-3h'},\n                    { title: \"past 6h\", value: '-6h'},\n                    { title: \"past 12h\", value: '-12h'},\n                    { title: \"past 24h\", value: '-24h'},\n                    { title: \"past 2d\", value: '-2d'},\n                    { title: \"past 7d\", value: '-7d'},\n                    { title: \"past 12d\", value: '-12d'},\n                    { title: \"past 30d\", value: '-30d'},\n                    ]\n            }\n        },\n        watch: {\n            selectedStartTime: function() {\n                this.sendOptions()\n            }\n        },\n        computed: {\n            \n        },\n        methods: {\n            // expose a method to our <template> and Vue Application\n            getLocalTimeString: function (isoTime){\n                const date = new Date(isoTime)\n                const options = { \n                    year: '2-digit', \n                    month: '2-digit', \n                    day: '2-digit', \n                    hour: '2-digit', \n                    minute: '2-digit', \n                    second: '2-digit', \n                    millisecond: '3-digit',\n                    hour12: false \n                    }\n                return date.toLocaleString('en-US', options)\n            },\n            sendOptions: function() {\n                this.send({\n                    action: \"options\", \n                    options: {\n                        start: this.selectedStartTime\n                    }\n                })\n            },\n            getTruncated: function(value,decimals){\n                const factor = Math.pow(10, decimals);\n                return Math.floor(value * factor) / factor;\n            },\n            getSecToMin: function(value) {\n                return Math.floor(value / 60);\n            },\n            \n        },\n        mounted() {\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n                if (! this.loaded ){\n                    this.loaded = true\n                    //this.selectedStartTime = \"-20d\"\n                }\n             })\n        },\n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: red;\n    }\n\n    .headers {\n        font-weight: bold;\n    }\n</style>",
     "storeOutMessages": true,
     "passthru": false,
     "resendOnRefresh": true,
     "templateScope": "local",
     "className": "",
-    "x": 1210,
-    "y": 520,
+    "x": 930,
+    "y": 380,
     "wires": [
       [
-        "429f153803b4e889",
-        "92d4fc8edd807919"
+        "429f153803b4e889"
       ]
     ]
   },
@@ -85,6 +185,7 @@
     "id": "c4b73cd2d6f1efbb",
     "type": "function",
     "z": "daf7a59ca2ce18df",
+    "g": "0f64ec29e5e2920f",
     "name": "FLUX Get raw MV OCPP",
     "func": "// clear out any incoming message for now.\nlet filter_by_tx = \"\";\nlet txId = \"00000000\"\nlet start = \"-365d\"\nif (msg.payload.txId) {\n  filter_by_tx = `|> filter(fn: (r) => r[\"transactionId\"] == \"${msg.payload.txId}\")`\n  txId = msg.payload.txId\n}\nif (msg.payload.startTime) {\n  start = msg.payload.startTime\n}\n\nmsg = {}\n\nmsg.options = {\n  txId,\n  start\n}\n\nmsg.query = `from(bucket: \"OCPP\") \\\n  |> range(start: ${start}) \\\n  |> filter(fn: (r) => r[\"_measurement\"] == \"MeterValues\") \\\n  ${filter_by_tx} \\\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\") \\\n  |> drop(columns: [\"_start\",\"_stop\",\"_measurement\",\"cbId\",\"connectorId\",\"transactionId\"]) \\\n  |> sort(columns: [\"_time\"])`\nreturn msg;",
     "outputs": 1,
@@ -93,8 +194,8 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 610,
-    "y": 460,
+    "x": 230,
+    "y": 780,
     "wires": [
       [
         "7d7516052c9c7a0a",
@@ -106,6 +207,7 @@
     "id": "47ec7b659bf636da",
     "type": "function",
     "z": "daf7a59ca2ce18df",
+    "g": "95650db55e509f3a",
     "name": "FLUX Get raw Tx OCPP",
     "func": "let options = flow.get(\"options\") ?? {}\nlet start = options?.start ?? '-7d'\n\n// clear out any incoming message for now.\nmsg = {}\n\nmsg.query = `\nmeterStart = from(bucket: \"OCPP\")\n  |> range(start: ${start})\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r[\"_field\"] == \"transactionId\" or r[\"_field\"] == \"meterStart\" or r[\"_field\"] == \"idTag\" or r[\"_field\"] == \"connectorId\")\n  |> filter(fn: (r) => r.command == \"StartTransaction\")\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> filter(fn: (r) => r.transactionId != 0)\n  |> drop(columns: [\"_start\",\"_stop\",\"msgFrom\",\"_measurement\"])\n\nmeterStop = from(bucket: \"OCPP\")\n  |> range(start: ${start})\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r[\"_field\"] == \"transactionId\" or r[\"_field\"] == \"meterStop\")\n  |> filter(fn: (r) => r.command == \"StopTransaction\")\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> filter(fn: (r) => r.transactionId != 0)\n  |> drop(columns: [\"_start\",\"_stop\",\"msgFrom\",\"_measurement\"])\n\njoin(tables: {key1: meterStart, key2: meterStop}, on: [\"transactionId\"], method: \"inner\")\n  |> group()\n  |> sort( columns: [\"_time\"])\n  |> map(fn: (r) => ({ r with totalEnergy: r.meterStop - r.meterStart}))\n  |> map(fn: (r) => ({ r with tx_duration: (uint( v: r._time_key2) - uint( v: r._time_key1)) / uint(v: 1000000000) }))\n  |> map(fn: (r) => ({ r with _time: r._time_key1}))\n  |> map(fn: (r) => ({ r with cbId: r.cbId_key1}))\n\n`\nreturn msg;",
     "outputs": 1,
@@ -114,37 +216,19 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 610,
-    "y": 520,
+    "x": 330,
+    "y": 380,
     "wires": [
       [
-        "3b309fbf5a5e9349",
-        "4d28c5123bd6d40d"
+        "3b309fbf5a5e9349"
       ]
     ]
-  },
-  {
-    "id": "32233b212a66cfcb",
-    "type": "debug",
-    "z": "daf7a59ca2ce18df",
-    "name": "",
-    "active": false,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 1395,
-    "y": 460,
-    "wires": [],
-    "l": false
   },
   {
     "id": "3b309fbf5a5e9349",
     "type": "influxdb in",
     "z": "daf7a59ca2ce18df",
+    "g": "95650db55e509f3a",
     "influxdb": "7cb40fcee206391e",
     "name": "",
     "query": "",
@@ -152,8 +236,8 @@
     "precision": "",
     "retentionPolicy": "",
     "org": "cipio",
-    "x": 820,
-    "y": 520,
+    "x": 540,
+    "y": 380,
     "wires": [
       [
         "c5cd7189e5cb3f54"
@@ -164,6 +248,7 @@
     "id": "1380888fab8c8636",
     "type": "inject",
     "z": "daf7a59ca2ce18df",
+    "g": "95650db55e509f3a",
     "name": "",
     "props": [
       {
@@ -181,8 +266,8 @@
     "topic": "",
     "payload": "",
     "payloadType": "date",
-    "x": 305,
-    "y": 580,
+    "x": 165,
+    "y": 340,
     "wires": [
       [
         "47ec7b659bf636da"
@@ -194,6 +279,7 @@
     "id": "c5cd7189e5cb3f54",
     "type": "function",
     "z": "daf7a59ca2ce18df",
+    "g": "95650db55e509f3a",
     "name": "FLUX remove extras",
     "func": "msg.payload.forEach(function(ocppMsg) {\n    delete ocppMsg.result;\n    delete ocppMsg.table;\n});\nmsg.options = flow.get('options')\nreturn msg;",
     "outputs": 1,
@@ -202,40 +288,26 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 1020,
-    "y": 520,
+    "x": 740,
+    "y": 380,
     "wires": [
       [
-        "e3912322d07af67d",
-        "aef68b6786e5c5a7"
+        "e3912322d07af67d"
       ]
-    ]
-  },
-  {
-    "id": "aa18045a070128d9",
-    "type": "link in",
-    "z": "daf7a59ca2ce18df",
-    "name": "MV Refresh",
-    "links": [
-      "b30433a611efd29c"
-    ],
-    "x": 145,
-    "y": 460,
-    "wires": [
-      []
     ]
   },
   {
     "id": "22993ff229d6db8d",
     "type": "link in",
     "z": "daf7a59ca2ce18df",
+    "g": "95650db55e509f3a",
     "name": "Transaction Refreh",
     "links": [
-      "7a8e05f5d5a2e926",
-      "c42e4d342acc0cd3"
+      "c42e4d342acc0cd3",
+      "d4313ae998f77a51"
     ],
     "x": 145,
-    "y": 520,
+    "y": 420,
     "wires": [
       [
         "47ec7b659bf636da"
@@ -246,22 +318,23 @@
     "id": "70f90fb397f12726",
     "type": "ui-template",
     "z": "daf7a59ca2ce18df",
+    "g": "0f64ec29e5e2920f",
     "group": "750f030497b122aa",
     "page": "",
     "ui": "",
     "name": "MV by TxId",
-    "order": 9,
+    "order": 10,
     "width": 0,
     "height": 0,
     "head": "",
-    "format": "<template>\n    <!-- v-text-field\n        v-model=\"search\"\n        label=\"Search\"\n        prepend-inner-icon=\"mdi-magnify\"\n        variant=\"outlined\"\n        clearable\n        hide-details\n        single-line\n      ></v-text-field -->\n\n    <v-data-table  \n        :headers=\"headers\"\n        :items=\"msg.payload\"\n        :filter-keys='[\"CurrentA\",\"VoltageV\",\"EnergykWh\"]'\n    >\n        <template v-slot:header._time>\n            <div class=\"headers\">Time</div>\n        </template>\n        <template v-slot:header.VoltageV>\n            <div class=\"headers\">Volts</div>\n        </template>\n\n        <template v-slot:item._time=\"{ item }\">\n            <div>{{ getLocalTimeString(item._time) }}</div>\n        </template>\n    </v-data-table>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                search: '',\n                headers: [\n                    { title: \"Time\", key: \"_time\"},\n                    { title: \"Current(A)\", key: \"CurrentA\", value: item => this.getTruncated(item.CurrentA, 3)},\n                    { title: \"Volts(V)\", key: \"VoltageV\", value: item => this.getTruncated(item.VoltageV, 3)},\n                    { title: \"Power(kW)\", key: \"PowerkW\", value: item => this.getTruncated(item.PowerkW, 3)},\n                    { title: \"Energy(kWh)\", key: \"EnergykWh\", value: item => this.getTruncated(item.EnergykWh, 3)},\n                    { title: \"SoC (%)\", key: \"SoC\"}\n                ]\n\n            }\n        },\n        watch: {\n            // watch for any changes of \"count\"\n\n        },\n        computed: {\n\n        },\n        methods: {\n            // expose a method to our <template> and Vue Application\n            getLocalTimeString: function (isoTime){\n                const date = new Date(isoTime)\n                const options = { \n                    year: '2-digit', \n                    month: '2-digit', \n                    day: '2-digit', \n                    hour: '2-digit', \n                    minute: '2-digit', \n                    second: '2-digit', \n                    millisecond: '3-digit',\n                    hour12: false \n                    }\n                return date.toLocaleString('en-US', options)\n            },\n            getTruncated: function(value,decimals){\n                const factor = Math.pow(10, decimals);\n                return Math.floor(value * factor) / factor;\n            }\n        },\n        mounted() {\n            // code here when the component is first loaded\n        },\n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .headers {\n        font-weight: bold;\n        color: green;\n    }\n\n</style>",
+    "format": "<template>\n    \n    <v-data-table  \n        :headers=\"getHeaders()\"\n        :items=\"msg.payload\"\n        :filter-keys='[\"CurrentA\",\"VoltageV\",\"EnergykWh\"]'\n    >\n        <template v-slot:header._time>\n            <div class=\"headers\">Time</div>\n        </template>\n        <template v-slot:item._time=\"{ item }\">\n            <div>{{ getLocalTimeString(item._time) }}</div>\n        </template>\n    </v-data-table>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                search: ''\n            }\n        },\n        watch: {\n            // watch for any changes of \"count\"\n        },\n        computed: {\n\n        },\n        methods: {\n            // expose a method to our <template> and Vue Application\n            getLocalTimeString: function (isoTime){\n                const date = new Date(isoTime)\n                const options = { \n                    year: '2-digit', \n                    month: '2-digit', \n                    day: '2-digit', \n                    hour: '2-digit', \n                    minute: '2-digit', \n                    second: '2-digit', \n                    millisecond: '3-digit',\n                    hour12: false \n                    }\n                return date.toLocaleString('en-US', options)\n            },\n            getTruncated: function(value,decimals){\n                const factor = Math.pow(10, decimals);\n                return Math.floor(value * factor) / factor;\n            },\n            getHeaders(){\n                let headers = \n                [\n                { title: \"Time\", key: \"_time\"},\n                { title: \"Current(A)\", key: \"CurrentA\", value: item => this.getTruncated(item.CurrentA, 3)},\n                { title: \"Volts(V)\", key: \"VoltageV\", value: item => this.getTruncated(item.VoltageV, 3)},\n                { title: \"Power(kW)\", key: \"PowerkW\", value: item => this.getTruncated(item.PowerkW, 3)},\n                { title: \"Energy(kWh)\", key: \"EnergykWh\", value: item => this.getTruncated(item.EnergykWh, 3)},\n                { title: \"SoC (%)\", key: \"SoC\"}\n                ];\n\n                if (this?.msg?.payload && Object.hasOwn(this.msg.payload[0], 'PowerExportkW')){\n                    headers[3] = \n                    { \n                        title: \"V2G Power(kW)\", \n                        key: \"PowerExportkW\", \n                        value: item => this.getTruncated(item.PowerExportkW, 3) \n                    }\n                }\n\n                if (this?.msg?.payload && Object.hasOwn(this.msg.payload[0], 'EnergyExportkWh')){\n                    headers[4] = \n                    { \n                        title: \"V2G Energy(kWh)\", \n                        key: \"EnergyExportkWh\", \n                        value: item => this.getTruncated(item.EnergyExportkWh, 3)\n                    }\n                }\n\n                if (this?.msg?.payload && !Object.hasOwn(this.msg.payload[0], 'SoC')){\n                    let index = headers.findIndex((x) => x.key == \"SoC\")\n\n                    if (index){\n                        headers.splice(index,1)\n                    }\n                }\n                return headers\n\n            }\n        },\n        mounted() {\n            // code here when the component is first loaded\n        },\n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .headers {\n        font-weight: bold;\n        color: green;\n    }\n\n</style>",
     "storeOutMessages": true,
     "passthru": false,
     "resendOnRefresh": true,
     "templateScope": "local",
     "className": "",
-    "x": 1450,
-    "y": 420,
+    "x": 1210,
+    "y": 720,
     "wires": [
       []
     ]
@@ -270,6 +343,7 @@
     "id": "7d7516052c9c7a0a",
     "type": "influxdb in",
     "z": "daf7a59ca2ce18df",
+    "g": "0f64ec29e5e2920f",
     "influxdb": "7cb40fcee206391e",
     "name": "",
     "query": "",
@@ -277,8 +351,8 @@
     "precision": "",
     "retentionPolicy": "",
     "org": "cipio",
-    "x": 900,
-    "y": 460,
+    "x": 480,
+    "y": 740,
     "wires": [
       [
         "20adfc41cd29af1b"
@@ -289,6 +363,7 @@
     "id": "20adfc41cd29af1b",
     "type": "function",
     "z": "daf7a59ca2ce18df",
+    "g": "0f64ec29e5e2920f",
     "name": "FLUX remove extras",
     "func": "msg.payload.forEach(function(ocppMsg) {\n    delete ocppMsg.result;\n    delete ocppMsg.table;\n});\nreturn msg;",
     "outputs": 1,
@@ -297,37 +372,20 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 1100,
-    "y": 460,
+    "x": 700,
+    "y": 720,
     "wires": [
       [
         "70f90fb397f12726",
-        "32233b212a66cfcb",
         "bb739222584f69de"
       ]
     ]
   },
   {
-    "id": "afc97f6be14c06af",
-    "type": "debug",
-    "z": "daf7a59ca2ce18df",
-    "name": "debug 60",
-    "active": false,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 1080,
-    "y": 280,
-    "wires": []
-  },
-  {
     "id": "e721721ffe065303",
     "type": "debug",
     "z": "daf7a59ca2ce18df",
+    "g": "3ac4f1444c541fae",
     "name": "debug 61",
     "active": false,
     "tosidebar": true,
@@ -338,18 +396,19 @@
     "statusVal": "",
     "statusType": "auto",
     "x": 740,
-    "y": 700,
+    "y": 160,
     "wires": []
   },
   {
     "id": "e5cf1fe4522628ee",
     "type": "ui-control",
     "z": "daf7a59ca2ce18df",
+    "g": "3ac4f1444c541fae",
     "name": "",
     "ui": "8cdc313c9611f13f",
     "events": "all",
     "x": 600,
-    "y": 700,
+    "y": 160,
     "wires": [
       [
         "e721721ffe065303"
@@ -360,6 +419,7 @@
     "id": "add76386e6a46f5d",
     "type": "function",
     "z": "daf7a59ca2ce18df",
+    "g": "3ac4f1444c541fae",
     "name": "Show TX",
     "func": "msg.payload = {\n    \"groups\": {\n        \"show\": [\n            \"Transactions:Transactions\"\n        ],\n        \"hide\": [\n            \"Transactions:Meter Values\"\n        ]\n    }\n}\nreturn msg;",
     "outputs": 1,
@@ -368,12 +428,12 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 420,
-    "y": 660,
+    "x": 400,
+    "y": 100,
     "wires": [
       [
         "e5cf1fe4522628ee",
-        "47ec7b659bf636da"
+        "d4313ae998f77a51"
       ]
     ]
   },
@@ -381,6 +441,7 @@
     "id": "c006c2c3567e7ee6",
     "type": "function",
     "z": "daf7a59ca2ce18df",
+    "g": "3ac4f1444c541fae",
     "name": "Show MV",
     "func": "msg.payload = {\n    \"groups\": {\n        \"hide\": [\n            \"Transactions:Transactions\"\n        ],\n        \"show\": [\n            \"Transactions:Meter Values\"\n        ]\n    }\n}\nreturn msg;",
     "outputs": 1,
@@ -390,7 +451,7 @@
     "finalize": "",
     "libs": [],
     "x": 420,
-    "y": 700,
+    "y": 160,
     "wires": [
       [
         "e5cf1fe4522628ee"
@@ -401,6 +462,7 @@
     "id": "5df3e99944651698",
     "type": "inject",
     "z": "daf7a59ca2ce18df",
+    "g": "3ac4f1444c541fae",
     "name": "",
     "props": [
       {
@@ -419,7 +481,7 @@
     "payload": "",
     "payloadType": "date",
     "x": 265,
-    "y": 660,
+    "y": 120,
     "wires": [
       [
         "add76386e6a46f5d"
@@ -431,6 +493,7 @@
     "id": "7ad34b56292f573d",
     "type": "inject",
     "z": "daf7a59ca2ce18df",
+    "g": "3ac4f1444c541fae",
     "name": "",
     "props": [
       {
@@ -449,7 +512,7 @@
     "payload": "",
     "payloadType": "date",
     "x": 265,
-    "y": 700,
+    "y": 160,
     "wires": [
       [
         "c006c2c3567e7ee6"
@@ -458,55 +521,17 @@
     "l": false
   },
   {
-    "id": "c3993a72f3c63028",
-    "type": "ui-button",
-    "z": "daf7a59ca2ce18df",
-    "group": "750f030497b122aa",
-    "name": "",
-    "label": "Return to Transaction List",
-    "order": 1,
-    "width": "0",
-    "height": "0",
-    "emulateClick": false,
-    "tooltip": "",
-    "color": "",
-    "bgcolor": "",
-    "className": "block",
-    "icon": "mdi-keyboard-return",
-    "iconPosition": "left",
-    "payload": "{\"target\":\"Transactions\"}",
-    "payloadType": "json",
-    "topic": "topic",
-    "topicType": "msg",
-    "buttonColor": "",
-    "textColor": "",
-    "iconColor": "yellow",
-    "enableClick": true,
-    "enablePointerdown": false,
-    "pointerdownPayload": "",
-    "pointerdownPayloadType": "str",
-    "enablePointerup": false,
-    "pointerupPayload": "",
-    "pointerupPayloadType": "str",
-    "x": 150,
-    "y": 620,
-    "wires": [
-      [
-        "add76386e6a46f5d"
-      ]
-    ]
-  },
-  {
     "id": "bc6bb2f523b00fa9",
     "type": "ui-chart",
     "z": "daf7a59ca2ce18df",
+    "g": "0f64ec29e5e2920f",
     "group": "750f030497b122aa",
     "name": "Energy",
     "label": "Energy",
-    "order": 13,
+    "order": 14,
     "chartType": "line",
-    "category": "",
-    "categoryType": "none",
+    "category": "[\"EnergykWh\",\"EnergyExportkWh\"]",
+    "categoryType": "json",
     "xAxisLabel": "",
     "xAxisProperty": "payload._time",
     "xAxisPropertyType": "msg",
@@ -552,8 +577,8 @@
     "height": "8",
     "className": "",
     "interpolation": "linear",
-    "x": 1480,
-    "y": 240,
+    "x": 1200,
+    "y": 600,
     "wires": [
       []
     ]
@@ -562,13 +587,14 @@
     "id": "a39145869b71df51",
     "type": "ui-chart",
     "z": "daf7a59ca2ce18df",
+    "g": "0f64ec29e5e2920f",
     "group": "750f030497b122aa",
     "name": "Power",
     "label": "Power",
-    "order": 12,
+    "order": 13,
     "chartType": "line",
-    "category": "",
-    "categoryType": "none",
+    "category": "[\"PowerkW\",\"PowerOfferedkW\",\"PowerExportkW\"]",
+    "categoryType": "json",
     "xAxisLabel": "",
     "xAxisProperty": "payload._time",
     "xAxisPropertyType": "msg",
@@ -614,8 +640,8 @@
     "height": "8",
     "className": "",
     "interpolation": "linear",
-    "x": 1470,
-    "y": 280,
+    "x": 1190,
+    "y": 640,
     "wires": [
       []
     ]
@@ -624,10 +650,11 @@
     "id": "2ef7f596c72004a1",
     "type": "ui-chart",
     "z": "daf7a59ca2ce18df",
+    "g": "0f64ec29e5e2920f",
     "group": "750f030497b122aa",
     "name": "SOC",
     "label": "SOC",
-    "order": 14,
+    "order": 16,
     "chartType": "line",
     "category": "",
     "categoryType": "none",
@@ -676,8 +703,8 @@
     "height": "8",
     "className": "",
     "interpolation": "linear",
-    "x": 1470,
-    "y": 320,
+    "x": 1190,
+    "y": 680,
     "wires": [
       []
     ]
@@ -686,6 +713,7 @@
     "id": "bb739222584f69de",
     "type": "function",
     "z": "daf7a59ca2ce18df",
+    "g": "0f64ec29e5e2920f",
     "name": "function 18",
     "func": "// Start off by clearing all the charts\nnode.send({payload: []})\n\n//Take the array and send as individual payloads to the \n// charts\n \nmsg.payload.forEach(function(mv) {\n    let msg2 = {}\n    msg2.payload = mv\n    //msg2.payload.timestamp = new Date(mv._time).getTime()\n    node.send(msg2)\n});\n",
     "outputs": 1,
@@ -694,8 +722,8 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 1250,
-    "y": 240,
+    "x": 870,
+    "y": 580,
     "wires": [
       [
         "b790fef9f4f7de2c"
@@ -703,34 +731,17 @@
     ]
   },
   {
-    "id": "6c36ced9caa73c04",
-    "type": "debug",
-    "z": "daf7a59ca2ce18df",
-    "name": "",
-    "active": false,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 1065,
-    "y": 320,
-    "wires": [],
-    "l": false
-  },
-  {
     "id": "11ee4d2550f2e6b1",
     "type": "ui-chart",
     "z": "daf7a59ca2ce18df",
+    "g": "0f64ec29e5e2920f",
     "group": "750f030497b122aa",
     "name": "Current",
     "label": "Current",
-    "order": 11,
+    "order": 12,
     "chartType": "line",
-    "category": "",
-    "categoryType": "none",
+    "category": "[\"CurrentA\",\"CurrentOfferedA\"]",
+    "categoryType": "json",
     "xAxisLabel": "",
     "xAxisProperty": "payload._time",
     "xAxisPropertyType": "msg",
@@ -776,8 +787,8 @@
     "height": "8",
     "className": "",
     "interpolation": "linear",
-    "x": 1481,
-    "y": 200,
+    "x": 1201,
+    "y": 560,
     "wires": [
       []
     ]
@@ -786,10 +797,11 @@
     "id": "bae6fc11c3f77385",
     "type": "ui-chart",
     "z": "daf7a59ca2ce18df",
+    "g": "0f64ec29e5e2920f",
     "group": "750f030497b122aa",
     "name": "Voltage",
     "label": "Voltage",
-    "order": 10,
+    "order": 11,
     "chartType": "line",
     "category": "",
     "categoryType": "none",
@@ -838,8 +850,8 @@
     "height": 8,
     "className": "",
     "interpolation": "linear",
-    "x": 1480,
-    "y": 160,
+    "x": 1200,
+    "y": 520,
     "wires": [
       []
     ]
@@ -848,8 +860,9 @@
     "id": "83b842273e7bfae5",
     "type": "ui-text",
     "z": "daf7a59ca2ce18df",
+    "g": "0f64ec29e5e2920f",
     "group": "750f030497b122aa",
-    "order": 2,
+    "order": 3,
     "width": 0,
     "height": 0,
     "name": "",
@@ -863,13 +876,14 @@
     "wrapText": false,
     "className": "",
     "x": 1220,
-    "y": 360,
+    "y": 780,
     "wires": []
   },
   {
     "id": "02ea19c5e98fd683",
     "type": "change",
     "z": "daf7a59ca2ce18df",
+    "g": "0f64ec29e5e2920f",
     "name": "",
     "rules": [
       {
@@ -890,78 +904,22 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 900,
-    "y": 360,
+    "x": 480,
+    "y": 780,
     "wires": [
       [
         "83b842273e7bfae5",
-        "6c36ced9caa73c04",
         "9cec406f120e7d5d"
       ]
     ]
   },
   {
-    "id": "2807de6096eb9e1f",
-    "type": "function",
-    "z": "daf7a59ca2ce18df",
-    "name": "FLUX Get raw None-MV OCPP",
-    "func": "// clear out any incoming message for now.\nlet filter_by_tx = \"\";\nlet topic = \"00000000\"\nif (msg.payload.txId) {\n  filter_by_tx = `|> filter(fn: (r) => r[\"transactionId\"] == ${msg.payload.txId})`\n  topic = msg.payload.txId\n}\n\nmsg = {}\n\nmsg.topic = topic\n\nmsg.query = `from(bucket: \"OCPP\") \\\n  |> range( start: -365d) \\\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\") \\\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\") \\\n  ${filter_by_tx} \\\n  |> filter(fn: (r) => r[\"command\"] == \"StartTransaction\") \\\n  |> drop(columns: [\"_start\",\"_stop\",\"_measurement\"]) \\\n  |> group(columns: [\"transactionId\"]) \\\n  |> sort(columns: [\"_time\"])`\nreturn msg;",
-    "outputs": 1,
-    "timeout": 0,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 670,
-    "y": 280,
-    "wires": [
-      [
-        "cad0c9ccd4a89916"
-      ]
-    ]
-  },
-  {
-    "id": "cad0c9ccd4a89916",
-    "type": "influxdb in",
-    "z": "daf7a59ca2ce18df",
-    "influxdb": "7cb40fcee206391e",
-    "name": "",
-    "query": "",
-    "rawOutput": false,
-    "precision": "",
-    "retentionPolicy": "",
-    "org": "cipio",
-    "x": 920,
-    "y": 280,
-    "wires": [
-      [
-        "afc97f6be14c06af"
-      ]
-    ]
-  },
-  {
-    "id": "aef68b6786e5c5a7",
-    "type": "debug",
-    "z": "daf7a59ca2ce18df",
-    "name": "debug 67",
-    "active": false,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 1240,
-    "y": 700,
-    "wires": []
-  },
-  {
     "id": "a54940f160f7f0db",
     "type": "ui-text",
     "z": "daf7a59ca2ce18df",
+    "g": "0f64ec29e5e2920f",
     "group": "750f030497b122aa",
-    "order": 3,
+    "order": 4,
     "width": "2",
     "height": "1",
     "name": "",
@@ -975,15 +933,16 @@
     "wrapText": false,
     "className": "",
     "x": 1220,
-    "y": 840,
+    "y": 860,
     "wires": []
   },
   {
     "id": "0cfe76cf25b87178",
     "type": "ui-text",
     "z": "daf7a59ca2ce18df",
+    "g": "0f64ec29e5e2920f",
     "group": "750f030497b122aa",
-    "order": 4,
+    "order": 5,
     "width": "2",
     "height": "1",
     "name": "",
@@ -997,15 +956,16 @@
     "wrapText": false,
     "className": "",
     "x": 1210,
-    "y": 880,
+    "y": 900,
     "wires": []
   },
   {
     "id": "d301de1fbbac9723",
     "type": "ui-text",
     "z": "daf7a59ca2ce18df",
+    "g": "0f64ec29e5e2920f",
     "group": "750f030497b122aa",
-    "order": 8,
+    "order": 9,
     "width": "2",
     "height": "1",
     "name": "",
@@ -1019,15 +979,16 @@
     "wrapText": false,
     "className": "",
     "x": 1190,
-    "y": 920,
+    "y": 940,
     "wires": []
   },
   {
     "id": "33e220dd106839f5",
     "type": "ui-text",
     "z": "daf7a59ca2ce18df",
+    "g": "0f64ec29e5e2920f",
     "group": "750f030497b122aa",
-    "order": 5,
+    "order": 6,
     "width": "2",
     "height": "1",
     "name": "",
@@ -1041,15 +1002,16 @@
     "wrapText": false,
     "className": "",
     "x": 1200,
-    "y": 960,
+    "y": 980,
     "wires": []
   },
   {
     "id": "306d784e407efc57",
     "type": "ui-text",
     "z": "daf7a59ca2ce18df",
+    "g": "0f64ec29e5e2920f",
     "group": "750f030497b122aa",
-    "order": 6,
+    "order": 7,
     "width": "2",
     "height": "1",
     "name": "",
@@ -1063,15 +1025,16 @@
     "wrapText": false,
     "className": "",
     "x": 1200,
-    "y": 1000,
+    "y": 1020,
     "wires": []
   },
   {
     "id": "5aed68d7dac2c043",
     "type": "ui-text",
     "z": "daf7a59ca2ce18df",
+    "g": "0f64ec29e5e2920f",
     "group": "750f030497b122aa",
-    "order": 7,
+    "order": 8,
     "width": "2",
     "height": "1",
     "name": "",
@@ -1085,13 +1048,14 @@
     "wrapText": false,
     "className": "",
     "x": 1210,
-    "y": 1040,
+    "y": 1060,
     "wires": []
   },
   {
     "id": "9cec406f120e7d5d",
     "type": "function",
     "z": "daf7a59ca2ce18df",
+    "g": "0f64ec29e5e2920f",
     "name": "Get Tx MeterStart/Stop  ",
     "func": "let TxId = msg.payload || msg.options.txId\nlet start = msg.options.start || \"-365d\"\nlet stop = \"-363d\"\n\nif (msg?.options?.start) {\n  stop = addXDaysUTC(msg.options.start, 2)\n}\n\nmsg = {}\n\nmsg.query = `\nmeterStart = from(bucket: \"OCPP\")\n  |> range(start: ${start}, stop: ${stop} )\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r[\"_field\"] == \"transactionId\" or r[\"_field\"] == \"meterStart\" or r[\"_field\"] == \"idTag\" or r[\"_field\"] == \"connectorId\")\n  |> filter(fn: (r) => r.command == \"StartTransaction\")\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> filter(fn: (r) => r.transactionId != 0)\n  |> drop(columns: [\"_start\",\"_stop\",\"msgFrom\",\"_measurement\"])\n\nmeterStop = from(bucket: \"OCPP\")\n  |> range(start: ${start}, stop: ${stop})\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\")\n  |> filter(fn: (r) => r[\"_field\"] == \"transactionId\" or r[\"_field\"] == \"meterStop\")\n  |> filter(fn: (r) => r.command == \"StopTransaction\")\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\")\n  |> filter(fn: (r) => r.transactionId != 0)\n  |> drop(columns: [\"_start\",\"_stop\",\"msgFrom\",\"_measurement\"])\n\njoin(tables: {key1: meterStart, key2: meterStop}, on: [\"transactionId\"], method: \"inner\")\n|> filter(fn: (r) => r.transactionId == ${TxId})\n|> map(fn: (r) => ({ r with totalEnergy: r.meterStop - r.meterStart}))\n|> map(fn: (r) => ({ r with difference_seconds: (uint( v: r._time_key2) - uint( v: r._time_key1)) / uint(v: 1000000000) }))\n\n`\nreturn msg;\n\nfunction addXDaysUTC(utcString, days) {\n  const date = new Date(utcString);\n  if (isNaN(date)) {\n    throw new Error(\"Invalid UTC time string\");\n  }\n\n  // Add one day in milliseconds\n  const oneDayLater = new Date(date.getTime() + days * 24 * 60 * 60 * 1000);\n\n  return oneDayLater.toISOString(); // Always returns in UTC\n}",
     "outputs": 1,
@@ -1100,8 +1064,8 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 370,
-    "y": 800,
+    "x": 290,
+    "y": 860,
     "wires": [
       [
         "54ff26bff532c2d5"
@@ -1112,6 +1076,7 @@
     "id": "54ff26bff532c2d5",
     "type": "influxdb in",
     "z": "daf7a59ca2ce18df",
+    "g": "0f64ec29e5e2920f",
     "influxdb": "7cb40fcee206391e",
     "name": "",
     "query": "",
@@ -1119,36 +1084,19 @@
     "precision": "",
     "retentionPolicy": "",
     "org": "cipio",
-    "x": 600,
-    "y": 800,
+    "x": 500,
+    "y": 860,
     "wires": [
       [
-        "a6b605ca949e5de8",
         "4cc7f71877e27f96"
       ]
     ]
   },
   {
-    "id": "a6b605ca949e5de8",
-    "type": "debug",
-    "z": "daf7a59ca2ce18df",
-    "name": "debug 68",
-    "active": false,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 1230,
-    "y": 800,
-    "wires": []
-  },
-  {
     "id": "b2ad490ff03c2c97",
     "type": "change",
     "z": "daf7a59ca2ce18df",
+    "g": "0f64ec29e5e2920f",
     "name": "",
     "rules": [
       {
@@ -1164,8 +1112,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 980,
-    "y": 840,
+    "x": 820,
+    "y": 860,
     "wires": [
       [
         "a54940f160f7f0db"
@@ -1176,6 +1124,7 @@
     "id": "2a2eb5a77e70df62",
     "type": "change",
     "z": "daf7a59ca2ce18df",
+    "g": "0f64ec29e5e2920f",
     "name": "",
     "rules": [
       {
@@ -1191,8 +1140,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 980,
-    "y": 880,
+    "x": 820,
+    "y": 900,
     "wires": [
       [
         "0cfe76cf25b87178"
@@ -1203,6 +1152,7 @@
     "id": "9214f5879d50fbe0",
     "type": "change",
     "z": "daf7a59ca2ce18df",
+    "g": "0f64ec29e5e2920f",
     "name": "",
     "rules": [
       {
@@ -1218,8 +1168,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 980,
-    "y": 920,
+    "x": 820,
+    "y": 940,
     "wires": [
       [
         "d301de1fbbac9723"
@@ -1230,6 +1180,7 @@
     "id": "e5e3bc3824864970",
     "type": "change",
     "z": "daf7a59ca2ce18df",
+    "g": "0f64ec29e5e2920f",
     "name": "",
     "rules": [
       {
@@ -1245,8 +1196,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 980,
-    "y": 960,
+    "x": 820,
+    "y": 980,
     "wires": [
       [
         "33e220dd106839f5"
@@ -1257,6 +1208,7 @@
     "id": "4a191fd359629475",
     "type": "change",
     "z": "daf7a59ca2ce18df",
+    "g": "0f64ec29e5e2920f",
     "name": "",
     "rules": [
       {
@@ -1272,8 +1224,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 980,
-    "y": 1000,
+    "x": 820,
+    "y": 1020,
     "wires": [
       [
         "306d784e407efc57"
@@ -1284,6 +1236,7 @@
     "id": "a6948cd72ae1a796",
     "type": "change",
     "z": "daf7a59ca2ce18df",
+    "g": "0f64ec29e5e2920f",
     "name": "",
     "rules": [
       {
@@ -1299,8 +1252,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 980,
-    "y": 1040,
+    "x": 820,
+    "y": 1060,
     "wires": [
       [
         "5aed68d7dac2c043"
@@ -1311,32 +1264,33 @@
     "id": "429f153803b4e889",
     "type": "switch",
     "z": "daf7a59ca2ce18df",
+    "g": "95650db55e509f3a",
     "name": "",
     "property": "action",
     "propertyType": "msg",
     "rules": [
       {
         "t": "eq",
-        "v": "txDetails",
+        "v": "options",
         "vt": "str"
       },
       {
         "t": "eq",
-        "v": "options",
+        "v": "txDetails",
         "vt": "str"
       }
     ],
     "checkall": "true",
     "repair": false,
     "outputs": 2,
-    "x": 1330,
-    "y": 520,
+    "x": 1050,
+    "y": 380,
     "wires": [
       [
-        "cf7b88020b745f6a"
+        "fbdd04f3b4d0925d"
       ],
       [
-        "fbdd04f3b4d0925d"
+        "95c129bce90c82d2"
       ]
     ]
   },
@@ -1344,6 +1298,7 @@
     "id": "fbdd04f3b4d0925d",
     "type": "change",
     "z": "daf7a59ca2ce18df",
+    "g": "95650db55e509f3a",
     "name": "",
     "rules": [
       {
@@ -1359,8 +1314,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 1480,
-    "y": 600,
+    "x": 1220,
+    "y": 360,
     "wires": [
       [
         "c42e4d342acc0cd3"
@@ -1368,43 +1323,10 @@
     ]
   },
   {
-    "id": "4d28c5123bd6d40d",
-    "type": "debug",
-    "z": "daf7a59ca2ce18df",
-    "name": "debug 6",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 810,
-    "y": 600,
-    "wires": []
-  },
-  {
-    "id": "92d4fc8edd807919",
-    "type": "debug",
-    "z": "daf7a59ca2ce18df",
-    "name": "debug 8",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 1470,
-    "y": 700,
-    "wires": []
-  },
-  {
     "id": "0c0b9e08cf5c59be",
     "type": "inject",
     "z": "daf7a59ca2ce18df",
+    "d": true,
     "name": "",
     "props": [
       {
@@ -1422,8 +1344,8 @@
     "topic": "",
     "payload": "",
     "payloadType": "date",
-    "x": 1530,
-    "y": 940,
+    "x": 300,
+    "y": 1620,
     "wires": [
       [
         "c2d5dbeda92099af"
@@ -1434,6 +1356,7 @@
     "id": "c2d5dbeda92099af",
     "type": "function",
     "z": "daf7a59ca2ce18df",
+    "d": true,
     "name": "function 2",
     "func": "const startTimes = [\n    { title: \"past 1m\", value: '-1m'},\n    { title: \"past 5m\", value: '-5m'},\n    { title: \"past 15m\", value: '-15m'},\n    { title: \"past 1h\", value: '-1h'},\n    { title: \"past 3h\", value: '-3h'},\n    { title: \"past 6h\", value: '-6h'},\n    { title: \"past 12h\", value: '-12h'},\n    { title: \"past 24h\", value: '-24h'},\n    { title: \"past 2d\", value: '-2d'},\n    { title: \"past 7d\", value: '-7d'},\n    { title: \"past 30d\", value: '-30d'},\n    ]\nlet select \n\n    if ( flow.get('options') ){\n        let targetValue = flow.get('options').start\n        if (targetValue) {\n            const found = startTimes.find(obj => obj.value === targetValue);\n            if (found) {\n                select = found\n\n            }\n        } \n    }\n\nmsg.payload = select\nreturn msg;\n",
     "outputs": 1,
@@ -1442,8 +1365,8 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 1690,
-    "y": 940,
+    "x": 460,
+    "y": 1620,
     "wires": [
       [
         "b0158432da4e08b0"
@@ -1454,6 +1377,7 @@
     "id": "b0158432da4e08b0",
     "type": "debug",
     "z": "daf7a59ca2ce18df",
+    "d": true,
     "name": "debug 13",
     "active": true,
     "tosidebar": true,
@@ -1462,21 +1386,428 @@
     "complete": "false",
     "statusVal": "",
     "statusType": "auto",
-    "x": 1830,
-    "y": 940,
+    "x": 600,
+    "y": 1620,
     "wires": []
   },
   {
     "id": "c42e4d342acc0cd3",
     "type": "link out",
     "z": "daf7a59ca2ce18df",
+    "g": "95650db55e509f3a",
     "name": "link out 43",
     "mode": "link",
     "links": [
       "22993ff229d6db8d"
     ],
-    "x": 1605,
-    "y": 600,
+    "x": 1335,
+    "y": 360,
     "wires": []
+  },
+  {
+    "id": "86d3cd69d0bb705f",
+    "type": "redis-in",
+    "z": "daf7a59ca2ce18df",
+    "g": "95650db55e509f3a",
+    "server": "0430675ed6c7cd83",
+    "command": "subscribe",
+    "name": "Sub Tx",
+    "topic": "csms:ocpp:Transaction",
+    "obj": true,
+    "timeout": 0,
+    "x": 90,
+    "y": 380,
+    "wires": [
+      [
+        "47ec7b659bf636da"
+      ]
+    ]
+  },
+  {
+    "id": "2b3313124c5432fd",
+    "type": "link in",
+    "z": "daf7a59ca2ce18df",
+    "g": "0f64ec29e5e2920f",
+    "name": "Tx Details",
+    "links": [
+      "95c129bce90c82d2"
+    ],
+    "x": 55,
+    "y": 780,
+    "wires": [
+      [
+        "c4b73cd2d6f1efbb"
+      ]
+    ]
+  },
+  {
+    "id": "95c129bce90c82d2",
+    "type": "link out",
+    "z": "daf7a59ca2ce18df",
+    "g": "95650db55e509f3a",
+    "name": "link out 67",
+    "mode": "link",
+    "links": [
+      "2b3313124c5432fd",
+      "6ff728dbd7af2084"
+    ],
+    "x": 1165,
+    "y": 420,
+    "wires": []
+  },
+  {
+    "id": "6ff728dbd7af2084",
+    "type": "link in",
+    "z": "daf7a59ca2ce18df",
+    "g": "3ac4f1444c541fae",
+    "name": "Show MV",
+    "links": [
+      "95c129bce90c82d2"
+    ],
+    "x": 285,
+    "y": 220,
+    "wires": [
+      [
+        "c006c2c3567e7ee6"
+      ]
+    ]
+  },
+  {
+    "id": "d4313ae998f77a51",
+    "type": "link out",
+    "z": "daf7a59ca2ce18df",
+    "g": "3ac4f1444c541fae",
+    "name": "link out 68",
+    "mode": "link",
+    "links": [
+      "22993ff229d6db8d"
+    ],
+    "x": 525,
+    "y": 80,
+    "wires": []
+  },
+  {
+    "id": "afc97f6be14c06af",
+    "type": "debug",
+    "z": "daf7a59ca2ce18df",
+    "d": true,
+    "name": "debug 60",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 780,
+    "y": 1680,
+    "wires": []
+  },
+  {
+    "id": "2807de6096eb9e1f",
+    "type": "function",
+    "z": "daf7a59ca2ce18df",
+    "d": true,
+    "name": "FLUX Get raw None-MV OCPP",
+    "func": "// clear out any incoming message for now.\nlet filter_by_tx = \"\";\nlet topic = \"00000000\"\nif (msg.payload.txId) {\n  filter_by_tx = `|> filter(fn: (r) => r[\"transactionId\"] == ${msg.payload.txId})`\n  topic = msg.payload.txId\n}\n\nmsg = {}\n\nmsg.topic = topic\n\nmsg.query = `from(bucket: \"OCPP\") \\\n  |> range( start: -365d) \\\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Transaction\") \\\n  |> pivot(columnKey: [\"_field\"], rowKey: [\"_time\"], valueColumn: \"_value\") \\\n  ${filter_by_tx} \\\n  |> filter(fn: (r) => r[\"command\"] == \"StartTransaction\") \\\n  |> drop(columns: [\"_start\",\"_stop\",\"_measurement\"]) \\\n  |> group(columns: [\"transactionId\"]) \\\n  |> sort(columns: [\"_time\"])`\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 370,
+    "y": 1680,
+    "wires": [
+      [
+        "cad0c9ccd4a89916"
+      ]
+    ]
+  },
+  {
+    "id": "cad0c9ccd4a89916",
+    "type": "influxdb in",
+    "z": "daf7a59ca2ce18df",
+    "d": true,
+    "influxdb": "7cb40fcee206391e",
+    "name": "",
+    "query": "",
+    "rawOutput": false,
+    "precision": "",
+    "retentionPolicy": "",
+    "org": "cipio",
+    "x": 620,
+    "y": 1680,
+    "wires": [
+      [
+        "afc97f6be14c06af"
+      ]
+    ]
+  },
+  {
+    "id": "af34e8f8bdc77f6d",
+    "type": "comment",
+    "z": "daf7a59ca2ce18df",
+    "name": "Scratch",
+    "info": "",
+    "x": 290,
+    "y": 1560,
+    "wires": []
+  },
+  {
+    "id": "6056ebcd2dce07ad",
+    "type": "ui-chart",
+    "z": "daf7a59ca2ce18df",
+    "d": true,
+    "g": "0f64ec29e5e2920f",
+    "group": "750f030497b122aa",
+    "name": "EnergyExport",
+    "label": "[V2G] Energy",
+    "order": 15,
+    "chartType": "line",
+    "category": "",
+    "categoryType": "none",
+    "xAxisLabel": "",
+    "xAxisProperty": "payload._time",
+    "xAxisPropertyType": "msg",
+    "xAxisType": "time",
+    "xAxisFormat": "",
+    "xAxisFormatType": "auto",
+    "xmin": "",
+    "xmax": "",
+    "yAxisLabel": "kWh",
+    "yAxisProperty": "payload.EnergyExportkWh",
+    "yAxisPropertyType": "msg",
+    "ymin": "",
+    "ymax": "",
+    "bins": 10,
+    "action": "append",
+    "stackSeries": false,
+    "pointShape": "circle",
+    "pointRadius": 4,
+    "showLegend": true,
+    "removeOlder": 1,
+    "removeOlderUnit": "3600",
+    "removeOlderPoints": "",
+    "colors": [
+      "#ffa200",
+      "#ff0000",
+      "#ff7f0e",
+      "#2ca02c",
+      "#a347e1",
+      "#d62728",
+      "#ff9896",
+      "#9467bd",
+      "#c5b0d5"
+    ],
+    "textColor": [
+      "#666666"
+    ],
+    "textColorDefault": true,
+    "gridColor": [
+      "#e5e5e5"
+    ],
+    "gridColorDefault": true,
+    "width": "3",
+    "height": "8",
+    "className": "",
+    "interpolation": "linear",
+    "x": 980,
+    "y": 680,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "28e987d2f51b24a4",
+    "type": "ui-control",
+    "z": "daf7a59ca2ce18df",
+    "g": "0f64ec29e5e2920f",
+    "name": "",
+    "ui": "8cdc313c9611f13f",
+    "events": "all",
+    "x": 1000,
+    "y": 520,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "2bf238ae31912284",
+    "type": "function",
+    "z": "daf7a59ca2ce18df",
+    "g": "0f64ec29e5e2920f",
+    "name": "function 10",
+    "func": "msg.payload = {\n    \"groups\": {\n        \"hide\": [],\n        \"show\": []\n    }\n}\nif (msg?.payload[0] && Object.hasOwn(msg.payload[0], 'EnergykWh')){\n    msg.payload.groups.show.push(\"EnergyImport\")\n}\nelse {\n    msg.payload.groups.hide.push(\"EnergyImport\")\n}\n\nif (msg?.payload[0] && Object.hasOwn(msg.payload[0], 'EnergyExportkWh')){\n    msg.payload.groups.show.push(\"EnergyExport\")\n}\nelse {\n    msg.payload.groups.hide.push(\"EnergyExport\")\n}\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 850,
+    "y": 520,
+    "wires": [
+      [
+        "28e987d2f51b24a4"
+      ]
+    ]
+  },
+  {
+    "id": "4c7d7739dd4dfec4",
+    "type": "ui-template",
+    "z": "daf7a59ca2ce18df",
+    "g": "0f64ec29e5e2920f",
+    "group": "750f030497b122aa",
+    "page": "",
+    "ui": "",
+    "name": "MeterValue Nav",
+    "order": 1,
+    "width": "6",
+    "height": "2",
+    "head": "",
+    "format": "<template>\n    <!--div>\n        <v-btn @click=\"previousTx()\">Back</v-btn>\n        <v-btn @click=\"nextTx()\">Forward</v-btn>\n        <v-btn @click=\"returnToList()\"><v-icon>mdi-keyboard-return</v-icon>Return to List</v-btn>\n    </div-->\n    <v-toolbar flat>\n        <v-toolbar-title>\n            <v-icon color=\"medium-emphasis\" icon=\"mdi-handshake\" size=\"x-large\" start></v-icon>\n            Meter Values\n        </v-toolbar-title>\n        <!-- v-spacer></v-spacer -->           \n        <v-tooltip text=\"Previous\" location=\"bottom\">\n            <template v-slot:activator=\"{ props }\">\n            <v-btn icon v-bind=\"props\" @click=\"previousTx\">\n                <v-icon>mdi-chevron-left</v-icon>\n            </v-btn>\n            </template>\n        </v-tooltip>\n        <v-tooltip text=\"Next\" location=\"bottom\">\n            <template v-slot:activator=\"{ props }\">\n            <v-btn icon v-bind=\"props\" @click=\"nextTx\">\n                <v-icon>mdi-chevron-right</v-icon>\n            </v-btn>\n            </template>\n        </v-tooltip>\n        <v-tooltip text=\"Return To List\" location=\"bottom\">\n            <template v-slot:activator=\"{ props }\">\n            <v-btn icon v-bind=\"props\" @click=\"returnToList\">\n                <v-icon>mdi-keyboard-return</v-icon>\n            </v-btn>\n            </template>\n        </v-tooltip>\n    </v-toolbar>\n</template>\n// mdi-keyboard-return\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n                count: 0\n            }\n        },\n        watch: {\n        },\n        computed: {\n        },\n        methods: {\n            // expose a method to our <template> and Vue Application\n            increase: function () {\n                this.count++\n            },\n            returnToList: function () {\n                this.send({\n                    action: 'returnToList'\n                })\n            },\n            previousTx: function() {\n                this.send({\n                    action: 'previousTx'\n                })\n            },\n            nextTx: function() {\n                this.send({\n                    action: 'nextTx'\n                })                \n            }\n        },\n        mounted() {\n            // code here when the component is first loaded\n        },\n        unmounted() {\n            // code here when the component is removed from the Dashboard\n            // i.e. when the user navigates away from the page\n        }\n    }\n</script>\n<style>\n    /* define any styles here - supports raw CSS */\n    .my-class {\n        color: red;\n    }\n</style>",
+    "storeOutMessages": true,
+    "passthru": true,
+    "resendOnRefresh": true,
+    "templateScope": "local",
+    "className": "",
+    "x": 280,
+    "y": 540,
+    "wires": [
+      [
+        "103cbc8e3cfdb916",
+        "83789711b154ecf9"
+      ]
+    ]
+  },
+  {
+    "id": "87227c37b26c9994",
+    "type": "link in",
+    "z": "daf7a59ca2ce18df",
+    "g": "3ac4f1444c541fae",
+    "name": "Return to TxList",
+    "links": [
+      "dce39f362f094d13"
+    ],
+    "x": 145,
+    "y": 100,
+    "wires": [
+      [
+        "add76386e6a46f5d"
+      ]
+    ]
+  },
+  {
+    "id": "103cbc8e3cfdb916",
+    "type": "switch",
+    "z": "daf7a59ca2ce18df",
+    "g": "0f64ec29e5e2920f",
+    "name": "",
+    "property": "action",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "returnToList",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "previousTx",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "nextTx",
+        "vt": "str"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 3,
+    "x": 450,
+    "y": 540,
+    "wires": [
+      [
+        "dce39f362f094d13"
+      ],
+      [],
+      []
+    ]
+  },
+  {
+    "id": "dce39f362f094d13",
+    "type": "link out",
+    "z": "daf7a59ca2ce18df",
+    "g": "0f64ec29e5e2920f",
+    "name": "link out 69",
+    "mode": "link",
+    "links": [
+      "87227c37b26c9994"
+    ],
+    "x": 545,
+    "y": 520,
+    "wires": []
+  },
+  {
+    "id": "83789711b154ecf9",
+    "type": "debug",
+    "z": "daf7a59ca2ce18df",
+    "g": "0f64ec29e5e2920f",
+    "name": "debug 5",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 450,
+    "y": 640,
+    "wires": []
+  },
+  {
+    "id": "c3993a72f3c63028",
+    "type": "ui-button",
+    "z": "daf7a59ca2ce18df",
+    "d": true,
+    "g": "3ac4f1444c541fae",
+    "group": "750f030497b122aa",
+    "name": "",
+    "label": "Return to Transaction List",
+    "order": 2,
+    "width": "0",
+    "height": "0",
+    "emulateClick": false,
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "block",
+    "icon": "mdi-keyboard-return",
+    "iconPosition": "left",
+    "payload": "{\"target\":\"Transactions\"}",
+    "payloadType": "json",
+    "topic": "topic",
+    "topicType": "msg",
+    "buttonColor": "",
+    "textColor": "",
+    "iconColor": "yellow",
+    "enableClick": true,
+    "enablePointerdown": false,
+    "pointerdownPayload": "",
+    "pointerdownPayloadType": "str",
+    "enablePointerup": false,
+    "pointerupPayload": "",
+    "pointerupPayloadType": "str",
+    "x": 150,
+    "y": 60,
+    "wires": [
+      [
+        "add76386e6a46f5d"
+      ]
+    ]
   }
 ]
