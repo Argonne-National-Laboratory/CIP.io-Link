@@ -8,3 +8,4 @@
 **/mqtt
 **/mosquitto
 **.backup
+**/*.bak
